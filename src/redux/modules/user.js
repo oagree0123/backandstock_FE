@@ -21,69 +21,82 @@ const initialState = {
 };
 
 // middlewares
-const LoginDB = ({user_name, pwd}) => {
+const LoginDB = ({ user_name, pwd }) => {
+  // test1234@naver.com
+  // test1234
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios
-      .post(`url/user/login`, {
-        username : user_name,
-        password : pwd,
+      const response = await axios.post(`http://54.180.95.115/user/login`, {
+        username: user_name,
+        password: pwd,
       });
 
       const token = response.headers.authorization;
       setToken(token);
 
       try {
-        let check_user = await axios.post(`url/islogin`, {}, {
-          headers: {
-            authorization: `${token}`
+        let check_user = await axios.post(
+          `http://54.180.95.115/islogin`,
+          {},
+          {
+            headers: {
+              authorization: `${token}`,
+            },
           }
-        })
+        );
 
-        dispatch(setUser({
-          nickname : check_user.nickname,
-          profile_img : check_user.profileImg,
-        }))
-      }
-      catch(err) {
+        dispatch(
+          setUser({
+            user_name: check_user.data.username,
+            nickname: check_user.data.nickname,
+            profile_img: check_user.data.profileImg,
+          })
+        );
+      } catch (err) {
         console.log(err);
       }
 
       window.alert("로그인이 완료되었습니다.");
       history.replace("/");
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
     }
-  }
-}
+  };
+};
 
 const LoginCheckDB = () => {
-  return async function (dispatch, getState, {history}) {
+  return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
-      let check_user = await axios.post(`url/islogin`, {}, {
-        headers: {
-          authorization: `${token}`
+      let check_user = await axios.post(
+        `http://54.180.95.115/islogin`,
+        {},
+        {
+          headers: {
+            authorization: `${token}`,
+          },
         }
-      })
+      );
 
-      dispatch(setUser({
-        nickname : check_user.nickname,
-        profile_img : check_user.profileImg,
-      }))
-    }
-    catch(err) {
+      console.log(check_user);
+
+      dispatch(
+        setUser({
+          user_name: check_user.data.username,
+          nickname: check_user.data.nickname,
+          profile_img: check_user.data.profileImg,
+        })
+      );
+    } catch (err) {
       console.log(err);
     }
-  }
-}
+  };
+};
 
-const SignupDB = ({user_name, nickname, pwd}) => {
+const SignupDB = ({ user_name, nickname, pwd }) => {
   return async function (dispatch, getState, { history }) {
     try {
-      await axios
-      .post(`url/user/signup`, {
+      await axios.post(`http://54.180.95.115/user/signup`, {
         username: user_name,
         password: pwd,
         nickname: nickname,
@@ -91,8 +104,7 @@ const SignupDB = ({user_name, nickname, pwd}) => {
 
       window.alert("회원가입이 완료되었습니다.");
       history.replace("/");
-    } 
-    catch (err) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -102,21 +114,19 @@ const ResignDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken();
     try {
-      await axios
-      .delete(`url/resign`, {
+      await axios.delete(`http://54.180.95.115/resign`, {
         headers: {
-          Autorization: `${token}`
-        }
-      })
+          Autorization: `${token}`,
+        },
+      });
 
       dispatch(logout());
-      history.replace('/');
-    }
-    catch (err) {
+      history.replace("/");
+    } catch (err) {
       console.log(err);
     }
-  }
-}
+  };
+};
 
 // reducer
 export default handleActions(
@@ -125,7 +135,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user_info = action.payload.user;
         draft.is_login = true;
-    }),
+      }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         delToken();
@@ -134,7 +144,7 @@ export default handleActions(
           profile_img: "",
         };
         draft.is_login = false;
-    }),
+      }),
   },
   initialState
 );
@@ -146,6 +156,6 @@ const actionCreators = {
   logout,
   SignupDB,
   ResignDB,
-}
+};
 
 export { actionCreators };
