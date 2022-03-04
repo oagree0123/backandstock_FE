@@ -52,3 +52,10 @@ export const MonthBtn = styled.div`
   text-align: center;
   cursor: pointer;
 `;
+
+export const MonthDisabledBtn = styled.div`
+  width: 33.33%;
+  color: #eee;
+  text-align: center;
+  cursor: default;
+`;

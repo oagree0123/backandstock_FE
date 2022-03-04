@@ -5,10 +5,13 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as testformActions } from '../../redux/modules/testform';
 import arrowLeft from '../../assets/images/arrow_left.svg'
 import arrowRight from '../../assets/images/arrow_right.svg'
-import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, MonthBtn, MonthClickBtn, MonthPickerWrap, MonthWrap } from './style';
+import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, MonthBtn, MonthClickBtn, MonthDisabledBtn, MonthPickerWrap, MonthWrap } from './style';
 
 const MonthPicker = (props) => {
   const dispatch = useDispatch();
+
+  const today_year = moment().format('YYYY');
+  const today_month = moment().format('MM');
 
   const [is_open, setIsOpen] = useState(false);
   const [year, setYear] = useState(props.type === "start" ? 2019 : 2022);
@@ -50,11 +53,7 @@ const MonthPicker = (props) => {
         setIsOpen(true);
       }}
       >
-        { 
-          month < 10 ?
-          moment(`${year}-0${month}`).format('YYYY-MM-DD') :
-          moment(`${year}-${month}`).format('YYYY-MM-DD')
-        }
+        {year} {months[month-1]}
       </div>
       {
         is_open &&
@@ -79,7 +78,7 @@ const MonthPicker = (props) => {
           <MonthWrap>
             {
               months.map((m, i) => {
-                if (month - 1 === i) {
+                if (parseInt(today_year) === year && month - 1 === i) {
                   return (
                     <MonthClickBtn 
                       key={i} 
@@ -93,17 +92,28 @@ const MonthPicker = (props) => {
                   );
                 }
                 else {
-                  return (
-                    <MonthBtn 
-                      key={i} 
-                      onClick={() => {
-                        setMonth(i + 1)
-                        setIsOpen(false);
-                      }}
-                    >
-                      {m}
-                    </MonthBtn>
-                  );
+                  if(parseInt(today_year) === year && parseInt(today_month) <= i){
+                    return (
+                      <MonthDisabledBtn 
+                        key={i} 
+                      >
+                        {m}
+                      </MonthDisabledBtn>
+                    );
+                  }
+                  else{
+                    return (
+                      <MonthBtn 
+                        key={i} 
+                        onClick={() => {
+                          setMonth(i + 1)
+                          setIsOpen(false);
+                        }}
+                      >
+                        {m}
+                      </MonthBtn>
+                    );
+                  }
                 }
               })
             }
