@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { BackTest, Login, Signup } from "../pages";
+import Community from '../pages/Community';
 import { SideTap } from "../components";
 import { getToken } from "./token";
 
@@ -30,6 +31,7 @@ function App() {
         <SideTap />
         <ContentWrap>
           <Route path="/" exact component={BackTest} />
+          <Route path="/community" exact component={Community}></Route>
         </ContentWrap>
       </ConnectedRouter>
     </div>
