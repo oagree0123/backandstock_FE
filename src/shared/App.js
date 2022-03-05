@@ -7,8 +7,7 @@ import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup } from "../pages";
-import Community from '../pages/Community';
+import { BackTest, Login, Signup, Community } from "../pages";
 import { SideTap } from "../components";
 import { getToken } from "./token";
 
