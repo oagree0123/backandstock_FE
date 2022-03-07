@@ -4,10 +4,11 @@ export const SideTapWrap = styled.div`
   position: fixed;
   left: 0;
   margin: 0;
-  width: 24vw;
+  width: 25.9vw;
   height: 100vh;
 
-  padding: 47px 43px 0px 46px ;
+  padding-top: 7.08vh;
+  padding-left: 4.88vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -25,10 +26,10 @@ export const SideUserWrap = styled.div`
 
 export const UserImg = styled.div`
   margin-bottom: 23px;
-  width: 12vw;
-  height: 12vw;
+  width: 10.4vw;
+  height: 10.4vw;
   border-radius: 50%;
-  background-color: #E5EFFF;
+  background-color: var(--secondary-color);
 `;
 
 export const Username = styled.p`
@@ -51,7 +52,7 @@ export const ProfileBtn = styled.button`
   height: 4vh;
   font-size: var(--font-main);
   font-weight: 500;
-  border: 1px solid #78909C;
+  border: 1px solid var(--font-color);
   border-radius: 10px;
 `;
 
@@ -70,14 +71,26 @@ export const Tab = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #E5EFFF;
+  background-color: #fff;
+  border-radius: 10px;
+`;
+
+export const TabClicked = styled.div`
+  margin-bottom: 15px;
+  padding: 8px 17px;
+  width: 100%;
+  height: 5.8vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--secondary-color);
   border-radius: 10px;
 `;
 
 export const TabIcon = styled.div`
   width: 2.44vh;
   height: 2.44vh;
-  background-color: #367BF5;
+  background-color: var(--primary-color);
   border-radius: 50%;
 `;
 
@@ -97,6 +110,6 @@ export const TabTitle = styled.p`
 `;
 
 export const TabDesc = styled.p`
-  color: #367BF5; 
+  color: var(--primary-color); 
   font-size: 0.9vw;
 `;

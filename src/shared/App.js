@@ -26,8 +26,8 @@ function App() {
   return (
     <AppWrap className="App">
       <GlobalStyle />
-      <Header />
       <ConnectedRouter history={history}>
+        <Header />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <SideTap />
@@ -41,6 +41,7 @@ function App() {
 }
 
 const AppWrap = styled.div`
+  margin-top: 8.125vh;
 `;
 
 const ContentWrap = styled.div`
