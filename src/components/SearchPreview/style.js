@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
-export const SearchWrap = styled.div`
+export const PreviewWrap = styled.div`
   display: flex;
+  cursor: pointer;
 `;

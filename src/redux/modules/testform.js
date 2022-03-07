@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import moment from "moment";
+import axios from "axios";
 
 // actions
 const SET_START = "SET_START";
@@ -14,6 +15,8 @@ const setEnd = createAction(SET_END, (end_year, end_month) => ({ end_year, end_m
 const initialState = {
   start_date: "",
   end_date: "",
+  stockList: [],
+  ratioList: [],
 };
 
 // middlewares
