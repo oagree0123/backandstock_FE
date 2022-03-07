@@ -46,7 +46,7 @@ const AppWrap = styled.div`
 
 const ContentWrap = styled.div`
   margin-left: 24vw;
-  padding: 47px 112px 0px 104px;
+  padding: 3.26vw 7.77vw 0px 7.22vw;
 `;
 
 export default App;

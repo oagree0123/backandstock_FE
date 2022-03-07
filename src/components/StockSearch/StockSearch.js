@@ -10,15 +10,19 @@ import {
   SearchLeft,
   SearchRight,
   SearchTitle,
+  Rate,
+  RateWrap,
 } from "./style";
 import { useDispatch } from "react-redux";
 import SearchPreview from "../SearchPreview/SearchPreview";
+
+import { actionCreators as testformActions } from "../../redux/modules/testform";
 
 const StockSearch = () => {
   const dispatch = useDispatch();
  
   const [is_open, setIsOpen] = useState(false);
-  const [ratio, setRatio] = useState();
+  const [ratio, setRatio] = useState("");
   const [stock_search, setStockSearch] = useState("");
   const [stock_name, setStockName] = useState("");
   const [stock_code, setStockCode] = useState("");
@@ -52,22 +56,21 @@ const StockSearch = () => {
     }
   }
 
-  useEffect(() => {
-    console.log(stock_name);
-    console.log(stock_code);
-  }, [stock_name, stock_code])
-
   return (
     <StockWrap>
       <SearchLeft>
         <SearchTitle>자산 비율</SearchTitle>
-        <StockRate
-          placeholder="비율"
-          type="number"
-          onChange={(e) => {
-            setRatio(e.target.value);
-          }}
-        />
+        <RateWrap>
+          <StockRate
+            placeholder="비율"
+            type="number"
+            onChange={(e) => {
+              setRatio(e.target.value);
+            }}
+          >
+          </StockRate>
+          <Rate>%</Rate>
+        </RateWrap>
       </SearchLeft>
       <SearchRight>
         <SearchTitle>실험하고 싶은 자산</SearchTitle>
@@ -107,7 +110,13 @@ const StockSearch = () => {
             </PreviewListWrap>
           }
         </SearchWrap>
-        {/* <SearchBtn>추가하기</SearchBtn> */}
+        <SearchBtn
+          onClick={()=> {
+            dispatch(testformActions.setStock(ratio, stock_name));
+          }}
+        >
+          추가하기
+        </SearchBtn>
       </SearchRight>
     </StockWrap>
   );

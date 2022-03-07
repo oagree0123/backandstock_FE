@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const StockItemWrap = styled.div`
+  position: relative;
   height: 3.9vh;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   color: var(--primary-color);
 `;
@@ -23,11 +24,13 @@ export const StockRate = styled.p`
 
 export const StockPrice = styled.p`
   padding-left: 1.73vw;
-  width: 22.84vw;
+  width: 27.98vw;
   font-size: var(--font-main);
 `;
 
 export const CloseBtn = styled.button`
+  position: absolute;
+  right: 20px;
   margin-left: 1.73vw;
   width: 1.38vw;
   height: 1.38vw;

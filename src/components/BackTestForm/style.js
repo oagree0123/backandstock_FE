@@ -34,8 +34,20 @@ export const FormTitle = styled.h3`
   font-weight: 600;
 `;
 
+export const MoneyWrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+export const Won = styled.div`
+  position: absolute;
+  right: 1.38vw;
+  font-size: var(--font-medium);
+`;
+
 export const FormInput = styled.input`
-  padding-left: 20px;
+  padding-left: 1.38vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;

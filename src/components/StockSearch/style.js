@@ -21,8 +21,14 @@ export const SearchTitle = styled.h3`
   font-weight: 600;
 `;
 
+export const RateWrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
 export const StockRate = styled.input`
-  padding-left: 20px;
+  padding-left: 1.38vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -31,6 +37,11 @@ export const StockRate = styled.input`
   font-size: var(--font-main);
   border: 1px solid var(--font-color);
   border-radius: 10px;
+`;
+
+export const Rate = styled.div`
+  position: absolute;
+  right: 1.38vw;
 `;
 
 export const SearchWrap = styled.div`

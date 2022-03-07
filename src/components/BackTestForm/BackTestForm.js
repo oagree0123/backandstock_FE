@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import BackTestList from '../BackTestList/BackTestList';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import StockSearch from '../StockSearch/StockSearch';
-import { FormBottom, FormInput, FormLeft, FormRight, FormTitle, FormTop, FormWrap } from './style';
+import { FormBottom, FormInput, FormLeft, FormRight, FormTitle, FormTop, FormWrap, MoneyWrap, Won } from './style';
+
+import { actionCreators as testformActions } from '../../redux/modules/testform';
 
 const BackTestForm = () => {
+  const dispatch = useDispatch();
   const date = useSelector(state => state.testform);
+
+  const [init_money, setInitMoney] = useState('');
 
   return (
     <FormWrap>
@@ -18,10 +23,18 @@ const BackTestForm = () => {
         </FormLeft>
         <FormRight>
           <FormTitle>실험 금액</FormTitle>
-          <FormInput
-            type="number"
-            placeholder='금액을 입력해 주세요'
-          />
+          <MoneyWrap>
+            <FormInput
+              type="number"
+              placeholder='금액을 입력해 주세요'
+              onChange={(e)=> {
+                setInitMoney(e.target.value)
+                dispatch(testformActions.setMoney(e.target.value));
+              }}
+              value={init_money}
+            />
+            <Won>원</Won>
+          </MoneyWrap>
         </FormRight>
       </FormTop>
       <FormBottom>
