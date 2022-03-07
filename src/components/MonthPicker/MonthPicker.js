@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as testformActions } from '../../redux/modules/testform';
 import arrowLeft from '../../assets/images/arrow_left.svg'
 import arrowRight from '../../assets/images/arrow_right.svg'
-import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, MonthBtn, MonthClickBtn, MonthDisabledBtn, MonthPickerWrap, MonthWrap } from './style';
+import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, DateWrap, MonthBtn, MonthClickBtn, MonthDisabledBtn, MonthPickerWrap, MonthWrap } from './style';
 
 const MonthPicker = (props) => {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const MonthPicker = (props) => {
   const [is_open, setIsOpen] = useState(false);
   const [year, setYear] = useState(props.type === "start" ? 2019 : 2022);
   const [month, setMonth] = useState(1);
+  const [clicked_date, setClickedDate] = useState(props.type === "start" ? 2019 : 2022);
 
   const months = [
     'Jan', 'Feb', 'Mar',
@@ -44,17 +45,13 @@ const MonthPicker = (props) => {
 
   return (
     <MonthPickerWrap>
-      <div style={{
-        width: "200px",
-        height: "50px",
-        border: "1px solid #eee",
-      }}
-      onClick={()=>{
-        setIsOpen(true);
-      }}
+      <DateWrap
+        onClick={()=>{
+          setIsOpen(!is_open);
+        }}
       >
         {year} {months[month-1]}
-      </div>
+      </DateWrap>
       {
         is_open &&
         <CalenderWrap>
@@ -78,12 +75,13 @@ const MonthPicker = (props) => {
           <MonthWrap>
             {
               months.map((m, i) => {
-                if (parseInt(today_year) === year && month - 1 === i) {
+                if (clicked_date === year && month - 1 === i) {
                   return (
                     <MonthClickBtn 
                       key={i} 
                       onClick={() => {
                         setMonth(i + 1)
+                        setClickedDate(year)
                         setIsOpen(false);
                       }}
                     >
@@ -107,6 +105,7 @@ const MonthPicker = (props) => {
                         key={i} 
                         onClick={() => {
                           setMonth(i + 1)
+                          setClickedDate(year)
                           setIsOpen(false);
                         }}
                       >
