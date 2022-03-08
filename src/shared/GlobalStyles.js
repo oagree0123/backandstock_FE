@@ -1,11 +1,11 @@
-import { months } from "moment";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   :root {
   --primary-color: #367BF5;
   --secondary-color: #E5EFFF;
-  --font-color: #78909C;
+  --gray-color: #c4c4c4;
+  --font-color: #000;
   --font-title: 1.53vw; //22px
   --font-main: 1.25vw; //18px
   --font-medium: 1.11vw; //16px
@@ -19,13 +19,15 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     color: var(--font-color);
+    font-size: var(--font-medium);
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    letter-spacing: 0;
   }
   
   button {
     color: var(--font-color);
-    cursor: pointer;
+    cursor: pointer;  
     background-color: #fff;
   }
 

@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 export const StockItemWrap = styled.div`
+  margin-bottom: 1.95vh;
   position: relative;
-  height: 3.9vh;
+  height: 2.53vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--primary-color);
+  color: var(--font-color);
+  z-index: 50;
 `;
 
 export const StockName = styled.p`

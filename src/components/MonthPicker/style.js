@@ -4,25 +4,24 @@ export const MonthPickerWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  margin: 0;
+  margin-bottom: 1.8vh;
 `;
 
 export const DateWrap = styled.div`
-  margin-bottom: 15px;
-  padding-left: 20px;
+  padding-left: 1.52vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 4.88vh;
+  height: 5.37vh;
   font-size: var(--font-main);
-  border: 1px solid var(--font-color);
-  border-radius: 10px;
+  border: 1px solid var(--gray-color);
+  border-radius: 0.694vw;
 `;
 
 export const CalenderWrap = styled.div`
   position: absolute;
-  top: 5.3vh;
+  top: 6vh;
   left: 0;
   width: 100%;
   height: 100%;
@@ -36,6 +35,7 @@ export const CalenderHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: var(--font-medium);
   background-color: #eee;
 `;
 
@@ -44,6 +44,8 @@ export const CalenderYear = styled.p`
 `;
 
 export const CalenderArrow = styled.img`
+  width: 1.46vw;
+  height: 1.46vw;
   cursor: pointer;
 `;
 
@@ -52,6 +54,7 @@ export const MonthWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  font-size: var(--font-medium);
   background-color: #fff;
 `;
 

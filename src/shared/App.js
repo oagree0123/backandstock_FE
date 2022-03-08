@@ -41,7 +41,8 @@ function App() {
 }
 
 const AppWrap = styled.div`
-  margin-top: 8.125vh;
+  margin-top: 3.33vw;
+  margin-bottom: 3.75vw;
 `;
 
 const ContentWrap = styled.div`

@@ -13,7 +13,7 @@ const SET_STOCK = "SET_STOCK";
 const setStart = createAction(SET_START, (start_year, start_month) => ({ start_year, start_month }));
 const setEnd = createAction(SET_END, (end_year, end_month) => ({ end_year, end_month }));
 const setMoney = createAction(SET_MONEY, (money) => ({ money }));
-const setStock = createAction(SET_STOCK, (ratio, stock_name) => ({ ratio, stock_name }));
+const setStock = createAction(SET_STOCK, (ratio, stock_name, stock_code) => ({ ratio, stock_name, stock_code }));
 
 // initialState
 const initialState = {
@@ -22,6 +22,7 @@ const initialState = {
   init_money: 0,
   stockList: [],
   ratioList: [],
+  codeList: [],
 };
 
 // middlewares
@@ -59,6 +60,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.stockList.push(action.payload.stock_name);
         draft.ratioList.push(action.payload.ratio);
+        draft.codeList.push(action.payload.stock_code);
     }),
   },
   initialState

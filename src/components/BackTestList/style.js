@@ -5,7 +5,7 @@ export const TestListWrap = styled.div`
 `;
 
 export const ListTitle = styled.h3`
-  margin-bottom: 32px;
+  margin-bottom: 2.67vh;
   font-size: var(--font-title);
   font-weight: 600;
 `;
@@ -18,7 +18,7 @@ export const ListWrap = styled.div`
 `;
 
 export const ListTop = styled.div`
-  margin-bottom: 5px;
+  margin-bottom: 1.7vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
