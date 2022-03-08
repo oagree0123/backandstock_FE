@@ -3,20 +3,21 @@ import styled from "styled-components";
 export const StockWrap = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
 `;
 
 export const SearchLeft = styled.div`
-  width: 22.6vw;
+  margin-right: 50px;
+  width: 350px;
 `;
 
 export const SearchRight = styled.div`
-  width: 26.3vw;
+  width: 480px;
 `;
 
 export const SearchTitle = styled.h3`
-  margin-bottom: 24px;
+  margin-bottom: 27px;
   font-size: var(--font-title);
   font-weight: 600;
 `;
@@ -28,24 +29,33 @@ export const RateWrap = styled.div`
 `;
 
 export const StockRate = styled.input`
-  padding-left: 1.38vw;
+  padding-left: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 4.88vh;
+  height: 55px;
   font-size: var(--font-main);
-  border: 1px solid var(--font-color);
+  border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
 
 export const Rate = styled.div`
   position: absolute;
-  right: 1.38vw;
+  font-size: var(--font-medium);
+  right: 20px;
+`;
+
+export const SearchStock = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const SearchWrap = styled.div`
   position: relative;
+  width: 350px;
 `;
 
 export const SearchInput = styled.input`
@@ -53,29 +63,39 @@ export const SearchInput = styled.input`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
-  height: 4.88vh;
+  width: 350px;
+  height: 55px;
   font-size: var(--font-main);
-  border: 1px solid var(--font-color);
+  border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
 
 export const PreviewListWrap = styled.div`
   position: absolute;
-  top: 5.3vh;
+  top: 60px;
   left: 0;
   width: 100%;
-  max-height: 10vh;
+  max-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: #e5e5e5;
-  border-radius: 5px;
+  background-color: var(--secondary-color);
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const SearchBtn = styled.button`
-
+  margin-left: 20px;
+  width: 110px;
+  height: 55px;
+  font-size: var(--font-main);
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--primary-color);
 `;
-

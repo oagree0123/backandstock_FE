@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { history } from '../../redux/configStore';
-import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked } from './style';
+import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle } from './style';
 
 const SideTap = (props) => {
   const [lab_clicked, setLabClicked] = useState(true);
@@ -29,7 +29,7 @@ const SideTap = (props) => {
             <TabIcon />
             <TabContent>
               <TabTitle>실험실</TabTitle>
-              <TabDesc>당신의 수익을 확인해보세요</TabDesc>
+              <TabDesc>자신의 수익을 확인해보세요</TabDesc>
             </TabContent>
           </Tab> :
           <TabClicked onClick={() => {
@@ -40,8 +40,8 @@ const SideTap = (props) => {
           }}>
             <TabIcon />
             <TabContent>
-              <TabTitle>실험실</TabTitle>
-              <TabDesc>당신의 수익을 확인해보세요</TabDesc>
+              <TabClickedTitle>실험실</TabClickedTitle>
+              <TabClickedDesc>자신의 수익을 확인해보세요</TabClickedDesc>
             </TabContent>
           </TabClicked>
         }
@@ -54,7 +54,7 @@ const SideTap = (props) => {
             <TabIcon />
             <TabContent>
               <TabTitle>포트폴리오</TabTitle>
-              <TabDesc>당신의 투자 상태를 체크해보세요</TabDesc>
+              <TabDesc>자신의 자산을 비교해 보세요</TabDesc>
             </TabContent>
           </Tab> :
           <TabClicked onClick={() => {
@@ -64,8 +64,8 @@ const SideTap = (props) => {
           }}>
             <TabIcon />
             <TabContent>
-              <TabTitle>포트폴리오</TabTitle>
-              <TabDesc>당신의 투자 상태를 체크해보세요</TabDesc>
+              <TabClickedTitle>포트폴리오</TabClickedTitle>
+              <TabClickedDesc>자신의 자산을 비교해 보세요</TabClickedDesc>
             </TabContent>
           </TabClicked>
         }
@@ -78,7 +78,7 @@ const SideTap = (props) => {
             <TabIcon />
             <TabContent>
               <TabTitle>커뮤니티</TabTitle>
-              <TabDesc>자산 정보를 확인해보세요</TabDesc>
+              <TabDesc>자산에 대한 정보를 얻어보세요</TabDesc>
             </TabContent>
           </Tab> :
           <TabClicked onClick={() => {
@@ -88,8 +88,8 @@ const SideTap = (props) => {
           }}>
             <TabIcon />
             <TabContent>
-              <TabTitle>커뮤니티</TabTitle>
-              <TabDesc>자산 정보를 확인해보세요</TabDesc>
+              <TabClickedTitle>커뮤니티</TabClickedTitle>
+              <TabClickedDesc>자산에 대한 정보를 얻어보세요</TabClickedDesc>
             </TabContent>
           </TabClicked>
         }

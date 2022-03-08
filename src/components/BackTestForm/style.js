@@ -5,15 +5,15 @@ export const FormWrap = styled.div`
 `;
 
 export const FormTop = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 52px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
 `;
 
 export const FormBottom = styled.div`
-  margin-bottom: 35px;
+  margin-bottom: 52px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -21,11 +21,12 @@ export const FormBottom = styled.div`
 `;
 
 export const FormLeft = styled.div`
-  width: 22.6vw;
+  margin-right: 50px;
+  width: 350px;
 `;
 
 export const FormRight = styled.div`
-  width: 26.3vw;
+  width: 350px;
 `;
 
 export const FormTitle = styled.h3`
@@ -42,20 +43,30 @@ export const MoneyWrap = styled.div`
 
 export const Won = styled.div`
   position: absolute;
-  right: 1.38vw;
+  right: 20px;
   font-size: var(--font-medium);
 `;
 
 export const FormInput = styled.input`
-  padding-left: 1.38vw;
+  padding-left: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 4.88vh;
+  height: 55px;
   font-size: var(--font-main);
-  border: 1px solid var(--font-color);
+  border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
 
+export const BackTextBtn = styled.button`
+  width: 100%;
+  height: 60px;
+  font-size: var(--font-header);
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 10px;
+`;
 

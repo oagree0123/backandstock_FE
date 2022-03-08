@@ -1,33 +1,34 @@
 import React from 'react';
 import BackTestForm from '../../components/BackTestForm/BackTestForm';
-import { BackTestWrap, InfoTitle, InfoWrap, InfoContWrap, InfoCont, InfoCircle } from './style';
+import { BackTestWrap, InfoTitle, InfoWrap, InfoContLeft, InfoContRight, InfoCont, InfoCircle } from './style';
 
 const BackTest = () => {
   return (
     <BackTestWrap>
+      <InfoTitle>
+      실험실 안내사항
+      </InfoTitle>
       <InfoWrap>
-        <InfoTitle>
-        간편하게 실험을 <br />
-        시작해볼까요?
-        </InfoTitle>
-        <InfoContWrap>
+        <InfoContLeft>
           <InfoCont>
             <InfoCircle />
-            실험하고 싶은 자산은 죄대 5개까지만 가능해요
+            종목은 최대 5개까지 선택 가능해요
           </InfoCont>
           <InfoCont>
             <InfoCircle />
             실험 기간은 3년이내로 가능해요
           </InfoCont>
+        </InfoContLeft>
+        <InfoContRight>
           <InfoCont>
             <InfoCircle />
             자산 5개를 합쳐서 100비율을 만들어 주세요
           </InfoCont>
           <InfoCont>
             <InfoCircle />
-            실험하고 싶은 자산은 죄대 5개까지만 가능해요
+            종목은 최대 5개까지 선택 가능해요
           </InfoCont>
-        </InfoContWrap>
+        </InfoContRight>
       </InfoWrap>
       
       <BackTestForm/>

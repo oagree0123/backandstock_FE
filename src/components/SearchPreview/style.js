@@ -6,5 +6,6 @@ export const PreviewWrap = styled.div`
   height: 3.9vh;
   display: flex;
   align-items: center;
+  font-size: var(--font-medium);
   cursor: pointer;
 `;
