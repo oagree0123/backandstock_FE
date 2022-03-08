@@ -8,7 +8,8 @@ export const HeaderWrap = styled.div`
   height: 80px;
 
   border-bottom: 1.5px solid #E5EFFF;
-  background-color: var(--secondary-color);
+  //background-color: var(--secondary-color);
+  background-color: #fff;
   z-index: 10000;
 `;
 

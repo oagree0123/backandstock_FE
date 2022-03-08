@@ -5,6 +5,11 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../redux/modules/user';
 
 const Login = () => {
+  const API_key = "4f269c2d7b614ed22a514496123b7a38";
+  const Redirect_URI =
+    "http://yuseon.shop/user/kakao/callback";
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_key}&redirect_uri=${Redirect_URI}&response_type=code`;
+
   const dispatch = useDispatch();
 
   const [user_name, setUserName] = useState("");
@@ -23,6 +28,10 @@ const Login = () => {
 
     dispatch(userActions.LoginDB(login_data));
   }
+
+  const clickKakao = () => {
+    return (window.location.href = KAKAO_AUTH_URL);
+  };
 
   return (
     <LoginWrap>
@@ -55,7 +64,9 @@ const Login = () => {
           >
             로그인
           </LoginBtn>
-          <KakaoLoginBtn>카카오 로그인</KakaoLoginBtn>
+          <KakaoLoginBtn 
+            onClick={clickKakao}
+          >카카오 로그인</KakaoLoginBtn>
         </LoginBtnWrap>
       </LoginLeft>
       <LoginRight>

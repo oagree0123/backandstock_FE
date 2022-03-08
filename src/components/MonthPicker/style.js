@@ -15,6 +15,7 @@ export const DateWrap = styled.div`
   width: 100%;
   height: 55px;
   font-size: var(--font-main);
+  line-height: var(--line-main);
   border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
@@ -55,6 +56,7 @@ export const MonthWrap = styled.div`
   align-items: center;
   flex-wrap: wrap;
   font-size: var(--font-medium);
+  line-height: var(--line-medium);
   background-color: #fff;
 `;
 

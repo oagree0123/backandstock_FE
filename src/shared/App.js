@@ -3,7 +3,7 @@ import "./App.css";
 import GlobalStyle from "./GlobalStyles";
 import styled from "styled-components";
 import { ConnectedRouter } from "connected-react-router";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
@@ -12,7 +12,7 @@ import { BackTest, Login, Signup, Community } from "../pages";
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
-function App() {
+function App(props) {
   const dispatch = useDispatch();
 
   const is_token = getToken();
@@ -27,16 +27,18 @@ function App() {
     <AppWrap className="App">
       <GlobalStyle />
       <ConnectedRouter history={history}>
-        <Header />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <ContentWrap>
-          <SideTap />
-          <RouteWrap>
-            <Route path="/" exact component={BackTest} />
-            <Route path="/community" exact component={Community}></Route>
-          </RouteWrap>
-        </ContentWrap>
+        <Switch>
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <ContentWrap>
+            <Header />
+            <SideTap />
+            <RouteWrap>
+              <Route path="/" exact component={BackTest} />
+              <Route path="/community" exact component={Community}></Route>
+            </RouteWrap>
+          </ContentWrap>
+        </Switch>
       </ConnectedRouter>
     </AppWrap>
   );
@@ -50,7 +52,6 @@ const AppWrap = styled.div`
 
 const ContentWrap = styled.div`
   margin-top: 80px;
-  display: flex;
 `;
 
 const RouteWrap = styled.div`
