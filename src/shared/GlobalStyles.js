@@ -6,9 +6,12 @@ const GlobalStyles = createGlobalStyle`
   --secondary-color: #E5EFFF;
   --gray-color: #c4c4c4;
   --font-color: #000;
-  --font-title: 1.53vw; //22px
-  --font-main: 1.25vw; //18px
-  --font-medium: 1.11vw; //16px
+  --font-header: 24px;
+  --font-title: 22px;
+  --font-large: 20px;
+  --font-main: 18px;
+  --font-medium: 16px;
+  --font-small: 14px;
   }
 
   * {

@@ -5,7 +5,7 @@ export const FormWrap = styled.div`
 `;
 
 export const FormTop = styled.div`
-  margin-bottom: 5.12vh;
+  margin-bottom: 52px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -13,7 +13,7 @@ export const FormTop = styled.div`
 `;
 
 export const FormBottom = styled.div`
-  margin-bottom: 5.12vh;
+  margin-bottom: 52px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -21,16 +21,16 @@ export const FormBottom = styled.div`
 `;
 
 export const FormLeft = styled.div`
-  margin-right: 3.4vw;
-  width: 24.3vw;
+  margin-right: 50px;
+  width: 350px;
 `;
 
 export const FormRight = styled.div`
-  width: 24.3vw;
+  width: 350px;
 `;
 
 export const FormTitle = styled.h3`
-  margin-bottom: 2.714vh;
+  margin-bottom: 24px;
   font-size: var(--font-title);
   font-weight: 600;
 `;
@@ -43,20 +43,20 @@ export const MoneyWrap = styled.div`
 
 export const Won = styled.div`
   position: absolute;
-  right: 1.38vw;
+  right: 20px;
   font-size: var(--font-medium);
 `;
 
 export const FormInput = styled.input`
-  padding-left: 1.52vw;
+  padding-left: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 5.37vh;
+  height: 55px;
   font-size: var(--font-main);
   border: 1px solid var(--gray-color);
-  border-radius: 0.694vw;
+  border-radius: 10px;
 `;
 
 

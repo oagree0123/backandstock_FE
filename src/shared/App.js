@@ -30,10 +30,12 @@ function App() {
         <Header />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        <SideTap />
         <ContentWrap>
-          <Route path="/" exact component={BackTest} />
-          <Route path="/community" exact component={Community}></Route>
+          <SideTap />
+          <RouteWrap>
+            <Route path="/" exact component={BackTest} />
+            <Route path="/community" exact component={Community}></Route>
+          </RouteWrap>
         </ContentWrap>
       </ConnectedRouter>
     </AppWrap>
@@ -41,13 +43,18 @@ function App() {
 }
 
 const AppWrap = styled.div`
-  margin-top: 3.33vw;
-  margin-bottom: 3.75vw;
+  margin: 0 auto;
+  width: 1280px;
+  display: flex;
 `;
 
 const ContentWrap = styled.div`
-  margin-left: 24vw;
-  padding: 3.26vw 7.77vw 0px 7.22vw;
+  margin-top: 80px;
+  display: flex;
+`;
+
+const RouteWrap = styled.div`
+  padding: 44px 0px 56px 56px;
 `;
 
 export default App;

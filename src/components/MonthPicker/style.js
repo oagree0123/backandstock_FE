@@ -4,24 +4,24 @@ export const MonthPickerWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  margin-bottom: 1.8vh;
+  margin-bottom: 18px;
 `;
 
 export const DateWrap = styled.div`
-  padding-left: 1.52vw;
+  padding-left: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 5.37vh;
+  height: 55px;
   font-size: var(--font-main);
   border: 1px solid var(--gray-color);
-  border-radius: 0.694vw;
+  border-radius: 10px;
 `;
 
 export const CalenderWrap = styled.div`
   position: absolute;
-  top: 6vh;
+  top: 60px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -31,7 +31,7 @@ export const CalenderWrap = styled.div`
 
 export const CalenderHeader = styled.div`
   width: 100%;
-  height: 3.4vh;
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,8 +44,8 @@ export const CalenderYear = styled.p`
 `;
 
 export const CalenderArrow = styled.img`
-  width: 1.46vw;
-  height: 1.46vw;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
 `;
 
@@ -60,7 +60,7 @@ export const MonthWrap = styled.div`
 
 export const MonthClickBtn = styled.div`
   width: 33.33%;
-  height: 3.4vh;
+  height: 25px;
   color: green;
   text-align: center;
   cursor: pointer;
@@ -68,14 +68,14 @@ export const MonthClickBtn = styled.div`
 
 export const MonthBtn = styled.div`
   width: 33.33%;
-  height: 3.4vh;
+  height: 25px;
   text-align: center;
   cursor: pointer;
 `;
 
 export const MonthDisabledBtn = styled.div`
   width: 33.33%;
-  height: 3.4vh;
+  height: 25px;
   color: #eee;
   text-align: center;
   cursor: default;

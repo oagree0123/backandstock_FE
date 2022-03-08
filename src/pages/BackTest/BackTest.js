@@ -6,8 +6,7 @@ const BackTest = () => {
   return (
     <BackTestWrap>
       <InfoTitle>
-        간편하게 실험을 <br />
-        시작해볼까요?
+      실험실 안내사항
       </InfoTitle>
       <InfoWrap>
         <InfoContLeft>
