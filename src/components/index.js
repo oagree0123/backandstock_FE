@@ -1,5 +1,6 @@
 import SideTap from "./SideTap/SideTap";
 import BackTestForm from "./BackTestForm/BackTestForm";
-import MonthPicker from "./MonthPicker/MonthPicker";
-
-export { SideTap, BackTestForm, MonthPicker };
+import StockSearch from "./StockSearch/StockSearch";
+import Header from "./Header/Header";
+ 
+export { SideTap, BackTestForm, StockSearch, Header };
