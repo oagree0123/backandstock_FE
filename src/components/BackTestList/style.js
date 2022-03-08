@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TestListWrap = styled.div`
-
+  margin-bottom: 30px;
 `;
 
 export const ListTitle = styled.h3`

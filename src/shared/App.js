@@ -54,6 +54,7 @@ const ContentWrap = styled.div`
 `;
 
 const RouteWrap = styled.div`
+  margin-left: 293px;
   padding: 44px 0px 56px 56px;
 `;
 

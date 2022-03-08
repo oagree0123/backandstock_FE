@@ -5,12 +5,16 @@ import { connectRouter } from "connected-react-router";
 
 import user from './modules/user';
 import testform from './modules/testform';
+import comment from "./modules/comment";
+import port from "./modules/port";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   user,
   testform,
+  port,
+  comment,
   router: connectRouter(history),
 });
 

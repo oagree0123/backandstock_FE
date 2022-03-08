@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import BackTestList from '../BackTestList/BackTestList';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import StockSearch from '../StockSearch/StockSearch';
-import { FormBottom, FormInput, FormLeft, FormRight, FormTitle, FormTop, FormWrap, MoneyWrap, Won } from './style';
+import { FormBottom, FormInput, FormLeft, FormRight, FormTitle, FormTop, FormWrap, MoneyWrap, Won, BackTextBtn } from './style';
 
 import { actionCreators as testformActions } from '../../redux/modules/testform';
+import { actionCreators as portActions } from '../../redux/modules/port';
 
 const BackTestForm = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,11 @@ const BackTestForm = () => {
         <StockSearch />
       </FormBottom>
       <BackTestList />
+      <BackTextBtn 
+        onClick={() => {
+          dispatch(portActions.getResultDB());
+        }}
+      >실험 시작하기</BackTextBtn>
     </FormWrap>
   );
 };

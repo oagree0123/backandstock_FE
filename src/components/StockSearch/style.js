@@ -75,7 +75,7 @@ export const PreviewListWrap = styled.div`
   top: 60px;
   left: 0;
   width: 100%;
-  max-height: 600px;
+  max-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -93,8 +93,9 @@ export const SearchBtn = styled.button`
   width: 110px;
   height: 55px;
   font-size: var(--font-main);
+  font-weight: 600;
   color: #fff;
   border: none;
   border-radius: 10px;
-  background-color: var(--gray-color);
+  background-color: var(--primary-color);
 `;

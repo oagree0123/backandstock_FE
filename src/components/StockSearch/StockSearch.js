@@ -27,11 +27,37 @@ const StockSearch = () => {
   const [stock_search, setStockSearch] = useState("");
   const [stock_name, setStockName] = useState("");
   const [stock_code, setStockCode] = useState("");
+  const [search_list, setSearchList] = useState([]);
 
 
-  let search_list = {
+  /* let search_list = {
     stockName : ["삼성전자", "삼성전기", "삼성엔지니어링", "삼성엔지니어링", "삼성엔지니어링" ],
     stockCode : ["000100", "000200", "000300", "000300", "000300"]
+  } */
+
+  const searchStock = async (search_name) => {
+    if (Number(search_name)) {
+      let list = await axios
+        .get(`http://yuseon.shop/stock/search`, {
+          params: {
+            keyword: search_name,
+            type: "code"
+          }
+      });
+      setSearchList(list.data);
+      console.log(search_list);
+    }
+    else {
+      let list = await axios
+        .get(`http://yuseon.shop/stock/search`, {
+          params: {
+            keyword: search_name,
+            type: "name"
+          }
+      });
+      setSearchList(list.data);
+      console.log(search_list);
+    }
   }
 
   return (
@@ -60,7 +86,7 @@ const StockSearch = () => {
               onChange={(e) => {
                 // 변경 시 검색
                 setStockSearch(e.target.value);
-                //searchStock(e.target.value)
+                searchStock(e.target.value)
                 if(e.target.value==="") {
                   return;
                 }
@@ -70,16 +96,17 @@ const StockSearch = () => {
             />
             {is_open &&
               <PreviewListWrap>
-                {search_list.stockName.map((s, i) => {
+                {search_list.map((s, i) => {
+                  console.log(s)
                   return (
                     <SearchPreview 
                       key={i} 
-                      stock_name={s} 
-                      stock_code={search_list.stockCode[i]} 
+                      stock_name={s.stockName} 
+                      stock_code={s.stockCode} 
                       _onClick={() => {
-                        setStockName(s);
-                        setStockSearch(s);
-                        setStockCode(search_list.stockCode[i]);
+                        setStockName(s.stockName);
+                        setStockSearch(s.stockName);
+                        setStockCode(s.stockCode);
                         setIsOpen(false);
                       }}
                     />

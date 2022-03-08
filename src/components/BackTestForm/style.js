@@ -59,4 +59,14 @@ export const FormInput = styled.input`
   border-radius: 10px;
 `;
 
+export const BackTextBtn = styled.button`
+  width: 100%;
+  height: 60px;
+  font-size: var(--font-header);
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 10px;
+`;
 
