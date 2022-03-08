@@ -1,15 +1,39 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components'
+import Chart from '../test/Chart';
+import Bar from '../test/Bar'
+import { useDispatch } from 'react-redux';
 
 const Community = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
+    const params = useParams();
+
 
     let [modalOpen, setModalOpen] = useState(false);
+    const [comment_text, setCommentText] = useState();
 
     const closeModal = () => {
         setModalOpen(false);
     };
+
+    const onChange = (e) => {
+        setCommentText(e.target.value);
+    };
+
+    // const addcomment = () => {
+    //     dispatch(
+    //       commentActions.addCommentFB(
+    //         userId,
+    //         productId,
+    //         comment_title,
+    //         comment_text,
+    //         fileInput.current.files[0]
+    //       )
+    //     );
+    //   };
+
 
     return (
         <div>
@@ -28,7 +52,7 @@ const Community = () => {
                                 <Close onClick={closeModal}> X </Close>
                                 <h1>모달창</h1>
                                 <InputWrap>
-                                    <Input></Input>
+                                    <Input onChange={onChange}></Input>
                                     <Btn>댓글등록</Btn>
                                 </InputWrap>
 
@@ -36,8 +60,11 @@ const Community = () => {
                         </Container>
                         : null
                 }
-
             </BoxWrap>
+
+            <Chart></Chart>
+            <Bar></Bar>
+
         </div>
     );
 };
