@@ -8,12 +8,13 @@ const SideTap = (props) => {
   const [commu_clicked, setCommuClicked] = useState(false);
 
   useEffect(() => {
+    console.log(window.location.pathname);
     if(window.location.pathname === "/community") {
       setLabClicked(false);
       setPortfClicked(false);
       setCommuClicked(true);
     }
-    else if(window.location.pathname === "/portfolio") {
+    else if(window.location.pathname === "/portfolio/1") {
       setLabClicked(false);
       setPortfClicked(true);
       setCommuClicked(false);
@@ -68,6 +69,7 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
+            history.push('/portfolio/1');
           }}>
             <TabIcon />
             <TabContent>
@@ -79,6 +81,7 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
+            history.push('/portfolio/1');
           }}>
             <TabIcon />
             <TabContent>

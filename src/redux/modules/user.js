@@ -26,7 +26,7 @@ const LoginDB = ({ user_name, pwd }) => {
   // test1234
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post(`http://54.180.95.115/user/login`, {
+      const response = await axios.post(`http://yuseon.shop/user/login`, {
         username: user_name,
         password: pwd,
       });
@@ -36,7 +36,7 @@ const LoginDB = ({ user_name, pwd }) => {
 
       try {
         let check_user = await axios.post(
-          `http://54.180.95.115/islogin`,
+          `http://yuseon.shop/islogin`,
           {},
           {
             headers: {
@@ -69,7 +69,7 @@ const LoginCheckDB = () => {
     const token = getToken("token");
     try {
       let check_user = await axios.post(
-        `http://54.180.95.115/islogin`,
+        `http://yuseon.shop/islogin`,
         {},
         {
           headers: {
@@ -111,7 +111,7 @@ const kakaoLogin = (code) => {
 const SignupDB = ({ user_name, nickname, pwd }) => {
   return async function (dispatch, getState, { history }) {
     try {
-      await axios.post(`http://54.180.95.115/user/signup`, {
+      await axios.post(`http://yuseon.shop/user/signup`, {
         username: user_name,
         password: pwd,
         nickname: nickname,
@@ -129,7 +129,7 @@ const ResignDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken();
     try {
-      await axios.delete(`http://54.180.95.115/resign`, {
+      await axios.delete(`http://yuseon.shop/resign`, {
         headers: {
           Autorization: `${token}`,
         },

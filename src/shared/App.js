@@ -8,12 +8,11 @@ import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup, Community } from "../pages";
+import { BackTest, Login, Signup, Community, Portfolio } from "../pages";
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
 import Social from './Social';
-import Portfolio from "../pages/Portfolio/Portfolio";
 
 function App(props) {
   const dispatch = useDispatch();

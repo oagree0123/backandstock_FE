@@ -7,7 +7,7 @@ export const LoginWrap = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
-  background-color: #fff;
+  background-color: #eee;
 `;
 
 export const LoginCont = styled.div`
@@ -15,6 +15,7 @@ export const LoginCont = styled.div`
   height: 653px;
   display: flex;
   border-radius: 40px;
+  background-color: #fff;
   overflow: hidden;
   box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.15);
 `;
@@ -54,6 +55,7 @@ export const LoginText = styled.p`
 `;
  
 export const InputWrap = styled.div`
+  margin-bottom: 12px;
   width: 350px;
   display: flex;
   flex-direction: column;
@@ -62,7 +64,6 @@ export const InputWrap = styled.div`
 `;
 
 export const LoginInput = styled.input`
-  margin-bottom: 20px;
   padding-left: 20px;
   width: 100%;
   height: 47px;
@@ -73,6 +74,13 @@ export const LoginInput = styled.input`
 export const InputLabel = styled.label`
   margin-bottom: 8px;
   text-align: left;
+`;
+
+export const ErrorText = styled.p`
+  margin-top: 4px;
+  font-size: var(--font-small);
+  line-height: var(--line-small);
+  color: red;
 `;
 
 export const LoginBtnWrap = styled.div`
