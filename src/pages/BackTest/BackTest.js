@@ -2,7 +2,7 @@ import React from 'react';
 import BackTestForm from '../../components/BackTestForm/BackTestForm';
 import { BackTestWrap, InfoTitle, InfoWrap, InfoContLeft, InfoContRight, InfoCont, InfoCircle } from './style';
 
-const BackTest = () => {
+const BackTest = (props) => {
   return (
     <BackTestWrap>
       <InfoTitle>

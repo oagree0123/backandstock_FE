@@ -13,7 +13,7 @@ export const SideTapWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   background-color: #fff;
-  box-shadow: 8px 0px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 `;
 
 export const SideUserWrap = styled.div`

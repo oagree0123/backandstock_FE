@@ -93,6 +93,21 @@ const LoginCheckDB = () => {
   };
 };
 
+const kakaoLogin = (code) => {
+  return async function (dispatch, getState, { history }) {
+    console.log(code)
+    try {
+      let response = await axios.post(
+        `http://yuseon.shop/user/kakao/callback?code=${code}`
+      , {});
+      console.log(response);
+      history.push('/');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 const SignupDB = ({ user_name, nickname, pwd }) => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -156,6 +171,7 @@ const actionCreators = {
   logout,
   SignupDB,
   ResignDB,
+  kakaoLogin,
 };
 
 export { actionCreators };

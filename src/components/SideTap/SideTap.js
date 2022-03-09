@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { history } from '../../redux/configStore';
 import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle } from './style';
 
@@ -6,6 +6,24 @@ const SideTap = (props) => {
   const [lab_clicked, setLabClicked] = useState(true);
   const [portf_clicked, setPortfClicked] = useState(false);
   const [commu_clicked, setCommuClicked] = useState(false);
+
+  useEffect(() => {
+    if(window.location.pathname === "/community") {
+      setLabClicked(false);
+      setPortfClicked(false);
+      setCommuClicked(true);
+    }
+    else if(window.location.pathname === "/portfolio") {
+      setLabClicked(false);
+      setPortfClicked(true);
+      setCommuClicked(false);
+    }
+    else {
+      setLabClicked(true);
+      setPortfClicked(false);
+      setCommuClicked(false);
+    }
+  }, [lab_clicked, portf_clicked, commu_clicked])
 
   return (
     <SideTapWrap >
@@ -74,6 +92,7 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(false);
             setCommuClicked(true);
+            history.push('/community');
           }}>
             <TabIcon />
             <TabContent>
@@ -85,6 +104,7 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(false);
             setCommuClicked(true);
+            history.push('/community');
           }}>
             <TabIcon />
             <TabContent>
