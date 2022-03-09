@@ -12,6 +12,9 @@ import { BackTest, Login, Signup, Community } from "../pages";
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
+import Social from './Social';
+import Portfolio from "../pages/Portfolio/Portfolio";
+
 function App(props) {
   const dispatch = useDispatch();
 
@@ -35,7 +38,9 @@ function App(props) {
             <SideTap />
             <RouteWrap>
               <Route path="/" exact component={BackTest} />
-              <Route path="/community" exact component={Community}></Route>
+              <Route path="/portfolio/:userId" exact component={Portfolio} />
+              <Route path="/community" exact component={Community} />
+              <Route path="/oauth/kakao/callback" exact component={Social} />
             </RouteWrap>
           </ContentWrap>
         </Switch>

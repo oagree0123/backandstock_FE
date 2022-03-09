@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   :root {
-  --primary-color: #367BF5;
+  --primary-color: #0087FF;
   --secondary-color: #E5EFFF;
   --gray-color: #c4c4c4;
   --font-color: #000;
@@ -38,6 +38,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   button {
+    font-family: 'Noto Sans CJK KR';
     color: var(--font-color);
     cursor: pointer;  
     background-color: #fff;
