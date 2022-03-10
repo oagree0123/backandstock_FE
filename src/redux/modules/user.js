@@ -101,22 +101,47 @@ const LoginCheckDB = () => {
 
 const kakaoLogin = (code) => {
   return async function (dispatch, getState, { history }) {
-    /* `http://yuseon.shop/user/kakao/callback?code=${code}` */
-    console.log(code)
     try {
       let response = await axios.get(
         `http://yuseon.shop/user/kakao/callback?code=${code}`
       );
 
-      console.log(response);
       const token = response.headers.authorization;
       setToken("token", token);
       
-      dispatch(setUser({
-        user_id: response.data.userId,
+      try {
+        let check_user = await axios.post(
+          `http://yuseon.shop/islogin`,
+          {},
+          {
+            headers: {
+              authorization: `${token}`,
+            },
+          }
+        );
+
+        /* localStorage.setItem("username", check_user.data.username);
+        localStorage.setItem("nickname", check_user.data.nickname); */
+
+        dispatch(
+          setUser({
+            user_id: check_user.data.userid,
+            nickname: check_user.data.nickname,
+            profile_img: check_user.data.profileImg
+          })
+        );
+      } catch (err) {
+        console.log(err);
+      }
+
+      window.alert("로그인이 완료되었습니다.");
+      history.replace("/");
+
+      /* dispatch(setUser({
+        user_id: response.data.id,
         nickname: response.data.nickname,
         profile_img: "",
-      }))
+      })) */
       history.push('/');
     } catch (err) {
       console.log(err);

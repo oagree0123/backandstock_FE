@@ -1,25 +1,22 @@
 const getToken = (name) => {
-  let value = "; " + document.cookie;
+  const token = localStorage.getItem(`${name}`);
 
-  let parts = value.split(`; ${name}=`);
-
-  if (parts.length === 2) {
-    return parts.pop().split(";").shift();
+  if (token) {
+    return token;
+  } else {
+    return null;
   }
 };
 
-const setToken = (name, token, exp = 5) => {
-  let date = new Date();
-  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-
-  document.cookie = `${name}=${token}; expires=${date.toUTCString()}`;
+const setToken = (name, token) => {
+  if (!token) {
+    return false;
+  }
+  localStorage.setItem(`${name}`, token);
 };
 
-const delToken = (name) => {
-  let date = new Date("2020-01-01").toUTCString();
-
-  document.cookie = name + "=; expires=" + date;
+const delToken = () => {
+  localStorage.removeItem("token");
 };
-
 
 export { getToken, setToken, delToken };
