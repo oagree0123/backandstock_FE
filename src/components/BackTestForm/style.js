@@ -29,10 +29,11 @@ export const FormRight = styled.div`
   width: 350px;
 `;
 
-export const FormTitle = styled.h3`
+export const FormTitle = styled.p`
   margin-bottom: 24px;
   font-size: var(--font-title);
-  font-weight: 600;
+  line-height: var(--line-title);
+  font-weight: 700;
 `;
 
 export const MoneyWrap = styled.div`
@@ -63,7 +64,7 @@ export const BackTextBtn = styled.button`
   width: 100%;
   height: 60px;
   font-size: var(--font-header);
-  font-weight: 600;
+  font-weight: 800;
   color: #fff;
   background-color: var(--primary-color);
   border: none;

@@ -5,6 +5,9 @@ import styled from 'styled-components'
 // import Bar from '../test/Bar'
 import { useDispatch } from 'react-redux';
 
+import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn } from "./style";
+
+
 const Community = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -36,8 +39,8 @@ const Community = () => {
 
 
   return (
-    <div>
-      <button onClick={() => history.push('/')}>메인으로 이동</button>
+    <CommunityWrap>
+      <button onClick={() => history.push("/")}>메인으로 이동</button>
       <h3>포토폴리오</h3>
 
       <BoxWrap>
@@ -61,11 +64,7 @@ const Community = () => {
             : null
         }
       </BoxWrap>
-
-      {/* <Chart></Chart>
-      <Bar></Bar> */}
-
-    </div>
+    </CommunityWrap>
   );
 };
 

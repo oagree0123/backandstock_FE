@@ -5,22 +5,30 @@ import moment from "moment";
 
 // actions
 const GET_RESULT = "GET_RESULT";
-const GET_PORTFOLIO = "GET_PORTFOLIO";
-
+const SAVE_PORTONE = "SAVE_PORTONE";
+const GET_PORT = "GET_PORT"
+const GET_PORTONE = "GET_PORTONE"
+const DELETE_PORT = "DELETE_PORT"
 
 // action creators
-const getResult = createAction(GET_RESULT, (result_list) => ({ result_list }));
-const getPortfolio = createAction(GET_PORTFOLIO, (portfolio_list) => ({ portfolio_list }));
-
+const getResult = createAction(GET_RESULT, (test_result) => ({ test_result }));
+const savePortOne = createAction(SAVE_PORTONE, (port_id, result) => ({ port_id, result }));
+const getPort = createAction(GET_PORT, (port_list) => ({ port_list }));
+const getPortOne = createAction(GET_PORTONE, (port) => ({ port }));
+const deletePort = createAction(DELETE_PORT, (port_idx) => ({ port_idx }));
 
 // initialState
-const initialState = {};
+const initialState = {
+  list: [],
+  port_list: [],
+  port_one: {},
+};
 
 // middleware
 const getResultDB = () => {
   return async function (dispatch, getState, { history }) {
-    let end = getState().testform.end_date
-    end = moment(end).add("1", "M").format('YYYY-MM-DD');
+    let end = getState().testform.end_date;
+    end = moment(end).add("1", "M").format("YYYY-MM-DD");
 
     let data = {
       startDate: getState().testform.start_date,
@@ -28,23 +36,26 @@ const getResultDB = () => {
       seedMoney: parseFloat(getState().testform.init_money),
       stockList: getState().testform.stockList,
       ratioList: getState().testform.ratioList,
+    };
+
+    try {
+      const test_result = await axios.post(
+        `http://yuseon.shop/port/result`,
+        data
+      );
+  
+      dispatch(getResult(test_result.data));
     }
-    console.log(data);
-
-    const test_result = await axios.post(`http://yuseon.shop/port/result`, data)
-
-    const result_list = test_result.data
-
-    dispatch(getResult(result_list))
-
-    history.push("/result");
+    catch (err) {
+      console.log(err);
+    }
   };
 };
 
-const getPortfolioDB = () => {
+const savePortDB = () => {
   return async function (dispatch, getState, { history }) {
-    let end = getState().testform.end_date
-    end = moment(end).add("1", "M").format('YYYY-MM-DD');
+    let end = getState().testform.end_date;
+    end = moment(end).add("1", "M").format("YYYY-MM-DD");
 
     let data = {
       startDate: getState().testform.start_date,
@@ -52,31 +63,96 @@ const getPortfolioDB = () => {
       seedMoney: parseFloat(getState().testform.init_money),
       stockList: getState().testform.stockList,
       ratioList: getState().testform.ratioList,
+    };
+
+    try {
+      const port_id = await axios.post(`http://yuseon.shop/port`, data);
+
+      const result = getState().port.list;
+      dispatch(savePortOne(port_id.data, result));
     }
-    console.log(data);
-
-    const portfolio_result = await axios.post(`http://yuseon.shop/port`, data)
-
-    const portfolio_list = portfolio_result.data
-
-    dispatch(getPortfolio(portfolio_list))
-
-    history.push("/mypage");
+    catch (err) {
+      console.log(err);
+    }
   };
+};
 
+const getMyPortDB = (user_id) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      let response = await axios.get(`http://yuseon.shop/port/mypage/${user_id}`)
+
+      dispatch(getPort(response));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
 }
 
+const getPortOneDB = (port_id) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      let response = await axios.get(`http://yuseon.shop/port/Individual/${port_id}`)
 
+      dispatch(getPortOne(response));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
 
+const deletePortDB = (port_id) => {
+  return async function (dispatch, getState, { history }) {
+    const _port_list = getState().port.port_list;
+
+    try {
+      await axios.delete(`http://yuseon.shop/port`, {
+        portId: port_id
+      })
+
+      const port_idx = _port_list.findIndex((v) => {
+        return parseInt(v.portId) === parseInt(port_id)
+      })
+
+      dispatch(deletePort(port_idx));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
 
 // reducer
 export default handleActions(
   {
-    [GET_RESULT]: (state, action) => produce(state, (draft) => {
-      draft.result_list = { ...action.payload.result_list }
+    [GET_RESULT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.test_result;
     }),
-    [GET_PORTFOLIO]: (state, action) => produce(state, (draft) => {
-      draft.portfolio_list = { ...action.payload.portfolio_list }
+    [SAVE_PORTONE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.port_list.push({
+          portId: action.payload.port_id,
+          ...action.payload.result,
+        });
+    }),
+    [GET_PORT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.port_list = action.payload.port_list;
+    }),
+    [GET_PORTONE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.port_one = action.payload.port;
+    }), 
+    [DELETE_PORT]: (state, action) =>
+      produce(state, (draft) => {
+        const new_port_list = draft.port_list.filter((p, i) => {
+          return parseInt(action.payload.port_idx) !== i;
+        })
+
+        draft.port_list = new_port_list;
     }),
   },
   initialState
@@ -86,7 +162,10 @@ export default handleActions(
 const actionCreators = {
   getResult,
   getResultDB,
-  getPortfolioDB,
-}
+  savePortDB,
+  getMyPortDB,
+  getPortOneDB,
+  deletePortDB,
+};
 
 export { actionCreators };

@@ -3,19 +3,22 @@ import "./App.css";
 import GlobalStyle from "./GlobalStyles";
 import styled from "styled-components";
 import { ConnectedRouter } from "connected-react-router";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup, Community, TestResult, Mypage } from "../pages";
+import { BackTest, Login, Signup, Community, TestResult, Mypage, Portfolio } from "../pages";
+
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
-function App() {
+import Social from './Social';
+
+function App(props) {
   const dispatch = useDispatch();
 
-  const is_token = getToken();
+  const is_token = getToken("token");
 
   useEffect(() => {
     if (is_token) {
@@ -27,18 +30,22 @@ function App() {
     <AppWrap className="App">
       <GlobalStyle />
       <ConnectedRouter history={history}>
-        <Header />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <ContentWrap>
-          <SideTap />
-          <RouteWrap>
-            <Route path="/" exact component={BackTest} />
-            <Route path="/community" exact component={Community}></Route>
-            <Route path="/result" exact component={TestResult}></Route>
-            <Route path="/mypage" exact component={Mypage}></Route>
-          </RouteWrap>
-        </ContentWrap>
+        <Switch>
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/oauth/kakao/callback" exact component={Social} />
+          <ContentWrap>
+            <Header />
+            <SideTap />
+            <RouteWrap>
+              <Route path="/" exact component={BackTest} />
+              <Route path="/portfolio/:userId" exact component={Portfolio} />
+              <Route path="/community" exact component={Community} />
+               <Route path="/result" exact component={TestResult}></Route>
+              <Route path="/mypage" exact component={Mypage}></Route>
+            </RouteWrap>
+          </ContentWrap>
+        </Switch>
       </ConnectedRouter>
     </AppWrap>
   );
@@ -46,16 +53,18 @@ function App() {
 
 const AppWrap = styled.div`
   margin: 0 auto;
-  width: 1280px;
+  
   display: flex;
 `;
 
 const ContentWrap = styled.div`
   margin-top: 80px;
-  display: flex;
+  width: 1280;
+  margin: 0 auto;
 `;
 
 const RouteWrap = styled.div`
+  margin-top: 80px;
   margin-left: 293px;
   padding: 44px 0px 56px 56px;
 `;

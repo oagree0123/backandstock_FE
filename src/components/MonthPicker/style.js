@@ -15,28 +15,34 @@ export const DateWrap = styled.div`
   width: 100%;
   height: 55px;
   font-size: var(--font-main);
+  line-height: var(--line-main);
   border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
 
 export const CalenderWrap = styled.div`
   position: absolute;
-  top: 60px;
+  top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 175px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
   background-color: #fff;
+  overflow: hidden;
   z-index: 100;
 `;
 
 export const CalenderHeader = styled.div`
+  margin-bottom: 16px;
+  padding: 0px 25px;
   width: 100%;
-  height: 30px;
+  height: 36px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: var(--font-medium);
-  background-color: #eee;
+  background-color: var(--secondary-color);
 `;
 
 export const CalenderYear = styled.p`
@@ -44,31 +50,37 @@ export const CalenderYear = styled.p`
 `;
 
 export const CalenderArrow = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 `;
 
 export const MonthWrap = styled.div`
+  margin-bottom: 16px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   font-size: var(--font-medium);
+  font-weight: 400;
+  line-height: var(--line-medium);
   background-color: #fff;
 `;
 
 export const MonthClickBtn = styled.div`
   width: 33.33%;
-  height: 25px;
-  color: green;
+  height: 28px;
+  color: var(--primary-color);
+  font-size: var(--font-medium);
+  font-weight: 700;
+  line-height: var(--line-medium);
   text-align: center;
   cursor: pointer;
 `;
 
 export const MonthBtn = styled.div`
   width: 33.33%;
-  height: 25px;
+  height: 28px;
   text-align: center;
   cursor: pointer;
 `;
