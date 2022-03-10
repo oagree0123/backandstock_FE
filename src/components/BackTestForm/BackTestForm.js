@@ -7,10 +7,12 @@ import { FormBottom, FormInput, FormLeft, FormRight, FormTitle, FormTop, FormWra
 
 import { actionCreators as testformActions } from '../../redux/modules/testform';
 import { actionCreators as portActions } from '../../redux/modules/port';
+import { useHistory } from 'react-router-dom';
 
 const BackTestForm = () => {
   const dispatch = useDispatch();
   const date = useSelector(state => state.testform);
+  const history = useHistory()
 
   const [init_money, setInitMoney] = useState('');
 
@@ -28,7 +30,7 @@ const BackTestForm = () => {
             <FormInput
               type="number"
               placeholder='금액을 입력해 주세요'
-              onChange={(e)=> {
+              onChange={(e) => {
                 setInitMoney(e.target.value)
                 dispatch(testformActions.setMoney(e.target.value));
               }}
@@ -42,9 +44,9 @@ const BackTestForm = () => {
         <StockSearch />
       </FormBottom>
       <BackTestList />
-      <BackTextBtn 
+      <BackTextBtn
         onClick={() => {
-          dispatch(portActions.getResultDB());
+          dispatch(portActions.getResultDB())
         }}
       >실험 시작하기</BackTextBtn>
     </FormWrap>

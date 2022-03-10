@@ -1,23 +1,26 @@
-// yarn add @nivo/core @nivo/line
 import { ResponsiveLine } from '@nivo/line'
-import chartData from './data'
+import { useSelector } from 'react-redux';
 
 
-const styles = {
-    width: "100%",
-    height: "800px",
-};
+const Line = () => {
+    const styles = {
+        width: "880px",
+        height: "346px",
+        marginTop: "10px",
+        marginRight: "10px"
+    };
 
-const Chart = () => {
+    const result_list = useSelector((state) => state.port.result_list);
+    console.log(result_list);
 
-    const months = chartData[0].months
-    const yieldMoney = chartData[0].yieldMoney
-    const kospiYieldMoney = chartData[0].kospiYieldMoney
-
+    const months = result_list.months
+    const monthYieldMoney = result_list.monthYieldMoney
+    const kospiYieldMoney = result_list.kospiYieldMoney
+    const kosdaqYieldMoney = result_list.kosdaqYieldMoney
 
     const data = [
         {
-            "id": "yieldMoney",
+            "id": "monthYieldMoney",
             "color": "hsl(233, 70%, 50%)",
             "data": []
         },
@@ -25,27 +28,38 @@ const Chart = () => {
             "id": "kospiYieldMoney",
             "color": "hsl(233, 70%, 50%)",
             "data": []
+        },
+        {
+            "id": "kosdaqYieldMoney",
+            "color": "hsl(233, 70%, 50%)",
+            "data": []
         }
     ]
 
 
-    months.map((m, i) => {
+    monthYieldMoney.map((m, i) => {
         let xy = {
-            x: m,
-            y: yieldMoney[i]
+            x: months[i],
+            y: parseInt(m)
         }
         data[0].data.push(xy)
     })
 
-    months.map((m, i) => {
+    kospiYieldMoney.map((m, i) => {
         let xy = {
-            x: m,
-            y: kospiYieldMoney[i]
+            x: months[i],
+            y: parseInt(m)
         }
         data[1].data.push(xy)
     })
 
-
+    kosdaqYieldMoney.map((m, i) => {
+        let xy = {
+            x: months[i],
+            y: parseInt(m)
+        }
+        data[2].data.push(xy)
+    })
 
     return (
         <div style={styles}>
@@ -57,7 +71,6 @@ const Chart = () => {
                     type: 'linear',
                     min: 'auto',
                     max: 'auto',
-                    stacked: true,
                     reverse: false
                 }}
                 yFormat=" >-.2f"
@@ -65,7 +78,7 @@ const Chart = () => {
                 axisRight={null}
                 axisBottom={{
                     orient: 'bottom',
-                    tickSize: 6,
+                    tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 60,
                     // legend: '연도',
@@ -81,7 +94,9 @@ const Chart = () => {
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}
-                pointSize={8}
+                enableGridX={false}
+                // enablePoints={false}
+                pointSize={10}
                 pointColor={{ theme: 'background' }}
                 pointBorderWidth={2}
                 pointBorderColor={{ from: 'serieColor' }}
@@ -96,7 +111,7 @@ const Chart = () => {
                         translateY: 0,
                         itemsSpacing: 0,
                         itemDirection: 'left-to-right',
-                        itemWidth: 100,
+                        itemWidth: 80,
                         itemHeight: 20,
                         itemOpacity: 0.75,
                         symbolSize: 12,
@@ -116,16 +131,10 @@ const Chart = () => {
             />
 
         </div>
-
     )
 
 }
 
 
 
-
-
-
-
-
-export default Chart
+export default Line;

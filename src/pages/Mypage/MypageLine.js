@@ -1,51 +1,67 @@
-// yarn add @nivo/core @nivo/line
 import { ResponsiveLine } from '@nivo/line'
-import chartData from './data'
+import test from '../Mypage/test'
 
 
 const styles = {
-    width: "100%",
-    height: "800px",
+    width: "880px",
+    height: "346px",
+    marginTop: "10px",
+    marginRight: "10px"
 };
 
-const Chart = () => {
+const months = test[2].months
+const monthYield_1 = test[0].monthYield
+const monthYield_2 = test[1].monthYield
+const monthYield_3 = test[2].monthYield
 
-    const months = chartData[0].months
-    const yieldMoney = chartData[0].yieldMoney
-    const kospiYieldMoney = chartData[0].kospiYieldMoney
+// console.log(months, monthYield_1, monthYield_2, monthYield_3);
 
-
-    const data = [
-        {
-            "id": "yieldMoney",
-            "color": "hsl(233, 70%, 50%)",
-            "data": []
-        },
-        {
-            "id": "kospiYieldMoney",
-            "color": "hsl(233, 70%, 50%)",
-            "data": []
-        }
-    ]
-
-
-    months.map((m, i) => {
-        let xy = {
-            x: m,
-            y: yieldMoney[i]
-        }
-        data[0].data.push(xy)
-    })
-
-    months.map((m, i) => {
-        let xy = {
-            x: m,
-            y: kospiYieldMoney[i]
-        }
-        data[1].data.push(xy)
-    })
+const data = [
+    {
+        "id": "monthYield_1",
+        "color": "hsl(233, 70%, 50%)",
+        "data": []
+    },
+    {
+        "id": "monthYield_2",
+        "color": "hsl(33, 70%, 50%)",
+        "data": []
+    },
+    {
+        "id": "monthYield_3",
+        "color": "hsl(123, 70%, 50%)",
+        "data": []
+    }
+]
 
 
+monthYield_1.map((m, i) => {
+    let xy = {
+        x: months[i],
+        y: parseInt(Number(m))
+    }
+    data[0].data.push(xy)
+})
+
+monthYield_2.map((m, i) => {
+    let xy = {
+        x: months[i],
+        y: parseInt(Number(m))
+    }
+    data[1].data.push(xy)
+})
+
+monthYield_3.map((m, i) => {
+    let xy = {
+        x: months[i],
+        y: parseInt(Number(m))
+    }
+    data[2].data.push(xy)
+})
+
+
+
+const MypageLine = () => {
 
     return (
         <div style={styles}>
@@ -57,7 +73,6 @@ const Chart = () => {
                     type: 'linear',
                     min: 'auto',
                     max: 'auto',
-                    stacked: true,
                     reverse: false
                 }}
                 yFormat=" >-.2f"
@@ -65,7 +80,7 @@ const Chart = () => {
                 axisRight={null}
                 axisBottom={{
                     orient: 'bottom',
-                    tickSize: 6,
+                    tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 60,
                     // legend: '연도',
@@ -81,7 +96,9 @@ const Chart = () => {
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}
-                pointSize={8}
+                enableGridX={false}
+                // enablePoints={false}
+                pointSize={10}
                 pointColor={{ theme: 'background' }}
                 pointBorderWidth={2}
                 pointBorderColor={{ from: 'serieColor' }}
@@ -96,7 +113,7 @@ const Chart = () => {
                         translateY: 0,
                         itemsSpacing: 0,
                         itemDirection: 'left-to-right',
-                        itemWidth: 100,
+                        itemWidth: 80,
                         itemHeight: 20,
                         itemOpacity: 0.75,
                         symbolSize: 12,
@@ -116,16 +133,10 @@ const Chart = () => {
             />
 
         </div>
-
     )
 
 }
 
 
 
-
-
-
-
-
-export default Chart
+export default MypageLine;
