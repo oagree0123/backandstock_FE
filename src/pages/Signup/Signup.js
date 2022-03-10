@@ -145,7 +145,13 @@ const Signup = () => {
           <InputWrap>
             <InputLabel>비밀번호 확인</InputLabel>
             <SignupInput 
-              type="password" 
+              type="password"
+              onKeyPress={(e) => {
+                  if(e.key === "Enter") {
+                    clickSignup();
+                  }
+                }
+              } 
               onChange={onChangePwdCheck}
             />
             {pwd_check.length > 0 && !is_pwdcheck && (

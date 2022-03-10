@@ -79,8 +79,10 @@ export const PreviewListWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
-  background-color: var(--secondary-color);
+  align-items: center;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  background-color: #fff;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -91,11 +93,13 @@ export const PreviewListWrap = styled.div`
 export const SearchBtn = styled.button`
   margin-left: 20px;
   width: 110px;
-  height: 55px;
-  font-size: var(--font-main);
+  //height: 55px;
+  height: 42px;
+  font-size: var(--font-large);
   font-weight: 600;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  //border-radius: 10px;
+  border-radius: 40px;
   background-color: var(--primary-color);
 `;

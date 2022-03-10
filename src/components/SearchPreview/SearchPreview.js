@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { PreviewWrap } from './style';
+import { PreviewWrap, PreviewCode, PreviewName } from './style';
 
 const SearchPreview = (props) => {
   const { _onClick } = props;
-  console.log(props.stock_code)
+
   return (
     <PreviewWrap onClick={_onClick}>
-      <p>{props.stock_code}</p>
-      <p>{props.stock_name}</p>
+      <PreviewCode>{props.stock_code}</PreviewCode>
+      <PreviewName>{props.stock_name}</PreviewName>
     </PreviewWrap>
   );
 };

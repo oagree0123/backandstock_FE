@@ -95,7 +95,7 @@ const Login = () => {
         <LoginRight>
           <LOGO onClick={()=>{
             history.push('/')
-          }}></LOGO>
+          }}>Back&Stock</LOGO>
           <KakaoLoginBtn onClick={clickKakao}>카카오로 계속하기</KakaoLoginBtn>
           <Line />
           <InputWrap>
@@ -112,6 +112,12 @@ const Login = () => {
             <InputLabel>비밀번호</InputLabel>
             <LoginInput
               type="password"
+              onKeyPress={(e) => {
+                  if(e.key === "Enter") {
+                    clickLogin();
+                  }
+                }
+              }
               onChange={onChangePwd}
             />
             {pwd.length > 0 && !is_pwd && (

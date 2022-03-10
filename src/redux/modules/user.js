@@ -14,6 +14,7 @@ const logout = createAction(LOG_OUT, () => ({}));
 // initialState
 const initialState = {
   user_info: {
+    user_id: 0,
     nickname: "",
     profile_img: "",
   },
@@ -22,8 +23,8 @@ const initialState = {
 
 // middlewares
 const LoginDB = ({ user_name, pwd }) => {
-  // test1234@naver.com
-  // test1234
+  // test12@naver.com
+  // test1234!
   return async function (dispatch, getState, { history }) {
     try {
       const response = await axios.post(`http://yuseon.shop/user/login`, {
@@ -32,7 +33,7 @@ const LoginDB = ({ user_name, pwd }) => {
       });
 
       const token = response.headers.authorization;
-      setToken(token);
+      setToken("token", token);
 
       try {
         let check_user = await axios.post(
@@ -45,9 +46,12 @@ const LoginDB = ({ user_name, pwd }) => {
           }
         );
 
+        /* localStorage.setItem("username", check_user.data.username);
+        localStorage.setItem("nickname", check_user.data.nickname); */
+
         dispatch(
           setUser({
-            user_name: check_user.data.username,
+            user_id: check_user.data.userId,
             nickname: check_user.data.nickname,
             profile_img: check_user.data.profileImg,
           })
@@ -60,6 +64,7 @@ const LoginDB = ({ user_name, pwd }) => {
       history.replace("/");
     } catch (err) {
       console.log(err);
+      window.alert("이메일 비밀번호를 다시 확인해주세요.")
     }
   };
 };
@@ -78,11 +83,12 @@ const LoginCheckDB = () => {
         }
       );
 
-      console.log(check_user);
+      /* localStorage.setItem("username", check_user.data.username);
+      localStorage.setItem("nickname", check_user.data.nickname); */
 
       dispatch(
         setUser({
-          user_name: check_user.data.username,
+          user_id: check_user.data.userId,
           nickname: check_user.data.nickname,
           profile_img: check_user.data.profileImg,
         })
@@ -95,12 +101,22 @@ const LoginCheckDB = () => {
 
 const kakaoLogin = (code) => {
   return async function (dispatch, getState, { history }) {
+    /* `http://yuseon.shop/user/kakao/callback?code=${code}` */
     console.log(code)
     try {
-      let response = await axios.post(
+      let response = await axios.get(
         `http://yuseon.shop/user/kakao/callback?code=${code}`
-      , {});
+      );
+
       console.log(response);
+      const token = response.headers.authorization;
+      setToken("token", token);
+      
+      dispatch(setUser({
+        user_id: response.data.userId,
+        nickname: response.data.nickname,
+        profile_img: "",
+      }))
       history.push('/');
     } catch (err) {
       console.log(err);
@@ -127,7 +143,7 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
 
 const ResignDB = () => {
   return async function (dispatch, getState, { history }) {
-    const token = getToken();
+    const token = getToken("token");
     try {
       await axios.delete(`http://yuseon.shop/resign`, {
         headers: {
@@ -153,8 +169,9 @@ export default handleActions(
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        delToken();
+        delToken("token");
         draft.user_info = {
+          user_id: 0,
           nickname: "",
           profile_img: "",
         };

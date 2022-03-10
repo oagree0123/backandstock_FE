@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { history } from '../../redux/configStore';
-import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle } from './style';
+import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle, UserBtnWrap, LoginBtn, SignupBtn } from './style';
 
 const SideTap = (props) => {
+
+  const is_login = useSelector(state => state.user.is_login);
+  const user = useSelector(state => state.user.user_info);
+
   const [lab_clicked, setLabClicked] = useState(true);
   const [portf_clicked, setPortfClicked] = useState(false);
   const [commu_clicked, setCommuClicked] = useState(false);
@@ -28,15 +33,33 @@ const SideTap = (props) => {
 
   return (
     <SideTapWrap >
-      <SideUserWrap>
-        <UserImg />
-        <Username>홍길동님</Username>
-        <UserText>
-          오늘은 어떤 자산을 <br />
-          실험해 볼까요?
-        </UserText>
-        <ProfileBtn>프로필 수정하기</ProfileBtn>
-      </SideUserWrap>
+      {is_login ?
+        <SideUserWrap>
+          <UserImg />
+          <Username>{user.nickname}</Username>
+          <UserText>
+            오늘은 어떤 자산을 <br />
+            실험해 볼까요?
+          </UserText>
+          <ProfileBtn>프로필 수정하기</ProfileBtn> 
+        </SideUserWrap> :
+        <SideUserWrap>
+          <UserImg />
+          <Username>방문자님</Username>
+          <UserText>
+            로그인을 해야 자산을 <br />
+            실험할 수 있어요
+          </UserText>
+          <UserBtnWrap>
+            <LoginBtn onClick={() => {
+              history.push('/login');
+            }}>로그인</LoginBtn>
+            <SignupBtn onClick={() => {
+              history.push('/signup');
+            }}>회원가입</SignupBtn>
+          </UserBtnWrap>
+        </SideUserWrap>
+      }
       <TabWrap>
         { !lab_clicked ?
           <Tab onClick={() => {

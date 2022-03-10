@@ -73,7 +73,7 @@ export const SignupInput = styled.input`
   padding-left: 20px;
   width: 100%;
   height: 47px;
-  border: 3px solid var(--gray-color);
+  border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
 

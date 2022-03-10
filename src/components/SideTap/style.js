@@ -13,7 +13,7 @@ export const SideTapWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   background-color: #fff;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 7px 0px 30px rgba(0, 0, 0, 0.05);
 `;
 
 export const SideUserWrap = styled.div`
@@ -48,6 +48,33 @@ export const UserText = styled.p`
 
 export const ProfileBtn = styled.button`
   width: 160px;
+  height: 40px;
+  color: var(--primary-color);
+  font-size: var(--font-small);
+  font-weight: 400;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+`;
+
+export const UserBtnWrap = styled.div`
+  width: 232px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const LoginBtn = styled.button`
+  width: 110px;
+  height: 40px;
+  color: var(--primary-color);
+  font-size: var(--font-small);
+  font-weight: 400;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+`;
+
+export const SignupBtn = styled.button`
+  width: 100px;
   height: 40px;
   color: var(--primary-color);
   font-size: var(--font-small);
