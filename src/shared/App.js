@@ -8,7 +8,7 @@ import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup, Community } from "../pages";
+import { BackTest, Login, Signup, Community, TestResult, Mypage } from "../pages";
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
@@ -18,10 +18,10 @@ function App() {
   const is_token = getToken();
 
   useEffect(() => {
-    if(is_token){
+    if (is_token) {
       dispatch(userActions.LoginCheckDB());
     }
-  }); 
+  });
 
   return (
     <AppWrap className="App">
@@ -35,6 +35,8 @@ function App() {
           <RouteWrap>
             <Route path="/" exact component={BackTest} />
             <Route path="/community" exact component={Community}></Route>
+            <Route path="/result" exact component={TestResult}></Route>
+            <Route path="/mypage" exact component={Mypage}></Route>
           </RouteWrap>
         </ContentWrap>
       </ConnectedRouter>

@@ -21,7 +21,7 @@ import { actionCreators as testformActions } from "../../redux/modules/testform"
 
 const StockSearch = () => {
   const dispatch = useDispatch();
- 
+
   const [is_open, setIsOpen] = useState(false);
   const [ratio, setRatio] = useState("");
   const [stock_search, setStockSearch] = useState("");
@@ -43,9 +43,8 @@ const StockSearch = () => {
             keyword: search_name,
             type: "code"
           }
-      });
+        });
       setSearchList(list.data);
-      console.log(search_list);
     }
     else {
       let list = await axios
@@ -54,9 +53,8 @@ const StockSearch = () => {
             keyword: search_name,
             type: "name"
           }
-      });
+        });
       setSearchList(list.data);
-      console.log(search_list);
     }
   }
 
@@ -87,7 +85,7 @@ const StockSearch = () => {
                 // 변경 시 검색
                 setStockSearch(e.target.value);
                 searchStock(e.target.value)
-                if(e.target.value==="") {
+                if (e.target.value === "") {
                   return;
                 }
                 setIsOpen(true)
@@ -97,12 +95,11 @@ const StockSearch = () => {
             {is_open &&
               <PreviewListWrap>
                 {search_list.map((s, i) => {
-                  console.log(s)
                   return (
-                    <SearchPreview 
-                      key={i} 
-                      stock_name={s.stockName} 
-                      stock_code={s.stockCode} 
+                    <SearchPreview
+                      key={i}
+                      stock_name={s.stockName}
+                      stock_code={s.stockCode}
                       _onClick={() => {
                         setStockName(s.stockName);
                         setStockSearch(s.stockName);
@@ -117,7 +114,7 @@ const StockSearch = () => {
             }
           </SearchWrap>
           <SearchBtn
-            onClick={()=> {
+            onClick={() => {
               dispatch(testformActions.setStock(ratio, stock_name, stock_code));
             }}
           >
