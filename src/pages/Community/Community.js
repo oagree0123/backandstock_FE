@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn } from "./style";
+import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn } from "./style";
 
 const Community = () => {
   const history = useHistory();
@@ -13,7 +13,7 @@ const Community = () => {
   };
 
   return (
-    <div>
+    <CommunityWrap>
       <button onClick={() => history.push("/")}>메인으로 이동</button>
       <h3>포토폴리오</h3>
 
@@ -35,7 +35,7 @@ const Community = () => {
           </Container>
         ) : null}
       </BoxWrap>
-    </div>
+    </CommunityWrap>
   );
 };
 

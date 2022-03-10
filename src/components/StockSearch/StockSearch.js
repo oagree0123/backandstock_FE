@@ -45,7 +45,6 @@ const StockSearch = () => {
           }
       });
       setSearchList(list.data);
-      console.log(search_list);
     }
     else {
       let list = await axios
@@ -56,7 +55,6 @@ const StockSearch = () => {
           }
       });
       setSearchList(list.data);
-      console.log(search_list);
     }
   }
 

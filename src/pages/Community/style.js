@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const CommunityWrap = styled.div`
+  padding: 27px 50px;
+  width: 880px;
+`;
+
 export const Container = styled.div`
   position: fixed;
   display: flex;
@@ -12,6 +17,7 @@ export const Container = styled.div`
   left: 0;
   z-index: 999;
 `;
+
 export const Modalinner = styled.div`
   position: relative;
   display: flex;
@@ -23,6 +29,7 @@ export const Modalinner = styled.div`
   border-radius: 1em;
   padding: 30px;
 `;
+
 export const Close = styled.button`
   position: absolute;
   right: 1.5rem;

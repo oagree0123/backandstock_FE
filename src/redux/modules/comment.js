@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import "moment";
 import axios from "axios";
+import { getToken } from "../../shared/token";
 
 // actions
 const GET_COMMENT = "GET_COMMENT";
@@ -35,9 +36,7 @@ const initialState = {
     commentList: []
 }
 
-
 // middlewares
-
 const addCommentDB = (uid, post_id, title, content, img) => {
     return function (dispatch, getState, { history }) {
         // const uid = getState().user.user.userid;
@@ -100,9 +99,8 @@ const addCommentDB = (uid, post_id, title, content, img) => {
     };
 };
 
-
 const getCommentFB = (post_id) => {
-    const token_key = `${localStorage.getItem("token")}`;
+    const token_key = getToken("token");
     console.log(post_id);
     return function (dispatch, getState, { history }) {
         if (!post_id) {

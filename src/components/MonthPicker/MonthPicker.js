@@ -19,10 +19,10 @@ const MonthPicker = (props) => {
   const [clicked_date, setClickedDate] = useState(props.type === "start" ? 2019 : 2022);
 
   const months = [
-    'Jan', 'Feb', 'Mar',
-    'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep',
-    'Oct', 'Nov', 'Dec'
+    '1월', '2월', '3월',
+    '4월', '5월', '6월',
+    '7월', '8월', '9월',
+    '10월', '11월', '12월'
   ]
 
   const change_year = (type) => {
@@ -50,7 +50,7 @@ const MonthPicker = (props) => {
           setIsOpen(!is_open);
         }}
       >
-        {year} {months[month-1]}
+        {year}년 {months[month-1]}
       </DateWrap>
       {
         is_open &&

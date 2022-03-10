@@ -7,14 +7,15 @@ export const LoginWrap = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
-  background-color: #fff;
+  background-color: #eee;
 `;
 
 export const LoginCont = styled.div`
   width: 964px;
-  height: 653px;
+  height: 651px;
   display: flex;
   border-radius: 40px;
+  background-color: #fff;
   overflow: hidden;
   box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.15);
 `;
@@ -45,7 +46,10 @@ export const LOGO = styled.div`
   margin-bottom: 50px;
   width: 260px;
   height: 40px;
-  background-color: var(--gray-color);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 0.77;
+  text-align: center;
   cursor: pointer;
 `;
 
@@ -54,6 +58,7 @@ export const LoginText = styled.p`
 `;
  
 export const InputWrap = styled.div`
+  margin-bottom: 12px;
   width: 350px;
   display: flex;
   flex-direction: column;
@@ -62,17 +67,23 @@ export const InputWrap = styled.div`
 `;
 
 export const LoginInput = styled.input`
-  margin-bottom: 20px;
   padding-left: 20px;
   width: 100%;
   height: 47px;
-  border: 3px solid var(--gray-color);
+  border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
 
 export const InputLabel = styled.label`
   margin-bottom: 8px;
   text-align: left;
+`;
+
+export const ErrorText = styled.p`
+  margin-top: 4px;
+  font-size: var(--font-small);
+  line-height: var(--line-small);
+  color: red;
 `;
 
 export const LoginBtnWrap = styled.div`
@@ -101,8 +112,8 @@ export const KakaoLoginBtn = styled.button`
   margin-bottom: 32px;
   width: 260px;
   height: 47px;
-  color: #F8E644;
-  border: 3px solid #F8E644;
+  color: #000;
+  border: 1px solid #FEE500;
   border-radius: 10px;
   background-color: #fff; 
   cursor: pointer;
@@ -111,6 +122,6 @@ export const KakaoLoginBtn = styled.button`
 export const Line = styled.div`
   margin-bottom: 28px;
   width: 100%;
-  height: 3px;
+  height: 1px;
   background-color: var(--secondary-color);
 `;

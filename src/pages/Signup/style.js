@@ -7,7 +7,7 @@ export const SignupWrap = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
-  background-color: #fff;
+  background-color: #eee;
 `;
 
 export const SignupCont = styled.div`
@@ -15,6 +15,7 @@ export const SignupCont = styled.div`
   height: 653px;
   display: flex;
   border-radius: 40px;
+  background-color: #fff;
   overflow: hidden;
   box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.15);
 `;
@@ -60,6 +61,7 @@ export const LoginSpan = styled.p`
 `;
 
 export const InputWrap = styled.div`
+  margin-bottom: 8px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -68,17 +70,23 @@ export const InputWrap = styled.div`
 `;
 
 export const SignupInput = styled.input`
-  margin-bottom: 20px;
   padding-left: 20px;
   width: 100%;
   height: 47px;
-  border: 3px solid var(--gray-color);
+  border: 1px solid var(--gray-color);
   border-radius: 10px;
 `;
 
 export const InputLabel = styled.label`
   margin-bottom: 8px;
   text-align: left;
+`;
+
+export const ErrorText = styled.p`
+  margin-top: 4px;
+  font-size: var(--font-small);
+  line-height: var(--line-small);
+  color: red;
 `;
 
 export const SignupBtnWrap = styled.div`

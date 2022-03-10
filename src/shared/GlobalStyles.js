@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   :root {
   --primary-color: #0087FF;
-  --secondary-color: #E5EFFF;
+  //--primary-color: #37638B;
+  --secondary-color: #ECF5FF;
   --gray-color: #c4c4c4;
   --font-color: #000;
   //--font-color: #78909C;
@@ -35,6 +36,21 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Noto Sans CJK KR';
     font-weight: 400;
     letter-spacing: 0;
+
+    &::-webkit-scrollbar { 
+      width: 5px; 
+      background-color: var(--gray-color); 
+      border-radius: 10;
+    }
+
+    &:-webkit-scrollbar-track { 
+      background-color: darkgrey; 
+    } 
+    
+    &::-webkit-scrollbar-thumb { 
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); 
+    }
+
   }
   
   button {
@@ -49,6 +65,8 @@ const GlobalStyles = createGlobalStyle`
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
     }
+
+    font-family: 'Noto Sans CJK KR';
   }
 `;
 

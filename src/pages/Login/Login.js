@@ -13,6 +13,7 @@ import {
   LeftTitle,
   LOGO,
   Line,
+  ErrorText,
 } from "./style";
 import { useDispatch } from "react-redux";
 import { history } from '../../redux/configStore';
@@ -26,12 +27,18 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
+  // 이메일, 비밀번호
   const [user_name, setUserName] = useState("");
   const [pwd, setPwd] = useState("");
 
+  // 입력 오류 확인
+  const [is_email, setIsEmail] = useState(false);
+  const [is_pwd, setIsPwd] = useState(false);
+
+  // 로그인
   const clickLogin = () => {
     if (user_name === "" || pwd === "") {
-      window.alert("정보를 모두 입력해주세요.");
+      window.alert("빈칸을 모두 입력해주세요.");
       return;
     }
 
@@ -43,9 +50,37 @@ const Login = () => {
     dispatch(userActions.LoginDB(login_data));
   };
 
+  // 카카오 로그인
   const clickKakao = () => {
     return (window.location.href = KAKAO_AUTH_URL);
   };
+
+  const onChangeEmail = (e) => {
+    const email_reg =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    const current_email = e.target.value;
+
+    setUserName(current_email);
+
+    if (!email_reg.test(current_email)) {
+      setIsEmail(false);
+    } else {
+      setIsEmail(true);
+    }
+  }
+
+  const onChangePwd = (e) => {
+    const pwd_reg =
+      /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+    const current_pwd = e.target.value;
+    setPwd(current_pwd);
+
+    if (!pwd_reg.test(current_pwd)) {
+      setIsPwd(false);
+    } else {
+      setIsPwd(true);
+    }
+  }
 
   return (
     <LoginWrap>
@@ -60,26 +95,34 @@ const Login = () => {
         <LoginRight>
           <LOGO onClick={()=>{
             history.push('/')
-          }}></LOGO>
+          }}>Back&Stock</LOGO>
           <KakaoLoginBtn onClick={clickKakao}>카카오로 계속하기</KakaoLoginBtn>
           <Line />
           <InputWrap>
             <InputLabel>이메일</InputLabel>
             <LoginInput
               type="text"
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
+              onChange={onChangeEmail}
             />
+            {user_name.length > 0 && !is_email && (
+              <ErrorText>올바른 이메일 형식을 입력해주세요.</ErrorText>
+            )}
           </InputWrap>
           <InputWrap>
             <InputLabel>비밀번호</InputLabel>
             <LoginInput
               type="password"
-              onChange={(e) => {
-                setPwd(e.target.value);
-              }}
+              onKeyPress={(e) => {
+                  if(e.key === "Enter") {
+                    clickLogin();
+                  }
+                }
+              }
+              onChange={onChangePwd}
             />
+            {pwd.length > 0 && !is_pwd && (
+              <ErrorText>8~20자로 영문 대소문자, 숫자, 특수문자 조합을 사용하세요.</ErrorText>
+            )}
           </InputWrap>
           <LoginBtnWrap>
             <LoginBtn onClick={clickLogin}>로그인</LoginBtn>
