@@ -12,7 +12,7 @@ export const ListTitle = styled.h3`
 
 export const ListWrap = styled.div`
   padding-bottom: 10px;
-  width: 930px;
+  width: 880px;
   min-height: 220px;
   border: 0.5px solid var(--primary-color);
   border-color: rgba(58, 149, 255, 0.5);

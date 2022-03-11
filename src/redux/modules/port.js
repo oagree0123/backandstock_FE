@@ -112,11 +112,14 @@ const getPortOneDB = (port_id) => {
 
 const deletePortDB = (port_id) => {
   return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
     const _port_list = getState().port.port_list;
 
     try {
-      await axios.delete(`http://yuseon.shop/port`, {
-        portId: port_id
+      await axios.delete(`http://yuseon.shop/port/${port_id}`, {
+        headers: {
+          authorization: `${token}`
+        }
       })
 
       const port_idx = _port_list.findIndex((v) => {
@@ -147,7 +150,16 @@ export default handleActions(
     }),
     [GET_PORT]: (state, action) =>
       produce(state, (draft) => {
-        draft.port_list = action.payload.port_list;
+        draft.port_list.push(...action.payload.port_list);
+
+        draft.port_list = draft.port_list.reduce((acc, cur) => {
+          if(acc.findIndex(a => a.portId === cur.portId) === -1) {
+            return [...acc, cur];
+          } else {
+            acc[acc.findIndex(a => a.portId === cur.portId)] = cur;
+            return acc;
+          }
+        }, [])
     }),
     [GET_PORTONE]: (state, action) =>
     produce(state, (draft) => {

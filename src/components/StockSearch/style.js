@@ -13,7 +13,7 @@ export const SearchLeft = styled.div`
 `;
 
 export const SearchRight = styled.div`
-  width: 510px;
+  width: 500px;
 `;
 
 export const SearchTitle = styled.h3`
@@ -49,13 +49,13 @@ export const Rate = styled.div`
 export const SearchStock = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
 export const SearchWrap = styled.div`
   position: relative;
-  width: 350px;
+  width: 325px;
 `;
 
 export const SearchInput = styled.input`
@@ -63,7 +63,7 @@ export const SearchInput = styled.input`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 380px;
+  width: 325px;
   height: 55px;
   font-size: var(--font-main);
   border: 1px solid var(--gray-color);
@@ -75,15 +75,16 @@ export const PreviewListWrap = styled.div`
   top: 60px;
   left: 0;
   width: 100%;
-  max-height: 200px;
+  max-height: 165px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   border: 2px solid var(--secondary-color);
-  border-radius: 10px;
+  border-radius: 4px;
   background-color: #fff;
   overflow-y: scroll;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
 
   &::-webkit-scrollbar {
     width: 0;
@@ -92,7 +93,7 @@ export const PreviewListWrap = styled.div`
 
 export const SearchBtn = styled.button`
   margin-left: 20px;
-  width: 110px;
+  width: 105px;
   //height: 55px;
   height: 42px;
   font-size: var(--font-large);

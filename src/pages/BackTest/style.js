@@ -2,12 +2,15 @@ import styled from 'styled-components';
 
 export const BackTestWrap = styled.div`
   padding: 44px 0px 56px 56px;
+  width: 880px;
+  box-sizing: content-box;
 `;
 
 export const InfoWrap = styled.div`
+  margin-right: 0;
   margin-bottom: 36px;
   padding: 22px 28px;
-  width: 930px;
+  width: 880px;
   height: 115px;
   display: flex;
   background-color: var(--secondary-color);

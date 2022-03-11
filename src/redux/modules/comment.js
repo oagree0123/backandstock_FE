@@ -14,12 +14,10 @@ const EDIT_COMMENT = "EDIT_COMMENT";
 const getComment = createAction(GET_COMMENT, (comment_list) => ({ comment_list }));
 
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
-
 const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_idx }));
-const editComment = createAction(EDIT_COMMENT, (post_id, comment, comment_id) => ({
-    post_id,
-    comment,
+const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
     comment_id,
+    comment,
   })
 );
 
@@ -44,7 +42,7 @@ const addCommentDB = (port_id, content) => {
 
       console.log(response.data);
       dispatch(addComment({
-        comment_id: response.data.commentId,
+        commentId: response.data.commentId,
         content: content,
         nickname: nickname,
       }));
@@ -83,6 +81,8 @@ const editCommentDB = (comment_id, comment) => {
           Authorization: `${token}`
         }
       })
+
+      dispatch(editComment(comment_id, comment));
     }
     catch (err) {
       console.log(err);
@@ -103,7 +103,7 @@ const deleteCommentDB = (comment_id) => {
       });
       
       const comment_idx = _comment_list.findIndex((c) => {
-        return parseInt(c.comment_id) === parseInt(comment_id);
+        return parseInt(c.commentId) === parseInt(comment_id);
       })
       dispatch(deleteComment(comment_idx));
     }
@@ -119,10 +119,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(...action.payload.comment_list);
         draft.list = draft.list.reduce((acc, cur) => {
-          if (acc.findIndex((a) => a.comment_id === cur.comment_id) === -1) {
+          if (acc.findIndex((a) => a.commentId === cur.commentId) === -1) {
             return [...acc, cur];
           } else {
-            acc[acc.findIndex((a) => a.comment_id === cur.comment_id)] = cur;
+            acc[acc.findIndex((a) => a.commentId === cur.commentId)] = cur;
             return acc;
           }
         }, []);
@@ -135,10 +135,11 @@ export default handleActions(
 
     [EDIT_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        const new_comment = draft.list[action.payload.comment_id].find(
-          (c) => c.comment_id === action.payload.comment_id
-        );
-        new_comment.comment = action.payload.new_comment;
+        let idx = draft.list.findIndex((c) => {
+          return  parseInt(c.commentId) === parseInt(action.payload.comment_id)
+        })
+    
+        draft.list[idx] = {...draft.list[idx], comment: action.payload.comment};
       }),
 
     [DELETE_COMMENT]: (state, action) =>

@@ -38,13 +38,13 @@ const GlobalStyles = createGlobalStyle`
     letter-spacing: 0;
 
     &::-webkit-scrollbar { 
-      width: 5px; 
-      background-color: var(--gray-color); 
+      width: 2px; 
+      background-color: #eee; 
       border-radius: 10;
     }
 
     &:-webkit-scrollbar-track { 
-      background-color: darkgrey; 
+      background-color: #fff; 
     } 
     
     &::-webkit-scrollbar-thumb { 

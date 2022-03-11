@@ -71,6 +71,15 @@ export default handleActions(
         }, [])
     }),
    
+    [LIKE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        
+    }),
+
+    [UNLIKE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        
+    }),
   },
   initialState
 );
