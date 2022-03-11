@@ -1,58 +1,59 @@
 import styled from 'styled-components';
 
 export const BackTestWrap = styled.div`
-
+  padding: 44px 0px 56px 56px;
 `;
 
 export const InfoWrap = styled.div`
-  margin-bottom: 44px;
-  padding: 27px 50px;
-  width: 880px;
-  height: 103px;
+  margin-bottom: 36px;
+  padding: 22px 28px;
+  width: 930px;
+  height: 115px;
   display: flex;
   background-color: var(--secondary-color);
-  border-radius: 20px;
+  border-radius: 12px;
 `;
 
 export const InfoTitle = styled.h1`
-  margin-bottom: 24px;
-  font-size: var(--font-header);
+  margin-bottom: 32px;
+  font-size: 32px;
   line-height: var(--line-header);
   font-weight: 600;
 `;
 
 export const InfoContLeft = styled.div`
   margin-right: 50px;
-  width: 350px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const InfoContRight = styled.div`
-  width: 350px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: start;
 `;
 
 export const InfoCont = styled.div`
-  margin-bottom: 8px;
   width: 100%;
-  height: 100%;
+  height: 40px;
   display: flex;
-  font-size: var(--font-medium);
-  line-height: var(--line-medium);
+  font-size: var(--font-main);
+  font-weight: 500;
+  line-height: var(--line-main);
   justify-content: flex-start;
   align-items: center;
+  box-sizing: content-box;
 `;
 
 export const InfoCircle = styled.div`
   margin-right: 8px;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: var(--primary-color);
 `;

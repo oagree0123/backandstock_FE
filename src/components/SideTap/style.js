@@ -132,17 +132,17 @@ export const TabContent = styled.div`
 `;
 
 export const TabTitle = styled.p`
-  margin-bottom: 8px;
-  font-size: 20px;
+  font-size: var(--font-large);
   font-weight: 600;
+  line-height: 28px;
   letter-spacing: 0.15px;
 `;
 
 export const TabClickedTitle = styled.p`
-  margin-bottom: 8px;
   color: var(--primary-color); 
-  font-size: 20px;
+  font-size: var(--font-large);
   font-weight: 600;
+  line-height: 28px;
   letter-spacing: 0.15px;
 `;
 

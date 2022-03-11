@@ -21,12 +21,12 @@ export const FormBottom = styled.div`
 `;
 
 export const FormLeft = styled.div`
-  margin-right: 50px;
-  width: 350px;
+  margin-right: 40px;
+  width: 380px;
 `;
 
 export const FormRight = styled.div`
-  width: 350px;
+  width: 380px;
 `;
 
 export const FormTitle = styled.p`

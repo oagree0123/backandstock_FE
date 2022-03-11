@@ -1,8 +1,11 @@
 import { ResponsiveLine } from '@nivo/line'
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 
-const Line = () => {
+const Line = (props) => {
+    const [chart_min, setChartMin] = useState(0);
+
     const styles = {
         width: "880px",
         height: "346px",
@@ -10,13 +13,23 @@ const Line = () => {
         marginRight: "10px"
     };
 
-    const result_list = useSelector((state) => state.port.result_list);
+    const result_list = props.result_list;
     console.log(result_list);
 
     const months = result_list.months
     const monthYieldMoney = result_list.monthYieldMoney
     const kospiYieldMoney = result_list.kospiYieldMoney
     const kosdaqYieldMoney = result_list.kosdaqYieldMoney
+    const Worst_money = Math.floor(result_list.worstMoney);
+
+    useEffect(() => {
+      let _worst = String(Worst_money).split("");
+      _worst = _worst.map((v, i) => {
+        return i !== 0 ? v = 0 : v
+      })
+      _worst = _worst.join('');
+      setChartMin(_worst);
+    }, [chart_min, Worst_money]);
 
     const data = [
         {
@@ -69,7 +82,7 @@ const Line = () => {
                 xScale={{ type: 'point' }}
                 yScale={{
                     type: 'linear',
-                    min: 'auto',
+                    min: chart_min,
                     max: 'auto',
                     reverse: false
                 }}

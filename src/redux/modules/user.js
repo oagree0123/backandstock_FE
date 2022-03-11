@@ -5,10 +5,12 @@ import { delToken, getToken, setToken } from "../../shared/token";
 
 // actions
 const SET_USER = "SET_USER";
+const EDIT_USER = "EDIT_USER";
 const LOG_OUT = "LOG_OUT";
 
 // action creators
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const editUser = createAction(EDIT_USER, (nickname, img_url) => ({ nickname, img_url }));
 const logout = createAction(LOG_OUT, () => ({}));
 
 // initialState
@@ -166,13 +168,36 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
   };
 };
 
+const editUserDB = (nickname, img_url) => {
+  return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
+
+    const form = new FormData();
+    form.append('nickname ', nickname);
+    form.append('profileImg ', img_url);
+
+    try {
+      axios.put(`http://yuseon.shop/user/edit`, form, {
+        headers : {
+          authorization: `${token}`
+        }
+      })
+
+      dispatch(editUser(nickname, img_url));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
+
 const ResignDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
       await axios.delete(`http://yuseon.shop/resign`, {
         headers: {
-          Autorization: `${token}`,
+          authorization: `${token}`,
         },
       });
 
@@ -191,6 +216,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user_info = action.payload.user;
         draft.is_login = true;
+      }),
+    [EDIT_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user_info = {
+          ...draft.user_info, 
+          nickname: action.payload.nickname,
+          profile_img: action.payload.img_url
+        }
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
@@ -214,6 +247,7 @@ const actionCreators = {
   SignupDB,
   ResignDB,
   kakaoLogin,
+  editUserDB,
 };
 
 export { actionCreators };

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PortfolioWrap = styled.div`
+  padding: 44px 0px 56px 56px;
   width: 880px;
 `;
 

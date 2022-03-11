@@ -8,12 +8,12 @@ export const StockWrap = styled.div`
 `;
 
 export const SearchLeft = styled.div`
-  margin-right: 50px;
-  width: 350px;
+  margin-right: 40px;
+  width: 380px;
 `;
 
 export const SearchRight = styled.div`
-  width: 480px;
+  width: 510px;
 `;
 
 export const SearchTitle = styled.h3`
@@ -63,7 +63,7 @@ export const SearchInput = styled.input`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 350px;
+  width: 380px;
   height: 55px;
   font-size: var(--font-main);
   border: 1px solid var(--gray-color);

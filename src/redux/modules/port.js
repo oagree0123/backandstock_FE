@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import { getToken } from '../../shared/token';
 import axios from "axios";
 import moment from "moment";
 
@@ -45,6 +46,7 @@ const getResultDB = () => {
       );
   
       dispatch(getResult(test_result.data));
+      history.push('./result');
     }
     catch (err) {
       console.log(err);
@@ -54,6 +56,7 @@ const getResultDB = () => {
 
 const savePortDB = () => {
   return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
     let end = getState().testform.end_date;
     end = moment(end).add("1", "M").format("YYYY-MM-DD");
 
@@ -66,7 +69,11 @@ const savePortDB = () => {
     };
 
     try {
-      const port_id = await axios.post(`http://yuseon.shop/port`, data);
+      const port_id = await axios.post(`http://yuseon.shop/port`, data, {
+        headers: {
+          Authorization: token
+        }
+      });
 
       const result = getState().port.list;
       dispatch(savePortOne(port_id.data, result));
