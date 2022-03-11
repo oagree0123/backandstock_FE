@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const CommunityWrap = styled.div`
-  padding: 27px 50px;
-  width: 880px;
+  padding: 44px 0px 56px 56px;
+  width: 930px;
+  box-sizing: content-box;
 `;
 
 export const Container = styled.div`

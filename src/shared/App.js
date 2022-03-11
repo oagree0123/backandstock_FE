@@ -8,7 +8,7 @@ import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup, Community, TestResult, Mypage, Portfolio } from "../pages";
+import { BackTest, Login, Signup, Community, TestResult, Mypage } from "../pages";
 
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
@@ -39,7 +39,6 @@ function App(props) {
             <SideTap />
             <RouteWrap>
               <Route path="/" exact component={BackTest} />
-              <Route path="/portfolio/:userId" exact component={Portfolio} />
               <Route path="/community" exact component={Community} />
               <Route path="/mypage" exact component={Mypage}></Route>
               <Route path="/result" exact component={TestResult}></Route>

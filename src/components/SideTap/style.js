@@ -100,6 +100,7 @@ export const Tab = styled.div`
   align-items: center;
   color: var(--font-color);
   background-color: #fff;
+  cursor: pointer;
 `;
 
 export const TabClicked = styled.div`
@@ -112,6 +113,7 @@ export const TabClicked = styled.div`
   align-items: center;
   color: var(--primary-color);
   background-color: var(--secondary-color);
+  cursor: pointer;
 `;
 
 export const TabIcon = styled.div`
