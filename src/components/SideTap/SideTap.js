@@ -19,7 +19,7 @@ const SideTap = (props) => {
       setPortfClicked(false);
       setCommuClicked(true);
     }
-    else if(window.location.pathname === "/portfolio/1") {
+    else if(window.location.pathname === "/MyPage") {
       setLabClicked(false);
       setPortfClicked(true);
       setCommuClicked(false);
@@ -92,7 +92,7 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/portfolio/1');
+            history.push('/MyPage');
           }}>
             <TabIcon />
             <TabContent>
@@ -104,7 +104,7 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/portfolio/1');
+            history.push('/MyPage');
           }}>
             <TabIcon />
             <TabContent>

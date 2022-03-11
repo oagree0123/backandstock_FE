@@ -8,7 +8,7 @@ import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup, Community, TestResult, Mypage, Portfolio } from "../pages";
+import { BackTest, Login, Signup, Community, TestResult, Mypage } from "../pages";
 
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
@@ -39,10 +39,9 @@ function App(props) {
             <SideTap />
             <RouteWrap>
               <Route path="/" exact component={BackTest} />
-              <Route path="/portfolio/:userId" exact component={Portfolio} />
               <Route path="/community" exact component={Community} />
-               <Route path="/result" exact component={TestResult}></Route>
               <Route path="/mypage" exact component={Mypage}></Route>
+              <Route path="/result" exact component={TestResult}></Route>
             </RouteWrap>
           </ContentWrap>
         </Switch>
@@ -53,12 +52,10 @@ function App(props) {
 
 const AppWrap = styled.div`
   margin: 0 auto;
-  
   display: flex;
 `;
 
 const ContentWrap = styled.div`
-  margin-top: 80px;
   width: 1280;
   margin: 0 auto;
 `;
@@ -66,7 +63,6 @@ const ContentWrap = styled.div`
 const RouteWrap = styled.div`
   margin-top: 80px;
   margin-left: 293px;
-  padding: 44px 0px 56px 56px;
 `;
 
 export default App;

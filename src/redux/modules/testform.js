@@ -59,7 +59,7 @@ export default handleActions(
     [SET_STOCK]: (state, action) =>
       produce(state, (draft) => {
         draft.stockList.push(action.payload.stock_name);
-        draft.ratioList.push(action.payload.ratio);
+        draft.ratioList.push(parseInt(action.payload.ratio));
         draft.codeList.push(action.payload.stock_code);
     }),
   },

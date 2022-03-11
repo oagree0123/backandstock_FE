@@ -21,12 +21,12 @@ export const FormBottom = styled.div`
 `;
 
 export const FormLeft = styled.div`
-  margin-right: 50px;
-  width: 350px;
+  margin-right: 40px;
+  width: 380px;
 `;
 
 export const FormRight = styled.div`
-  width: 350px;
+  width: 325px;
 `;
 
 export const FormTitle = styled.p`
@@ -61,7 +61,7 @@ export const FormInput = styled.input`
 `;
 
 export const BackTextBtn = styled.button`
-  width: 100%;
+  width: 880px;
   height: 60px;
   font-size: var(--font-header);
   font-weight: 800;

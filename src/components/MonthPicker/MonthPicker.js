@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as testformActions } from '../../redux/modules/testform';
 import arrowLeft from '../../assets/images/arrow_left.svg'
 import arrowRight from '../../assets/images/arrow_right.svg'
-import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, DateWrap, MonthBtn, MonthClickBtn, MonthDisabledBtn, MonthPickerWrap, MonthWrap } from './style';
+import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, DateWrap, MonthBtn, MonthClickBtn, MonthDisabledBtn, MonthPickerWrap, MonthWrap, BtnInner, BtnClickedInner, DateTitle } from './style';
 
 const MonthPicker = (props) => {
   const dispatch = useDispatch();
@@ -51,6 +51,10 @@ const MonthPicker = (props) => {
         }}
       >
         {year}년 {months[month-1]}
+        {props.type === "start" ?
+          <DateTitle>시작년도</DateTitle>:
+          <DateTitle>종료년도</DateTitle>
+        }
       </DateWrap>
       {
         is_open &&
@@ -85,7 +89,9 @@ const MonthPicker = (props) => {
                         setIsOpen(false);
                       }}
                     >
-                      {m}
+                      <BtnClickedInner>
+                        {m}
+                      </BtnClickedInner>
                     </MonthClickBtn>
                   );
                 }
@@ -95,7 +101,9 @@ const MonthPicker = (props) => {
                       <MonthDisabledBtn 
                         key={i} 
                       >
-                        {m}
+                        <BtnInner>
+                          {m}
+                        </BtnInner>
                       </MonthDisabledBtn>
                     );
                   }
@@ -109,7 +117,9 @@ const MonthPicker = (props) => {
                           setIsOpen(false);
                         }}
                       >
-                        {m}
+                        <BtnInner>
+                          {m}
+                        </BtnInner>
                       </MonthBtn>
                     );
                   }
