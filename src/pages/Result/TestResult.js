@@ -10,7 +10,7 @@ import { actionCreators as portActions } from '../../redux/modules/port'
 import { useHistory } from 'react-router-dom';
 import ResultStockLine from '../../components/Chart/ResultStockLine';
 
-// import { Container } from '@nivo/core';
+import test from '../../assets/images/page_result/arrow_down.svg'
 
 import styled from 'styled-components';
 

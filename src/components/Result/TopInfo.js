@@ -3,9 +3,19 @@ import { useSelector } from 'react-redux';
 import {
     Box, Wrap, TopBox, TopWrap, BoxWrap, MonthBox, MinusYield, MinusYieldMoney,
     PlusYield, PlusYieldMoney, Text, Info, TextWrap, Icon, MonthWrap, Price,
-    YieldWrap, MinusYieldIcon, PlusYieldIcon,
-    BestYear, WorstYear, BestMonth, WorstMonth
+    YieldWrap, MinusYieldIcon, PlusYieldIcon, IconWrap, CalenderIcon, InfoWrap,
+    BestYear, WorstYear, BestMonth, WorstMonth, MiniIcon1, MiniIcon2, Poket, Dollar
 } from '../Result/style.js';
+
+import arrow_down from "../../assets/images/page_result/arrow_down.svg"
+import arrow_up from "../../assets/images/page_result/arrow_up.svg"
+import up from "../../assets/images/page_result/finger_up.svg"
+import down from "../../assets/images/page_result/finger_down.svg"
+import calender from "../../assets/images/page_result/calendar.svg"
+import poket from "../../assets/images/page_result/poket.svg"
+import dollar from "../../assets/images/page_result/dollar.svg"
+// import mini_up_1 from "../../assets/images/page_result/mini_up_1.svg"
+// import mini_up_2 from "../../assets/images/page_result/mini_up_2.svg"
 
 
 const TopInfo = () => {
@@ -43,7 +53,8 @@ const TopInfo = () => {
                                     <MinusYield>{finalYield}%</MinusYield>
                                     <MinusYieldMoney>-{finalMoney.toLocaleString()}원</MinusYieldMoney>
                                 </div>
-                                <MinusYieldIcon></MinusYieldIcon>
+                                <MinusYieldIcon src={arrow_down}>
+                                </MinusYieldIcon>
                             </YieldWrap>
                         </Box>
                     )
@@ -56,7 +67,7 @@ const TopInfo = () => {
                                     <PlusYield>{finalYield}%</PlusYield>
                                     <PlusYieldMoney>{finalMoney.toLocaleString()}원</PlusYieldMoney>
                                 </div>
-                                <PlusYieldIcon></PlusYieldIcon>
+                                <PlusYieldIcon src={arrow_up}></PlusYieldIcon>
                             </YieldWrap>
                         </Box>
                     )
@@ -64,13 +75,19 @@ const TopInfo = () => {
 
                 <BoxWrap>
                     <TopBox>
-                        <Icon></Icon>
-                        <Text>투자 기간</Text>
-                        <Info>{result_list.startDate} ~ {result_list.endDate}</Info>
+                        <CalenderIcon src={calender}></CalenderIcon>
+                        <InfoWrap>
+                            <Text>투자 기간</Text>
+                            <Info>{result_list.startDate} ~ {result_list.endDate}</Info>
+                        </InfoWrap>
+
                     </TopBox>
                     <TopBox>
-                        <Text>초기 자본금</Text>
-                        <Info>{seedMoney.toLocaleString()}</Info>
+                        <Poket src={poket}></Poket>
+                        <InfoWrap>
+                            <Text>초기 자본금</Text>
+                            <Info>{seedMoney.toLocaleString()}</Info>
+                        </InfoWrap>
                     </TopBox>
                 </BoxWrap>
             </TopWrap>
@@ -82,10 +99,16 @@ const TopInfo = () => {
                         <BestYear>{bestMonth[0]}년</BestYear>
                     </TextWrap>
                     <MonthWrap>
-                        <Icon></Icon>
                         <BestMonth>{bestMonth[1]}월</BestMonth>
                     </MonthWrap>
-                    <Price>{bestMoney.toLocaleString()}원 <span>(+{plus.toLocaleString()}원)</span></Price>
+                    <IconWrap>
+                        <Icon src={up}></Icon>
+                        {/* <MiniIcon1 src={mini_up_2}></MiniIcon1>
+                        <MiniIcon2 src={mini_up_1}></MiniIcon2> */}
+                        <Price>{bestMoney.toLocaleString()}원 <span>(+{plus.toLocaleString()}원)</span></Price>
+                    </IconWrap>
+
+
                 </MonthBox>
                 <MonthBox>
                     <TextWrap>
@@ -93,10 +116,13 @@ const TopInfo = () => {
                         <WorstYear>{worstMonth[0]}년</WorstYear>
                     </TextWrap>
                     <MonthWrap>
-                        <Icon></Icon>
                         <WorstMonth>{worstMonth[1]}월</WorstMonth>
                     </MonthWrap>
-                    <Price>{worstMonth.toLocaleString()}원 <p>( {minus.toLocaleString()}원)</p></Price>
+                    <IconWrap>
+                        <Icon src={down}></Icon>
+                        <Price>{worstMoney.toLocaleString()}원 <p>( {minus.toLocaleString()}원)</p></Price>
+                    </IconWrap>
+
                 </MonthBox>
             </Wrap>
         </React.Fragment>

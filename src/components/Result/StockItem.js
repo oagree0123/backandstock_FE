@@ -20,7 +20,6 @@ const StockItem = (props) => {
                             <Plus> +{profit_money.toLocaleString()}</Plus>
                         )
                 }
-
             </ListWrap>
         </div>
 

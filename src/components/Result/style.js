@@ -34,7 +34,7 @@ export const BoxWrap = styled.div`
 `
 export const TopBox = styled.div`
     display: flex ;
-    flex-direction: column;
+    flex-direction: row;
     width: 400px;
     height: 117px;
 
@@ -97,22 +97,33 @@ export const BestMonth = styled.span`
     font-weight: 700;
     font-size: 64px;
     color: #FF0000;
+    margin-top: -20px;
 `
 
 export const WorstMonth = styled.span`
     font-weight: 700;
     font-size: 64px;
     color: #0075FF;
+    margin-top: -20px;
 
 `
+export const IconWrap = styled.div`
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: flex-end;
+	align-content: stretch;
+    margin-top: -44px;
+`
+
 export const Icon = styled.img`
-    width: 50px;
-    height: 50px;
-    background-color: black;
+    height: 81px;
+    width: 89px;
 `
 
 export const Price = styled.span`
- display: flex;
+    display: flex;
     justify-content: flex-end;
     color: #000000;
     font-size: var(--font-header);
@@ -160,13 +171,11 @@ export const PlusYieldMoney = styled.div`
 export const MinusYieldIcon = styled.img`
     width: 144px;
     height: 208px;
-    background-color: #0075FF;
     margin: 10px 0 0 30px;
 `
 export const PlusYieldIcon = styled.img`
     width: 144px;
     height: 208px;
-    background-color: #FF0000;
     margin: 10px 0 0 30px;
 `
 export const Lists = styled.div`
@@ -253,4 +262,26 @@ export const TopStockRate = styled.p`
 export const TopStockPrice = styled.p`
   padding-right: 16px;
   font-size: var(--font-main);
+`
+
+export const InfoWrap = styled.div`
+    margin-left: 28px;
+
+`
+
+
+export const CalenderIcon = styled.img`
+    width: 68px;
+    height: 70px;
+`
+
+
+export const Poket = styled.img`
+    width: 68px;
+    height: 70px;
+`
+
+export const Dollar = styled.img`
+    width: 14px;
+    height: 33px;
 `
