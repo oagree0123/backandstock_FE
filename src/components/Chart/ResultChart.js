@@ -4,10 +4,14 @@ import { useSelector } from 'react-redux';
 const ResultChart = () => {
     const styles = {
         width: "880px",
-        height: "346px",
-    };
+        height: "300px",
+        backgroundColor: "#ffffff",
+        borderRadius: "10px",
+        marginBottom: "20px"
+    }
 
-    const result_list = useSelector((state) => state.port.result_list);
+    const result_list = useSelector((state) => state.port.list);
+
 
     const months = result_list.months
     const monthYield = result_list.monthYield
@@ -30,7 +34,7 @@ const ResultChart = () => {
 
 
     return (
-        <div style={styles}>
+        <div style={styles} >
             <ResponsiveBar
                 groupMode="grouped"
                 data={data}
@@ -58,7 +62,7 @@ const ResultChart = () => {
 
                 padding={0.3}
                 margin={{
-                    top: 30,
+                    top: 20,
                     right: 90,
                     bottom: 50,
                     left: 50
@@ -98,7 +102,7 @@ const ResultChart = () => {
             // enableGridY={true}
             />
 
-        </div>
+        </div >
 
     )
 

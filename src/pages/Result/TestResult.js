@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react';
-import Line from '../../components/Line';
-import { Box, Btn } from './style';
+import React from 'react';
+import TopInfo from '../../components/Result/TopInfo'
+import ResultLine from '../../components/Chart/ResultLine'
+import ResultChart from '../../components/Chart/ResultChart';
+import StockList from '../../components/Result/StockList'
+
+import { Btn, All } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as portActions } from '../../redux/modules/port'
 import { useHistory } from 'react-router-dom';
-import ResultChart from './ResultChart';
+import ResultStockLine from '../../components/Chart/ResultStockLine';
+
+// import { Container } from '@nivo/core';
 
 
 
@@ -18,22 +24,23 @@ const TestResult = () => {
     //     window.location.replace("/")
     // })
 
-
-    const result_list = useSelector((state) => state.port.result_list);
-    console.log(result_list);
-
-
-
+    const result_list = useSelector((state) => state.port.list);
 
     return (
-        <div>
-            <Box></Box>
+        <All>
+            <TopInfo></TopInfo>
+            <span>수익률</span>
             <ResultChart></ResultChart>
-            <Line></Line>
+            <span>수익금</span>
+            <ResultLine></ResultLine>
+
+            <StockList {...result_list}></StockList>
+
+            <ResultStockLine></ResultStockLine>
 
             {/* <Btn onClick={() => { dispatch(portActions.getPortfolioDB()) }}>저장하기</Btn> */}
             <Btn onClick={() => history.push('/mypage')}>저장하기</Btn>
-        </div>
+        </All>
     );
 };
 

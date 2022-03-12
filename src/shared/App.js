@@ -41,8 +41,8 @@ function App(props) {
               <Route path="/" exact component={BackTest} />
               <Route path="/portfolio/:userId" exact component={Portfolio} />
               <Route path="/community" exact component={Community} />
-               <Route path="/result" exact component={TestResult}></Route>
               <Route path="/mypage" exact component={Mypage}></Route>
+              <Route path="/result" exact component={TestResult}></Route>
             </RouteWrap>
           </ContentWrap>
         </Switch>
@@ -53,7 +53,6 @@ function App(props) {
 
 const AppWrap = styled.div`
   margin: 0 auto;
-  
   display: flex;
 `;
 
@@ -64,9 +63,11 @@ const ContentWrap = styled.div`
 `;
 
 const RouteWrap = styled.div`
-  margin-top: 80px;
   margin-left: 293px;
+  margin-top: 80px;
   padding: 44px 0px 56px 56px;
 `;
+
+
 
 export default App;

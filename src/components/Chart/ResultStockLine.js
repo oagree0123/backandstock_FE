@@ -2,70 +2,77 @@ import { ResponsiveLine } from '@nivo/line'
 import { useSelector } from 'react-redux';
 
 
-const Line = () => {
+const ResultStockLine = () => {
     const styles = {
         width: "880px",
-        height: "346px",
-        marginTop: "10px",
-        marginRight: "10px"
+        height: "300px",
+        backgroundColor: "#ffffff",
+        borderRadius: "10px",
+        marginTop: "50px"
     };
 
-    const result_list = useSelector((state) => state.port.result_list);
+    const result_list = useSelector((state) => state.port.list);
     console.log(result_list);
 
     const months = result_list.months
-    const monthYieldMoney = result_list.monthYieldMoney
-    const kospiYieldMoney = result_list.kospiYieldMoney
-    const kosdaqYieldMoney = result_list.kosdaqYieldMoney
+    const month_yieldmoney = result_list.stockYieldMoneys
+    const stock_name = result_list.stockNames
+
 
     const data = [
+
         {
-            "id": "monthYieldMoney",
+            "id": [],
             "color": "hsl(233, 70%, 50%)",
             "data": []
         },
         {
-            "id": "kospiYieldMoney",
+            "id": [],
             "color": "hsl(233, 70%, 50%)",
             "data": []
         },
         {
-            "id": "kosdaqYieldMoney",
+            "id": [],
             "color": "hsl(233, 70%, 50%)",
             "data": []
-        }
+        },
+        {
+            "id": [],
+            "color": "hsl(233, 70%, 50%)",
+            "data": []
+        },
+
+
     ]
 
-
-    monthYieldMoney.map((m, i) => {
-        let xy = {
-            x: months[i],
-            y: parseInt(m)
-        }
-        data[0].data.push(xy)
+    stock_name.map((s, k) => {
+        months.map((m, i) => {
+            let xy = {
+                x: m,
+                y: parseInt(month_yieldmoney[k][i])
+            }
+            data[k].data.push(xy)
+            data[k].id.push(s)
+        })
     })
 
-    kospiYieldMoney.map((m, i) => {
-        let xy = {
-            x: months[i],
-            y: parseInt(m)
-        }
-        data[1].data.push(xy)
-    })
+    // months.map((a, i) => {
+    //     data[i].data.push(a)
+    // })
 
-    kosdaqYieldMoney.map((m, i) => {
-        let xy = {
-            x: months[i],
-            y: parseInt(m)
-        }
-        data[2].data.push(xy)
-    })
+
+    // stock_name.map((s, i) => {
+    //     data[i].id.push(s)
+    // })
+
+
+
 
     return (
         <div style={styles}>
             <ResponsiveLine
                 data={data}
-                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+                margin={{ top: 20, right: 110, bottom: 50, left: 60 }}
                 xScale={{ type: 'point' }}
                 yScale={{
                     type: 'linear',
@@ -137,4 +144,4 @@ const Line = () => {
 
 
 
-export default Line;
+export default ResultStockLine;
