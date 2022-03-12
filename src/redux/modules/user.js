@@ -5,10 +5,12 @@ import { delToken, getToken, setToken } from "../../shared/token";
 
 // actions
 const SET_USER = "SET_USER";
+const EDIT_USER = "EDIT_USER";
 const LOG_OUT = "LOG_OUT";
 
 // action creators
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const editUser = createAction(EDIT_USER, (nickname, img_url) => ({ nickname, img_url }));
 const logout = createAction(LOG_OUT, () => ({}));
 
 // initialState
@@ -101,22 +103,47 @@ const LoginCheckDB = () => {
 
 const kakaoLogin = (code) => {
   return async function (dispatch, getState, { history }) {
-    /* `http://yuseon.shop/user/kakao/callback?code=${code}` */
-    console.log(code)
     try {
       let response = await axios.get(
         `http://yuseon.shop/user/kakao/callback?code=${code}`
       );
 
-      console.log(response);
       const token = response.headers.authorization;
       setToken("token", token);
       
-      dispatch(setUser({
-        user_id: response.data.userId,
+      try {
+        let check_user = await axios.post(
+          `http://yuseon.shop/islogin`,
+          {},
+          {
+            headers: {
+              authorization: `${token}`,
+            },
+          }
+        );
+
+        /* localStorage.setItem("username", check_user.data.username);
+        localStorage.setItem("nickname", check_user.data.nickname); */
+
+        dispatch(
+          setUser({
+            user_id: check_user.data.userid,
+            nickname: check_user.data.nickname,
+            profile_img: check_user.data.profileImg
+          })
+        );
+      } catch (err) {
+        console.log(err);
+      }
+
+      window.alert("로그인이 완료되었습니다.");
+      history.replace("/");
+
+      /* dispatch(setUser({
+        user_id: response.data.id,
         nickname: response.data.nickname,
         profile_img: "",
-      }))
+      })) */
       history.push('/');
     } catch (err) {
       console.log(err);
@@ -141,13 +168,36 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
   };
 };
 
+const editUserDB = (nickname, img_url) => {
+  return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
+
+    const form = new FormData();
+    form.append('nickname ', nickname);
+    form.append('profileImg ', img_url);
+
+    try {
+      axios.put(`http://yuseon.shop/user/edit`, form, {
+        headers : {
+          authorization: `${token}`
+        }
+      })
+
+      dispatch(editUser(nickname, img_url));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
+
 const ResignDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
       await axios.delete(`http://yuseon.shop/resign`, {
         headers: {
-          Autorization: `${token}`,
+          authorization: `${token}`,
         },
       });
 
@@ -166,6 +216,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user_info = action.payload.user;
         draft.is_login = true;
+      }),
+    [EDIT_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user_info = {
+          ...draft.user_info, 
+          nickname: action.payload.nickname,
+          profile_img: action.payload.img_url
+        }
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
@@ -189,6 +247,7 @@ const actionCreators = {
   SignupDB,
   ResignDB,
   kakaoLogin,
+  editUserDB,
 };
 
 export { actionCreators };

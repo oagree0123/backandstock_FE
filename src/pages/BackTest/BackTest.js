@@ -6,13 +6,14 @@ const BackTest = (props) => {
   return (
     <BackTestWrap>
       <InfoTitle>
-      실험실 안내사항
+      간편하게 실험을 <br />
+      시작해볼까요?   
       </InfoTitle>
       <InfoWrap>
         <InfoContLeft>
           <InfoCont>
             <InfoCircle />
-            종목은 최대 5개까지 선택 가능해요
+            실험하고 싶은 자산은 최대 5개까지만 가능해요
           </InfoCont>
           <InfoCont>
             <InfoCircle />
@@ -22,11 +23,7 @@ const BackTest = (props) => {
         <InfoContRight>
           <InfoCont>
             <InfoCircle />
-            자산 5개를 합쳐서 100비율을 만들어 주세요
-          </InfoCont>
-          <InfoCont>
-            <InfoCircle />
-            종목은 최대 5개까지 선택 가능해요
+            자산 비율은 총 100%를 맞춰서 입력해주세요
           </InfoCont>
         </InfoContRight>
       </InfoWrap>

@@ -1,7 +1,7 @@
 import { ResponsiveBar } from '@nivo/bar'
 import { useSelector } from 'react-redux';
 
-const ResultChart = () => {
+const ResultChart = (props) => {
     const styles = {
         width: "880px",
         height: "300px",
@@ -12,6 +12,7 @@ const ResultChart = () => {
 
     const result_list = useSelector((state) => state.port.list);
 
+    //const result_list = props.result_list
 
     const months = result_list.months
     const monthYield = result_list.monthYield

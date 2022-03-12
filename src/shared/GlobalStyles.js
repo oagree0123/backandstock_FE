@@ -2,10 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   :root {
-  --primary-color: #0087FF;
+  --primary-color: #0075FF;
   //--primary-color: #37638B;
   --secondary-color: #ECF5FF;
-  --gray-color: #c4c4c4;
+  --gray-color: #79747E;
   --font-color: #000;
   //--font-color: #78909C;
 
@@ -44,13 +44,13 @@ const GlobalStyles = createGlobalStyle`
     letter-spacing: 0;
 
     &::-webkit-scrollbar { 
-      width: 5px; 
-      background-color: var(--gray-color); 
+      width: 2px; 
+      background-color: #eee; 
       border-radius: 10;
     }
 
     &:-webkit-scrollbar-track { 
-      background-color: darkgrey; 
+      background-color: #fff; 
     } 
     
     &::-webkit-scrollbar-thumb { 

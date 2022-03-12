@@ -12,7 +12,7 @@ import ResultStockLine from '../../components/Chart/ResultStockLine';
 
 // import { Container } from '@nivo/core';
 
-
+import styled from 'styled-components';
 
 const TestResult = () => {
     const dispatch = useDispatch();
@@ -43,5 +43,10 @@ const TestResult = () => {
         </All>
     );
 };
+
+const ResultWrap = styled.div`
+  padding: 44px 0px 56px 56px;
+  background-color: var(--secondary-color);
+`;
 
 export default TestResult;

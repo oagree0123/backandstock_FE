@@ -100,6 +100,7 @@ export const Tab = styled.div`
   align-items: center;
   color: var(--font-color);
   background-color: #fff;
+  cursor: pointer;
 `;
 
 export const TabClicked = styled.div`
@@ -112,15 +113,24 @@ export const TabClicked = styled.div`
   align-items: center;
   color: var(--primary-color);
   background-color: var(--secondary-color);
+  cursor: pointer;
 `;
 
 export const TabIcon = styled.div`
   margin-right: 12px;
   width: 50px;
   height: 50px;
-  border: 1px solid var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid var(--primary-color);
   border-radius: 0.347vw;
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color); */
+`;
+
+export const LabIcon = styled.img`
+  width: 36px;
+  height: 36px;
 `;
 
 export const TabContent = styled.div`
@@ -132,17 +142,17 @@ export const TabContent = styled.div`
 `;
 
 export const TabTitle = styled.p`
-  margin-bottom: 8px;
-  font-size: 20px;
+  font-size: var(--font-large);
   font-weight: 600;
+  line-height: 28px;
   letter-spacing: 0.15px;
 `;
 
 export const TabClickedTitle = styled.p`
-  margin-bottom: 8px;
   color: var(--primary-color); 
-  font-size: 20px;
+  font-size: var(--font-large);
   font-weight: 600;
+  line-height: 28px;
   letter-spacing: 0.15px;
 `;
 

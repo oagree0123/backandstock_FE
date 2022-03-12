@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { history } from '../../redux/configStore';
-import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle, UserBtnWrap, LoginBtn, SignupBtn } from './style';
+import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle, UserBtnWrap, LoginBtn, SignupBtn, LabIcon } from './style';
+
+import LabClick from '../../assets/images/lab_blue.svg'
+import LabGray from '../../assets/images/lab_gray.svg'
+import PortfolioClick from '../../assets/images/portfolio_blue.svg'
+import PortfolioGray from '../../assets/images/portfolio_gray.svg'
+import CommunityClick from '../../assets/images/community_blue.svg'
+import CommunityGray from '../../assets/images/community_gray.svg'
 
 const SideTap = (props) => {
 
@@ -19,7 +26,7 @@ const SideTap = (props) => {
       setPortfClicked(false);
       setCommuClicked(true);
     }
-    else if(window.location.pathname === "/portfolio/1") {
+    else if(window.location.pathname === "/MyPage") {
       setLabClicked(false);
       setPortfClicked(true);
       setCommuClicked(false);
@@ -68,7 +75,12 @@ const SideTap = (props) => {
             setCommuClicked(false);
             history.push('/');
           }}>
-            <TabIcon />
+            <TabIcon>
+              <LabIcon 
+                src={LabGray} 
+                alt="right"
+              />
+            </TabIcon>
             <TabContent>
               <TabTitle>실험실</TabTitle>
               <TabDesc>자신의 수익을 확인해보세요</TabDesc>
@@ -80,7 +92,12 @@ const SideTap = (props) => {
             setCommuClicked(false);
             history.push('/');
           }}>
-            <TabIcon />
+            <TabIcon>
+              <LabIcon 
+                src={LabClick} 
+                alt="right"
+              />
+            </TabIcon>
             <TabContent>
               <TabClickedTitle>실험실</TabClickedTitle>
               <TabClickedDesc>자신의 수익을 확인해보세요</TabClickedDesc>
@@ -92,9 +109,14 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/portfolio/1');
+            history.push('/MyPage');
           }}>
-            <TabIcon />
+            <TabIcon>
+              <LabIcon 
+                src={PortfolioGray} 
+                alt="right"
+              />
+            </TabIcon>
             <TabContent>
               <TabTitle>포트폴리오</TabTitle>
               <TabDesc>자신의 자산을 비교해 보세요</TabDesc>
@@ -104,9 +126,14 @@ const SideTap = (props) => {
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/portfolio/1');
+            history.push('/MyPage');
           }}>
-            <TabIcon />
+            <TabIcon>
+              <LabIcon 
+                src={PortfolioClick} 
+                alt="right"
+              />
+            </TabIcon>
             <TabContent>
               <TabClickedTitle>포트폴리오</TabClickedTitle>
               <TabClickedDesc>자신의 자산을 비교해 보세요</TabClickedDesc>
@@ -120,7 +147,12 @@ const SideTap = (props) => {
             setCommuClicked(true);
             history.push('/community');
           }}>
-            <TabIcon />
+            <TabIcon>
+              <LabIcon 
+                src={CommunityGray} 
+                alt="right"
+              />
+            </TabIcon>
             <TabContent>
               <TabTitle>커뮤니티</TabTitle>
               <TabDesc>자산에 대한 정보를 얻어보세요</TabDesc>
@@ -132,7 +164,12 @@ const SideTap = (props) => {
             setCommuClicked(true);
             history.push('/community');
           }}>
-            <TabIcon />
+            <TabIcon>
+              <LabIcon 
+                src={CommunityClick} 
+                alt="right"
+              />
+            </TabIcon>
             <TabContent>
               <TabClickedTitle>커뮤니티</TabClickedTitle>
               <TabClickedDesc>자산에 대한 정보를 얻어보세요</TabClickedDesc>

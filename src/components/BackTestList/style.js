@@ -14,7 +14,10 @@ export const ListWrap = styled.div`
   padding-bottom: 10px;
   width: 880px;
   min-height: 220px;
-  border: 1px solid var(--secondary-color);
+  border: 0.5px solid var(--primary-color);
+  border-color: rgba(58, 149, 255, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
 `;
 
 export const ListTop = styled.div`
@@ -22,8 +25,10 @@ export const ListTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 880px;
+  width: 100%;
   height: 52px;
+  border-bottom: 0.5px solid var(--primary-color);
+  border-color: rgba(58, 149, 255, 0.5);
   background-color: var(--secondary-color);
 `;
 

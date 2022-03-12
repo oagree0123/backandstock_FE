@@ -13,6 +13,7 @@ export const PreviewWrap = styled.div`
 
   &:hover { 
     color: var(--primary-color);
+    font-weight: 500;
     background-color: var(--secondary-color);
   }
 `;

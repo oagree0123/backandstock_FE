@@ -7,6 +7,7 @@ import user from './modules/user';
 import testform from './modules/testform';
 import comment from "./modules/comment";
 import port from "./modules/port";
+import community from "./modules/community";
 
 export const history = createBrowserHistory();
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   testform,
   port,
   comment,
+  community,
   router: connectRouter(history),
 });
 

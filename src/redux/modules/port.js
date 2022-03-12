@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import { getToken } from '../../shared/token';
 import axios from "axios";
 import moment from "moment";
 
@@ -55,6 +56,7 @@ const getResultDB = () => {
 
 const savePortDB = () => {
   return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
     let end = getState().testform.end_date;
     end = moment(end).add("1", "M").format("YYYY-MM-DD");
 
@@ -67,7 +69,11 @@ const savePortDB = () => {
     };
 
     try {
-      const port_id = await axios.post(`http://yuseon.shop/port`, data);
+      const port_id = await axios.post(`http://yuseon.shop/port`, data, {
+        headers: {
+          Authorization: token
+        }
+      });
 
       const result = getState().port.list;
       dispatch(savePortOne(port_id.data, result));
@@ -106,11 +112,14 @@ const getPortOneDB = (port_id) => {
 
 const deletePortDB = (port_id) => {
   return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
     const _port_list = getState().port.port_list;
 
     try {
-      await axios.delete(`http://yuseon.shop/port`, {
-        portId: port_id
+      await axios.delete(`http://yuseon.shop/port/${port_id}`, {
+        headers: {
+          authorization: `${token}`
+        }
       })
 
       const port_idx = _port_list.findIndex((v) => {
@@ -141,8 +150,17 @@ export default handleActions(
       }),
     [GET_PORT]: (state, action) =>
       produce(state, (draft) => {
-        draft.port_list = action.payload.port_list;
-      }),
+        draft.port_list.push(...action.payload.port_list);
+
+        draft.port_list = draft.port_list.reduce((acc, cur) => {
+          if(acc.findIndex(a => a.portId === cur.portId) === -1) {
+            return [...acc, cur];
+          } else {
+            acc[acc.findIndex(a => a.portId === cur.portId)] = cur;
+            return acc;
+          }
+        }, [])
+    }),
     [GET_PORTONE]: (state, action) =>
       produce(state, (draft) => {
         draft.port_one = action.payload.port;
