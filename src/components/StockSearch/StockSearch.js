@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import {
   StockRate,
   StockWrap,
@@ -29,34 +29,57 @@ const StockSearch = () => {
   const [stock_code, setStockCode] = useState("");
   const [search_list, setSearchList] = useState([]);
 
+  const onChangeRatio = (e) => {
+    if(e.target.value > 100) {
+      window.alert("100이하의 정수를 입력해주세요.")
+      e.target.value = ratio;
+      return;
+    }
 
-  /* let search_list = {
-    stockName : ["삼성전자", "삼성전기", "삼성엔지니어링", "삼성엔지니어링", "삼성엔지니어링" ],
-    stockCode : ["000100", "000200", "000300", "000300", "000300"]
-  } */
+    if (
+      Number.isInteger(parseInt(e.target.value)) ||
+      e.target.value === "0" ||
+      e.target.value === ""
+    ) {
+      setRatio(e.target.value);
+    }
+    else {
+      window.alert("정수의 수를 입력해주세요.");
+    }
+  };
+
+  const clickAddStock = () => {
+    if(ratio === "") {
+      window.alert("비율을 입력해주세요.");
+      return;
+    }
+    if(stock_name === "" || search_list === "") {
+      window.alert("종목을 선택해주세요.");
+      return;
+    }
+
+    dispatch(testformActions.setStock(ratio, stock_name, stock_code));
+  }
 
   const searchStock = async (search_name) => {
     if (Number(search_name)) {
-      let list = await axios
-        .get(`http://yuseon.shop/stock/search`, {
-          params: {
-            keyword: search_name,
-            type: "code"
-          }
-        });
+      let list = await axios.get(`http://yuseon.shop/stock/search`, {
+        params: {
+          keyword: search_name,
+          type: "code",
+        },
+      });
+      setSearchList(list.data);
+    } else {
+      let list = await axios.get(`http://yuseon.shop/stock/search`, {
+        params: {
+          keyword: search_name,
+          type: "name",
+        },
+      });
       setSearchList(list.data);
     }
-    else {
-      let list = await axios
-        .get(`http://yuseon.shop/stock/search`, {
-          params: {
-            keyword: search_name,
-            type: "name"
-          }
-        });
-      setSearchList(list.data);
-    }
-  }
+  };
 
   return (
     <StockWrap>
@@ -66,11 +89,8 @@ const StockSearch = () => {
           <StockRate
             placeholder="비율"
             type="number"
-            onChange={(e) => {
-              setRatio(e.target.value);
-            }}
-          >
-          </StockRate>
+            onChange={onChangeRatio}
+          ></StockRate>
           <Rate>%</Rate>
         </RateWrap>
       </SearchLeft>
@@ -84,15 +104,16 @@ const StockSearch = () => {
               onChange={(e) => {
                 // 변경 시 검색
                 setStockSearch(e.target.value);
-                searchStock(e.target.value)
+                setStockName("");
+                searchStock(e.target.value);
                 if (e.target.value === "") {
                   return;
                 }
-                setIsOpen(true)
+                setIsOpen(true);
               }}
               value={stock_search}
             />
-            {is_open &&
+            {is_open && (
               <PreviewListWrap>
                 {search_list.map((s, i) => {
                   return (
@@ -108,15 +129,12 @@ const StockSearch = () => {
                       }}
                     />
                   );
-                })
-                }
+                })}
               </PreviewListWrap>
-            }
+            )}
           </SearchWrap>
           <SearchBtn
-            onClick={() => {
-              dispatch(testformActions.setStock(ratio, stock_name, stock_code));
-            }}
+            onClick={clickAddStock}
           >
             추가
           </SearchBtn>

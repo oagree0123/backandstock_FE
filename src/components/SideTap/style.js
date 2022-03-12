@@ -120,9 +120,17 @@ export const TabIcon = styled.div`
   margin-right: 12px;
   width: 50px;
   height: 50px;
-  border: 1px solid var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid var(--primary-color);
   border-radius: 0.347vw;
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color); */
+`;
+
+export const LabIcon = styled.img`
+  width: 36px;
+  height: 36px;
 `;
 
 export const TabContent = styled.div`
