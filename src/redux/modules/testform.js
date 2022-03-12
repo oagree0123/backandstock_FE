@@ -59,20 +59,20 @@ export default handleActions(
         draft.init_money = action.payload.money;
     }),
     [SET_STOCK]: (state, action) =>
-    produce(state, (draft) => {
-      let ratio_sum = 0 ;
-      draft.ratioList.map((r, i) => {
-        ratio_sum += parseInt(r);
-      })
+      produce(state, (draft) => {
+        let ratio_sum = 0 ;
+        draft.ratioList.map((r, i) => {
+          ratio_sum += parseInt(r);
+        })
 
-      if(ratio_sum + action.payload.ratio > 100) {
-        window.alert("자산 비율은 100%를 넘을 수 없습니다.")
-        return ;
-      }
+        if(ratio_sum + parseInt(action.payload.ratio) > 100) {
+          window.alert("자산 비율은 100%를 넘을 수 없습니다.")
+          return ;
+        }
 
-      draft.stockList.push(action.payload.stock_name);
-      draft.ratioList.push(parseInt(action.payload.ratio));
-      draft.codeList.push(action.payload.stock_code);
+        draft.stockList.push(action.payload.stock_name);
+        draft.ratioList.push(parseInt(action.payload.ratio));
+        draft.codeList.push(action.payload.stock_code);
     }),
     [DELETE_STOCK]: (state, action) =>
       produce(state, (draft) => {

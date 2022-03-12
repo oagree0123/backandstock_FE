@@ -71,7 +71,7 @@ const savePortDB = () => {
     try {
       const port_id = await axios.post(`http://yuseon.shop/port`, data, {
         headers: {
-          Authorization: token
+          Authorization: `${token}`
         }
       });
 
@@ -86,8 +86,13 @@ const savePortDB = () => {
 
 const getMyPortDB = (user_id) => {
   return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
     try {
-      let response = await axios.get(`http://yuseon.shop/port/mypage/${user_id}`)
+      let response = await axios.get(`http://yuseon.shop/port/mypage/${user_id}`, {
+        headers: {
+          Authorization: `${token}`
+        }
+      })
 
       dispatch(getPort(response));
     }
@@ -99,8 +104,13 @@ const getMyPortDB = (user_id) => {
 
 const getPortOneDB = (port_id) => {
   return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
     try {
-      let response = await axios.get(`http://yuseon.shop/port/Individual/${port_id}`)
+      let response = await axios.get(`http://yuseon.shop/port/Individual/${port_id}`, {
+        headers: {
+          Authorization: `${token}`
+        }
+      })
 
       dispatch(getPortOne(response));
     }

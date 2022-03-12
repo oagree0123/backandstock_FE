@@ -8,18 +8,23 @@ export const HeaderWrap = styled.div`
   height: 80px;
 
   border-bottom: 1.5px solid #E5EFFF;
-  //background-color: var(--secondary-color);
   background-color: #fff;
   z-index: 10000;
 `;
 
 export const HeadWrap = styled.div`
-  margin: 0 auto;
-  width: 1280px;
+  margin-left: calc(30.9vw - 320px);;
+  width: 100%;
+  max-width: 1280px;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: content-box;
+
+  @media only screen and (max-width: 1360px) {
+    margin-left: 0;
+  }
 `;
 
 export const LOGO = styled.h1`

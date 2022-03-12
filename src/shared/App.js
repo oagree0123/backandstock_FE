@@ -51,21 +51,23 @@ function App(props) {
 }
 
 const AppWrap = styled.div`
-  margin: 0 auto;
-  display: flex;
 `;
 
 const ContentWrap = styled.div`
-  width: 1280;
-  margin: 0 auto;
+  padding-left: calc(30.9vw - 293px);
+  //width: 100vw;
+  display: flex;
+
+  @media only screen and (max-width: 1360px) {
+    padding-left: 0;
+  }
 `;
 
 const RouteWrap = styled.div`
   margin-left: 293px;
   margin-top: 80px;
-  padding: 44px 0px 56px 56px;
+  width: 100%;
+  overflow-x: hidden;
 `;
-
-
 
 export default App;

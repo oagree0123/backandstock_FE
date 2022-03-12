@@ -5,8 +5,8 @@ export const TestListWrap = styled.div`
 `;
 
 export const ListTitle = styled.h3`
-  margin-bottom: 28px;
-  font-size: var(--font-title);
+  margin-bottom: 24px;
+  font-size: var(--font-header);
   font-weight: 600;
 `;
 

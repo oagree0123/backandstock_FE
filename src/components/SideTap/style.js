@@ -2,16 +2,10 @@ import styled from "styled-components";
 
 export const SideTapWrap = styled.div`
   position: fixed;
-  top: 80px;
-  margin: 0;
-  width: 293px;
+  margin-top: 80px;
+  
   height: 100vh;
-
   padding-top: 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   background-color: #fff;
   box-shadow: 7px 0px 30px rgba(0, 0, 0, 0.05);
 `;
