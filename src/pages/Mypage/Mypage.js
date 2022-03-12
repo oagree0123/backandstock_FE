@@ -5,7 +5,7 @@ import PortCardList from "../../components/PortCardList/PortCardList";
 import { actionCreators as portActions } from '../../redux/modules/port';
 import Chart from "../Mypage/Chart";
 import MypageLine from "../Mypage/MypageLine";
-import { Wrap, Btn, Text, MypageWrap } from "../Mypage/style";
+import { Wrap, Btn, Text, MypageWrap, ChartWrap, ChartTitle } from "./style";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -23,6 +23,8 @@ const Mypage = () => {
   return (
     <MypageWrap>
       <PortCardList />
+      <ChartTitle>자산 비교 결과</ChartTitle>
+      <ChartWrap />
       {/* <Wrap>
         <Chart></Chart>
         <Chart></Chart>
