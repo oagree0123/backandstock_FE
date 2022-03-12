@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PortCard from '../PortCard/PortCard';
-import { PortCardListWrap, ChartWrap } from './style';
+import { PortCardListWrap, ChartWrap, CompareBtn } from './style';
 
 const PortCardList = (props) => {
   const port_list = useSelector(state => state.port)
@@ -13,6 +13,7 @@ const PortCardList = (props) => {
         <PortCard />
         <PortCard />
       </ChartWrap>
+      <CompareBtn>비교하기</CompareBtn>
     </PortCardListWrap>
   );
 };
