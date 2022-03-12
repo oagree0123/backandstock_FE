@@ -56,14 +56,6 @@ const ResultStockLine = () => {
         })
     })
 
-    // months.map((a, i) => {
-    //     data[i].data.push(a)
-    // })
-
-
-    // stock_name.map((s, i) => {
-    //     data[i].id.push(s)
-    // })
 
 
 
