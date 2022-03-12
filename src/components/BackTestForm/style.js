@@ -5,7 +5,7 @@ export const FormWrap = styled.div`
 `;
 
 export const FormTop = styled.div`
-  margin-bottom: 52px;
+  margin-bottom: 32px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -31,8 +31,8 @@ export const FormRight = styled.div`
 
 export const FormTitle = styled.p`
   margin-bottom: 24px;
-  font-size: var(--font-title);
-  line-height: var(--line-title);
+  font-size: var(--font-header);
+  line-height: var(--line-header);
   font-weight: 700;
 `;
 

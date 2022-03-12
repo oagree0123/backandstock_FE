@@ -61,6 +61,7 @@ export default handleActions(
     [SET_STOCK]: (state, action) =>
       produce(state, (draft) => {
         let ratio_sum = 0;
+
         draft.ratioList.map((r, i) => {
           ratio_sum += parseInt(r);
         })

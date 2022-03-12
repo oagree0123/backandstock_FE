@@ -17,12 +17,14 @@ export const SearchRight = styled.div`
 `;
 
 export const SearchTitle = styled.h3`
-  margin-bottom: 27px;
-  font-size: var(--font-title);
+  margin-bottom: 20px;
+  font-size: var(--font-header);
+  line-height: var(--line-header);
   font-weight: 600;
 `;
 
 export const RateWrap = styled.div`
+  width: 380px;
   position: relative;
   display: flex;
   align-items: center;

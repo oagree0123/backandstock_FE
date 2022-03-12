@@ -6,6 +6,23 @@ export const MypageWrap = styled.div`
   box-sizing: content-box;
 `;
 
+export const ChartTitle = styled.h2`
+  margin-bottom: 20px;
+  font-size: var(--font-header);
+  font-weight: 800;
+  line-height: var(--line-header);
+`;
+
+export const ChartWrap = styled.div`
+  width: 880px;
+  height: 350px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+`;
+
+// edit
+
 export const Wrap = styled.div`
   display: flex;
 `;
