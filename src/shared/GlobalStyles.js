@@ -8,6 +8,11 @@ const GlobalStyles = createGlobalStyle`
   --gray-color: #79747E;
   --font-color: #000;
   //--font-color: #78909C;
+
+  --font-blue:#0075FF;
+  --font-red:#FF0000;
+  --font-textclolr:#322F37;
+
   --font-header: 24px;
   --font-title: 22px;
   --font-large: 20px;
@@ -21,6 +26,7 @@ const GlobalStyles = createGlobalStyle`
   --line-main: 1.17;
   --line-medium: 1.187;
   --line-small: 1.14;
+
   }
 
   * {

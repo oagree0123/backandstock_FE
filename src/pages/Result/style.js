@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
-
-export const Box = styled.div`
-    width: 480px;
-    height: 250px;
-    background-color: #E5EFFF;
-    border-radius: 10px;
-
+export const All = styled.div`
+    width: 880px;
+    background-color: #ECF5FF;
 `
 
 export const Btn = styled.button`

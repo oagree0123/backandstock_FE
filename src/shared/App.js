@@ -61,8 +61,11 @@ const ContentWrap = styled.div`
 `;
 
 const RouteWrap = styled.div`
-  margin-top: 80px;
   margin-left: 293px;
+  margin-top: 80px;
+  padding: 44px 0px 56px 56px;
 `;
+
+
 
 export default App;

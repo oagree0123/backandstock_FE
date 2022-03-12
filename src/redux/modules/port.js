@@ -44,9 +44,9 @@ const getResultDB = () => {
         `http://yuseon.shop/port/result`,
         data
       );
-  
+
       dispatch(getResult(test_result.data));
-      history.push('./result');
+      history.push('/result')
     }
     catch (err) {
       console.log(err);
@@ -140,14 +140,14 @@ export default handleActions(
     [GET_RESULT]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.test_result;
-    }),
+      }),
     [SAVE_PORTONE]: (state, action) =>
       produce(state, (draft) => {
         draft.port_list.push({
           portId: action.payload.port_id,
           ...action.payload.result,
         });
-    }),
+      }),
     [GET_PORT]: (state, action) =>
       produce(state, (draft) => {
         draft.port_list.push(...action.payload.port_list);
@@ -162,9 +162,9 @@ export default handleActions(
         }, [])
     }),
     [GET_PORTONE]: (state, action) =>
-    produce(state, (draft) => {
-      draft.port_one = action.payload.port;
-    }), 
+      produce(state, (draft) => {
+        draft.port_one = action.payload.port;
+      }),
     [DELETE_PORT]: (state, action) =>
       produce(state, (draft) => {
         const new_port_list = draft.port_list.filter((p, i) => {
@@ -172,7 +172,7 @@ export default handleActions(
         })
 
         draft.port_list = new_port_list;
-    }),
+      }),
   },
   initialState
 );

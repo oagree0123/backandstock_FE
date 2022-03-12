@@ -2,18 +2,20 @@ import { ResponsiveLine } from '@nivo/line'
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-
-const Line = (props) => {
+const ResultLine = (props) => {
     const [chart_min, setChartMin] = useState(0);
 
     const styles = {
         width: "880px",
-        height: "346px",
-        marginTop: "10px",
-        marginRight: "10px"
+        height: "300px",
+        backgroundColor: "#ffffff",
+        borderRadius: "10px",
+        marginTop: "20px"
     };
 
-    const result_list = props.result_list;
+    const result_list = useSelector((state) => state.port.list);
+    //const result_list = props.result_list;
+
     console.log(result_list);
 
     const months = result_list.months
@@ -78,7 +80,7 @@ const Line = (props) => {
         <div style={styles}>
             <ResponsiveLine
                 data={data}
-                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+                margin={{ right: 110, bottom: 50, left: 60 }}
                 xScale={{ type: 'point' }}
                 yScale={{
                     type: 'linear',
@@ -150,4 +152,4 @@ const Line = (props) => {
 
 
 
-export default Line;
+export default ResultLine;

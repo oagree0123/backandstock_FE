@@ -1,39 +1,47 @@
-import React, { useEffect } from "react";
-import Line from "../../components/Line";
-import { Box, Btn } from "./style";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import ResultChart from "./ResultChart";
-import { actionCreators as portActions } from "../../redux/modules/port";
+import React from 'react';
+import TopInfo from '../../components/Result/TopInfo'
+import ResultLine from '../../components/Chart/ResultLine'
+import ResultChart from '../../components/Chart/ResultChart';
+import StockList from '../../components/Result/StockList'
+
+import { Btn, All } from './style';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as portActions } from '../../redux/modules/port'
+import { useHistory } from 'react-router-dom';
+import ResultStockLine from '../../components/Chart/ResultStockLine';
+
+// import { Container } from '@nivo/core';
 
 import styled from 'styled-components';
 
 const TestResult = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  // window.addEventListener('beforeunload', (event) => {
-  //     event.preventDefault();
-  //     event.returnValue = '';
-  //     window.location.replace("/")
-  // })
+    // window.addEventListener('beforeunload', (event) => {
+    //     event.preventDefault();
+    //     event.returnValue = '';
+    //     window.location.replace("/")
+    // })
 
-  const result_list = useSelector((state) => state.port.list);
-  console.log(result_list);
+    const result_list = useSelector((state) => state.port.list);
 
-  return (
-    <ResultWrap>
-      <Box></Box>
-      {/* <ResultChart result_list={result_list}></ResultChart>
-      <Line result_list={result_list}></Line> */}
+    return (
+        <All>
+            <TopInfo></TopInfo>
+            <span>수익률</span>
+            <ResultChart></ResultChart>
+            <span>수익금</span>
+            <ResultLine></ResultLine>
 
-      {/* <Btn onClick={() => { dispatch(portActions.getPortfolioDB()) }}>저장하기</Btn> */}
-      <Btn onClick={() =>{
-        dispatch(portActions.savePortDB());
-        history.push("/");
-      }}>저장하기</Btn>
-    </ResultWrap>
-  );
+            <StockList {...result_list}></StockList>
+
+            <ResultStockLine></ResultStockLine>
+
+            {/* <Btn onClick={() => { dispatch(portActions.getPortfolioDB()) }}>저장하기</Btn> */}
+            <Btn onClick={() => history.push('/mypage')}>저장하기</Btn>
+        </All>
+    );
 };
 
 const ResultWrap = styled.div`
