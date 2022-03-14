@@ -25,36 +25,35 @@ const ResultLine = (props) => {
     const Worst_money = Math.floor(result_list.worstMoney);
 
     useEffect(() => {
-      let _worst = String(Worst_money).split("");
-      _worst = _worst.map((v, i) => {
-        return i !== 0 ? v = 0 : v
-      })
-      _worst = _worst.join('');
-      setChartMin(_worst);
+        let _worst = String(Worst_money).split("");
+        _worst = _worst.map((v, i) => {
+            return i !== 0 ? v = 0 : v
+        })
+        _worst = _worst.join('');
+        setChartMin(_worst);
     }, [chart_min, Worst_money]);
 
     const data = [
         {
-            "id": "monthYieldMoney",
+            "id": "내 자산",
             "color": "hsl(233, 70%, 50%)",
             "data": []
         },
         {
-            "id": "kospiYieldMoney",
+            "id": "KOSPI",
             "color": "hsl(233, 70%, 50%)",
             "data": []
         },
         {
-            "id": "kosdaqYieldMoney",
+            "id": "KOSDAQ",
             "color": "hsl(233, 70%, 50%)",
             "data": []
         }
     ]
 
-
     monthYieldMoney.map((m, i) => {
         let xy = {
-            x: months[i],
+            x: months[i].substring(2),
             y: parseInt(m)
         }
         data[0].data.push(xy)
@@ -62,7 +61,7 @@ const ResultLine = (props) => {
 
     kospiYieldMoney.map((m, i) => {
         let xy = {
-            x: months[i],
+            x: months[i].substring(2),
             y: parseInt(m)
         }
         data[1].data.push(xy)
@@ -70,7 +69,7 @@ const ResultLine = (props) => {
 
     kosdaqYieldMoney.map((m, i) => {
         let xy = {
-            x: months[i],
+            x: months[i].substring(2),
             y: parseInt(m)
         }
         data[2].data.push(xy)
@@ -80,7 +79,13 @@ const ResultLine = (props) => {
         <div style={styles}>
             <ResponsiveLine
                 data={data}
-                margin={{ right: 110, bottom: 50, left: 60 }}
+                margin={{ top: 20, right: 110, bottom: 40, left: 60 }}
+                colors={['#0075FF', '#A183F8', '#49DDCB']}
+                keys={[
+                    "내 자산",
+                    "KOSPI",
+                    "KOSDAQ",
+                ]}
                 xScale={{ type: 'point' }}
                 yScale={{
                     type: 'linear',
@@ -109,9 +114,8 @@ const ResultLine = (props) => {
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}
-                enableGridX={false}
-                // enablePoints={false}
-                pointSize={10}
+                enableGridY={false}
+                pointSize={4}
                 pointColor={{ theme: 'background' }}
                 pointBorderWidth={2}
                 pointBorderColor={{ from: 'serieColor' }}

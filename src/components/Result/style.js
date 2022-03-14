@@ -15,14 +15,14 @@ export const Box = styled.div`
 `
 
 // export const Btn = styled.button`
-//     width: 884px;
-//     height: 50px;
-//     background-color: #367BF5;
+//     width: 882px;
+//     height: 70px;
+//     background-color: #3A95FF;
 //     border-radius: 10px;
 //     color:#FFFFFF;
 //     outline: none;
 //     border: none;
-//     margin-top: 200px;
+//     margin-top: 48px;
 // `
 
 export const TopWrap = styled.div`
@@ -111,15 +111,17 @@ export const IconWrap = styled.div`
     display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: flex-end;
 	align-content: stretch;
-    margin-top: -44px;
 `
 
 export const Icon = styled.img`
-    height: 81px;
-    width: 89px;
+    width: 56px;
+    height: 50px; 
+    margin-right: 4px;
+    margin-bottom: 8px;
+
 `
 
 export const Price = styled.span`
@@ -179,6 +181,12 @@ export const PlusYieldIcon = styled.img`
     margin: 10px 0 0 30px;
 `
 export const Lists = styled.div`
+   display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+
     height: 250px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -186,24 +194,21 @@ export const Lists = styled.div`
 `
 
 export const ListWrap = styled.div`
-    display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: stretch;
-    padding: 9px 46px 0px 36px;
+   
+    padding: 9px 0px 0px 20px;
+`
+
+export const CardList = styled.div`
+    width: 152px;
+    height: 190px;
+    background: #ECF5FF;
+    border-radius: 10px;
+    padding: 8px 14px 21px 16px;
 `
 export const ListTitle = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     width: 880px;
     height: 61px;
-    padding: 16px 0;
-
-    border-bottom: 1px solid #BCDBFF;
+    padding: 16px 0 16px 24px;
 
     font-weight: 700;
     font-size: 22px;
@@ -211,28 +216,50 @@ export const ListTitle = styled.div`
 `
 
 export const StockTitle = styled.span`
-    width: 250px;
-    height: 34px;
-    font-size: var(--font-large);
-    font-weight: 400 ;
+    font-size: var(--font-medium);
+    font-weight: 700 ;
     color: #322F37;
+`
+export const StockTitleWrap = styled.div`
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	align-items: flex-end;
+	align-content: stretch;
+
+    height: 55px;
+    margin-bottom: 21px;
+    
+`
+
+export const MoneyWrap = styled.div`
+   display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	align-items: flex-end;
+	align-content: stretch;
 `
 
 export const Minus = styled.span`
-    font-size: var(--font-large);
+    font-size: var(--font-main);
     color: var( --font-blue);
+    font-weight: 700;
+    margin-bottom: 5px;
 `
 
 export const Plus = styled.span`
-    font-size: var(--font-large);
+    font-size: var(--font-main);
     color: var( --font-red);
+    font-weight: 700;
+    margin-bottom: 5px;
 `
 
 export const Money = styled.span`
-    width: 185px;
-    height: 34px;
-    font-size: var(--font-large);
+    font-size: var(--font-main);
     color: var(--font-textclolr);
+    font-weight: 500;
 `
 
 export const StockWrap = styled.div`
@@ -284,4 +311,22 @@ export const Poket = styled.img`
 export const Dollar = styled.img`
     width: 14px;
     height: 33px;
+`
+
+export const MoneyTitle = styled.span`
+  font-size: var( --font-small);
+`
+
+export const MoneyText = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+`
+
+export const Empty = styled.div`
+    display: flex;
+    align-items: center;
+    height: 190px;
+    margin-left: 7px;
 `

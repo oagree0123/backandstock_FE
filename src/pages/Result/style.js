@@ -13,12 +13,17 @@ export const All = styled.div`
 `;
 
 export const Btn = styled.button`
-  width: 880px;
-  height: 50px;
+  width: 882px;
+  height:70px;
   background-color: #367bf5;
   border-radius: 10px;
-  color: #ffffff;
   outline: none;
   border: none;
-  margin-top: 200px;
-`;
+  margin-top: 48px;
+  & span {
+        color: #ffffff;
+        font-size: var(--font-header);
+        font-weight: 700;
+    }
+  
+`

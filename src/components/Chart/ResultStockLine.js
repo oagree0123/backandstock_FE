@@ -41,14 +41,17 @@ const ResultStockLine = () => {
             "color": "hsl(233, 70%, 50%)",
             "data": []
         },
-
-
+        {
+            "id": [],
+            "color": "hsl(233, 70%, 50%)",
+            "data": []
+        },
     ]
 
     stock_name.map((s, k) => {
         months.map((m, i) => {
             let xy = {
-                x: m,
+                x: m.substring(2),
                 y: parseInt(month_yieldmoney[k][i])
             }
             data[k].data.push(xy)
@@ -57,13 +60,11 @@ const ResultStockLine = () => {
     })
 
 
-
-
-
     return (
         <div style={styles}>
             <ResponsiveLine
                 data={data}
+                colors={['#0075FF', '#A183F8', '#49DDCB']}
                 margin={{ top: 20, right: 110, bottom: 50, left: 60 }}
                 xScale={{ type: 'point' }}
                 yScale={{
@@ -95,7 +96,7 @@ const ResultStockLine = () => {
                 }}
                 enableGridX={false}
                 // enablePoints={false}
-                pointSize={10}
+                pointSize={3}
                 pointColor={{ theme: 'background' }}
                 pointBorderWidth={2}
                 pointBorderColor={{ from: 'serieColor' }}

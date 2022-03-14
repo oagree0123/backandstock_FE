@@ -4,11 +4,10 @@ import {
   StockWrap,
   Lists,
   ListTitle,
-  ListTop,
-  TopStockName,
-  TopStockRate,
-  TopStockPrice,
+  CardList,
+  StockTitleWrap,
   ListWrap,
+  Empty
 } from "../Result/style";
 
 const StockList = (props) => {
@@ -17,20 +16,28 @@ const StockList = (props) => {
   const stock_yieldmoneys = props.stockYieldMoneys;
   const seedmoney = props.seedMoney;
   console.log(stock_name);
+  const count = 5 - stock_name.length
+  console.log(count);
+  const test = [
+
+    <CardList>
+      <StockTitleWrap>
+        <span>종목이 없습니다.</span>
+      </StockTitleWrap>
+    </CardList>
+
+  ]
+
+
 
   return (
     <StockWrap>
       <ListTitle>종목별 최종 수익금</ListTitle>
-      <ListTop>
-        <ListWrap>
-          <TopStockName>종목명</TopStockName>
-          <TopStockRate>최종 자산</TopStockRate>
-          <TopStockPrice>수익금</TopStockPrice>
-        </ListWrap>
-      </ListTop>
 
       <Lists>
-        {stock_name?.map((a, i) => {
+
+
+        {(stock_name?.map((a, i) => {
           return (
             <StockItem
               key={i}
@@ -40,9 +47,18 @@ const StockList = (props) => {
               stock_num={i}
               seedmoney={seedmoney}
             />
-          );
-        })}
+          )
+        }))}
+
+        <ListWrap>
+          <CardList>
+            <Empty>
+              종목이 없습니다.
+            </Empty>
+          </CardList>
+        </ListWrap>
       </Lists>
+
     </StockWrap>
   );
 };
