@@ -4,10 +4,7 @@ import { PortChartWrap, Wrap, TextWrap } from "./style";
 import test from "../../test/data";
 
 const PortChart = (props) => {
-  const styles = {
-    width: "206px",
-    height: "142px",
-  };
+
 
   const months = test[0].months;
   const yieldMoney = test[0].yieldMoney;
@@ -69,7 +66,7 @@ const PortChart = (props) => {
         enableGridX={false}
         enableGridY={false}
         enablePoints={false}
-        lineWidth="2"
+        lineWidth={2}
         colors={['#028ee6', '#0075FF', '#A8D1FF']}
         pointSize={10}
         pointColor={{ theme: "background" }}

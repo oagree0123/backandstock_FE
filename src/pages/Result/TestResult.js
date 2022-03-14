@@ -21,6 +21,11 @@ const TestResult = () => {
 
   const result_list = useSelector((state) => state.port.list);
 
+  const click_save = () => {
+    dispatch(portActions.savePortDB());
+    history.push("/")
+  }
+
   return (
     <ResultWrap>
       <All>
@@ -33,10 +38,7 @@ const TestResult = () => {
         <StockList {...result_list}></StockList>
 
         <ResultStockLine></ResultStockLine>
-
-        <Btn onClick={() => history.push("/mypage")}>
-          <span>실험 결과 저장하기</span>
-        </Btn>
+        <Btn onClick={click_save}>저장하기</Btn>
       </All>
     </ResultWrap>
   );
