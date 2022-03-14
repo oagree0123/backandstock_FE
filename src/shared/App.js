@@ -5,9 +5,10 @@ import styled from "styled-components";
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch } from "react-router-dom";
 import { history } from "../redux/configStore";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as portActions } from "../redux/modules/port";
 import { BackTest, Login, Signup, Community, TestResult, Mypage } from "../pages";
 
 import { Header, SideTap } from "../components";
@@ -36,7 +37,7 @@ function App(props) {
           <Route path="/oauth/kakao/callback" exact component={Social} />
           <ContentWrap>
             <Header />
-            <SideTap />
+            <SideTap/>
             <RouteWrap>
               <Route path="/" exact component={BackTest} />
               <Route path="/community" exact component={Community} />

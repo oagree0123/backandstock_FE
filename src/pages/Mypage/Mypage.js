@@ -1,18 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { BarChart } from "../../components";
 import PortCardList from "../../components/PortCardList/PortCardList";
 import { actionCreators as portActions } from '../../redux/modules/port';
-import Chart from "../Mypage/Chart";
-import MypageLine from "../Mypage/MypageLine";
-import { Wrap, Btn, Text, MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageTitle, RankWrap, BestRankWrap, WorstRankWrap, WrapLeft, WrapRight, FirstWrap, SecondWrap, ThirdWrap, RankTitle, RankCont, RankRatio, RankMoney, FirstRank, FirstTitle, FirstRatio, FirstMoney, OtherWrap, OtherRank, OtherRatio, OtherMoney, OtherCont } from "./style";
+
+import { MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageTitle, RankWrap, BestRankWrap, WorstRankWrap, WrapLeft, WrapRight, FirstWrap, RankTitle, RankCont, RankRatio, RankMoney, FirstRank, FirstTitle, FirstRatio, FirstMoney, OtherWrap, OtherRank, OtherRatio, OtherMoney, OtherCont, MypageHead, ChartBtnWrap, CompareBtn, DeleteBtn } from "./style";
 
 const Mypage = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.user.user_info);
-  const myport = useSelector(state => state.port.port_list);
+  const port_list = useSelector(state => state.port.port_list);
+
+  const [check_compare, setCheckCompare] = useState(false);
+
+  const click_compare = () => {
+
+  }
+
+  const click_delete = () => {
+
+  }
 
   useEffect(() => {
     if(!user) {
@@ -23,11 +32,36 @@ const Mypage = () => {
 
   return (
     <MypageWrap>
+      <MypageHead>
+        실험한 자산들을 <br />
+        비교해볼까요?
+      </MypageHead>
+      <ChartBtnWrap>
+        <CompareBtn
+          onClick={() => {
+            click_compare()
+            setCheckCompare(true);
+          }}
+        >
+          비교하기
+        </CompareBtn>
+        <DeleteBtn
+          onClick={click_delete}
+        >
+          삭제하기
+        </DeleteBtn>
+      </ChartBtnWrap>
       <PortCardList />
+      
       <ChartTitle>자산 비교 결과</ChartTitle>
       <ChartWrap>
-        <BarChart />
+        {!check_compare ?
+          null :
+          <BarChart port_list={port_list} />
+        }
       </ChartWrap>
+
+      
       <MypageInfoWrap>
         <MypageTitle>최종 수익률 순위</MypageTitle>
         <RankWrap>

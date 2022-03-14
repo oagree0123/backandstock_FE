@@ -34,7 +34,7 @@
 @font-face {
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
-  font-weight: bold;
+  font-weight: 800;
   src: url("../assets/fonts/NotoSansKR-Bold.woff2") format('woff2'),
   url("../assets/fonts/NotoSansKR-Bold.woff") format('woff'),
   url("../assets/fonts/NotoSansKR-Bold.otf") format('truetype')

@@ -1,19 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import PortCard from '../PortCard/PortCard';
-import { PortCardListWrap, ChartWrap, CompareBtn } from './style';
+import React from "react";
+import { useSelector } from "react-redux";
+import PortCard from "../PortCard/PortCard";
+import { PortCardListWrap, ChartWrap, ChartBtnWrap, CompareBtn, DeleteBtn } from "./style";
 
 const PortCardList = (props) => {
-  const port_list = useSelector(state => state.port)
+  const port_list = useSelector((state) => state.port.port_list);
 
   return (
     <PortCardListWrap>
       <ChartWrap>
-        {[...Array(3)].map((a, i) => {
-          return <PortCard key={i} num={i}/>
+        {port_list.map((p, i) => {
+          return (
+            <PortCard
+              key={i}
+              num={i}
+              port_data={p}
+              final_money={Math.floor(p.portBacktestingCal.finalMoney / 10000)}
+            />
+          );
         })}
       </ChartWrap>
-      <CompareBtn>비교하기</CompareBtn>
     </PortCardListWrap>
   );
 };
