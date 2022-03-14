@@ -9,9 +9,9 @@ const PortCardList = (props) => {
   return (
     <PortCardListWrap>
       <ChartWrap>
-        <PortCard />
-        <PortCard />
-        <PortCard />
+        {[...Array(3)].map((a, i) => {
+          return <PortCard key={i} num={i}/>
+        })}
       </ChartWrap>
       <CompareBtn>비교하기</CompareBtn>
     </PortCardListWrap>

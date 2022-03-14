@@ -84,11 +84,11 @@ const savePortDB = () => {
   };
 };
 
-const getMyPortDB = (user_id) => {
+const getMyPortDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
-      let response = await axios.get(`http://yuseon.shop/port/mypage/${user_id}`, {
+      let response = await axios.get(`http://yuseon.shop/port/mypage`, {
         headers: {
           Authorization: `${token}`
         }

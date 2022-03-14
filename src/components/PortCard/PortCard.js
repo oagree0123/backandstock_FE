@@ -1,10 +1,24 @@
-import React from 'react';
-import PortChart from '../PortChart/PortChart';
-import { PortCardWrap, CardInfoWrap, CardTitle, CardInfo } from './style';
+import React from "react";
+import PortChart from "../PortChart/PortChart";
+import {
+  PortCardWrap,
+  CardInfoWrap,
+  CardTitle,
+  CardInfo,
+  CardCheck,
+} from "./style";
 
-const PortCard = () => {
+const PortCard = (props) => {
   return (
     <PortCardWrap>
+      <CardCheck 
+        id={props.num}
+        className="checkbox"
+        type="checkbox" 
+        name={props.num} 
+        value={props.num} 
+      />
+      <label htmlFor={props.num}></label>
       <PortChart />
       <CardInfoWrap>
         <CardTitle>자산실험</CardTitle>
