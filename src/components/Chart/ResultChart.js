@@ -19,16 +19,18 @@ const ResultChart = (props) => {
     const kospiYield = result_list.kospiYield
     const kosdaqYield = result_list.kosdaqYield
 
+
+
     const data = [
 
     ]
 
     monthYield.map((m, i) => {
         let xy = {
-            months: months[i],
-            monthYield: Math.floor(monthYield[i]),
-            kospiYield: Math.floor(kospiYield[i]),
-            kosdaqYield: Math.floor(kosdaqYield[i]),
+            months: months[i].substring(2),
+            "내 자산": Math.floor(monthYield[i]),
+            "KOSPI": Math.floor(kospiYield[i]),
+            "KOSDAQ": Math.floor(kosdaqYield[i]),
         }
         data.push(xy)
     })
@@ -40,11 +42,12 @@ const ResultChart = (props) => {
                 groupMode="grouped"
                 data={data}
                 keys={[
-                    'monthYield',
-                    'kospiYield',
-                    'kosdaqYield',
+                    "내 자산",
+                    "KOSPI",
+                    "KOSDAQ",
                 ]}
                 indexBy="months"
+                colors={['#0075FF', '#A183F8', '#49DDCB']}
                 axisLeft={{
                     // legend: "수익률",
                     legendPosition: "middle",
@@ -53,26 +56,20 @@ const ResultChart = (props) => {
                 axisBottom={{
                     orient: 'bottom',
                     tickSize: 5,
-                    tickPadding: 5,
+                    tickPadding: 10,
                     tickRotation: 60,
-                    // legend: '연도',
-                    legendOffset: 36,
-                    legendPosition: 'middle',
-
                 }}
-
-                padding={0.3}
+                padding={0.1}
                 margin={{
                     top: 20,
-                    right: 90,
+                    right: 100,
                     bottom: 50,
-                    left: 50
+                    left: 35,
                 }}
-                pointSize={10}
+                enableGridX={true}
+                enableGridY={false}
+                pointSize={20}
                 pointColor={{ theme: 'background' }}
-                pointBorderWidth={2}
-                pointBorderColor={{ from: 'serieColor' }}
-                pointLabelYOffset={-12}
                 enableLabel={false}
                 useMesh={true}
                 legends={[
@@ -100,7 +97,6 @@ const ResultChart = (props) => {
                         ]
                     }
                 ]}
-            // enableGridY={true}
             />
 
         </div >

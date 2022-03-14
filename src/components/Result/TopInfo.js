@@ -19,83 +19,54 @@ import dollar from "../../assets/images/page_result/dollar.svg"
 
 
 const TopInfo = () => {
-  // window.addEventListener('beforeunload', (event) => {
-  //     event.preventDefault();
-  //     event.returnValue = '';
-  //     window.location.replace("/")
-  // })
+    // window.addEventListener('beforeunload', (event) => {
+    //     event.preventDefault();
+    //     event.returnValue = '';
+    //     window.location.replace("/")
+    // })
 
-  const result_list = useSelector((state) => state.port.list);
-  console.log(result_list);
+    const result_list = useSelector((state) => state.port.list);
+    console.log(result_list);
 
-  const finalMoney = Math.floor(result_list.finalMoney);
-  const finalYield = Math.floor(result_list.finalYield);
-  const bestMoney = Math.floor(result_list.bestMoney);
-  const worstMoney = Math.floor(result_list.worstMoney);
-  const seedMoney = Number(result_list.seedMoney);
-  const bestMonth = result_list.bestMonth.split("-");
-  const worstMonth = result_list.worstMonth.split("-");
+    const finalMoney = Math.floor(result_list.finalMoney);
+    const finalYield = Math.floor(result_list.finalYield);
+    const bestMoney = Math.floor(result_list.bestMoney);
+    const worstMoney = Math.floor(result_list.worstMoney);
+    const seedMoney = Number(result_list.seedMoney);
+    const bestMonth = result_list.bestMonth.split("-");
+    const worstMonth = result_list.worstMonth.split("-");
 
-  const plus = bestMoney - seedMoney;
-  const minus = worstMoney - seedMoney;
+    const plus = bestMoney - seedMoney;
+    const minus = worstMoney - seedMoney;
 
-  return (
-    <React.Fragment>
-      <TopWrap>
-        {finalYield < 0 ? (
-          <Box>
-            <YieldWrap>
-              <div>
-                <Text>슈퍼개미님의 총 수익은</Text>
-                <MinusYield>{finalYield}%</MinusYield>
-                <MinusYieldMoney>
-                  -{finalMoney.toLocaleString()}원
-                </MinusYieldMoney>
-              </div>
-              <MinusYieldIcon></MinusYieldIcon>
-            </YieldWrap>
-          </Box>
-        ) : (
-          <Box>
-            <YieldWrap>
-              <div>
-                <Text>슈퍼개미님의 총 수익은</Text>
-                <PlusYield>{finalYield}%</PlusYield>
-                <PlusYieldMoney>{finalMoney.toLocaleString()}원</PlusYieldMoney>
-              </div>
-              <PlusYieldIcon></PlusYieldIcon>
-            </YieldWrap>
-          </Box>
-        )}
-
-
-                    (
-                        <Box>
-                            <YieldWrap>
-                                <div>
-                                    <Text>슈퍼개미님의 총 수익은</Text>
-                                    <MinusYield>{finalYield}%</MinusYield>
-                                    <MinusYieldMoney>-{finalMoney.toLocaleString()}원</MinusYieldMoney>
-                                </div>
-                                <MinusYieldIcon src={arrow_down}>
-                                </MinusYieldIcon>
-                            </YieldWrap>
-                        </Box>
-                    )
-                    :
-                    (
-                        <Box>
-                            <YieldWrap>
-                                <div>
-                                    <Text>슈퍼개미님의 총 수익은</Text>
-                                    <PlusYield>{finalYield}%</PlusYield>
-                                    <PlusYieldMoney>{finalMoney.toLocaleString()}원</PlusYieldMoney>
-                                </div>
-                                <PlusYieldIcon src={arrow_up}></PlusYieldIcon>
-                            </YieldWrap>
-                        </Box>
-                    )
-                }
+    return (
+        <React.Fragment>
+            <TopWrap>
+                {finalYield < 0 ? (
+                    <Box>
+                        <YieldWrap>
+                            <div>
+                                <Text>슈퍼개미님의 총 수익은</Text>
+                                <MinusYield>{finalYield}%</MinusYield>
+                                <MinusYieldMoney>
+                                    -{finalMoney.toLocaleString()}원
+                                </MinusYieldMoney>
+                            </div>
+                            <MinusYieldIcon src={arrow_down}></MinusYieldIcon>
+                        </YieldWrap>
+                    </Box>
+                ) : (
+                    <Box>
+                        <YieldWrap>
+                            <div>
+                                <Text>슈퍼개미님의 총 수익은</Text>
+                                <PlusYield>{finalYield}%</PlusYield>
+                                <PlusYieldMoney>{finalMoney.toLocaleString()}원</PlusYieldMoney>
+                            </div>
+                            <PlusYieldIcon src={arrow_up}></PlusYieldIcon>
+                        </YieldWrap>
+                    </Box>
+                )}
 
                 <BoxWrap>
                     <TopBox>
@@ -123,30 +94,26 @@ const TopInfo = () => {
                         <BestYear>{bestMonth[0]}년</BestYear>
                     </TextWrap>
                     <MonthWrap>
+                        <Icon src={up}></Icon>
                         <BestMonth>{bestMonth[1]}월</BestMonth>
                     </MonthWrap>
                     <IconWrap>
-                        <Icon src={up}></Icon>
-                        {/* <MiniIcon1 src={mini_up_2}></MiniIcon1>
-                        <MiniIcon2 src={mini_up_1}></MiniIcon2> */}
                         <Price>{bestMoney.toLocaleString()}원 <span>(+{plus.toLocaleString()}원)</span></Price>
                     </IconWrap>
-
-
                 </MonthBox>
+
                 <MonthBox>
                     <TextWrap>
                         <Text>최악의 달</Text>
                         <WorstYear>{worstMonth[0]}년</WorstYear>
                     </TextWrap>
                     <MonthWrap>
+                        <Icon src={down}></Icon>
                         <WorstMonth>{worstMonth[1]}월</WorstMonth>
                     </MonthWrap>
                     <IconWrap>
-                        <Icon src={down}></Icon>
                         <Price>{worstMoney.toLocaleString()}원 <p>( {minus.toLocaleString()}원)</p></Price>
                     </IconWrap>
-
                 </MonthBox>
             </Wrap>
         </React.Fragment>

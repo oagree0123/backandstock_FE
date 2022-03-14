@@ -7,10 +7,8 @@ import StockList from "../../components/Result/StockList";
 import { history } from '../../redux/configStore';
 import { Btn, All, ResultWrap } from "./style";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as portActions } from "../../redux/modules/port";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
 
-import test from '../../assets/images/page_result/arrow_down.svg'
 
 const TestResult = () => {
   const dispatch = useDispatch();
@@ -40,7 +38,6 @@ const TestResult = () => {
         <StockList {...result_list}></StockList>
 
         <ResultStockLine></ResultStockLine>
-
         <Btn onClick={click_save}>저장하기</Btn>
       </All>
     </ResultWrap>
