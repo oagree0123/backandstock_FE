@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const PortCardWrap = styled.div`
+  position: relative;
   width: 280px;
   height: 340px;
 `;
@@ -21,4 +22,8 @@ export const CardInfo = styled.p`
   margin-bottom: 8px;
   font-size: var(--font-large);
   line-height: var(--line-large);
+`;
+
+export const CardCheck = styled.input`
+
 `;
