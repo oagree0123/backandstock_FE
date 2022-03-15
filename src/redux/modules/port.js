@@ -11,18 +11,29 @@ const GET_PORT = "GET_PORT"
 const GET_PORTONE = "GET_PORTONE"
 const DELETE_PORT = "DELETE_PORT"
 
+const SET_BEST = "SET_BEST";
+const SET_COMPARE = "SET_COMPARE";
+const GET_COMPARE = "GET_COMPARE";
+
 // action creators
 const getResult = createAction(GET_RESULT, (test_result) => ({ test_result }));
 const savePortOne = createAction(SAVE_PORTONE, (port_id, result) => ({ port_id, result }));
 const getPort = createAction(GET_PORT, (port_list) => ({ port_list }));
 const getPortOne = createAction(GET_PORTONE, (port) => ({ port }));
-const deletePort = createAction(DELETE_PORT, (port_idx) => ({ port_idx }));
+const deletePort = createAction(DELETE_PORT, (port_idx, port_id) => ({ port_idx, port_id }));
+
+const setBest = createAction(SET_BEST, (type, port_id) => ({ type, port_id }));
+const setCompare = createAction(SET_COMPARE, (type, compare_id) => ({ type, compare_id }));
+const getCompare = createAction(GET_COMPARE, (compare_item) => ({ compare_item }));
 
 // initialState
 const initialState = {
   list: [],
   port_list: [],
   port_one: {},
+  compare_list: [],
+  compare_item: [],
+  compare_data: [], 
 };
 
 // middleware
@@ -34,23 +45,51 @@ const getResultDB = () => {
     let data = {
       startDate: getState().testform.start_date,
       endDate: end,
-      seedMoney: parseFloat(getState().testform.init_money),
+      seedMoney: parseFloat(getState().testform.init_money * 10000),
       stockList: getState().testform.stockList,
       ratioList: getState().testform.ratioList,
     };
 
-    try {
-      const test_result = await axios.post(
-        `http://yuseon.shop/port/result`,
-        data
-      );
+    if (data.stockList.length === 0 || data.ratioList.length === 0) {
+      window.alert("종목을 추가해 주세요!");
+      return ;
+    }
 
-      dispatch(getResult(test_result.data));
-      history.push('/result')
+    // 실험 금액 100만원 ~ 100,000만원
+    if (data.seedMoney < 1000000 || data.seedMoney > 1000000000) {
+      window.alert("실험금액을 다시 확인해 주세요!");
+      return ;
     }
-    catch (err) {
-      console.log(err);
+
+    let ratio_sum = data.ratioList.reduce((acc, cur) => {
+      return acc = acc + cur;
+    }, 0);
+
+    if (ratio_sum < 100) {
+      window.alert("자산 비율은 100%가 되어야 합니다.");
+      return ;
     }
+
+    // 시작날짜와 종료날짜 역순 false
+    if(!moment(data.endDate).isAfter(data.startDate)) {
+      window.alert("날짜를 다시 확인해 주세요!");
+      return ;
+    } 
+    else {
+      try {
+        const test_result = await axios.post(
+          `http://yuseon.shop/port/result`,
+          data
+        );
+  
+        dispatch(getResult(test_result.data));
+        history.push('/result')
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
+
   };
 };
 
@@ -63,7 +102,7 @@ const savePortDB = () => {
     let data = {
       startDate: getState().testform.start_date,
       endDate: end,
-      seedMoney: parseFloat(getState().testform.init_money),
+      seedMoney: parseFloat(getState().testform.init_money * 10000),
       stockList: getState().testform.stockList,
       ratioList: getState().testform.ratioList,
     };
@@ -76,7 +115,7 @@ const savePortDB = () => {
       });
 
       const result = getState().port.list;
-      dispatch(savePortOne(port_id.data, result));
+      dispatch(savePortOne(port_id.data.portId, result));
     }
     catch (err) {
       console.log(err);
@@ -94,7 +133,7 @@ const getMyPortDB = () => {
         }
       })
 
-      dispatch(getPort(response));
+      dispatch(getPort(response.data));
     }
     catch (err) {
       console.log(err);
@@ -106,13 +145,13 @@ const getPortOneDB = (port_id) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
-      let response = await axios.get(`http://yuseon.shop/port/Individual/${port_id}`, {
+      let response = await axios.get(`http://yuseon.shop/port/details/${port_id}`, {
         headers: {
           Authorization: `${token}`
         }
       })
 
-      dispatch(getPortOne(response));
+      dispatch(getPortOne(response.data));
     }
     catch (err) {
       console.log(err);
@@ -136,7 +175,66 @@ const deletePortDB = (port_id) => {
         return parseInt(v.portId) === parseInt(port_id)
       })
 
-      dispatch(deletePort(port_idx));
+      dispatch(deletePort(port_idx, port_id));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+const setBestDB = (type, port_id) => {
+  return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
+
+    try {
+      await axios.post(`http://yuseon.shop/port/mybest`,  {
+        portId : port_id,
+        myBest: type,
+      }, {
+        headers: {
+          authorization: `${token}`
+        }
+      })
+      
+      dispatch(setBest(type, port_id));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+const getCompareDB = () => {
+  return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
+    
+    const compare_list = getState().port.compare_list;
+    const port_list = getState().port.port_list
+
+    if (compare_list.length < 2) {
+      window.alert("2개 이상의 실험을 선택해주세요!");
+      return;
+    }
+
+    try {
+      /* let response = await axios.post(`http://yuseon.shop/port/compare`,  {
+        portIdList : compare_list
+      }, {
+        headers: {
+          authorization: `${token}`
+        }
+      }) */
+
+      let compare_item = [];
+
+      port_list.map((p, i) => {
+        if(compare_list.includes(p.portId)) {
+          compare_item.push(p);
+        }
+      })
+      
+      dispatch(getCompare(compare_item));
     }
     catch (err) {
       console.log(err);
@@ -154,8 +252,8 @@ export default handleActions(
     [SAVE_PORTONE]: (state, action) =>
       produce(state, (draft) => {
         draft.port_list.push({
-          portId: action.payload.port_id,
-          ...action.payload.result,
+          portId: action.payload.port_id.port_id,
+          portBacktestingCal: action.payload.result,
         });
       }),
     [GET_PORT]: (state, action) =>
@@ -181,7 +279,37 @@ export default handleActions(
           return parseInt(action.payload.port_idx) !== i;
         })
 
+        const new_compare_list = draft.compare_list.filter((c, i) => {
+          return parseInt(action.payload.port_id) !== c;
+        })
+
         draft.port_list = new_port_list;
+        draft.compare_list = new_compare_list;
+      }),
+    [SET_BEST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.port_list.findIndex((p, i) => {
+          return p.portId === action.payload.port_id
+        });
+
+        draft.port_list[idx].myBest = action.payload.type
+      }),
+    [SET_COMPARE]: (state, action) =>
+      produce(state, (draft) => {
+        if (action.payload.type) {
+          draft.compare_list.push(action.payload.compare_id)
+        }
+        else {
+          const new_list = draft.compare_list.filter((c, i) => {
+            return parseInt(c) !== parseInt(action.payload.compare_id)
+          })
+
+          draft.compare_list = new_list;
+        }
+      }),
+    [GET_COMPARE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.compare_item = action.payload.compare_item;
       }),
   },
   initialState
@@ -195,6 +323,9 @@ const actionCreators = {
   getMyPortDB,
   getPortOneDB,
   deletePortDB,
+  setCompare,
+  setBestDB,
+  getCompareDB,
 };
 
 export { actionCreators };

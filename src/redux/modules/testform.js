@@ -60,6 +60,16 @@ export default handleActions(
       }),
     [SET_STOCK]: (state, action) =>
       produce(state, (draft) => {
+        if(draft.stockList.length >= 5) {
+          window.alert("주식 종목은 5개 까지만 가능합니다.")
+          return;
+        }
+
+        if(draft.stockList.includes(action.payload.stock_name)) {
+          window.alert("이미 추가된 종목입니다.")
+          return;
+        }
+
         let ratio_sum = 0;
 
         draft.ratioList.map((r, i) => {

@@ -6,12 +6,57 @@ export const MypageWrap = styled.div`
   box-sizing: content-box;
 `;
 
+export const MypageHead = styled.h1`
+  font-size: 32px;
+  line-height: var(--line-header);
+  font-weight: 600;
+`;
+
 export const ChartTitle = styled.h2`
   margin-bottom: 20px;
   font-size: var(--font-header);
   font-weight: 800;
   line-height: var(--line-header);
   letter-spacing: 0.15px;
+`;
+
+export const ChartBtnWrap = styled.div`
+  margin-bottom: 18px;
+  width: 880px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const CompareBtn = styled.button`
+  margin-right: 8px;
+  width: 85px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-small);
+  font-weight: 800;
+  line-height: var(--line-small);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  background-color: var(--primary-color);
+`;
+
+export const DeleteBtn = styled.button`
+  width: 85px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-small);
+  font-weight: 800;
+  line-height: var(--line-small);
+  border: 1px solid var(--primary-color);
+  border-radius: 30px;
+  color: var(--primary-color);
+  background-color: #fff;
 `;
 
 export const ChartWrap = styled.div`

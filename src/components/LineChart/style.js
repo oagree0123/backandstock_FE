@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BarChartWrap = styled.div`
+export const LineChartWrap = styled.div`
   width: 100%;
   height: 100%;
 `;

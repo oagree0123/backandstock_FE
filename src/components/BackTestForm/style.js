@@ -48,6 +48,15 @@ export const Won = styled.div`
   font-size: var(--font-medium);
 `;
 
+export const ErrorText = styled.p`
+  position: absolute;
+  top: 60px;
+  left: 0;
+  font-size: var(--font-small);
+  line-height: var(--line-small);
+  color: red;
+`;
+
 export const FormInput = styled.input`
   padding-left: 20px;
   display: flex;

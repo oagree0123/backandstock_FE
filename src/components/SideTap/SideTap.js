@@ -12,6 +12,7 @@ import CommunityGray from '../../assets/images/community_gray.svg'
 
 const SideTap = (props) => {
 
+  const location = useSelector(state => state.router.location.pathname);
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
 
@@ -20,13 +21,13 @@ const SideTap = (props) => {
   const [commu_clicked, setCommuClicked] = useState(false);
 
   useEffect(() => {
-    console.log(window.location.pathname);
-    if(window.location.pathname === "/community") {
+    console.log(location)
+    if(location === "/community") {
       setLabClicked(false);
       setPortfClicked(false);
       setCommuClicked(true);
     }
-    else if(window.location.pathname === "/MyPage") {
+    else if(location === "/mypage") {
       setLabClicked(false);
       setPortfClicked(true);
       setCommuClicked(false);
@@ -36,7 +37,7 @@ const SideTap = (props) => {
       setPortfClicked(false);
       setCommuClicked(false);
     }
-  }, [lab_clicked, portf_clicked, commu_clicked])
+  }, [lab_clicked, portf_clicked, commu_clicked, location])
 
   return (
     <SideTapWrap >
@@ -74,6 +75,7 @@ const SideTap = (props) => {
             setPortfClicked(false);
             setCommuClicked(false);
             history.push('/');
+            window.scrollTo(0, 0);
           }}>
             <TabIcon>
               <LabIcon 
@@ -91,6 +93,7 @@ const SideTap = (props) => {
             setPortfClicked(false);
             setCommuClicked(false);
             history.push('/');
+            window.scrollTo(0, 0);
           }}>
             <TabIcon>
               <LabIcon 
@@ -106,10 +109,15 @@ const SideTap = (props) => {
         }
         { !portf_clicked ?
           <Tab onClick={() => {
+            if(!is_login) {
+              window.alert("로그인이 필요한 서비스입니다.")
+              return;
+            }
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/MyPage');
+            history.push('/mypage');
+            window.scrollTo(0, 0);
           }}>
             <TabIcon>
               <LabIcon 
@@ -123,10 +131,15 @@ const SideTap = (props) => {
             </TabContent>
           </Tab> :
           <TabClicked onClick={() => {
+            if(!is_login) {
+              window.alert("로그인이 필요한 서비스입니다.")
+              return;
+            }
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/MyPage');
+            history.push('/mypage');
+            window.scrollTo(0, 0);
           }}>
             <TabIcon>
               <LabIcon 
@@ -146,6 +159,7 @@ const SideTap = (props) => {
             setPortfClicked(false);
             setCommuClicked(true);
             history.push('/community');
+            window.scrollTo(0, 0);
           }}>
             <TabIcon>
               <LabIcon 
@@ -163,6 +177,7 @@ const SideTap = (props) => {
             setPortfClicked(false);
             setCommuClicked(true);
             history.push('/community');
+            window.scrollTo(0, 0);
           }}>
             <TabIcon>
               <LabIcon 

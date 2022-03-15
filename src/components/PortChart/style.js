@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const PortChartWrap = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   width: 280px;
   height: 200px;
-  border-radius: 10px;
+  border: 1.5px solid #A8D1FF;
+  border-radius: 6px;
   overflow: hidden;
 `;
 

@@ -112,7 +112,8 @@ const ResultLine = (props) => {
                     tickRotation: 0,
                     // legend: '수익금',
                     legendOffset: -40,
-                    legendPosition: 'middle'
+                    legendPosition: 'middle',
+                    format: (v) => `${parseFloat(v).toLocaleString('ko-KR')}`
                 }}
                 enableGridY={false}
                 pointSize={4}

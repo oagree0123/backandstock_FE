@@ -7,23 +7,48 @@ export const ResultWrap = styled.div`
   background-color: var(--secondary-color);
 `;
 
+export const ResultHeader = styled.h1`
+  margin-bottom: 32px;
+  font-size: 32px;
+  line-height: var(--line-header);
+  font-weight: 600;
+`;
+
+export const LineChartWrap = styled.div`
+  margin-bottom: 20px;
+  width: 880px;
+  height: 300px;
+  border-radius: 10px;
+  background-color: #fff;
+`;
+
+export const BarChartWrap = styled.div`
+  margin-bottom: 20px;
+  width: 880px;
+  height: 300px;
+  border-radius: 10px;
+  background-color: #fff;
+`;
+
 export const All = styled.div`
   width: 880px;
   background-color: #ecf5ff;
 `;
 
 export const Btn = styled.button`
+  margin-top: 48px;
   width: 882px;
-  height:70px;
-  background-color: #367bf5;
+  height: 70px;
+  color: #fff;
+  font-size: var(--font-header);
+  font-weight: 600;
   border-radius: 10px;
+  background-color: #367bf5;
   outline: none;
   border: none;
-  margin-top: 48px;
-  & span {
-        color: #ffffff;
-        font-size: var(--font-header);
-        font-weight: 700;
-    }
-  
-`
+
+  &:disabled {
+    background-color: #D9DFE6;
+    cursor: default;
+  }
+`;

@@ -8,7 +8,7 @@ import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup, Community, TestResult, Mypage } from "../pages";
+import { BackTest, Login, Signup, Community, TestResult, Mypage, Detail } from "../pages";
 
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
@@ -36,12 +36,13 @@ function App(props) {
           <Route path="/oauth/kakao/callback" exact component={Social} />
           <ContentWrap>
             <Header />
-            <SideTap />
+            <SideTap/>
             <RouteWrap>
               <Route path="/" exact component={BackTest} />
               <Route path="/community" exact component={Community} />
               <Route path="/mypage" exact component={Mypage}></Route>
               <Route path="/result" exact component={TestResult}></Route>
+              <Route path="/detail" exact component={Detail}></Route>
             </RouteWrap>
           </ContentWrap>
         </Switch>

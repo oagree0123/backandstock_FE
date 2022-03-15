@@ -1,158 +1,128 @@
-import React from 'react';
-import { Bar } from "@nivo/bar";
-import { BarChartWrap } from './styles';
-import { data } from './data';
+import React, { useEffect } from "react";
+import { ResponsiveBar } from "@nivo/bar";
+import { BarChartWrap } from "./styles";
 
 const BarChart = (props) => {
-
-  const { width, height } = props
-
-  const months = data[0].portBacktestingCal.months;
-  const keys = ["포트1", "포트2"];
-  const bar_data = [
-    /* {
-      "months": "2021-01",
-      "포트1": 30,
-      "포트2": 50,
-    },
-    {
-      "months": "2021-02",
-      "포트1": 70,
-      "포트2": 20,
-    },
-    {
-      "months": "2021-03",
-      "포트1": 100,
-      "포트2": -80,
-    } */
-  ]
-
-  months.map((m, i) => {
-    let _data = {
-
-    };
-  
-    _data = {months: m}
-    data.map((d, j) => {
-      let key = `포트${j+1}`;
-      let value = d.portBacktestingCal.monthYield[i]
-      _data[key] = value
-    })
-    bar_data.push(_data);
-  })
+  const {
+    width,
+    height,
+    translateX,
+    translateY,
+    bar_data,
+    keys,
+    margin,
+    tick_font,
+    symbol_size,
+    legend_fsize,
+    legend_space,
+    legend_anchor,
+  } = props;
 
   return (
     <BarChartWrap>
-      <Bar
-            groupMode="grouped"
-            data={bar_data}
-            keys={keys}
-            indexBy="months"
-            axisLeft={{
-                // legend: "수익률",
-                legendPosition: "middle",
-                legendOffset: -40
-            }}
-            axisBottom={{
-                orient: 'bottom',
-                tickSize: 5,
-                tickPadding: 5,
-                tickRotation: 0,
-                // legend: '연도',
-                legendOffset: 36,
-                legendPosition: 'middle',
-            }}
-            width={width}
-            height={height}
-            margin={{ top: 32, right: 36, bottom: 24, left: 36 }}
-          padding={0.3}
-          valueScale={{ type: 'linear' }}
-          indexScale={{ type: 'band', round: true }}
-          colors={["#A183F8", "#0075FF", "#49DDCB"]}
-          defs={[
+      <ResponsiveBar
+        groupMode="grouped"
+        data={bar_data}
+        keys={keys}
+        indexBy="months"
+        colors={["#0075FF", "#A183F8", "#49DDCB"]}
+        width={width}
+        height={height}
+        minValue="auto"
+        maxValue="auto"
+        axisTop={null}
+        axisRight={null}
+        axisLeft={{
+          orient: "left",
+          tickSize: 5,
+          tickPadding: 16,
+          tickRotation: 0,
+          legendOffset: -40,
+          legendPosition: "middle",
+          format: (v) => `${Math.abs(v)}%`,
+        }}
+        axisBottom={{
+          orient: "bottom",
+          tickSize: 5,
+          tickPadding: 14,
+          tickRotation: 60,
+          legendOffset: 36,
+          legendPosition: "middle",
+        }}
+        padding={0.1}
+        margin={margin}
+        enableGridX={true}
+        enableGridY={false}
+        pointSize={20}
+        pointColor={{ theme: "background" }}
+        enableLabel={false}
+        useMesh={true}
+        markers={[
+          {
+            axis: "y",
+            value: 0,
+            lineStyle: {
+              stroke: "rgba(58, 149, 255, 1)",
+              strokeWidth: 1,
+            },
+          },
+        ]}
+        legends={[
+          {
+            anchor: legend_anchor,
+            direction: "column",
+            justify: false,
+            translateX: translateX,
+            translateY: translateY,
+            itemsSpacing: legend_space,
+            itemDirection: "left-to-right",
+            itemWidth: 80,
+            itemHeight: 20,
+            itemOpacity: 1,
+            itemSize: 10,
+            symbolSize: symbol_size,
+            symbolShape: "circle",
+            symbolBorderColor: "rgba(0, 0, 0, 1)",
+            effects: [
               {
-                  id: 'dots',
-                  type: 'patternDots',
-                  background: 'inherit',
-                  color: '#38bcb2',
-                  size: 4,
-                  padding: 1,
-                  stagger: true
+                on: "hover",
+                style: {
+                  itemBackground: "rgba(0, 0, 0, .03)",
+                  itemOpacity: 1,
+                },
               },
-              {
-                  id: 'lines',
-                  type: 'patternLines',
-                  background: 'inherit',
-                  color: '#eed312',
-                  rotation: -45,
-                  lineWidth: 6,
-                  spacing: 10
-              }
-          ]}
-          fill={[
-              {
-                  match: {
-                      id: 'fries'
-                  },
-                  id: 'dots'
+            ],
+          },
+        ]}
+        theme={{
+          axis: {
+            domain: {
+              line: {
+                stroke: "#A8D1FF",
+                strokeWidth: 2.5,
               },
-              {
-                  match: {
-                      id: 'sandwich'
-                  },
-                  id: 'lines'
-              }
-          ]}
-          borderColor={{
-              from: 'color',
-              modifiers: [
-                  [
-                      'darker',
-                      1.6
-                  ]
-              ]
-          }}
-          axisTop={null}
-          axisRight={null}
-          labelSkipWidth={12}
-          labelSkipHeight={12}
-          labelTextColor={{
-              from: 'color',
-              modifiers: [
-                  [
-                      'darker',
-                      1.6
-                  ]
-              ]
-          }}
-          legends={[
-              {
-                  dataFrom: 'keys',
-                  anchor: 'bottom-right',
-                  direction: 'column',
-                  justify: false,
-                  translateX: 50,
-                  translateY: -250,
-                  itemsSpacing: 2,
-                  itemWidth: 100,
-                  itemHeight: 20,
-                  itemDirection: 'left-to-right',
-                  itemOpacity: 0.85,
-                  symbolSize: 20,
-                  effects: [
-                      {
-                          on: 'hover',
-                          style: {
-                              itemOpacity: 1
-                          }
-                      }
-                  ]
-              }
-          ]}
-          role="application"
-          ariaLabel="Nivo bar chart demo"
-          barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in country: "+e.indexValue}}
-        />
+            },
+            ticks: {
+              text: {
+                fontFamily: "Noto Sans CJK KR",
+                fontSize: tick_font,
+                fontWeight: 600,
+                fill: "#000",
+              },
+              line: {
+                strokeWidth: 0,
+              },
+            },
+          },
+          legends: {
+            text: {
+              fontFamily: "Noto Sans CJK KR",
+              fontSize: legend_fsize,
+              fontWeight: 600,
+            },
+          },
+        }}
+      />
     </BarChartWrap>
   );
 };
@@ -160,6 +130,20 @@ const BarChart = (props) => {
 BarChart.defaultProps = {
   width: 880,
   height: 350,
+  translateX: 120,
+  translateY: 38,
+  keys: ["내 자산", "KOSPI", "KOSDAQ"],
+  margin: {
+    top: 33,
+    right: 37,
+    bottom: 50,
+    left: 84,
+  },
+  tick_font: 12,
+  symbol_size: 8,
+  legend_fsize: 10,
+  legend_space: -8,
+  legend_anchor: "bottom-right"
 };
 
 export default BarChart;

@@ -17,7 +17,7 @@ const BackTest = (props) => {
           </InfoCont>
           <InfoCont>
             <InfoCircle />
-            실험 기간은 3년이내로 가능해요
+            실험금액은 100만원 ~ 100,000만원만 가능해요
           </InfoCont>
         </InfoContLeft>
         <InfoContRight>
@@ -25,6 +25,10 @@ const BackTest = (props) => {
             <InfoCircle />
             자산 비율은 총 100%를 맞춰서 입력해주세요
           </InfoCont>
+          {/* <InfoCont>
+            <InfoCircle />
+            
+          </InfoCont> */}
         </InfoContRight>
       </InfoWrap>
       
