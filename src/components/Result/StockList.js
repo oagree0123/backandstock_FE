@@ -12,6 +12,8 @@ import {
 import { useSelector } from "react-redux";
 
 const StockList = (props) => {
+  console.log(props);
+  
   const stock_name = props.stockNames;
   const stock_codes = props.stockCodes;
   const stock_yieldmoneys = props.stockYieldMoneys;

@@ -14,6 +14,7 @@ import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
 import Social from './Social';
+import BestDetail from "../pages/BestDetail/BestDetail";
 
 function App(props) {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App(props) {
               <Route path="/mypage" exact component={Mypage}></Route>
               <Route path="/result" exact component={TestResult}></Route>
               <Route path="/detail" exact component={Detail}></Route>
+              <Route path="/community/detail" exact component={BestDetail}></Route>
             </RouteWrap>
           </ContentWrap>
         </Switch>

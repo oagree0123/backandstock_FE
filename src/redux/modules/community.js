@@ -29,7 +29,7 @@ const getPostDB = () => {
           size: 10,
         }
       })
-
+      console.log(response.data);
       dispatch(getPost(response.data));
     }
     catch (err) {
@@ -66,12 +66,11 @@ export default handleActions(
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(...action.payload.post_list);
-
         draft.list = draft.list.reduce((acc, cur) => {
-          if(acc.findIndex(a => a.postId === cur.postId) === -1) {
+          if(acc.findIndex(a => a.communityPort.portId === cur.communityPort.portId) === -1) {
             return [...acc, cur];
           } else {
-            acc[acc.findIndex(a => a.postId === cur.postId)] = cur;
+            acc[acc.findIndex(a => a.communityPort.portId === cur.communityPort.portId)] = cur;
             return acc;
           }
         }, [])
