@@ -390,3 +390,33 @@ export const InfoText = styled.p`
   font-weight: 800;
   line-height: var(--line-header);
 `;
+
+export const Ratio = styled.span`
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 28px;
+    font-weight: 700;
+    color:#0075FF;
+    & span {
+    font-size: var(--font-medium);
+    color: var(--font-textclolr);
+    font-weight: 500;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    }
+    `;
+
+export const Profit = styled.span`
+  font-size: var(--font-result-small);
+  color: var( --font-red);
+  font-weight: 700;
+  margin-bottom: 5px;
+`;
+
+export const EmptyList = styled.div`
+    width: 162px;
+    height: 230px;
+    border-radius: 10px;
+    background: #D9DFE64D;
+`

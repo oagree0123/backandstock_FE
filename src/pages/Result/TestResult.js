@@ -10,8 +10,6 @@ import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap, ResultHeader } from 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
-import { actionCreators as portActions } from "../../redux/modules/port";
-
 
 const TestResult = () => {
   const dispatch = useDispatch();

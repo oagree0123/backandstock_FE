@@ -7,18 +7,14 @@ import {
   MoneyWrap,
   Ratio,
   Profit
-} from "./style.js";
+} from "./style";
 
 
 const StockItem = (props) => {
   const yieldmoneys = Math.floor(props.stock_yieldmoneys.slice(-1)[0]);
   const profit_money = Number(yieldmoneys) - Number(props.seedmoney);
-  // const stock_name = props.stock_name.length
-
 
   const init_money = Math.floor(props.init_money / 100 * props.stock_ratio)
-
-
 
   return (
     <div>
