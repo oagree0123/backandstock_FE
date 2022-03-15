@@ -12,52 +12,56 @@ const ResultStockLine = () => {
     };
 
     const result_list = useSelector((state) => state.port.list);
-    console.log(result_list);
-
     const months = result_list.months
     const month_yieldmoney = result_list.stockYieldMoneys
     const stock_name = result_list.stockNames
 
-
     const data = [
 
-        {
-            "id": [],
-            "color": "hsl(233, 70%, 50%)",
-            "data": []
-        },
-        {
-            "id": [],
-            "color": "hsl(233, 70%, 50%)",
-            "data": []
-        },
-        {
-            "id": [],
-            "color": "hsl(233, 70%, 50%)",
-            "data": []
-        },
-        {
-            "id": [],
-            "color": "hsl(233, 70%, 50%)",
-            "data": []
-        },
-        {
-            "id": [],
-            "color": "hsl(233, 70%, 50%)",
-            "data": []
-        },
+
     ]
 
+    // stock_name.map((s, k) => {
+    //     months.map((m, i) => {
+    //         let xy = {
+    //             x: m.substring(2),
+    //             y: parseInt(month_yieldmoney[k][i])
+    //         }
+    //         data[k].data.push(xy)
+    //         data[k].id.push(s)
+    //     })
+    // })
     stock_name.map((s, k) => {
+        let test = {
+            "id": [],
+            "data": []
+        }
+
         months.map((m, i) => {
             let xy = {
                 x: m.substring(2),
                 y: parseInt(month_yieldmoney[k][i])
             }
-            data[k].data.push(xy)
-            data[k].id.push(s)
+
+            test.data.push(xy)
         })
+        test.id.push(s)
+
+        data.push(test)
+
     })
+
+
+
+    // months.map((m, i) => {
+
+
+    // })
+
+
+    // stock_name.map((s, k) => {
+
+    // })
 
 
     return (
@@ -81,7 +85,6 @@ const ResultStockLine = () => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 60,
-                    // legend: '연도',
                     legendOffset: 36,
                     legendPosition: 'middle'
                 }}
@@ -90,12 +93,11 @@ const ResultStockLine = () => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    // legend: '수익금',
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}
                 enableGridX={false}
-                // enablePoints={false}
+                lineWidth={2}
                 pointSize={3}
                 pointColor={{ theme: 'background' }}
                 pointBorderWidth={2}

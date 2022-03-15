@@ -11,8 +11,8 @@ export const SignupWrap = styled.div`
 `;
 
 export const SignupCont = styled.div`
-  width: 964px;
-  height: 653px;
+  width: 1211px;
+  height: 794px;
   display: flex;
   border-radius: 40px;
   background-color: #fff;
@@ -21,14 +21,14 @@ export const SignupCont = styled.div`
 `;
 
 export const SignupLeft = styled.div`
-  padding: 96px 0px 96px 68px;
-  width: 468px;
+  padding: 85px 40px 92px 73px;
+  width: 572px;
   background-color: var(--primary-color);
 `;
 
 export const SignupRight = styled.div`
-  padding: 96px 75px 85px;
-  width: 495px;
+   padding: 85px 65px 92px 72px;
+   width: 605px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -44,7 +44,7 @@ export const TitleWrap = styled.div`
 `;
 
 export const SignupTitle = styled.h1`
-  
+   margin-bottom: 32px;
 `;
 
 export const TextWrap = styled.div`
@@ -61,28 +61,37 @@ export const LoginSpan = styled.p`
 `;
 
 export const InputWrap = styled.div`
-  margin-bottom: 8px;
+  position: relative;
+  margin-bottom: 20px;
   width: 100%;
+  height: 130px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
 `;
 
 export const SignupInput = styled.input`
   padding-left: 20px;
-  width: 100%;
-  height: 47px;
-  border: 1px solid var(--gray-color);
-  border-radius: 10px;
+  width: 460px;
+  height: 55px;
+  border: 1px solid var(--primary-color);
+  box-sizing: border-box;
+  border-radius: 15px;
 `;
 
 export const InputLabel = styled.label`
-  margin-bottom: 8px;
+  font-size: var(--font-large);
+  font-weight: 500;
+  margin-bottom: 12px;
   text-align: left;
 `;
 
 export const ErrorText = styled.p`
+  position: absolute;
+  bottom: -20px;
+  left: 10px;
   margin-top: 4px;
   font-size: var(--font-small);
   line-height: var(--line-small);
@@ -90,22 +99,19 @@ export const ErrorText = styled.p`
 `;
 
 export const SignupBtnWrap = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+   margin-top: 20px;
+ 
+`
 
 export const SignupBtn = styled.button`
-  width: 100%;
+  width: 402px;
   height: 47px;
   color: #fff;
   font-size: var(--font-medium);
   font-weight: 700;
   line-height: var(--line-medium);
   border: none;
-  border-radius: 10px;
+  border-radius: 40px;
   background-color: var(--primary-color);
   cursor: pointer;
 `;

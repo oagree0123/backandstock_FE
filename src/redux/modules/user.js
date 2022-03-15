@@ -110,7 +110,7 @@ const kakaoLogin = (code) => {
 
       const token = response.headers.authorization;
       setToken("token", token);
-      
+
       try {
         let check_user = await axios.post(
           `http://yuseon.shop/islogin`,
@@ -163,7 +163,9 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
       window.alert("회원가입이 완료되었습니다.");
       history.replace("/");
     } catch (err) {
-      console.log(err);
+      if (err.response.data.errorMessage) {
+        alert(err.response.data.errorMessage);
+      }
     }
   };
 };
@@ -178,7 +180,7 @@ const editUserDB = (nickname, img_url) => {
 
     try {
       axios.put(`http://yuseon.shop/user/edit`, form, {
-        headers : {
+        headers: {
           authorization: `${token}`
         }
       })
@@ -220,7 +222,7 @@ export default handleActions(
     [EDIT_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user_info = {
-          ...draft.user_info, 
+          ...draft.user_info,
           nickname: action.payload.nickname,
           profile_img: action.payload.img_url
         }

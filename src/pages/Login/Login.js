@@ -14,7 +14,14 @@ import {
   LOGO,
   Line,
   ErrorText,
+  LoginText,
+  LeftLogo,
+  RightTitle,
+  SignUpBtn,
+  Wrap,
+  CheckInput
 } from "./style";
+import kakao from "../../assets/images/page_result/kakaoIcon.svg"
 import { useDispatch } from "react-redux";
 import { history } from '../../redux/configStore';
 
@@ -82,22 +89,30 @@ const Login = () => {
     }
   }
 
+
+
   return (
     <LoginWrap>
       <LoginCont>
         <LoginLeft>
-          <LeftTitle>
-            Back&Stock에 <br />
-            오신 것을 환영합니다.
-          </LeftTitle>
-        </LoginLeft>
-
-        <LoginRight>
-          <LOGO onClick={()=>{
+          <LeftTitle onClick={() => {
             history.push('/')
-          }}>Back&Stock</LOGO>
-          <KakaoLoginBtn onClick={clickKakao}>카카오로 계속하기</KakaoLoginBtn>
-          <Line />
+          }}>BACK-STOCK</LeftTitle>
+          <LoginText>
+            <span>백스탁에서 나의<br />
+              자산을 다양하게<br />
+              실험해 보세요</span>
+            <LeftLogo></LeftLogo>
+          </LoginText>
+        </LoginLeft>
+        <LoginRight>
+          <RightTitle>
+            <p>로그인</p>
+          </RightTitle>
+          <Wrap>
+            <span>아직 계정이 없으신가요?</span>
+            <SignUpBtn onClick={() => { history.push('/signup') }}>회원가입</SignUpBtn>
+          </Wrap>
           <InputWrap>
             <InputLabel>이메일</InputLabel>
             <LoginInput
@@ -113,10 +128,10 @@ const Login = () => {
             <LoginInput
               type="password"
               onKeyPress={(e) => {
-                  if(e.key === "Enter") {
-                    clickLogin();
-                  }
+                if (e.key === "Enter") {
+                  clickLogin();
                 }
+              }
               }
               onChange={onChangePwd}
             />
@@ -124,12 +139,24 @@ const Login = () => {
               <ErrorText>8~20자로 영문 대소문자, 숫자, 특수문자 조합을 사용하세요.</ErrorText>
             )}
           </InputWrap>
+          {/* <InputWrap>
+            <InputLabel>비밀번호 확인</InputLabel>
+            <CheckInput
+              type="password"
+              placeholder={"확인을 위해 한 번 더 입력해 주세요"}
+            />
+          </InputWrap> */}
+          <Line />
           <LoginBtnWrap>
-            <LoginBtn onClick={clickLogin}>로그인</LoginBtn>
+            <div>
+              <LoginBtn onClick={clickLogin}>로그인</LoginBtn>
+              <KakaoLoginBtn src={kakao} onClick={clickKakao}></KakaoLoginBtn>
+            </div>
           </LoginBtnWrap>
         </LoginRight>
       </LoginCont>
     </LoginWrap>
+
   );
 };
 

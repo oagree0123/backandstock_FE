@@ -16,9 +16,9 @@ const getComment = createAction(GET_COMMENT, (comment_list) => ({ comment_list }
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
 const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_idx }));
 const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
-    comment_id,
-    comment,
-  })
+  comment_id,
+  comment,
+})
 );
 
 const initialState = {
@@ -63,7 +63,7 @@ const getCommentDB = (post_id) => {
       let response = axios.get(`http://yuseon.shop/community/comment/${post_id}`)
       dispatch(getComment(response.data.reverse()));
     }
-    catch(err) {
+    catch (err) {
       console.log("댓글 정보를 가져올 수가 없어요! :(", err);
     }
   };
@@ -75,7 +75,7 @@ const editCommentDB = (comment_id, comment) => {
 
     try {
       let response = await axios.put(`http://yuseon.shop/community/comment/${comment_id}`, {
-        content : comment
+        content: comment
       }, {
         headers: {
           Authorization: `${token}`
@@ -96,12 +96,12 @@ const deleteCommentDB = (comment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`http://yuseon.shop/community/comment/${comment_id}` , {
+      await axios.delete(`http://yuseon.shop/community/comment/${comment_id}`, {
         headers: {
           Authorization: `${token}`
         }
       });
-      
+
       const comment_idx = _comment_list.findIndex((c) => {
         return parseInt(c.commentId) === parseInt(comment_id);
       })
@@ -130,16 +130,16 @@ export default handleActions(
 
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.unshift(action.payload.comment); 
+        draft.list.unshift(action.payload.comment);
       }),
 
     [EDIT_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.list.findIndex((c) => {
-          return  parseInt(c.commentId) === parseInt(action.payload.comment_id)
+          return parseInt(c.commentId) === parseInt(action.payload.comment_id)
         })
-    
-        draft.list[idx] = {...draft.list[idx], comment: action.payload.comment};
+
+        draft.list[idx] = { ...draft.list[idx], comment: action.payload.comment };
       }),
 
     [DELETE_COMMENT]: (state, action) =>

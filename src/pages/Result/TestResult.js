@@ -8,6 +8,7 @@ import { history } from '../../redux/configStore';
 import { Btn, All, ResultWrap } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
+import { actionCreators as portActions } from "../../redux/modules/port";
 
 
 const TestResult = () => {
@@ -20,6 +21,7 @@ const TestResult = () => {
   // })
 
   const result_list = useSelector((state) => state.port.list);
+
 
   const click_save = () => {
     dispatch(portActions.savePortDB());
@@ -38,7 +40,7 @@ const TestResult = () => {
         <StockList {...result_list}></StockList>
 
         <ResultStockLine></ResultStockLine>
-        <Btn onClick={click_save}>저장하기</Btn>
+        <Btn onClick={click_save}><span>실험 결과 확인하기</span></Btn>
       </All>
     </ResultWrap>
   );

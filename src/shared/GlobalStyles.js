@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
   --font-main: 18px;
   --font-medium: 16px;
   --font-small: 14px;
+  --font-result-small:10px
 
   --line-header: 1.17;
   --line-title: 1.18;
