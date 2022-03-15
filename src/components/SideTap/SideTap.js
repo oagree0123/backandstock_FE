@@ -27,7 +27,7 @@ const SideTap = (props) => {
       setPortfClicked(false);
       setCommuClicked(true);
     }
-    else if(location === "/MyPage") {
+    else if(location === "/mypage") {
       setLabClicked(false);
       setPortfClicked(true);
       setCommuClicked(false);
@@ -109,10 +109,14 @@ const SideTap = (props) => {
         }
         { !portf_clicked ?
           <Tab onClick={() => {
+            if(!is_login) {
+              window.alert("로그인이 필요한 서비스입니다.")
+              return;
+            }
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/MyPage');
+            history.push('/mypage');
             window.scrollTo(0, 0);
           }}>
             <TabIcon>
@@ -127,10 +131,14 @@ const SideTap = (props) => {
             </TabContent>
           </Tab> :
           <TabClicked onClick={() => {
+            if(!is_login) {
+              window.alert("로그인이 필요한 서비스입니다.")
+              return;
+            }
             setLabClicked(false);
             setPortfClicked(true);
             setCommuClicked(false);
-            history.push('/MyPage');
+            history.push('/mypage');
             window.scrollTo(0, 0);
           }}>
             <TabIcon>

@@ -5,5 +5,15 @@ import Header from "./Header/Header";
 import PortCardList from "./PortCardList/PortCardList";
 import BarChart from "./BarChart/BarChart";
 import LineChart from "./LineChart/LineChart";
+import CompareResult from "./CompareResult/CompareResult";
 
-export { SideTap, BackTestForm, StockSearch, Header, PortCardList, BarChart, LineChart };
+export {
+  SideTap,
+  BackTestForm,
+  StockSearch,
+  Header,
+  PortCardList,
+  BarChart,
+  LineChart,
+  CompareResult,
+};

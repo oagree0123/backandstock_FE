@@ -4,13 +4,15 @@ import { LineChartWrap } from "./style";
 
 const LineChart = (props) => {
 
-  const curveOptions = ['linear', 'monotoneX', 'step', 'stepBefore', 'stepAfter']
+  const { margin, width, height } = props;
 
   return (
     <LineChartWrap>
       <ResponsiveLine
         data={props.line_data}
-        margin={{ top: 32, right: 130, bottom: 64, left: 112 }}
+        width={width}
+        height={height}
+        margin={margin}
         colors={["#0075FF", "#A183F8", "#49DDCB"]}
         keys={["내 자산", "KOSPI", "KOSDAQ"]}
         xScale={{ type: "point" }}
@@ -40,7 +42,7 @@ const LineChart = (props) => {
           tickRotation: 0,
           legendOffset: -40,
           legendPosition: "middle",
-          format: (v) => `${v.toLocaleString("ko-KR")}원`,
+          format: (v) => `${v.toLocaleString("ko-KR")} 만원`,
         }}
         enableGridY={false}
         pointSize={6}
@@ -107,5 +109,17 @@ const LineChart = (props) => {
     </LineChartWrap>
   );
 };
+
+LineChart.defaultProps = {
+  width: 880,
+  height: 300,
+  margin : {
+    top: 32, 
+    right: 120, 
+    bottom: 64, 
+    left: 100
+  },
+  line_data: [],
+}
 
 export default LineChart;

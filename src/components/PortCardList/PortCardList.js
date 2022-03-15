@@ -4,7 +4,7 @@ import PortCard from "../PortCard/PortCard";
 import { PortCardListWrap, ChartWrap, ChartBtnWrap, CompareBtn, DeleteBtn } from "./style";
 
 const PortCardList = (props) => {
-  const port_list = useSelector((state) => state.port.port_list);
+  const { port_list } = props;
 
   return (
     <PortCardListWrap>

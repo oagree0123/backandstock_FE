@@ -15,7 +15,7 @@ const MonthPicker = (props) => {
 
   const [is_open, setIsOpen] = useState(false);
   const [year, setYear] = useState(props.type === "start" ? 2019 : 2022);
-  const [month, setMonth] = useState(1);
+  const [month, setMonth] = useState(props.type === "start" ? 3 : 1);
   const [clicked_date, setClickedDate] = useState(props.type === "start" ? 2019 : 2022);
 
   const months = [
@@ -96,7 +96,18 @@ const MonthPicker = (props) => {
                   );
                 }
                 else {
-                  if(parseInt(today_year) === year && parseInt(today_month) <= i){
+                  if(parseInt(today_year) === year && parseInt(today_month) <= i + 1){
+                    return (
+                      <MonthDisabledBtn 
+                        key={i} 
+                      >
+                        <BtnInner>
+                          {m}
+                        </BtnInner>
+                      </MonthDisabledBtn>
+                    );
+                  }
+                  else if( year === 2019 && i < 2 ) {
                     return (
                       <MonthDisabledBtn 
                         key={i} 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { BarChart } from "../../components";
+import { BarChart, CompareResult } from "../../components";
 import PortCardList from "../../components/PortCardList/PortCardList";
 import { actionCreators as portActions } from '../../redux/modules/port';
 
@@ -12,15 +12,24 @@ const Mypage = () => {
 
   const user = useSelector(state => state.user.user_info);
   const port_list = useSelector(state => state.port.port_list);
-
-  const [check_compare, setCheckCompare] = useState(false);
+  const compare_list = useSelector(state => state.port.compare_list);
+  const compare_item = useSelector(state => state.port.compare_item);
 
   const click_compare = () => {
-
+    dispatch(portActions.getCompareDB());
   }
 
   const click_delete = () => {
+    if(compare_list.length >= 2) {
+      window.alert("하나의 실험만 선택해주세요!");
+      return;
+    }
 
+    if(window.confirm("정말 삭제하시겠습니까?")) {
+      compare_list.map(c => {
+        dispatch(portActions.deletePortDB(c));
+      })
+    }
   }
 
   useEffect(() => {
@@ -40,7 +49,6 @@ const Mypage = () => {
         <CompareBtn
           onClick={() => {
             click_compare()
-            setCheckCompare(true);
           }}
         >
           비교하기
@@ -51,14 +59,11 @@ const Mypage = () => {
           삭제하기
         </DeleteBtn>
       </ChartBtnWrap>
-      <PortCardList />
+      <PortCardList port_list={port_list} />
       
       <ChartTitle>자산 비교 결과</ChartTitle>
       <ChartWrap>
-        {!check_compare ?
-          null :
-          <BarChart port_list={port_list} />
-        }
+        <CompareResult  port_list={compare_item} /> 
       </ChartWrap>
 
       

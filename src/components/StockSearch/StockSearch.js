@@ -30,8 +30,16 @@ const StockSearch = () => {
   const [search_list, setSearchList] = useState([]);
 
   const onChangeRatio = (e) => {
-    if(e.target.value > 100) {
-      window.alert("100이하의 정수를 입력해주세요.")
+    const num_reg = /\d/;
+
+    if (!num_reg.test(e.target.value) && e.target.value !== "") {
+      e.target.value = "";
+      window.alert("숫자만 입력해주세요.");
+      return;
+    }
+
+    if (e.target.value > 100) {
+      window.alert("100이하의 정수를 입력해주세요.");
       e.target.value = ratio;
       return;
     }
@@ -42,24 +50,25 @@ const StockSearch = () => {
       e.target.value === ""
     ) {
       setRatio(e.target.value);
-    }
-    else {
+    } else {
       window.alert("정수의 수를 입력해주세요.");
     }
   };
 
   const clickAddStock = () => {
-    if(ratio === "") {
+    if (ratio === "") {
       window.alert("비율을 입력해주세요.");
       return;
     }
-    if(stock_name === "" || search_list === "") {
+    if (stock_name === "" || search_list === "") {
       window.alert("종목을 선택해주세요.");
       return;
     }
 
+    setStockSearch("");
+    setRatio("");
     dispatch(testformActions.setStock(ratio, stock_name, stock_code));
-  }
+  };
 
   const searchStock = async (search_name) => {
     if (Number(search_name)) {
@@ -88,8 +97,9 @@ const StockSearch = () => {
         <RateWrap>
           <StockRate
             placeholder="비율"
-            type="number"
+            type="text"
             onChange={onChangeRatio}
+            value={ratio}
           ></StockRate>
           <Rate>%</Rate>
         </RateWrap>
@@ -133,11 +143,7 @@ const StockSearch = () => {
               </PreviewListWrap>
             )}
           </SearchWrap>
-          <SearchBtn
-            onClick={clickAddStock}
-          >
-            추가
-          </SearchBtn>
+          <SearchBtn onClick={clickAddStock}>추가</SearchBtn>
         </SearchStock>
       </SearchRight>
     </StockWrap>

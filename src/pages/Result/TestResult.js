@@ -3,20 +3,22 @@ import TopInfo from "../../components/Result/TopInfo";
 import ResultLine from "../../components/Chart/ResultLine";
 import ResultChart from "../../components/Chart/ResultChart";
 import StockList from "../../components/Result/StockList";
+import { LineChart, BarChart } from "../../components";
 
 import { history } from "../../redux/configStore";
-import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap } from "./style";
+import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap, ResultHeader } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
-import LineChart from "../../components/LineChart/LineChart";
-import BarChart from "../../components/BarChart/BarChart";
+
 
 const TestResult = () => {
   const dispatch = useDispatch();
   
   const [chart_min, setChartMin] = useState(0);
   
+  const is_login = useSelector(state => state.user.is_login);
+  const user = useSelector(state => state.user.user_info);
   const result_list = useSelector((state) => state.port.list);
   
   const click_save = () => {
@@ -66,7 +68,7 @@ const TestResult = () => {
   monthYieldMoney.map((m, i) => {
     let xy = {
       x: months[i].substring(2),
-      y: parseInt(m),
+      y: parseInt(m / 10000),
     };
     data[0].data.push(xy);
   });
@@ -74,7 +76,7 @@ const TestResult = () => {
   kospiYieldMoney.map((m, i) => {
     let xy = {
       x: months[i].substring(2),
-      y: parseInt(m),
+      y: parseInt(m / 10000),
     };
     data[1].data.push(xy);
   });
@@ -82,7 +84,7 @@ const TestResult = () => {
   kosdaqYieldMoney.map((m, i) => {
     let xy = {
       x: months[i].substring(2),
-      y: parseInt(m),
+      y: parseInt(m / 10000),
     };
     data[2].data.push(xy);
   });
@@ -110,9 +112,27 @@ const TestResult = () => {
   return (
     <ResultWrap>
       <All>
+        {is_login ?
+          <ResultHeader>
+            {user.nickname} 님의 <br />
+            실험 결과입니다!
+          </ResultHeader> :
+          <ResultHeader>
+            방문자 님의 <br />
+            실험 결과입니다!
+          </ResultHeader>
+        }
         <TopInfo></TopInfo>
         <LineChartWrap>
-          <LineChart line_data={data} />
+          <LineChart 
+            margin={{
+              top: 32, 
+              right: 120, 
+              bottom: 64, 
+              left: 100
+            }}
+            line_data={data} 
+          />
         </LineChartWrap>
         <BarChartWrap>
           <BarChart 
@@ -120,24 +140,21 @@ const TestResult = () => {
             height={300}
             margin={{
               top: 32, 
-              right: 130, 
+              right: 120, 
               bottom: 64, 
-              left: 112
+              left: 100
             }}
             translateX={120}
             translateY={38}
             bar_data={bar_data} 
+            tick_font={12}
           />
         </BarChartWrap>
-        {/* <span>수익률</span>
-        <ResultChart></ResultChart>
-        <span>수익금</span>
-        <ResultLine></ResultLine>
-
-        
-        <ResultStockLine></ResultStockLine>*/}
         <StockList {...result_list}></StockList>
-        <Btn onClick={click_save}>저장하기</Btn> 
+        {is_login ?
+          <Btn onClick={click_save}>저장하기</Btn> :
+          <Btn onClick={click_save} disabled>저장하기</Btn> 
+        }
       </All>
     </ResultWrap>
   );

@@ -7,6 +7,13 @@ export const ResultWrap = styled.div`
   background-color: var(--secondary-color);
 `;
 
+export const ResultHeader = styled.h1`
+  margin-bottom: 32px;
+  font-size: 32px;
+  line-height: var(--line-header);
+  font-weight: 600;
+`;
+
 export const LineChartWrap = styled.div`
   margin-bottom: 20px;
   width: 880px;
@@ -39,4 +46,9 @@ export const Btn = styled.button`
   background-color: #367bf5;
   outline: none;
   border: none;
+
+  &:disabled {
+    background-color: #D9DFE6;
+    cursor: default;
+  }
 `;

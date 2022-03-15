@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const PortCardListWrap = styled.div`
-  margin-bottom: 60px;
   width: 880px;
   height: 508px;
 `;
