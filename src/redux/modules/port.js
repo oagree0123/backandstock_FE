@@ -115,7 +115,7 @@ const savePortDB = () => {
       });
 
       const result = getState().port.list;
-      dispatch(savePortOne(port_id.data, result));
+      dispatch(savePortOne(port_id.data.portId, result));
     }
     catch (err) {
       console.log(err);
@@ -252,7 +252,7 @@ export default handleActions(
     [SAVE_PORTONE]: (state, action) =>
       produce(state, (draft) => {
         draft.port_list.push({
-          portId: action.payload.port_id,
+          portId: action.payload.port_id.port_id,
           portBacktestingCal: action.payload.result,
         });
       }),
