@@ -10,6 +10,7 @@ import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap, ResultHeader } from 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
+import { actionCreators as portActions } from "../../redux/modules/port";
 
 
 const TestResult = () => {
@@ -20,7 +21,7 @@ const TestResult = () => {
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
   const result_list = useSelector((state) => state.port.list);
-  
+
   const click_save = () => {
     dispatch(portActions.savePortDB());
     history.push("/");
@@ -151,9 +152,10 @@ const TestResult = () => {
           />
         </BarChartWrap>
         <StockList {...result_list}></StockList>
+        <ResultStockLine></ResultStockLine>
         {is_login ?
-          <Btn onClick={click_save}>저장하기</Btn> :
-          <Btn onClick={click_save} disabled>저장하기</Btn> 
+          <Btn onClick={click_save}>실험 결과 저장하기</Btn> :
+          <Btn onClick={click_save} disabled>실험 결과 저장하기</Btn> 
         }
       </All>
     </ResultWrap>

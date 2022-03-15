@@ -305,7 +305,6 @@ export const StockWrap = styled.div`
   border-radius: 10px;
 `;
 
-
 export const ListTop = styled.div`
   border-bottom: 1px solid #bcdbff;
   padding-bottom: 10px;
@@ -391,4 +390,3 @@ export const InfoText = styled.p`
   font-weight: 800;
   line-height: var(--line-header);
 `;
-

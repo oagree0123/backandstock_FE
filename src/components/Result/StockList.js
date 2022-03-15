@@ -5,38 +5,29 @@ import {
   Lists,
   ListTitle,
   CardList,
-  StockTitleWrap,
   ListWrap,
-  Empty
+  Empty,
+  EmptyList
 } from "../Result/style";
+import { useSelector } from "react-redux";
 
 const StockList = (props) => {
   const stock_name = props.stockNames;
   const stock_codes = props.stockCodes;
   const stock_yieldmoneys = props.stockYieldMoneys;
   const seedmoney = props.seedMoney;
-  console.log(stock_name);
   const count = 5 - stock_name.length
-  console.log(count);
-  const test = [
 
-    <CardList>
-      <StockTitleWrap>
-        <span>종목이 없습니다.</span>
-      </StockTitleWrap>
-    </CardList>
+  const test = useSelector((state) => state.testform)
+  console.log(test);
 
-  ]
-
-
+  const stock_ratio = test.ratioList
+  const init_money = test.init_money
 
   return (
     <StockWrap>
       <ListTitle>종목별 최종 수익금</ListTitle>
-
       <Lists>
-
-
         {(stock_name?.map((a, i) => {
           return (
             <StockItem
@@ -46,17 +37,25 @@ const StockList = (props) => {
               stock_yieldmoneys={stock_yieldmoneys[i]}
               stock_num={i}
               seedmoney={seedmoney}
+              stock_ratio={stock_ratio[i]}
+              init_money={init_money}
             />
           )
         }))}
 
-        <ListWrap>
-          <CardList>
-            <Empty>
-              종목이 없습니다.
-            </Empty>
-          </CardList>
-        </ListWrap>
+        {[...Array(count)].map((n, index) => {
+          return (
+            <ListWrap>
+              <EmptyList>
+                <Empty>
+                  <span> 종목이</span>
+                  <span>없습니다.</span>
+                </Empty>
+              </EmptyList>
+            </ListWrap>
+          )
+        })}
+
       </Lists>
 
     </StockWrap>

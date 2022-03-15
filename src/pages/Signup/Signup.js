@@ -1,8 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { TextWrap, InputLabel, InputWrap, LoginSpan, SignupBtn, SignupBtnWrap, SignupInput, SignupLeft, SignupRight, SignupText, SignupTitle, SignupWrap, TitleWrap, SignupCont, ErrorText } from "./style";
+import {
+  TextWrap,
+  InputLabel,
+  InputWrap,
+  LoginSpan,
+  SignupBtn,
+  SignupBtnWrap,
+  SignupInput,
+  SignupLeft,
+  SignupRight,
+  SignupText,
+  SignupTitle,
+  SignupWrap,
+  TitleWrap,
+  SignupCont,
+  ErrorText
+} from "./style";
+
+import {
+  LoginLeft,
+  LoginText,
+  LeftLogo,
+  LeftTitle
+
+} from "../../pages/Login/style.js"
 
 import { actionCreators as userActions } from "../../redux/modules/user";
+import { history } from '../../redux/configStore';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -13,6 +38,9 @@ const Signup = () => {
   const [pwd, setPwd] = useState("");
   const [pwd_check, setPwdCheck] = useState("");
 
+  //중복 체크 
+  const [nick_doubleChk, setnick_doubleChk] = useState("");
+
   // 입력 오류 확인
   const [is_email, setIsEmail] = useState(false);
   const [is_nick, setIsNick] = useState(false);
@@ -20,14 +48,14 @@ const Signup = () => {
   const [is_pwdcheck, setIsPwdCheck] = useState(false);
 
   const clickSignup = () => {
-    if(user_name === "" || nickname === "" || pwd === "" || pwd_check === "") {
+    if (user_name === "" || nickname === "" || pwd === "" || pwd_check === "") {
       window.alert("빈칸을 모두 입력해주세요.");
-      return ;
+      return;
     }
 
-    if(!is_email || !is_nick || !is_pwd || !is_pwdcheck) {
+    if (!is_email || !is_nick || !is_pwd || !is_pwdcheck) {
       window.alert("입력을 다시 확인해주세요");
-      return ;
+      return;
     }
 
     const user_data = {
@@ -96,46 +124,52 @@ const Signup = () => {
   return (
     <SignupWrap>
       <SignupCont>
-        <SignupLeft>
-        </SignupLeft>
+        <LoginLeft>
+          <LeftTitle onClick={() => {
+            history.push('/')
+          }}>BACK-STOCK</LeftTitle>
+          <LoginText>
+            <LeftLogo></LeftLogo>
+            <span>백스탁에서 나의<br />
+              자산을 다양하게<br />
+              실험해 보세요</span>
+          </LoginText>
+        </LoginLeft>
 
         <SignupRight>
           <TitleWrap>
             <SignupTitle>회원가입</SignupTitle>
-            <TextWrap>
-              <SignupText>이미 회원이신가요?</SignupText>
-              <LoginSpan>로그인</LoginSpan>
-            </TextWrap>
           </TitleWrap>
           <InputWrap>
+            <InputLabel>닉네임</InputLabel>
+            <SignupInput
+              type="text"
+              onChange={onChangeNickname}
+            />
+            {nickname.length > 0 ?
+              (nickname.length >= 2 && nickname.length <= 6) ?
+                !is_nick && (
+                  <ErrorText>닉네임에 특수문자는 입력하실 수 없습니다.</ErrorText>
+                ) :
+                <ErrorText>닉네임은 2~6자를 입력하세요.</ErrorText> :
+              null
+            }
+          </InputWrap>
+          <InputWrap>
             <InputLabel>이메일</InputLabel>
-            <SignupInput 
-              type="text" 
+            <SignupInput
+              type="text"
               onChange={onChangeEmail}
             />
             {user_name.length > 0 && !is_email && (
               <ErrorText>올바른 이메일 형식을 입력해주세요.</ErrorText>
             )}
           </InputWrap>
-          <InputWrap>
-            <InputLabel>닉네임</InputLabel>
-            <SignupInput 
-              type="text"
-              onChange={onChangeNickname}
-            />
-            {nickname.length > 0 ?
-              (nickname.length >= 2 && nickname.length <= 6) ?
-              !is_nick && (
-                <ErrorText>닉네임에 특수문자는 입력하실 수 없습니다.</ErrorText>
-              ) :
-              <ErrorText>닉네임은 2~6자를 입력하세요.</ErrorText> :
-              null
-            }
-          </InputWrap>
+
           <InputWrap>
             <InputLabel>비밀번호</InputLabel>
-            <SignupInput 
-              type="password" 
+            <SignupInput
+              type="password"
               onChange={onChangePwd}
             />
             {pwd.length > 0 && !is_pwd && (
@@ -144,14 +178,14 @@ const Signup = () => {
           </InputWrap>
           <InputWrap>
             <InputLabel>비밀번호 확인</InputLabel>
-            <SignupInput 
+            <SignupInput
               type="password"
               onKeyPress={(e) => {
-                  if(e.key === "Enter") {
-                    clickSignup();
-                  }
+                if (e.key === "Enter") {
+                  clickSignup();
                 }
-              } 
+              }
+              }
               onChange={onChangePwdCheck}
             />
             {pwd_check.length > 0 && !is_pwdcheck && (
@@ -159,11 +193,13 @@ const Signup = () => {
             )}
           </InputWrap>
           <SignupBtnWrap>
-            <SignupBtn  
-              onClick={clickSignup}
-            >
-              회원가입
-            </SignupBtn>
+            <div>
+              <SignupBtn
+                onClick={clickSignup}
+              >
+                회원가입
+              </SignupBtn>
+            </div>
           </SignupBtnWrap>
         </SignupRight>
       </SignupCont>
