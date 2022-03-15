@@ -5,7 +5,7 @@ import { BarChart, CompareResult } from "../../components";
 import PortCardList from "../../components/PortCardList/PortCardList";
 import { actionCreators as portActions } from '../../redux/modules/port';
 
-import { MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageTitle, RankWrap, BestRankWrap, WorstRankWrap, WrapLeft, WrapRight, FirstWrap, RankTitle, RankCont, RankRatio, RankMoney, FirstRank, FirstTitle, FirstRatio, FirstMoney, OtherWrap, OtherRank, OtherRatio, OtherMoney, OtherCont, MypageHead, ChartBtnWrap, CompareBtn, DeleteBtn } from "./style";
+import { MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageTitle, RankWrap, BestRankWrap, WorstRankWrap, WrapLeft, WrapRight, FirstWrap, RankTitle, RankCont, RankRatio, RankMoney, FirstRank, FirstTitle, FirstRatio, FirstMoney, OtherWrap, OtherRank, OtherRatio, OtherMoney, OtherCont, MypageHead, ChartBtnWrap, CompareBtn, DeleteBtn, NoneChartWrap, NoneChartText } from "./style";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -15,13 +15,25 @@ const Mypage = () => {
   const compare_list = useSelector(state => state.port.compare_list);
   const compare_item = useSelector(state => state.port.compare_item);
 
+  const [check_compare, setCheckCompare] = useState(false);
+
   const click_compare = () => {
+    if(compare_list < 2) {
+      window.alert("실험을 2개 이상 선택해주세요!")
+      return;
+    }
     dispatch(portActions.getCompareDB());
+    setCheckCompare(true);
   }
 
   const click_delete = () => {
     if(compare_list.length >= 2) {
       window.alert("하나의 실험만 선택해주세요!");
+      return;
+    }
+
+    if(compare_list.length < 1) {
+      window.alert("실험을 선택해주세요!");
       return;
     }
 
@@ -63,7 +75,16 @@ const Mypage = () => {
       
       <ChartTitle>자산 비교 결과</ChartTitle>
       <ChartWrap>
-        <CompareResult  port_list={compare_item} /> 
+        {check_compare ?
+          <CompareResult  port_list={compare_item} /> :
+          <NoneChartWrap>
+            <NoneChartText>
+              실험을 <br />
+              아직 비교하지<br />
+              않았습니다
+            </NoneChartText>
+          </NoneChartWrap>
+        }
       </ChartWrap>
 
       

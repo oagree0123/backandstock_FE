@@ -81,7 +81,7 @@ const getResultDB = () => {
           `http://yuseon.shop/port/result`,
           data
         );
-  
+
         dispatch(getResult(test_result.data));
         history.push('/result')
       }
@@ -89,7 +89,6 @@ const getResultDB = () => {
         console.log(err);
       }
     }
-
   };
 };
 
@@ -118,7 +117,7 @@ const savePortDB = () => {
       dispatch(savePortOne(port_id.data.portId, result));
     }
     catch (err) {
-      console.log(err);
+      window.alert(err.response.data.errorMessage);
     }
   };
 };
@@ -152,6 +151,7 @@ const getPortOneDB = (port_id) => {
       })
 
       dispatch(getPortOne(response.data));
+      history.push('/detail');
     }
     catch (err) {
       console.log(err);
@@ -213,7 +213,6 @@ const getCompareDB = () => {
     const port_list = getState().port.port_list
 
     if (compare_list.length < 2) {
-      window.alert("2개 이상의 실험을 선택해주세요!");
       return;
     }
 
@@ -251,8 +250,11 @@ export default handleActions(
       }),
     [SAVE_PORTONE]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.port_id);
+
         draft.port_list.push({
-          portId: action.payload.port_id.port_id,
+          myBest: false,
+          portId: action.payload.port_id,
           portBacktestingCal: action.payload.result,
         });
       }),

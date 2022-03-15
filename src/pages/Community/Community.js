@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import styled from 'styled-components'
-// import Chart from '../test/Chart';
-// import Bar from '../test/Bar'
 import { useDispatch } from 'react-redux';
+import { actionCreators as communityActions } from "../../redux/modules/community";
 
 import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn } from "./style";
 
@@ -25,18 +23,9 @@ const Community = () => {
     setCommentText(e.target.value);
   };
 
-  // const addcomment = () => {
-  //     dispatch(
-  //       commentActions.addCommentFB(
-  //         userId,
-  //         productId,
-  //         comment_title,
-  //         comment_text,
-  //         fileInput.current.files[0]
-  //       )
-  //     );
-  //   };
-
+  useEffect(() => {
+    dispatch(communityActions.getPostDB());
+  })
 
   return (
     <CommunityWrap>

@@ -46,10 +46,11 @@ import dollar from "../../assets/images/page_result/dollar.svg";
 // import mini_up_1 from "../../assets/images/page_result/mini_up_1.svg"
 // import mini_up_2 from "../../assets/images/page_result/mini_up_2.svg"
 
-const TopInfo = () => {
+const TopInfo = (props) => {
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
-  const result_list = useSelector((state) => state.port.list);
+  //const result_list = useSelector((state) => state.port.list);
+  const result_list = props.port_list;
 
   const finalMoney = Math.floor(result_list.finalMoney / 10000);
   const finalYield = Math.floor(result_list.finalYield);
@@ -136,7 +137,7 @@ const TopInfo = () => {
               {bestMoney.toLocaleString()} 만원{" "}
               { plus > 0 ?
                 <span>( +{plus.toLocaleString()} 만원)</span>:
-                <span>( -{plus.toLocaleString()} 만원)</span>
+                <span>( {plus.toLocaleString()} 만원)</span>
               }
             </Price>
           </IconWrap>
@@ -156,7 +157,7 @@ const TopInfo = () => {
               {worstMoney.toLocaleString()} 만원{" "}
               { minus > 0 ?
                 <p>( +{minus.toLocaleString()} 만원)</p> :
-                <p>( -{minus.toLocaleString()} 만원)</p> 
+                <p>( {minus.toLocaleString()} 만원)</p> 
               }
             </Price>
           </IconWrap>

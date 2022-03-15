@@ -78,7 +78,12 @@ const BackTestForm = () => {
       <BackTestList />
       <BackTextBtn
         onClick={() => {
-          dispatch(portActions.getResultDB());
+          try {
+            dispatch(portActions.getResultDB());
+          }
+          catch(err) {
+            console.log(err);
+          }
         }}
       >
         실험 시작하기

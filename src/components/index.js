@@ -6,6 +6,7 @@ import PortCardList from "./PortCardList/PortCardList";
 import BarChart from "./BarChart/BarChart";
 import LineChart from "./LineChart/LineChart";
 import CompareResult from "./CompareResult/CompareResult";
+import TopInfo from './Result/TopInfo';
 
 export {
   SideTap,
@@ -16,4 +17,5 @@ export {
   BarChart,
   LineChart,
   CompareResult,
+  TopInfo,
 };

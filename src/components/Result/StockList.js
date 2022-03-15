@@ -45,7 +45,7 @@ const StockList = (props) => {
 
         {[...Array(count)].map((n, index) => {
           return (
-            <ListWrap>
+            <ListWrap key={index}>
               <EmptyList>
                 <Empty>
                   <span> 종목이</span>

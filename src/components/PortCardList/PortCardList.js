@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import PortCard from "../PortCard/PortCard";
-import { PortCardListWrap, ChartWrap, ChartBtnWrap, CompareBtn, DeleteBtn } from "./style";
+import { PortCardListWrap, ChartWrap, NoneCard, NoneText } from "./style";
 
 const PortCardList = (props) => {
   const { port_list } = props;
@@ -17,6 +17,18 @@ const PortCardList = (props) => {
               port_data={p}
               final_money={Math.floor(p.portBacktestingCal.finalMoney / 10000)}
             />
+          );
+        })}
+        {port_list.length !== 3 &&
+          [...Array(3-port_list.length)].map((a, i) => {
+            return (
+              <NoneCard key={i}>
+                <NoneText>
+                  저장한 <br />
+                  실험결과가 <br />
+                  업습니다
+                </NoneText>
+              </NoneCard>
           );
         })}
       </ChartWrap>

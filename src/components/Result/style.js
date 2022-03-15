@@ -89,6 +89,8 @@ export const WorstYear = styled.span`
 
 
 export const MonthWrap = styled.div`
+  margin-top: 6px;
+  margin-bottom: 4px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -130,20 +132,20 @@ export const Price = styled.span`
   justify-content: flex-end;
   align-items: center;
   color: #000000;
-  font-size: var(--font-header);
+  font-size: 28px;
   font-weight: 700;
 
   & span {
     margin-left: 8px;
     color: #ff0000;
-    font-size: var(--font-header);
+    font-size: 28px;
     font-weight: 700;
   }
 
   & p {
     margin-left: 8px;
     color: #0075ff;
-    font-size: var(--font-header);
+    font-size: 28px;
     font-weight: 700;
   }
 `;
@@ -194,7 +196,7 @@ export const PlusYieldMoney = styled.div`
 
 export const MinusYieldIcon = styled.img`
   position: absolute;
-  top: 40px;
+  top: 0px;
   right: 0px;
   width: 144px;
   height: 208px;

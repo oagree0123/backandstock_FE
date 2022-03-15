@@ -8,8 +8,8 @@ const CompareResult = (props) => {
   const keys = [];
   const bar_data = [];
 
-  port_list[0]?.portBacktestingCal.months.map((m) => {
-    months.push(m.substring(2));
+  port_list[0]?.portBacktestingCal.months.map((m, i) => {
+    months.push(`${i+1} 개월`);
   });
 
   port_list.map((p, i) => {
@@ -27,8 +27,6 @@ const CompareResult = (props) => {
     });
     bar_data.push(_data);
   });
-
-  console.log(bar_data);
 
   return (
     <>
@@ -50,7 +48,7 @@ const CompareResult = (props) => {
           legend_fsize={12}
           legend_space={-2}
           legend_anchor="top-right"
-          tick_font={14}
+          tick_font={12}
         />
       )}
     </>

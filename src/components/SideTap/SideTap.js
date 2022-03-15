@@ -32,7 +32,7 @@ const SideTap = (props) => {
       setPortfClicked(true);
       setCommuClicked(false);
     }
-    else {
+    else if(location === "/"){
       setLabClicked(true);
       setPortfClicked(false);
       setCommuClicked(false);

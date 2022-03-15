@@ -7,13 +7,6 @@ export const ResultWrap = styled.div`
   background-color: var(--secondary-color);
 `;
 
-export const ResultHeader = styled.h1`
-  margin-bottom: 32px;
-  font-size: 32px;
-  line-height: var(--line-header);
-  font-weight: 600;
-`;
-
 export const LineChartWrap = styled.div`
   margin-bottom: 20px;
   width: 880px;

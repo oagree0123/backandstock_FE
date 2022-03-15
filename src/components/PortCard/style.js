@@ -26,6 +26,9 @@ export const CardTitle = styled.h3`
 `;
 
 export const MyBestBtn = styled.button`
+  position: absolute;
+  top: 215px;
+  right: 0;
   width: 82px;
   height: 28px;
   font-size: 12px;
@@ -37,6 +40,9 @@ export const MyBestBtn = styled.button`
 `;
 
 export const UnMyBestBtn = styled.button`
+  position: absolute;
+  top: 215px;
+  right: 0;
   width: 82px;
   height: 28px;
   font-size: 12px;
@@ -104,7 +110,7 @@ export const CardMoney = styled.div`
   padding-left: 16px;
   position: absolute;
   left: -2px;
-  bottom: 0;
+  bottom: -4px;
   display: flex;
   align-items: center;
   width: 280px;

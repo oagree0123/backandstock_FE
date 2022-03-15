@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import moment from "moment";
 import axios from "axios";
+import { getToken } from '../../shared/token';
 
 // actions
 const GET_POST = "GET_POST";
@@ -22,7 +23,12 @@ const initialState = {
 const getPostDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
-      let response = await axios.get(`http://yuseon.shop/community`)
+      let response = await axios.get(`http://yuseon.shop/community`, {
+        params: {
+          page: 1,
+          size: 10,
+        }
+      })
 
       dispatch(getPost(response.data));
     }

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import BackTestForm from '../../components/BackTestForm/BackTestForm';
+import { actionCreators as testformActions } from '../../redux/modules/testform';
 import { BackTestWrap, InfoTitle, InfoWrap, InfoContLeft, InfoContRight, InfoCont, InfoCircle } from './style';
 
 const BackTest = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(testformActions.setInit());
+  }, []);
+
   return (
     <BackTestWrap>
       <InfoTitle>
