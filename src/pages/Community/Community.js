@@ -11,9 +11,9 @@ import { CommunityList, Slide } from '../../components';
 const Community = () => {
   const dispatch = useDispatch();
 
-  // const top_list = useSelector((state) => state.community.list)
   // console.log(top_list);
-
+  
+  const top_list = useSelector((state) => state.community.top_five_list)
   const community_list = useSelector(state => state.community.list);
   
   useEffect(() => {

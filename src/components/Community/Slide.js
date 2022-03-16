@@ -8,8 +8,8 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick-theme.css";
 import CommunityTop from "./CommunityTop";
 
-const Slide = () => {
-    const top_list = useSelector((state) => state.community.list)
+const Slide = (props) => {
+    const top_list = useSelector((state) => state.community.top_five_list)
     console.log(top_list);
     // const num = top_list[0].stockNames
 

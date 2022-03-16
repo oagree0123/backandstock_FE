@@ -12,7 +12,6 @@ const UNLIKE_POST = "UNLIKE_POST";
 
 // action creators
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
-
 const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, () => ({}));
 const unlikePost = createAction(UNLIKE_POST, () => ({}));
@@ -20,6 +19,7 @@ const unlikePost = createAction(UNLIKE_POST, () => ({}));
 // initialState
 const initialState = {
   list: [],
+  top_five_list: [],
 };
 
 // middlewares
@@ -45,6 +45,8 @@ const getTopFiveDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
       let response = await axios.get(`http://yuseon.shop/community/topFive`)
+
+      console.log(response.data);
       dispatch(getTopFive(response.data));
     }
     catch (err) {
@@ -99,10 +101,7 @@ export default handleActions(
 
     [GET_TOPFIVE]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.Top_list;
-
-
-
+        draft.top_five_list.push(...action.payload.Top_list);
       }),
 
     [LIKE_POST]: (state, action) =>
