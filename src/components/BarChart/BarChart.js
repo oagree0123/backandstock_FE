@@ -18,8 +18,6 @@ const BarChart = (props) => {
     legend_anchor,
   } = props;
 
-  console.log(bar_data)
-
   return (
     <BarChartWrap>
       <ResponsiveBar

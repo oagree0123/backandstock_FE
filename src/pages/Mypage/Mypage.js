@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { BarChart, CompareResult } from "../../components";
+import { CompareRank, CompareResult } from "../../components";
 import PortCardList from "../../components/PortCardList/PortCardList";
 import { actionCreators as portActions } from '../../redux/modules/port';
 
-import { MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageTitle, RankWrap, BestRankWrap, WorstRankWrap, WrapLeft, WrapRight, FirstWrap, RankTitle, RankCont, RankRatio, RankMoney, FirstRank, FirstTitle, FirstRatio, FirstMoney, OtherWrap, OtherRank, OtherRatio, OtherMoney, OtherCont, MypageHead, ChartBtnWrap, CompareBtn, DeleteBtn, NoneChartWrap, NoneChartText } from "./style";
+import { MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageHead, ChartBtnWrap, CompareBtn, DeleteBtn, NoneChartWrap, NoneChartText } from "./style";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ const Mypage = () => {
   const port_list = useSelector(state => state.port.port_list);
   const compare_list = useSelector(state => state.port.compare_list);
   const compare_item = useSelector(state => state.port.compare_item);
+  const compare_data = useSelector(state => state.port.compare_data);
 
   const [check_compare, setCheckCompare] = useState(false);
 
@@ -49,6 +50,7 @@ const Mypage = () => {
       return;
     }
     dispatch(portActions.getMyPortDB(user.user_id));
+    dispatch(portActions.setInitCompare());
   }, [])
 
   return (
@@ -87,70 +89,17 @@ const Mypage = () => {
         }
       </ChartWrap>
 
-      
-      <MypageInfoWrap>
-        <MypageTitle>최종 수익률 순위</MypageTitle>
-        <RankWrap>
-          <RankCont>
-            <RankTitle>1위. 자산 실험1</RankTitle>
-            <RankRatio>+50%</RankRatio>
-            <RankMoney>1000000원</RankMoney>
-          </RankCont>
-          <RankCont>
-            <RankTitle>2위. 자산 실험2</RankTitle>
-            <RankRatio>+50%</RankRatio>
-            <RankMoney>1000000원</RankMoney>
-          </RankCont>
-          <RankCont>
-            <RankTitle>3위. 자산 실험3</RankTitle>
-            <RankRatio>+50%</RankRatio>
-            <RankMoney>1000000원</RankMoney>
-          </RankCont>
-        </RankWrap>
-        <MypageTitle>최고 수익률 순위</MypageTitle>
-        <BestRankWrap>
-          <WrapLeft>
-            <FirstWrap>
-              <FirstRank>1위</FirstRank>
-              <FirstTitle>자산 실험1</FirstTitle>
-              <FirstRatio>+50%</FirstRatio>
-              <FirstMoney>2,918,404.6원</FirstMoney>
-            </FirstWrap>
-          </WrapLeft>
-          <WrapRight>
-            <OtherWrap>
-              <OtherRank>2위 자산 실험 2</OtherRank>
-              <OtherCont>
-                <OtherRatio>+50%</OtherRatio>
-                <OtherMoney>2,918,404.6원</OtherMoney>
-              </OtherCont>
-            </OtherWrap>
-            <OtherWrap>
-              <OtherRank>3위 자산 실험 3</OtherRank>
-              <OtherCont>
-                <OtherRatio>+50%</OtherRatio>
-                <OtherMoney>2,918,404.6원</OtherMoney>
-              </OtherCont>
-            </OtherWrap>
-          </WrapRight>
-        </BestRankWrap>
-        <MypageTitle>최저 수익률 순위</MypageTitle>
-        <WorstRankWrap>
-          <WrapLeft>
-            <FirstWrap>
-
-            </FirstWrap>
-          </WrapLeft>
-          <WrapRight>
-            <OtherWrap>
-
-            </OtherWrap>
-            <OtherWrap>
-              
-            </OtherWrap>
-          </WrapRight>
-        </WorstRankWrap>
-      </MypageInfoWrap>
+      {
+        check_compare ?
+          compare_data &&
+          <MypageInfoWrap>
+            <CompareRank 
+              compare_item={compare_item}
+              compare_data={compare_data} 
+            />
+          </MypageInfoWrap> :
+        null
+      }
     </MypageWrap>
   );
 };

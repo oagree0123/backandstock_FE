@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import BarChart from "../BarChart/BarChart";
+import CompareInfo from "../CompareInfo/CompareInfo";
 
 const CompareResult = (props) => {
   const { port_list } = props;
@@ -51,6 +52,8 @@ const CompareResult = (props) => {
           tick_font={12}
         />
       )}
+
+      <CompareInfo />
     </>
   );
 };
