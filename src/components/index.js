@@ -8,6 +8,7 @@ import LineChart from "./LineChart/LineChart";
 import CompareResult from "./CompareResult/CompareResult";
 import TopInfo from './Result/TopInfo';
 import CommentList from "./CommentList/CommentList";
+import DetailResult from "./DetailResult/DetailResult";
 
 export {
   SideTap,
@@ -20,4 +21,5 @@ export {
   CompareResult,
   TopInfo,
   CommentList,
+  DetailResult,
 };

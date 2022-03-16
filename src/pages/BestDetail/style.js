@@ -11,27 +11,6 @@ export const ContWrap = styled.div`
   background-color: var(--secondary-color);
 `;
 
-export const InfoWrap = styled.div`
-  width: 880px;
-  background-color: #ecf5ff;
-`;
-
-export const LineChartWrap = styled.div`
-  margin-bottom: 20px;
-  width: 880px;
-  height: 300px;
-  border-radius: 10px;
-  background-color: #fff;
-`;
-
-export const BarChartWrap = styled.div`
-  margin-bottom: 20px;
-  width: 880px;
-  height: 300px;
-  border-radius: 10px;
-  background-color: #fff;
-`;
-
 export const CommentWrap = styled.div`
   width: 100%;
   padding: 44px 0px 56px 56px;
@@ -61,7 +40,7 @@ export const UserImg = styled.div`
 `;
 
 export const CommnetInput = styled.input`
-  margin-right: 18px;
+  margin-right: 12px;
   width: 702px;
   height: 40px;
   border: 1px solid #9e9e9e;
@@ -82,7 +61,6 @@ export const CommentBtn = styled.button`
 `;
 
 export const CancleBtn = styled.button`
-  margin-right: 4px;
   width: 75px;
   height: 35px;
   font-size: var(--font-medium);

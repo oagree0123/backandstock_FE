@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { history } from '../../redux/configStore';
 import PortChart from "../PortChart/PortChart";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import {
@@ -30,7 +31,8 @@ const PortCard = (props) => {
   };
 
   const click_card = (port_id) => {
-    dispatch(portActions.getPortOneDB(port_id));
+    //dispatch(portActions.getPortOneDB(port_id));
+    history.push(`/detail/${port_id}`)
   };
 
   return (

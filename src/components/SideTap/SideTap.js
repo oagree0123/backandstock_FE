@@ -21,7 +21,6 @@ const SideTap = (props) => {
   const [commu_clicked, setCommuClicked] = useState(false);
 
   useEffect(() => {
-    console.log(location)
     if(location === "/community") {
       setLabClicked(false);
       setPortfClicked(false);

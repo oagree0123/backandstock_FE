@@ -142,16 +142,11 @@ const getMyPortDB = () => {
 
 const getPortOneDB = (port_id) => {
   return async function (dispatch, getState, { history }) {
-    const token = getToken("token");
     try {
-      let response = await axios.get(`http://yuseon.shop/port/details/${port_id}`, {
-        headers: {
-          Authorization: `${token}`
-        }
-      })
+      let response = await axios.get(`http://yuseon.shop/port/details/${port_id}`)
 
       dispatch(getPortOne(response.data));
-      history.push('/detail');
+      //history.push('/detail');
     }
     catch (err) {
       console.log(err);

@@ -43,8 +43,8 @@ function App(props) {
               <Route path="/community" exact component={Community} />
               <Route path="/mypage" exact component={Mypage}></Route>
               <Route path="/result" exact component={TestResult}></Route>
-              <Route path="/detail" exact component={Detail}></Route>
-              <Route path="/community/detail" exact component={BestDetail}></Route>
+              <Route path="/detail/:id" exact component={Detail}></Route>
+              <Route path="/community/detail/:id" exact component={BestDetail}></Route>
             </RouteWrap>
           </ContentWrap>
         </Switch>

@@ -1,32 +1,13 @@
-import React, { useState, useEffect } from "react";
-import ResultLine from "../../components/Chart/ResultLine";
-import ResultChart from "../../components/Chart/ResultChart";
-import StockList from "../../components/Result/StockList";
-import { LineChart, BarChart, TopInfo } from "../../components";
+import React from 'react';
+import { All, LineChartWrap, BarChartWrap } from './style';
+import BarChart from '../BarChart/BarChart';
+import LineChart from '../LineChart/LineChart';
+import TopInfo from '../Result/TopInfo';
+import StockList from '../Result/StockList';
 
-import { history } from "../../redux/configStore";
-import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap } from "./style";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as portActions } from "../../redux/modules/port";
-import ResultStockLine from "../../components/Chart/ResultStockLine";
+const DetailResult = (props) => {
 
-const TestResult = () => {
-  const dispatch = useDispatch();
-  
-  const is_login = useSelector(state => state.user.is_login);
-  const user = useSelector(state => state.user.user_info);
-  const result_list = useSelector((state) => state.port.list);
-
-  const click_save = () => {
-    dispatch(portActions.savePortDB());
-    history.push("/");
-  };
-
-  useEffect(() => {
-    if(!result_list) {
-      history.replace('/')
-    }
-  }, [])
+  const { result_list } = props;
   
   // 수익금
   const months = result_list.months;
@@ -95,22 +76,13 @@ const TestResult = () => {
     bar_data.push(xy);
   })
 
-  useEffect(() => {
-    window.addEventListener('beforeunload', (event) => {
-      event.preventDefault(); 
-    });
-
-    return () => {
-      window.removeEventListener('beforeunload', (event) => {
-        event.preventDefault(); 
-      });
-    }
-  },[])
-
   return (
-    <ResultWrap>
+    <>
       <All>
-        <TopInfo port_list={result_list} />
+        <TopInfo 
+          type={props.type}
+          port_list={result_list} 
+        />
         <LineChartWrap>
           <LineChart 
             margin={{
@@ -139,13 +111,9 @@ const TestResult = () => {
           />
         </BarChartWrap>
         <StockList {...result_list}></StockList>
-        {is_login ?
-          <Btn onClick={click_save}>실험 결과 저장하기</Btn> :
-          <Btn onClick={click_save} disabled>실험 결과 저장하기</Btn> 
-        }
       </All>
-    </ResultWrap>
+    </>
   );
 };
 
-export default TestResult;
+export default DetailResult;
