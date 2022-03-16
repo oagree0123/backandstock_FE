@@ -2,7 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import moment from "moment";
 import axios from "axios";
-import { getToken } from '../../shared/token';
+import { getToken } from "../../shared/token";
 
 // actions
 const GET_POST = "GET_POST";
@@ -10,9 +10,9 @@ const LIKE_POST = "LIKE_POST";
 const UNLIKE_POST = "UNLIKE_POST";
 
 // action creators
-const getPost= createAction(GET_POST, (post_list) => ({ post_list }));
-const likePost= createAction(LIKE_POST, () => ({  }));
-const unlikePost= createAction(UNLIKE_POST, () => ({  }));
+const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
+const likePost = createAction(LIKE_POST, () => ({}));
+const unlikePost = createAction(UNLIKE_POST, () => ({}));
 
 // initialState
 const initialState = {
@@ -27,16 +27,15 @@ const getPostDB = () => {
         params: {
           page: 1,
           size: 10,
-        }
-      })
+        },
+      });
       console.log(response.data);
       dispatch(getPost(response.data));
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
     }
-  }
-}
+  };
+};
 
 const likePostDB = (user_id, port_id, type) => {
   return async function (dispatch, getState, { history }) {
@@ -47,18 +46,16 @@ const likePostDB = (user_id, port_id, type) => {
         likes: type,
       });
 
-      if(type) {
+      if (type) {
         dispatch(likePost());
       } else {
         dispatch(unlikePost());
       }
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
     }
-  }
-}
-
+  };
+};
 
 // reducer
 export default handleActions(
@@ -67,24 +64,26 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.push(...action.payload.post_list);
         draft.list = draft.list.reduce((acc, cur) => {
-          if(acc.findIndex(a => a.communityPort.portId === cur.communityPort.portId) === -1) {
+          if (
+            acc.findIndex(
+              (a) => a.communityPort.portId === cur.communityPort.portId
+            ) === -1
+          ) {
             return [...acc, cur];
           } else {
-            acc[acc.findIndex(a => a.communityPort.portId === cur.communityPort.portId)] = cur;
+            acc[
+              acc.findIndex(
+                (a) => a.communityPort.portId === cur.communityPort.portId
+              )
+            ] = cur;
             return acc;
           }
-        }, [])
-    }),
-   
-    [LIKE_POST]: (state, action) =>
-      produce(state, (draft) => {
-        
-    }),
+        }, []);
+      }),
 
-    [UNLIKE_POST]: (state, action) =>
-      produce(state, (draft) => {
-        
-    }),
+    [LIKE_POST]: (state, action) => produce(state, (draft) => {}),
+
+    [UNLIKE_POST]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );

@@ -1,58 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { history } from '../../redux/configStore';
 import { useDispatch } from 'react-redux';
 import { actionCreators as communityActions } from "../../redux/modules/community";
 
 import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn } from "./style";
+import { useSelector } from 'react-redux';
+import { CommunityList } from '../../components';
 
 
 const Community = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const params = useParams();
 
-
-  let [modalOpen, setModalOpen] = useState(false);
-  const [comment_text, setCommentText] = useState();
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const onChange = (e) => {
-    setCommentText(e.target.value);
-  };
+  const community_list = useSelector(state => state.community.list);
 
   useEffect(() => {
     dispatch(communityActions.getPostDB());
-  })
+  }, [])
 
   return (
     <CommunityWrap>
-      <button onClick={() => history.push("/")}>메인으로 이동</button>
-      <h3>포토폴리오</h3>
-
-      <BoxWrap>
-        <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_1</Box>
-        <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_2</Box>
-        <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_3</Box>
-
-        {
-          modalOpen === true
-            ? <Container>
-              <Modalinner>
-                <Close onClick={closeModal}> X </Close>
-                <h1>모달창</h1>
-                <InputWrap>
-                  <Input onChange={onChange}></Input>
-                  <Btn>댓글등록</Btn>
-                </InputWrap>
-
-              </Modalinner>
-            </Container>
-            : null
-        }
-      </BoxWrap>
+      <CommunityList community_list={community_list} />
     </CommunityWrap>
   );
 };

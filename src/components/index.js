@@ -9,6 +9,7 @@ import CompareResult from "./CompareResult/CompareResult";
 import TopInfo from './Result/TopInfo';
 import CommentList from "./CommentList/CommentList";
 import DetailResult from "./DetailResult/DetailResult";
+import CommunityList from "./CommunityList/CommunityList";
 
 export {
   SideTap,
@@ -22,4 +23,5 @@ export {
   TopInfo,
   CommentList,
   DetailResult,
+  CommunityList,
 };

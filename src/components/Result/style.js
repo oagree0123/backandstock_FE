@@ -165,14 +165,15 @@ export const YieldIcon = styled.img`
 export const MinusYield = styled.p`
   margin-top: 40px;
   margin-bottom: 16px;
-  font-size: 72px;
+  font-size: 76px;
   font-weight: 900;
   line-height: 1;
   color: #0075ff;
 `;
 
 export const MinusYieldMoney = styled.div`
-  font-size: 40px;
+  width: 350px;
+  font-size: 36px;
   font-weight: 900;
   line-height: 1;
   color: #0075ff;
@@ -181,14 +182,15 @@ export const MinusYieldMoney = styled.div`
 export const PlusYield = styled.p`
   margin-top: 40px;
   margin-bottom: 16px;
-  font-size: 72px;
+  font-size: 76px;
   font-weight: 900;
   line-height: 1;
   color: #ff0000;
 `;
 
 export const PlusYieldMoney = styled.div`
-  font-size: 40px;
+  width: 350px;
+  font-size: 36px;
   font-weight: 900;
   line-height: 1;
   color: #ff0000;
@@ -303,7 +305,6 @@ export const Money = styled.span`
 export const StockWrap = styled.div`
   width: 880px;
   background-color: #ffffff;
-  margin-top: 24px;
   border-radius: 10px;
 `;
 

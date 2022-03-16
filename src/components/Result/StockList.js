@@ -12,8 +12,6 @@ import {
 import { useSelector } from "react-redux";
 
 const StockList = (props) => {
-  console.log(props);
-  
   const stock_name = props.stockNames;
   const stock_codes = props.stockCodes;
   const stock_yieldmoneys = props.stockYieldMoneys;
@@ -21,7 +19,6 @@ const StockList = (props) => {
   const count = 5 - stock_name.length
 
   const test = useSelector((state) => state.testform)
-  console.log(test);
 
   const stock_ratio = test.ratioList
   const init_money = test.init_money

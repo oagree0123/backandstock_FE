@@ -1,5 +1,5 @@
 import React from 'react';
-import { All, LineChartWrap, BarChartWrap } from './style';
+import { All, LineChartWrap, BarChartWrap, DetailTitle } from './style';
 import BarChart from '../BarChart/BarChart';
 import LineChart from '../LineChart/LineChart';
 import TopInfo from '../Result/TopInfo';
@@ -80,20 +80,23 @@ const DetailResult = (props) => {
     <>
       <All>
         <TopInfo 
+          nickname={props.nickname}
           type={props.type}
           port_list={result_list} 
         />
+        <DetailTitle>월별 수익금</DetailTitle>
         <LineChartWrap>
           <LineChart 
             margin={{
               top: 32, 
               right: 120, 
               bottom: 64, 
-              left: 100
+              left: 110
             }}
             line_data={data} 
           />
         </LineChartWrap>
+        <DetailTitle>월별 수익률</DetailTitle>
         <BarChartWrap>
           <BarChart 
             width={880}
@@ -102,7 +105,7 @@ const DetailResult = (props) => {
               top: 32, 
               right: 120, 
               bottom: 64, 
-              left: 100
+              left: 110
             }}
             translateX={120}
             translateY={38}
@@ -110,6 +113,7 @@ const DetailResult = (props) => {
             tick_font={12}
           />
         </BarChartWrap>
+        <DetailTitle>종목별 수익률</DetailTitle>
         <StockList {...result_list}></StockList>
       </All>
     </>

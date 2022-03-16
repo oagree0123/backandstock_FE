@@ -1,25 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CommentCont,
   CommentContWrap,
   CommentItemWrap,
   ImgWrap,
+  RecoBtn,
+  RecoCancleBtn,
+  RecoInput,
   ReCommnentBtn,
+  RecoWrap,
+  ReImgWrap,
   UserNick,
 } from "./style";
 
 const CommentItem = (props) => {
+  const [open_reco, setOpenReco] = useState(false);
+
   return (
     <CommentItemWrap>
       <ImgWrap />
       <CommentContWrap>
-        <UserNick>한강물찬가요</UserNick>
+        <UserNick>{props.nickname}</UserNick>
         <CommentCont>
-          현금으로 매달 배당 받을 수 있는 포폴을 만들고 싶은데 어떻게 하는 것이
-          좋을까요? 다들 배당 종목은 몇프로 떨어지셨을 때 손절을 하시나요? 손절
-          기준 정하기가 너무 어렵네요 ㅠ
+          {props.content}
         </CommentCont>
-        <ReCommnentBtn>답변</ReCommnentBtn>
+        <ReCommnentBtn
+          onClick={() => {
+            setOpenReco(!open_reco);
+          }}
+        >
+          답변
+        </ReCommnentBtn>
+        { open_reco ?
+          <RecoWrap>
+            <ReImgWrap />
+            <RecoInput />
+            <RecoBtn>완료</RecoBtn>
+            <RecoCancleBtn>취소</RecoCancleBtn>
+          </RecoWrap>:
+          null
+        }
       </CommentContWrap>
     </CommentItemWrap>
   );

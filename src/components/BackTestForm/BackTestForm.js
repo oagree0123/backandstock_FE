@@ -19,12 +19,9 @@ import {
 
 import { actionCreators as testformActions } from "../../redux/modules/testform";
 import { actionCreators as portActions } from "../../redux/modules/port";
-import { useHistory } from "react-router-dom";
 
 const BackTestForm = () => {
   const dispatch = useDispatch();
-  const date = useSelector((state) => state.testform);
-  const history = useHistory();
 
   const [init_money, setInitMoney] = useState("");
   const [check_money, setCheckMoney] = useState(true);
