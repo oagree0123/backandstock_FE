@@ -9,6 +9,7 @@ const SET_END = "SET_END";
 const SET_MONEY = "SET_MONEY";
 const SET_STOCK = "SET_STOCK";
 const DELETE_STOCK = "DELETE_STOCK";
+const SET_INIT = "SET_INIT";
 
 // action creators
 const setStart = createAction(SET_START, (start_year, start_month) => ({ start_year, start_month }));
@@ -16,6 +17,7 @@ const setEnd = createAction(SET_END, (end_year, end_month) => ({ end_year, end_m
 const setMoney = createAction(SET_MONEY, (money) => ({ money }));
 const setStock = createAction(SET_STOCK, (ratio, stock_name, stock_code) => ({ ratio, stock_name, stock_code }));
 const deleteStock = createAction(DELETE_STOCK, (stock_num) => ({ stock_num }));
+const setInit = createAction(SET_INIT, () => ({  }));
 
 // initialState
 const initialState = {
@@ -97,6 +99,15 @@ export default handleActions(
           return action.payload.stock_num !== i;
         })
       }),
+    [SET_INIT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.stockList = [];
+        draft.ratioList = [];
+        draft.codeList = [];
+        draft.init_money = 0;
+        draft.end_date = "2022-01-01";
+        draft.start_date = "2019-03-01";
+      }),
   },
   initialState
 );
@@ -108,6 +119,7 @@ const actionCreators = {
   setMoney,
   setStock,
   deleteStock,
+  setInit,
 };
 
 export { actionCreators };

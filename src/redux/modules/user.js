@@ -236,6 +236,7 @@ export default handleActions(
           profile_img: "",
         };
         draft.is_login = false;
+        window.location.reload("/");
       }),
   },
   initialState

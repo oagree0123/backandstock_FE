@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <HeaderWrap>
       <HeadWrap>
-        <LOGO>BACKTASKING</LOGO>
+        <LOGO>BACK & STOCK</LOGO>
         {is_login &&
           <Logout onClick={() => {
             dispatch(userActions.logout());

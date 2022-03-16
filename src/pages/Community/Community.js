@@ -1,57 +1,28 @@
-import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { history } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn, Title } from "./style";
-import Slide from '../../components/Community/Slide';
-import CommunityList from '../../components/Community/CommunityList'
 import { actionCreators as communityActions } from '../../redux/modules/community';
 
+import { CommunityList, Slide } from '../../components';
 
 const Community = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const params = useParams();
 
   // const top_list = useSelector((state) => state.community.list)
   // console.log(top_list);
 
-  useEffect(() =>
+  const community_list = useSelector(state => state.community.list);
+  
+  useEffect(() => {
     dispatch(communityActions.getTopFiveDB())
-  )
+  }, [])
 
-  // useEffect(() =>
-  //   dispatch(communityActions.getPostDB())
-  // )
-
-
-
-
-
-  let [modalOpen, setModalOpen] = useState(false);
-  const [comment_text, setCommentText] = useState();
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const onChange = (e) => {
-    setCommentText(e.target.value);
-  };
-
-  // const addcomment = () => {
-  //     dispatch(
-  //       commentActions.addCommentFB(
-  //         userId,
-  //         productId,
-  //         comment_title,
-  //         comment_text,
-  //         fileInput.current.files[0]
-  //       )
-  //     );
-  //   };
-
+  useEffect(() => {
+    dispatch(communityActions.getPostDB());
+  }, [])
 
   return (
     <CommunityWrap>

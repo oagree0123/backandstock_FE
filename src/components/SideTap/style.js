@@ -68,7 +68,7 @@ export const LoginBtn = styled.button`
 `;
 
 export const SignupBtn = styled.button`
-  width: 100px;
+  width: 110px;
   height: 40px;
   color: var(--primary-color);
   font-size: var(--font-small);

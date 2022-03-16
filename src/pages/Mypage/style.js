@@ -67,6 +67,26 @@ export const ChartWrap = styled.div`
   border-radius: 10px;
 `;
 
+export const NoneChartWrap = styled.div`
+  margin-bottom: 60px;
+  width: 880px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(217, 223, 230, 1);
+  border-radius: 10px;
+  background: rgba(217, 223, 230, 0.3);
+`;
+
+export const NoneChartText = styled.p`
+  font-size: var(--font-large);
+  font-weight: 400;
+  line-height: var(--line-large);
+  text-align: center;
+  color: #c4c4c4;
+`;
+
 export const MypageInfoWrap = styled.div`
   width: 880px;
 `;

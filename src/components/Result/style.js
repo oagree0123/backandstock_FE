@@ -89,6 +89,8 @@ export const WorstYear = styled.span`
 
 
 export const MonthWrap = styled.div`
+  margin-top: 6px;
+  margin-bottom: 4px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -130,20 +132,20 @@ export const Price = styled.span`
   justify-content: flex-end;
   align-items: center;
   color: #000000;
-  font-size: var(--font-header);
+  font-size: 28px;
   font-weight: 700;
 
   & span {
     margin-left: 8px;
     color: #ff0000;
-    font-size: var(--font-header);
+    font-size: 28px;
     font-weight: 700;
   }
 
   & p {
     margin-left: 8px;
     color: #0075ff;
-    font-size: var(--font-header);
+    font-size: 28px;
     font-weight: 700;
   }
 `;
@@ -163,14 +165,15 @@ export const YieldIcon = styled.img`
 export const MinusYield = styled.p`
   margin-top: 40px;
   margin-bottom: 16px;
-  font-size: 72px;
+  font-size: 76px;
   font-weight: 900;
   line-height: 1;
   color: #0075ff;
 `;
 
 export const MinusYieldMoney = styled.div`
-  font-size: 40px;
+  width: 350px;
+  font-size: 36px;
   font-weight: 900;
   line-height: 1;
   color: #0075ff;
@@ -179,14 +182,15 @@ export const MinusYieldMoney = styled.div`
 export const PlusYield = styled.p`
   margin-top: 40px;
   margin-bottom: 16px;
-  font-size: 72px;
+  font-size: 76px;
   font-weight: 900;
   line-height: 1;
   color: #ff0000;
 `;
 
 export const PlusYieldMoney = styled.div`
-  font-size: 40px;
+  width: 350px;
+  font-size: 36px;
   font-weight: 900;
   line-height: 1;
   color: #ff0000;
@@ -194,7 +198,7 @@ export const PlusYieldMoney = styled.div`
 
 export const MinusYieldIcon = styled.img`
   position: absolute;
-  top: 40px;
+  top: 0px;
   right: 0px;
   width: 144px;
   height: 208px;
@@ -303,7 +307,6 @@ export const Money = styled.span`
 export const StockWrap = styled.div`
   width: 880px;
   background-color: #ffffff;
-  margin-top: 24px;
   border-radius: 10px;
 `;
 
@@ -422,8 +425,6 @@ export const Profit = styled.span`
 export const EmptyList = styled.div`
     width: 170px;
     height: 223px;
-  /* width: 150px;
-  height: 213px; */
     border-radius: 10px;
     background: #D9DFE64D;
 `

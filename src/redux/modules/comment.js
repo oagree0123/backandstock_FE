@@ -40,8 +40,7 @@ const addCommentDB = (port_id, content) => {
     const nickname = getState().user.user_info.nickname
     try {
       let response = await axios.post(`http://yuseon.shop/community/comment/${port_id}`, {
-        content: content,
-        nickname: nickname
+        content: content
       }, {
         headers: {
           Authorization: `${token}`
@@ -69,8 +68,13 @@ const getCommentDB = (post_id) => {
     }
 
     try {
-      let response = axios.get(`http://yuseon.shop/community/comment/${post_id}`)
-      dispatch(getComment(response.data.reverse()));
+      let response = await axios.get(`http://yuseon.shop/community/comment/${post_id}`)
+
+      console.log(response.data)
+      if(!response.data) {
+        return;
+      }
+      dispatch(getComment(response.data));
     }
     catch (err) {
       console.log("댓글 정보를 가져올 수가 없어요! :(", err);
@@ -219,7 +223,7 @@ export default handleActions(
 
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.unshift(action.payload.comment);
+        draft.list.push(action.payload.comment);
       }),
 
     [EDIT_COMMENT]: (state, action) =>

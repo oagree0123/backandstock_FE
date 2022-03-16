@@ -19,7 +19,6 @@ const StockList = (props) => {
   const count = 5 - stock_name.length
 
   const test = useSelector((state) => state.testform)
-  console.log(test);
 
   const stock_ratio = test.ratioList
   const init_money = test.init_money
@@ -45,7 +44,7 @@ const StockList = (props) => {
 
         {[...Array(count)].map((n, index) => {
           return (
-            <ListWrap>
+            <ListWrap key={index}>
               <EmptyList>
                 <Empty>
                   <span> 종목이</span>

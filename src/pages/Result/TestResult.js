@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
-import TopInfo from "../../components/Result/TopInfo";
 import ResultLine from "../../components/Chart/ResultLine";
 import ResultChart from "../../components/Chart/ResultChart";
 import StockList from "../../components/Result/StockList";
-import { LineChart, BarChart } from "../../components";
+import { LineChart, BarChart, TopInfo } from "../../components";
 
 import { history } from "../../redux/configStore";
-import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap, ResultHeader } from "./style";
+import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
-// import { actionCreators as portActions } from "../../redux/modules/port";
-
 
 const TestResult = () => {
   const dispatch = useDispatch();
-
-  const [chart_min, setChartMin] = useState(0);
-
+  
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
   const result_list = useSelector((state) => state.port.list);
@@ -38,7 +33,6 @@ const TestResult = () => {
   const monthYieldMoney = result_list.monthYieldMoney;
   const kospiYieldMoney = result_list.kospiYieldMoney;
   const kosdaqYieldMoney = result_list.kosdaqYieldMoney;
-  const Worst_money = Math.floor(result_list.worstMoney);
 
   // 수익률
   const monthYield = result_list.monthYield
@@ -102,28 +96,21 @@ const TestResult = () => {
   })
 
   useEffect(() => {
-    let _worst = String(Worst_money).split("");
-    _worst = _worst.map((v, i) => {
-      return i !== 0 ? (v = 0) : v;
+    window.addEventListener('beforeunload', (event) => {
+      event.preventDefault(); 
     });
-    _worst = _worst.join("");
-    setChartMin(_worst);
-  }, [chart_min, Worst_money]);
+
+    return () => {
+      window.removeEventListener('beforeunload', (event) => {
+        event.preventDefault(); 
+      });
+    }
+  },[])
 
   return (
     <ResultWrap>
       <All>
-        {is_login ?
-          <ResultHeader>
-            {user.nickname} 님의 <br />
-            실험 결과입니다!
-          </ResultHeader> :
-          <ResultHeader>
-            방문자 님의 <br />
-            실험 결과입니다!
-          </ResultHeader>
-        }
-        <TopInfo></TopInfo>
+        <TopInfo port_list={result_list} />
         <LineChartWrap>
           <LineChart
             margin={{
@@ -152,7 +139,6 @@ const TestResult = () => {
           />
         </BarChartWrap>
         <StockList {...result_list}></StockList>
-        <ResultStockLine></ResultStockLine>
         {is_login ?
           <Btn onClick={click_save}>실험 결과 저장하기</Btn> :
           <Btn onClick={click_save} disabled>실험 결과 저장하기</Btn>

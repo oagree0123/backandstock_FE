@@ -46,10 +46,11 @@ import dollar from "../../assets/images/page_result/dollar.svg";
 // import mini_up_1 from "../../assets/images/page_result/mini_up_1.svg"
 // import mini_up_2 from "../../assets/images/page_result/mini_up_2.svg"
 
-const TopInfo = () => {
+const TopInfo = (props) => {
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
-  const result_list = useSelector((state) => state.port.list);
+  //const result_list = useSelector((state) => state.port.list);
+  const result_list = props.port_list;
 
   const finalMoney = Math.floor(result_list.finalMoney / 10000);
   const finalYield = Math.floor(result_list.finalYield);
@@ -69,10 +70,13 @@ const TopInfo = () => {
           <Box>
             <YieldWrap>
               <div>
-                {is_login ?
-                  <Text>{user.nickname} 님의 총 수익은</Text>:
-                  <Text>방문자 님의 총 수익은</Text>
-                }
+                {/* { props.type === "Best" ?
+                  <Text>{props.nickname} 님의 총 수익은</Text> :
+                    is_login ?
+                      <Text>{user.nickname} 님의 총 수익은</Text>:
+                      <Text>방문자 님의 총 수익은</Text>
+                } */}
+                <Text>최종 수익률 및 수익금</Text>
                 <MinusYield>{finalYield}%</MinusYield>
                 <MinusYieldMoney>
                   -{finalMoney.toLocaleString()} 만원
@@ -85,10 +89,13 @@ const TopInfo = () => {
           <Box>
             <YieldWrap>
               <div>
-                {is_login ?
-                  <Text>{user.nickname} 님의 총 수익은</Text>:
-                  <Text>방문자 님의 총 수익은</Text>
-                }
+                {/* { props.type === "Best" ?
+                  <Text>{props.nickname} 님의 총 수익은</Text> :
+                    is_login ?
+                      <Text>{user.nickname} 님의 총 수익은</Text>:
+                      <Text>방문자 님의 총 수익은</Text>
+                    } */}
+                <Text>최종 수익률 및 수익금</Text>
                 <PlusYield>{finalYield}%</PlusYield>
                 <PlusYieldMoney>{finalMoney.toLocaleString()} 만원</PlusYieldMoney>
               </div>
@@ -120,48 +127,50 @@ const TopInfo = () => {
           </TopBox>
         </BoxWrap>
       </TopWrap>
+      {props.type==="Best"?
+        null :
+        <Wrap>
+          <MonthBox>
+            <TextWrap>
+              <Text>최고의 달</Text>
+              <BestYear>{bestMonth[0]}년</BestYear>
+            </TextWrap>
+            <MonthWrap>
+              <Icon src={up}></Icon>
+              <BestMonth>{bestMonth[1]}월</BestMonth>
+            </MonthWrap>
+            <IconWrap>
+              <Price>
+                {bestMoney.toLocaleString()} 만원{" "}
+                { plus > 0 ?
+                  <span>( +{plus.toLocaleString()} 만원)</span>:
+                  <span>( {plus.toLocaleString()} 만원)</span>
+                }
+              </Price>
+            </IconWrap>
+          </MonthBox>
 
-      <Wrap>
-        <MonthBox>
-          <TextWrap>
-            <Text>최고의 달</Text>
-            <BestYear>{bestMonth[0]}년</BestYear>
-          </TextWrap>
-          <MonthWrap>
-            <Icon src={up}></Icon>
-            <BestMonth>{bestMonth[1]}월</BestMonth>
-          </MonthWrap>
-          <IconWrap>
-            <Price>
-              {bestMoney.toLocaleString()} 만원{" "}
-              { plus > 0 ?
-                <span>( +{plus.toLocaleString()} 만원)</span>:
-                <span>( -{plus.toLocaleString()} 만원)</span>
-              }
-            </Price>
-          </IconWrap>
-        </MonthBox>
-
-        <MonthBox>
-          <TextWrap>
-            <Text>최악의 달</Text>
-            <WorstYear>{worstMonth[0]}년</WorstYear>
-          </TextWrap>
-          <MonthWrap>
-            <Icon src={down}></Icon>
-            <WorstMonth>{worstMonth[1]}월</WorstMonth>
-          </MonthWrap>
-          <IconWrap>
-            <Price>
-              {worstMoney.toLocaleString()} 만원{" "}
-              { minus > 0 ?
-                <p>( +{minus.toLocaleString()} 만원)</p> :
-                <p>( -{minus.toLocaleString()} 만원)</p> 
-              }
-            </Price>
-          </IconWrap>
-        </MonthBox>
-      </Wrap>
+          <MonthBox>
+            <TextWrap>
+              <Text>최악의 달</Text>
+              <WorstYear>{worstMonth[0]}년</WorstYear>
+            </TextWrap>
+            <MonthWrap>
+              <Icon src={down}></Icon>
+              <WorstMonth>{worstMonth[1]}월</WorstMonth>
+            </MonthWrap>
+            <IconWrap>
+              <Price>
+                {worstMoney.toLocaleString()} 만원{" "}
+                { minus > 0 ?
+                  <p>( +{minus.toLocaleString()} 만원)</p> :
+                  <p>( {minus.toLocaleString()} 만원)</p> 
+                }
+              </Price>
+            </IconWrap>
+          </MonthBox>
+        </Wrap>
+      }
     </React.Fragment>
   );
 };
