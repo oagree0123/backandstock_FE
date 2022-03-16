@@ -21,7 +21,8 @@ import {
   Wrap,
   CheckInput
 } from "./style";
-import kakao from "../../assets/images/page_result/kakaoIcon.svg"
+import kakao from "../../assets/images/kakaoIcon.svg"
+import kakaologo from "../../assets/images/kakao.svg"
 import { useDispatch } from "react-redux";
 import { history } from '../../redux/configStore';
 

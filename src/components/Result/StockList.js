@@ -26,7 +26,7 @@ const StockList = (props) => {
 
   return (
     <StockWrap>
-      <ListTitle>종목별 최종 수익금</ListTitle>
+      <ListTitle>종목별 수익금</ListTitle>
       <Lists>
         {(stock_name?.map((a, i) => {
           return (

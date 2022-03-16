@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { history } from '../../redux/configStore';
+import { useDispatch } from "react-redux";
 import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle, UserBtnWrap, LoginBtn, SignupBtn, LabIcon } from './style';
 
 import LabClick from '../../assets/images/lab_blue.svg'
@@ -10,11 +11,16 @@ import PortfolioGray from '../../assets/images/portfolio_gray.svg'
 import CommunityClick from '../../assets/images/community_blue.svg'
 import CommunityGray from '../../assets/images/community_gray.svg'
 
+import { actionCreators as communityActions } from '../../redux/modules/community';
+
 const SideTap = (props) => {
+  const dispatch = useDispatch()
+
 
   const location = useSelector(state => state.router.location.pathname);
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
+
 
   const [lab_clicked, setLabClicked] = useState(true);
   const [portf_clicked, setPortfClicked] = useState(false);
@@ -22,12 +28,12 @@ const SideTap = (props) => {
 
   useEffect(() => {
     console.log(location)
-    if(location === "/community") {
+    if (location === "/community") {
       setLabClicked(false);
       setPortfClicked(false);
       setCommuClicked(true);
     }
-    else if(location === "/mypage") {
+    else if (location === "/mypage") {
       setLabClicked(false);
       setPortfClicked(true);
       setCommuClicked(false);
@@ -49,7 +55,7 @@ const SideTap = (props) => {
             오늘은 어떤 자산을 <br />
             실험해 볼까요?
           </UserText>
-          <ProfileBtn>프로필 수정하기</ProfileBtn> 
+          <ProfileBtn>프로필 수정하기</ProfileBtn>
         </SideUserWrap> :
         <SideUserWrap>
           <UserImg />
@@ -69,7 +75,7 @@ const SideTap = (props) => {
         </SideUserWrap>
       }
       <TabWrap>
-        { !lab_clicked ?
+        {!lab_clicked ?
           <Tab onClick={() => {
             setLabClicked(true);
             setPortfClicked(false);
@@ -78,8 +84,8 @@ const SideTap = (props) => {
             window.scrollTo(0, 0);
           }}>
             <TabIcon>
-              <LabIcon 
-                src={LabGray} 
+              <LabIcon
+                src={LabGray}
                 alt="right"
               />
             </TabIcon>
@@ -96,8 +102,8 @@ const SideTap = (props) => {
             window.scrollTo(0, 0);
           }}>
             <TabIcon>
-              <LabIcon 
-                src={LabClick} 
+              <LabIcon
+                src={LabClick}
                 alt="right"
               />
             </TabIcon>
@@ -107,9 +113,9 @@ const SideTap = (props) => {
             </TabContent>
           </TabClicked>
         }
-        { !portf_clicked ?
+        {!portf_clicked ?
           <Tab onClick={() => {
-            if(!is_login) {
+            if (!is_login) {
               window.alert("로그인이 필요한 서비스입니다.")
               return;
             }
@@ -120,8 +126,8 @@ const SideTap = (props) => {
             window.scrollTo(0, 0);
           }}>
             <TabIcon>
-              <LabIcon 
-                src={PortfolioGray} 
+              <LabIcon
+                src={PortfolioGray}
                 alt="right"
               />
             </TabIcon>
@@ -131,7 +137,7 @@ const SideTap = (props) => {
             </TabContent>
           </Tab> :
           <TabClicked onClick={() => {
-            if(!is_login) {
+            if (!is_login) {
               window.alert("로그인이 필요한 서비스입니다.")
               return;
             }
@@ -142,8 +148,8 @@ const SideTap = (props) => {
             window.scrollTo(0, 0);
           }}>
             <TabIcon>
-              <LabIcon 
-                src={PortfolioClick} 
+              <LabIcon
+                src={PortfolioClick}
                 alt="right"
               />
             </TabIcon>
@@ -153,7 +159,7 @@ const SideTap = (props) => {
             </TabContent>
           </TabClicked>
         }
-        { !commu_clicked ?
+        {!commu_clicked ?
           <Tab onClick={() => {
             setLabClicked(false);
             setPortfClicked(false);
@@ -162,8 +168,8 @@ const SideTap = (props) => {
             window.scrollTo(0, 0);
           }}>
             <TabIcon>
-              <LabIcon 
-                src={CommunityGray} 
+              <LabIcon
+                src={CommunityGray}
                 alt="right"
               />
             </TabIcon>
@@ -180,8 +186,8 @@ const SideTap = (props) => {
             window.scrollTo(0, 0);
           }}>
             <TabIcon>
-              <LabIcon 
-                src={CommunityClick} 
+              <LabIcon
+                src={CommunityClick}
                 alt="right"
               />
             </TabIcon>

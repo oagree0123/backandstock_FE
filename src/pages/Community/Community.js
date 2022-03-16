@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import styled from 'styled-components'
-// import Chart from '../test/Chart';
-// import Bar from '../test/Bar'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn } from "./style";
+import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn, Title } from "./style";
+import Slide from '../../components/Community/Slide';
+import CommunityList from '../../components/Community/CommunityList'
+import { actionCreators as communityActions } from '../../redux/modules/community';
 
 
 const Community = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
+
+  // const top_list = useSelector((state) => state.community.list)
+  // console.log(top_list);
+
+  useEffect(() =>
+    dispatch(communityActions.getTopFiveDB())
+  )
+
+  // useEffect(() =>
+  //   dispatch(communityActions.getPostDB())
+  // )
+
+
+
 
 
   let [modalOpen, setModalOpen] = useState(false);
@@ -40,9 +55,14 @@ const Community = () => {
 
   return (
     <CommunityWrap>
-      <button onClick={() => history.push("/")}>메인으로 이동</button>
-      <h3>포토폴리오</h3>
+      <Title>
+        포토폴리오 자랑하고<br />
+        사람들과 소통해보세요!
+      </Title>
+      <Slide></Slide>
+      <CommunityList></CommunityList>
 
+      {/* 
       <BoxWrap>
         <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_1</Box>
         <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_2</Box>
@@ -63,7 +83,7 @@ const Community = () => {
             </Container>
             : null
         }
-      </BoxWrap>
+      </BoxWrap> */}
     </CommunityWrap>
   );
 };

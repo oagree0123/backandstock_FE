@@ -61,3 +61,13 @@ export const Btn = styled.button`
   height: 30px;
   margin-left: 20px;
 `;
+
+
+
+export const Title = styled.span`
+  width: 383px;
+  height: 68px;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 52px;
+`

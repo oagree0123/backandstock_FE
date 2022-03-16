@@ -7,25 +7,33 @@ import { getToken } from "../../shared/token";
 // actions
 const GET_COMMENT = "GET_COMMENT";
 const ADD_COMMENT = "ADD_COMMENT";
+const READD_COMMNET = "READD_COMMNET"
 const DELETE_COMMENT = "DELETE_COMMENT";
+const DELETE_RECOMMENT = "DELETE_RECOMMENT";
 const EDIT_COMMENT = "EDIT_COMMENT";
+const EDIT_RECOMMENT = "EDIT_RECOMMENT";
+
 
 // action creators
 const getComment = createAction(GET_COMMENT, (comment_list) => ({ comment_list }));
-
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
+const readdComment = createAction(READD_COMMNET, (newcomment) => ({ newcomment }));
 const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_idx }));
+const deleterecommnet = createAction(DELETE_RECOMMENT, (comment_idx) => ({ comment_idx }));
 const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
   comment_id,
   comment,
 })
 );
 
+const editrecomment = createAction(EDIT_RECOMMENT, (comment_id, newcommnet) => ({ comment_id, newcommnet }))
+
 const initialState = {
   list: [],
 };
 
 // middlewares
+// 댓글 쓰기
 const addCommentDB = (port_id, content) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken('token');
@@ -53,6 +61,7 @@ const addCommentDB = (port_id, content) => {
   };
 };
 
+// 댓글 가져오기
 const getCommentDB = (post_id) => {
   return async function (dispatch, getState, { history }) {
     if (!post_id) {
@@ -69,6 +78,7 @@ const getCommentDB = (post_id) => {
   };
 };
 
+// 댓글 수정
 const editCommentDB = (comment_id, comment) => {
   return async function (dispatch, getState) {
     const token = getToken("token");
@@ -89,7 +99,7 @@ const editCommentDB = (comment_id, comment) => {
     }
   };
 };
-
+// 댓글 삭제
 const deleteCommentDB = (comment_id) => {
   return async function (dispatch, getState) {
     const token = getToken("token");
@@ -112,6 +122,85 @@ const deleteCommentDB = (comment_id) => {
     }
   }
 }
+
+
+
+// 대댓글 쓰기 
+const ReaddCommentDB = (commentId, Newcontent) => {
+  return async function (dispatch, getState, { history }) {
+    const token = getToken('token');
+    const nickname = getState().user.user_info.nickname
+    try {
+      let response = await axios.post(`http://yuseon.shop/community/comment/${commentId}`, {
+        content: Newcontent,
+        nickname: nickname
+      }, {
+        headers: {
+          Authorization: `${token}`
+        }
+      });
+
+      console.log(response.data);
+      const data = {
+        commentId: response.data.commentId,
+        Newcontent: Newcontent,
+        nickname: nickname,
+      }
+      dispatch(readdComment(data))
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+//대댓글 삭제
+const deleteREcommnetDB = (comment_id) => {
+  return async function (dispatch, getState) {
+    const token = getToken("token");
+    const _newcomment_list = getState().newcomment.list;
+
+
+    try {
+      await axios.delete(`http://yuseon.shop/community/comment/${comment_id}`, {
+        headers: {
+          Authorization: `${token}`
+        }
+      });
+      const comment_idx = _newcomment_list.findIndex((c) => {
+        return parseInt(c.commentId) === parseInt(comment_id);
+      })
+      dispatch(deleteComment(comment_idx));
+    }
+    catch (err) {
+      console.log(err);
+    }
+
+  }
+}
+
+const editRecommentDB = (comment_id, newcomment) => {
+  return async function (dispatch, getState) {
+    const token = getToken("token");
+
+    try {
+      let response = await axios.put(`http://yuseon.shop/community/comment/${comment_id}`, {
+        content: newcomment
+      }, {
+        headers: {
+          Authorization: `${token}`
+        }
+      })
+
+      dispatch(editComment(comment_id, newcomment));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+
 
 export default handleActions(
   {
@@ -141,8 +230,32 @@ export default handleActions(
 
         draft.list[idx] = { ...draft.list[idx], comment: action.payload.comment };
       }),
+    [EDIT_RECOMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.list.findIndex((c) => {
+          return parseInt(c.commentId) === parseInt(action.payload.comment_id)
+        })
+
+        draft.list[idx] = { ...draft.list[idx], newcomment: action.payload.comment };
+      }),
 
     [DELETE_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        const new_comment_list = draft.list.filter((c, i) => {
+          return parseInt(action.payload.comment_idx) !== i;
+        });
+        draft.list = new_comment_list;
+      }),
+
+    [READD_COMMNET]: (state, action) => produce(state, (draft) => {
+      const newComment = draft.list.comment.filter(
+        (com, id) => com.id !== action.payload.commentid
+      );
+
+      draft.list.comments = [...newComment];
+    }),
+
+    [DELETE_RECOMMENT]: (state, action) =>
       produce(state, (draft) => {
         const new_comment_list = draft.list.filter((c, i) => {
           return parseInt(action.payload.comment_idx) !== i;
@@ -162,6 +275,12 @@ const actionCreators = {
   deleteCommentDB,
   editCommentDB,
   editComment,
+  ReaddCommentDB,
+  readdComment,
+  deleteREcommnetDB,
+  deleterecommnet,
+  editRecommentDB,
+  editrecomment
 };
 
 export { actionCreators };

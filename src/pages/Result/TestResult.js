@@ -10,29 +10,29 @@ import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap, ResultHeader } from 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
-import { actionCreators as portActions } from "../../redux/modules/port";
+// import { actionCreators as portActions } from "../../redux/modules/port";
 
 
 const TestResult = () => {
   const dispatch = useDispatch();
-  
+
   const [chart_min, setChartMin] = useState(0);
-  
+
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
   const result_list = useSelector((state) => state.port.list);
 
   const click_save = () => {
     dispatch(portActions.savePortDB());
-    history.push("/");
+    history.push("/mypage");
   };
 
   useEffect(() => {
-    if(!result_list) {
+    if (!result_list) {
       history.replace('/')
     }
   }, [])
-  
+
   // 수익금
   const months = result_list.months;
   const monthYieldMoney = result_list.monthYieldMoney;
@@ -93,10 +93,10 @@ const TestResult = () => {
   // 수익률 데이터
   monthYield.map((m, i) => {
     let xy = {
-        months: months[i].substring(2),
-        "내 자산": Math.floor(monthYield[i]),
-        "KOSPI": Math.floor(kospiYield[i]),
-        "KOSDAQ": Math.floor(kosdaqYield[i]),
+      months: months[i].substring(2),
+      "내 자산": Math.floor(monthYield[i]),
+      "KOSPI": Math.floor(kospiYield[i]),
+      "KOSDAQ": Math.floor(kosdaqYield[i]),
     }
     bar_data.push(xy);
   })
@@ -125,29 +125,29 @@ const TestResult = () => {
         }
         <TopInfo></TopInfo>
         <LineChartWrap>
-          <LineChart 
+          <LineChart
             margin={{
-              top: 32, 
-              right: 120, 
-              bottom: 64, 
+              top: 32,
+              right: 120,
+              bottom: 64,
               left: 100
             }}
-            line_data={data} 
+            line_data={data}
           />
         </LineChartWrap>
         <BarChartWrap>
-          <BarChart 
+          <BarChart
             width={880}
             height={300}
             margin={{
-              top: 32, 
-              right: 120, 
-              bottom: 64, 
+              top: 32,
+              right: 120,
+              bottom: 64,
               left: 100
             }}
             translateX={120}
             translateY={38}
-            bar_data={bar_data} 
+            bar_data={bar_data}
             tick_font={12}
           />
         </BarChartWrap>
@@ -155,7 +155,7 @@ const TestResult = () => {
         <ResultStockLine></ResultStockLine>
         {is_login ?
           <Btn onClick={click_save}>실험 결과 저장하기</Btn> :
-          <Btn onClick={click_save} disabled>실험 결과 저장하기</Btn> 
+          <Btn onClick={click_save} disabled>실험 결과 저장하기</Btn>
         }
       </All>
     </ResultWrap>
