@@ -2,15 +2,18 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import moment from "moment";
 import axios from "axios";
-import { getToken } from "../../shared/token";
+import { getToken } from '../../shared/token';
 
 // actions
 const GET_POST = "GET_POST";
+const GET_TOPFIVE = "GET_TOPFIVE";
 const LIKE_POST = "LIKE_POST";
 const UNLIKE_POST = "UNLIKE_POST";
 
 // action creators
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
+
+const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, () => ({}));
 const unlikePost = createAction(UNLIKE_POST, () => ({}));
 
@@ -31,7 +34,20 @@ const getPostDB = () => {
       });
       console.log(response.data);
       dispatch(getPost(response.data));
-    } catch (err) {
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+const getTopFiveDB = () => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      let response = await axios.get(`http://yuseon.shop/community/topFive`)
+      dispatch(getTopFive(response.data));
+    }
+    catch (err) {
       console.log(err);
     }
   };
@@ -78,12 +94,26 @@ export default handleActions(
             ] = cur;
             return acc;
           }
-        }, []);
+        }, [])
       }),
 
-    [LIKE_POST]: (state, action) => produce(state, (draft) => {}),
+    [GET_TOPFIVE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.Top_list;
 
-    [UNLIKE_POST]: (state, action) => produce(state, (draft) => {}),
+
+
+      }),
+
+    [LIKE_POST]: (state, action) =>
+      produce(state, (draft) => {
+
+      }),
+
+    [UNLIKE_POST]: (state, action) =>
+      produce(state, (draft) => {
+
+      }),
   },
   initialState
 );
@@ -92,6 +122,9 @@ export default handleActions(
 const actionCreators = {
   getPostDB,
   likePostDB,
+  getTopFiveDB,
+  getTopFive
+
 };
 
 export { actionCreators };

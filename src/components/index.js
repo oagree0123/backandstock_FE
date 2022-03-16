@@ -6,10 +6,11 @@ import PortCardList from "./PortCardList/PortCardList";
 import BarChart from "./BarChart/BarChart";
 import LineChart from "./LineChart/LineChart";
 import CompareResult from "./CompareResult/CompareResult";
+import Slide from './Community/Slide';
+import CommunityList from './Community/CommunityList';
 import TopInfo from './Result/TopInfo';
 import CommentList from "./CommentList/CommentList";
 import DetailResult from "./DetailResult/DetailResult";
-import CommunityList from "./CommunityList/CommunityList";
 
 export {
   SideTap,
@@ -20,6 +21,7 @@ export {
   BarChart,
   LineChart,
   CompareResult,
+  Slide,
   TopInfo,
   CommentList,
   DetailResult,

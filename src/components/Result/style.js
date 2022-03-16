@@ -227,13 +227,15 @@ export const Lists = styled.div`
 
 
 export const ListWrap = styled.div`
-  padding: 9px 0px 0px 20px;
+  padding: 9px 0px 0px 5px;
 `;
 
 
 export const CardList = styled.div`
-  width: 152px;
-  height: 190px;
+  /* width: 152px;
+  height: 190px; */
+  width: 170px;
+  height: 223px;
   background: #ecf5ff;
   border-radius: 10px;
   padding: 8px 14px 21px 16px;
@@ -254,28 +256,28 @@ export const StockTitle = styled.span`
   font-size: var(--font-medium);
   font-weight: 700;
   color: #322f37;
+  margin: 16px 0;
 `;
 
 export const StockTitleWrap = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: flex-end;
-  align-content: stretch;
-
-  height: 55px;
-  margin-bottom: 21px;
+  align-items: center;
+  margin-bottom: 24px;
 `;
 
 
 export const MoneyWrap = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: flex-end;
-  align-content: stretch;
+  justify-content: space-between;
+  align-items: flex-start;
+  > span {
+    font-size: var(--font-result-small);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
 `;
 
 
@@ -370,9 +372,12 @@ export const MoneyText = styled.div`
 
 export const Empty = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 190px;
+  justify-content: center;
   margin-left: 7px;
+
+  height: 223px;
 `;
 
 export const TextIconWrap = styled.div`
@@ -418,8 +423,8 @@ export const Profit = styled.span`
 `;
 
 export const EmptyList = styled.div`
-    width: 162px;
-    height: 230px;
+    width: 170px;
+    height: 223px;
     border-radius: 10px;
     background: #D9DFE64D;
 `
