@@ -24,7 +24,7 @@ const deletePort = createAction(DELETE_PORT, (port_idx, port_id) => ({ port_idx,
 
 const setBest = createAction(SET_BEST, (type, port_id) => ({ type, port_id }));
 const setCompare = createAction(SET_COMPARE, (type, compare_id) => ({ type, compare_id }));
-const getCompare = createAction(GET_COMPARE, (compare_item) => ({ compare_item }));
+const getCompare = createAction(GET_COMPARE, (compare_item, compare_data) => ({ compare_item, compare_data }));
 
 // initialState
 const initialState = {
@@ -212,13 +212,13 @@ const getCompareDB = () => {
     }
 
     try {
-      /* let response = await axios.post(`http://yuseon.shop/port/compare`,  {
+      let response = await axios.post(`http://yuseon.shop/port/compare`,  {
         portIdList : compare_list
       }, {
         headers: {
           authorization: `${token}`
         }
-      }) */
+      })
 
       let compare_item = [];
 
@@ -228,7 +228,7 @@ const getCompareDB = () => {
         }
       })
       
-      dispatch(getCompare(compare_item));
+      dispatch(getCompare(compare_item, response.data));
     }
     catch (err) {
       console.log(err);
@@ -307,6 +307,7 @@ export default handleActions(
     [GET_COMPARE]: (state, action) =>
       produce(state, (draft) => {
         draft.compare_item = action.payload.compare_item;
+        draft.compare_data = action.payload.compare_data;
       }),
   },
   initialState

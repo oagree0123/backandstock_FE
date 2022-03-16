@@ -1,58 +1,67 @@
 import React from "react";
 import {
-  ListWrap,
   StockTitle,
   CardList,
   StockTitleWrap,
   MoneyWrap,
   Ratio,
-  Profit
+  Profit,
 } from "./style";
-
 
 const StockItem = (props) => {
   const yieldmoneys = Math.floor(props.stock_yieldmoneys.slice(-1)[0]);
   const profit_money = Number(yieldmoneys) - Number(props.seedmoney);
 
-  const init_money = Math.floor(props.init_money / 100 * props.stock_ratio)
+  const init_money = Math.floor((props.init_money / 100) * props.stock_ratio);
 
   return (
-    <div>
-      <ListWrap>
-
-        <CardList>
-          <StockTitleWrap>
-            <StockTitle>{props.stock_name}</StockTitle>
-            <Ratio>{props.stock_ratio}% <span> /100%</span></Ratio>
-            {/* <StockTitle>({props.stock_codes})</StockTitle> */}
-          </StockTitleWrap>
-          <MoneyWrap>
-            <span>자본:</span>
-            <span>{props.seedmoney.toLocaleString()}원</span>
-          </MoneyWrap>
-          <MoneyWrap>
-            {profit_money < 0 ? (
-              <>
-                <span> 손익:</span>
-                <span><Profit> {profit_money.toLocaleString()}원</Profit></span>
-              </>
-            ) : (
-              <>
-                <span> 손익:</span>
-                <span><Profit>+{profit_money.toLocaleString()}원</Profit></span>
-              </>
-            )}
-          </MoneyWrap>
-          <MoneyWrap>
-            <span>최종:</span>
-            <Profit>{yieldmoneys.toLocaleString()}원</Profit>
-          </MoneyWrap>
-        </CardList>
-      </ListWrap>
-    </div>
+    <CardList>
+      <StockTitleWrap>
+        <StockTitle>{props.stock_name}</StockTitle>
+        { props.stock_ratio ? 
+          <Ratio>
+            {props.stock_ratio}% <p> / 100%</p>
+          </Ratio> :
+          <Ratio>
+            {props.stock_rate}% <p> / 100%</p>
+          </Ratio> 
+        }
+        {/* <StockTitle>({props.stock_codes})</StockTitle> */}
+      </StockTitleWrap>
+      <MoneyWrap>
+        <span>자본:</span>
+        <span>{Math.floor(props.seedmoney / 10000).toLocaleString()} 만원</span>
+      </MoneyWrap>
+      <MoneyWrap>
+        {profit_money < 0 ? (
+          <>
+            <span> 손익:</span>
+            <span>
+              <Profit>
+                {Math.floor(profit_money / 10000).toLocaleString()} 만원
+              </Profit>
+            </span>
+          </>
+        ) : (
+          <>
+            <span> 손익:</span>
+            <span>
+              <Profit>
+                {profit_money > 0 ?
+                  `+${Math.floor(profit_money / 10000).toLocaleString()} 만원`:
+                  `${Math.floor(profit_money / 10000).toLocaleString()} 만원`
+                }
+              </Profit>
+            </span>
+          </>
+        )}
+      </MoneyWrap>
+      <MoneyWrap>
+        <span>최종:</span>
+        <Profit>{Math.floor(yieldmoneys / 10000).toLocaleString()} 만원</Profit>
+      </MoneyWrap>
+    </CardList>
   );
 };
-
-
 
 export default StockItem;

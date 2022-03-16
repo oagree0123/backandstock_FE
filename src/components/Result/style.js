@@ -5,7 +5,6 @@ export const All = styled.div`
   background-color: #ecf5ff;
 `;
 
-
 export const Box = styled.div`
   width: 480px;
   height: 262px;
@@ -14,11 +13,9 @@ export const Box = styled.div`
   padding: 20px;
 `;
 
-
 export const TopWrap = styled.div`
   display: flex;
 `;
-
 
 export const BoxWrap = styled.div`
   margin-left: 16px;
@@ -44,7 +41,6 @@ export const Wrap = styled.div`
   margin-bottom: 50px;
 `;
 
-
 export const MonthBox = styled.div`
   width: 428px;
   height: 200px;
@@ -53,12 +49,10 @@ export const MonthBox = styled.div`
   padding: 11px 33px 21px 17px;
 `;
 
-
 export const TextWrap = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
 
 export const Text = styled.div`
   font-size: var(--font-title);
@@ -67,12 +61,10 @@ export const Text = styled.div`
   margin-bottom: 11px;
 `;
 
-
 export const Info = styled.span`
   font-size: var(--font-large);
   font-weight: 500;
 `;
-
 
 export const BestYear = styled.span`
   font-size: var(--font-header);
@@ -80,13 +72,11 @@ export const BestYear = styled.span`
   color: #ff0000;
 `;
 
-
 export const WorstYear = styled.span`
   font-size: var(--font-header);
   font-weight: 700;
   color: #0075ff;
 `;
-
 
 export const MonthWrap = styled.div`
   margin-top: 6px;
@@ -102,7 +92,6 @@ export const BestMonth = styled.span`
   color: #ff0000;
   margin-top: -20px;
 `;
-
 
 export const WorstMonth = styled.span`
   font-weight: 700;
@@ -213,50 +202,33 @@ export const PlusYieldIcon = styled.img`
 `;
 
 export const Lists = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  height: 250px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  width: 280px;
 `;
-
 
 export const ListWrap = styled.div`
   padding: 9px 0px 0px 5px;
 `;
 
-
 export const CardList = styled.div`
-  /* width: 152px;
-  height: 190px; */
-  width: 170px;
-  height: 223px;
-  background: #ecf5ff;
-  border-radius: 10px;
   padding: 8px 14px 21px 16px;
+  width: 166px;
+  height: 213px;
+  border-radius: 10px;
+  background-color: #fff;
 `;
 
-export const ListTitle = styled.div`
-  width: 880px;
-  height: 61px;
-  padding: 16px 0 16px 24px;
-
-  font-weight: 700;
-  font-size: 22px;
-  color: #322f37;
-`;
-
-
-export const StockTitle = styled.span`
-  font-size: var(--font-medium);
-  font-weight: 700;
-  color: #322f37;
+export const StockTitle = styled.p`
   margin: 16px 0;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  font-size: var(--font-medium);
+  font-weight: 800;
+  line-height: var(--line-medium);
+  color: #000;
 `;
 
 export const StockTitleWrap = styled.div`
@@ -266,20 +238,18 @@ export const StockTitleWrap = styled.div`
   margin-bottom: 24px;
 `;
 
-
 export const MoneyWrap = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
-  > span {
-    font-size: var(--font-result-small);
-    font-weight: 700;
+
+  & > span {
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 17px;
     margin-bottom: 6px;
   }
 `;
-
 
 export const Minus = styled.span`
   font-size: var(--font-main);
@@ -288,7 +258,6 @@ export const Minus = styled.span`
   margin-bottom: 5px;
 `;
 
-
 export const Plus = styled.span`
   font-size: var(--font-main);
   color: var(--font-red);
@@ -296,18 +265,14 @@ export const Plus = styled.span`
   margin-bottom: 5px;
 `;
 
-
 export const Money = styled.span`
   font-size: var(--font-main);
   color: var(--font-textclolr);
   font-weight: 500;
 `;
 
-
 export const StockWrap = styled.div`
   width: 880px;
-  background-color: #ffffff;
-  border-radius: 10px;
 `;
 
 export const ListTop = styled.div`
@@ -315,12 +280,10 @@ export const ListTop = styled.div`
   padding-bottom: 10px;
 `;
 
-
 export const TopStockName = styled.p`
   padding-left: 50px;
   font-size: var(--font-main);
 `;
-
 
 export const TopStockRate = styled.p`
   padding-left: 25px;
@@ -328,40 +291,31 @@ export const TopStockRate = styled.p`
   text-align: center;
 `;
 
-
 export const TopStockPrice = styled.p`
   padding-right: 16px;
   font-size: var(--font-main);
 `;
 
-
-export const InfoWrap = styled.div`
-
-`;
-
+export const InfoWrap = styled.div``;
 
 export const CalenderIcon = styled.img`
   width: 26px;
   height: 26px;
 `;
 
-
 export const Poket = styled.img`
   width: 26px;
   height: 26px;
 `;
-
 
 export const Dollar = styled.img`
   width: 14px;
   height: 33px;
 `;
 
-
 export const MoneyTitle = styled.span`
   font-size: var(--font-small);
 `;
-
 
 export const MoneyText = styled.div`
   display: flex;
@@ -369,15 +323,12 @@ export const MoneyText = styled.div`
   align-items: flex-end;
 `;
 
-
-export const Empty = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-left: 7px;
-
-  height: 223px;
+export const Empty = styled.p`
+  font-size: var(--font-medium);
+  font-weight: 500;
+  line-height: 165%;
+  color: #b9b9b9;
+  text-align: center;
 `;
 
 export const TextIconWrap = styled.div`
@@ -400,31 +351,37 @@ export const InfoText = styled.p`
 `;
 
 export const Ratio = styled.span`
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    font-size: 28px;
-    font-weight: 700;
-    color:#0075FF;
-    & span {
+  display: flex;
+  align-items: flex-start;
+  height: 39px;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 41px;
+  color: #0075ff;
+
+  & > p {
+    padding-top: 4px;
+    padding-left: 2px;
     font-size: var(--font-medium);
     color: var(--font-textclolr);
     font-weight: 500;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    }
-    `;
+  }
+`;
 
 export const Profit = styled.span`
   font-size: var(--font-result-small);
-  color: var( --font-red);
+  color: var(--font-red);
   font-weight: 700;
   margin-bottom: 5px;
 `;
 
 export const EmptyList = styled.div`
-    width: 170px;
-    height: 223px;
-    border-radius: 10px;
-    background: #D9DFE64D;
-`
+  width: 166px;
+  height: 213px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(217, 223, 230, 1);
+  border-radius: 10px;
+  background-color: #eee;
+`;

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { history } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CommunityWrap, BoxWrap, Box, Container, Modalinner, Close, InputWrap, Input, Btn, Title } from "./style";
+import { CommunityWrap, Title } from "./style";
 import { actionCreators as communityActions } from '../../redux/modules/community';
 
 import { CommunityList, Slide } from '../../components';
@@ -12,6 +12,7 @@ const Community = () => {
   const dispatch = useDispatch();
 
   // console.log(top_list);
+  const [page, setPage] = useState(1);
   
   const top_list = useSelector((state) => state.community.top_five_list)
   const community_list = useSelector(state => state.community.list);
@@ -31,30 +32,17 @@ const Community = () => {
         사람들과 소통해보세요!
       </Title>
       <Slide></Slide>
-      <CommunityList></CommunityList>
-
-      {/* 
-      <BoxWrap>
-        <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_1</Box>
-        <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_2</Box>
-        <Box onClick={() => setModalOpen(!modalOpen)}>포토폴리오_3</Box>
-
-        {
-          modalOpen === true
-            ? <Container>
-              <Modalinner>
-                <Close onClick={closeModal}> X </Close>
-                <h1>모달창</h1>
-                <InputWrap>
-                  <Input onChange={onChange}></Input>
-                  <Btn>댓글등록</Btn>
-                </InputWrap>
-
-              </Modalinner>
-            </Container>
-            : null
-        }
-      </BoxWrap> */}
+      { community_list &&
+        <CommunityList community_list={community_list} />
+      }
+      {/* <button
+        onClick={() => {
+          dispatch(communityActions.getPostDB(page + 1));
+          setPage(prevState => prevState + 1);
+        }}
+      >
+        더보기
+      </button> */}
     </CommunityWrap>
   );
 };

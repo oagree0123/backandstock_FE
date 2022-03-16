@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LineChartWrap = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 40px;
   width: 880px;
   height: 300px;
   border-radius: 10px;
@@ -9,7 +9,7 @@ export const LineChartWrap = styled.div`
 `;
 
 export const BarChartWrap = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 40px;
   width: 880px;
   height: 300px;
   border-radius: 10px;

@@ -80,7 +80,6 @@ const DetailResult = (props) => {
     <>
       <All>
         <TopInfo 
-          nickname={props.nickname}
           type={props.type}
           port_list={result_list} 
         />
@@ -114,7 +113,7 @@ const DetailResult = (props) => {
           />
         </BarChartWrap>
         <DetailTitle>종목별 수익률</DetailTitle>
-        <StockList {...result_list}></StockList>
+        <StockList stock_ratio={props.stock_ratio} {...result_list}></StockList>
       </All>
     </>
   );

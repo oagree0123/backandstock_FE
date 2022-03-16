@@ -23,13 +23,13 @@ const initialState = {
 };
 
 // middlewares
-const getPostDB = () => {
+const getPostDB = (page=1) => {
   return async function (dispatch, getState, { history }) {
     try {
       let response = await axios.get(`http://yuseon.shop/community`, {
         params: {
-          page: 1,
-          size: 10,
+          page: page,
+          size: 10  ,
         },
       });
       console.log(response.data);

@@ -3,7 +3,6 @@ import StockItem from "./StockItem.js";
 import {
   StockWrap,
   Lists,
-  ListTitle,
   CardList,
   ListWrap,
   Empty,
@@ -25,7 +24,6 @@ const StockList = (props) => {
 
   return (
     <StockWrap>
-      <ListTitle>종목별 수익금</ListTitle>
       <Lists>
         {(stock_name?.map((a, i) => {
           return (
@@ -38,20 +36,19 @@ const StockList = (props) => {
               seedmoney={seedmoney}
               stock_ratio={stock_ratio[i]}
               init_money={init_money}
+              stock_rate={props.stock_ratio}
             />
           )
         }))}
 
         {[...Array(count)].map((n, index) => {
           return (
-            <ListWrap key={index}>
-              <EmptyList>
+              <EmptyList key={index}>
                 <Empty>
-                  <span> 종목이</span>
-                  <span>없습니다.</span>
+                  실험한 종목이 <br />
+                  {count}개 뿐이에요
                 </Empty>
               </EmptyList>
-            </ListWrap>
           )
         })}
 

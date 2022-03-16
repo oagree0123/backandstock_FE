@@ -70,12 +70,6 @@ const TopInfo = (props) => {
           <Box>
             <YieldWrap>
               <div>
-                {/* { props.type === "Best" ?
-                  <Text>{props.nickname} 님의 총 수익은</Text> :
-                    is_login ?
-                      <Text>{user.nickname} 님의 총 수익은</Text>:
-                      <Text>방문자 님의 총 수익은</Text>
-                } */}
                 <Text>최종 수익률 및 수익금</Text>
                 <MinusYield>{finalYield}%</MinusYield>
                 <MinusYieldMoney>
@@ -89,12 +83,6 @@ const TopInfo = (props) => {
           <Box>
             <YieldWrap>
               <div>
-                {/* { props.type === "Best" ?
-                  <Text>{props.nickname} 님의 총 수익은</Text> :
-                    is_login ?
-                      <Text>{user.nickname} 님의 총 수익은</Text>:
-                      <Text>방문자 님의 총 수익은</Text>
-                    } */}
                 <Text>최종 수익률 및 수익금</Text>
                 <PlusYield>{finalYield}%</PlusYield>
                 <PlusYieldMoney>{finalMoney.toLocaleString()} 만원</PlusYieldMoney>
