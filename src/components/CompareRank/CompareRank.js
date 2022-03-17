@@ -2,12 +2,12 @@ import React from 'react';
 import CompareInfo from '../CompareInfo/CompareInfo';
 
 const CompareRank = (props) => {
-  const { compare_data, compare_item } = props;
+  const { compare_data, port_list } = props;
 
   return (
     <>
       {compare_data &&
-        <CompareInfo {...compare_data} compare_item={compare_item} />
+        <CompareInfo {...compare_data} port_list={port_list} />
       }
     </>
   );

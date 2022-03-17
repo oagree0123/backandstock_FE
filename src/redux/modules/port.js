@@ -308,6 +308,7 @@ export default handleActions(
       }),
     [GET_COMPARE]: (state, action) =>
       produce(state, (draft) => {
+        draft.compare_data = [];
         draft.compare_item = action.payload.compare_item;
         draft.compare_data = action.payload.compare_data;
       }),

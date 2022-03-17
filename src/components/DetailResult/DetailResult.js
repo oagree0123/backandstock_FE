@@ -113,7 +113,11 @@ const DetailResult = (props) => {
           />
         </BarChartWrap>
         <DetailTitle>종목별 수익률</DetailTitle>
-        <StockList stock_ratio={props.stock_ratio} {...result_list}></StockList>
+        <StockList 
+          type="detail"
+          stock_ratio={props.stock_ratio} 
+          {...result_list}
+        ></StockList>
       </All>
     </>
   );

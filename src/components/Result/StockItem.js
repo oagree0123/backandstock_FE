@@ -12,8 +12,6 @@ const StockItem = (props) => {
   const yieldmoneys = Math.floor(props.stock_yieldmoneys.slice(-1)[0]);
   const profit_money = Number(yieldmoneys) - Number(props.seedmoney);
 
-  const init_money = Math.floor((props.init_money / 100) * props.stock_ratio);
-
   return (
     <CardList>
       <StockTitleWrap>
@@ -23,7 +21,7 @@ const StockItem = (props) => {
             {props.stock_ratio}% <p> / 100%</p>
           </Ratio> :
           <Ratio>
-            {props.stock_rate}% <p> / 100%</p>
+            {props.stock_rate[props.stock_num]}% <p> / 100%</p>
           </Ratio> 
         }
         {/* <StockTitle>({props.stock_codes})</StockTitle> */}

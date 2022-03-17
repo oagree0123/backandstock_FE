@@ -94,7 +94,7 @@ const Mypage = () => {
           compare_data &&
           <MypageInfoWrap>
             <CompareRank 
-              compare_item={compare_item}
+              port_list={port_list}
               compare_data={compare_data} 
             />
           </MypageInfoWrap> :

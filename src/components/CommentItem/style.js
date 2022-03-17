@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CommentItemWrap = styled.div`
-  margin-bottom: 32px;
+  margin-top: 28px;
   width: 880px;
   display: flex;
   justify-content: flex-start;
@@ -13,7 +13,9 @@ export const ImgWrap = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--primary-color);
+  background: ${props => props.userImg || `var(--primary-color)`};
+  background-repeat: no-repeat;
+  background-size: contain;
 `;
 
 export const CommentContWrap = styled.div`
@@ -37,6 +39,11 @@ export const CommentCont = styled.p`
   line-height: 23px;
 `;
 
+export const BtnWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const ReCommnentBtn = styled.button`
   width: 30px;
   height: 20px;
@@ -50,11 +57,33 @@ export const ReCommnentBtn = styled.button`
   background-color: #fff;
 `;
 
+export const DelCommnentBtn = styled.button`
+  width: 30px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17px;
+  color: #696969;
+  text-align: right;
+  border: none;
+  background-color: #fff;
+`;
+
 export const RecoWrap = styled.div`
   margin-top: 14px;
   height: 40px;
   display: flex;
   align-items: center;
+`;
+
+export const ReCommentItemWrap = styled.div`
+  margin-top: ${props => props.mTop || 0};
+  width: 880px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
 export const ReImgWrap = styled.div`
@@ -67,13 +96,15 @@ export const ReImgWrap = styled.div`
 
 export const RecoInput = styled.input`
   margin-right: 12px;
+  padding-left: 20px;
   width: 600px;
   height: 37px;
+  color: var(--primary-color);
   border: 1px solid var(--primary-color);
   border-radius: 50px;
 
   &:focus {
-    outline: 2px solid var(--primary-color);
+    outline: 1px solid var(--primary-color);
   }
 `;
 

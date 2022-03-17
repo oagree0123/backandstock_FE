@@ -51,13 +51,14 @@ const BestDetail = (props) => {
         <DetailResult 
           nickname={port_one.nickname}
           type="Best" 
+          stock_ratio={port_one.stockRatio}
           result_list={result_list} 
         />
       }
       </ContWrap>
 
       <CommentWrap>
-        <CommentCnt>댓글 {port_one.likesCnt}</CommentCnt>
+        <CommentCnt>댓글 {port_one.commentCnt}</CommentCnt>
         <CommentList port_id={port_id.id} comment_list={comment_list} />
       </CommentWrap>
     </BestDetailWrap>

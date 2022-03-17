@@ -52,8 +52,6 @@ const CompareResult = (props) => {
           tick_font={12}
         />
       )}
-
-      <CompareInfo />
     </>
   );
 };

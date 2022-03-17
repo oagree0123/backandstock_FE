@@ -5,7 +5,6 @@ export const CommentListWrap = styled.div`
 `;
 
 export const CommentInputWrap = styled.div`
-  margin-bottom: 36px;
   width: 880px;
   display: flex;
   justify-content: flex-start;
@@ -17,7 +16,9 @@ export const UserImg = styled.div`
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: var(--primary-color);
+  background: ${props => props.userImg || `var(--primary-color)`};
+  background-repeat: no-repeat;
+  background-size: contain;
 `;
 
 export const CommnetInput = styled.input`

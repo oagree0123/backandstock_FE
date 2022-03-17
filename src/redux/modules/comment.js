@@ -17,7 +17,7 @@ const EDIT_RECOMMENT = "EDIT_RECOMMENT";
 // action creators
 const getComment = createAction(GET_COMMENT, (comment_list) => ({ comment_list }));
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
-const readdComment = createAction(READD_COMMNET, (newcomment) => ({ newcomment }));
+const readdComment = createAction(READD_COMMNET, (comment_idx, recomment_data) => ({ comment_idx, recomment_data }));
 const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_idx }));
 const deleterecommnet = createAction(DELETE_RECOMMENT, (comment_idx) => ({ comment_idx }));
 const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
@@ -52,6 +52,7 @@ const addCommentDB = (port_id, content) => {
         commentId: response.data.commentId,
         content: content,
         nickname: nickname,
+        replyList: [],
       }));
     }
     catch (err) {
@@ -103,6 +104,7 @@ const editCommentDB = (comment_id, comment) => {
     }
   };
 };
+
 // 댓글 삭제
 const deleteCommentDB = (comment_id) => {
   return async function (dispatch, getState) {
@@ -134,10 +136,10 @@ const ReaddCommentDB = (commentId, Newcontent) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken('token');
     const nickname = getState().user.user_info.nickname
+    const comment_list = getState().comment.list;
     try {
-      let response = await axios.post(`http://yuseon.shop/community/comment/${commentId}`, {
-        content: Newcontent,
-        nickname: nickname
+      let response = await axios.post(`http://yuseon.shop/community/reply/${commentId}`, {
+        content: Newcontent
       }, {
         headers: {
           Authorization: `${token}`
@@ -145,12 +147,18 @@ const ReaddCommentDB = (commentId, Newcontent) => {
       });
 
       console.log(response.data);
+
       const data = {
         commentId: response.data.commentId,
-        Newcontent: Newcontent,
+        content: Newcontent,
         nickname: nickname,
       }
-      dispatch(readdComment(data))
+
+      let comment_idx = comment_list.findIndex(c => {
+        return c.commentId === commentId;
+      })
+
+      dispatch(readdComment(comment_idx, data))
     }
     catch (err) {
       console.log(err);
@@ -210,6 +218,7 @@ export default handleActions(
   {
     [GET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
+        draft.list = [];
         draft.list.push(...action.payload.comment_list);
         draft.list = draft.list.reduce((acc, cur) => {
           if (acc.findIndex((a) => a.commentId === cur.commentId) === -1) {
@@ -252,11 +261,7 @@ export default handleActions(
       }),
 
     [READD_COMMNET]: (state, action) => produce(state, (draft) => {
-      const newComment = draft.list.comment.filter(
-        (com, id) => com.id !== action.payload.commentid
-      );
-
-      draft.list.comments = [...newComment];
+      draft.list[action.payload.comment_idx].replyList.push(action.payload.recomment_data);
     }),
 
     [DELETE_RECOMMENT]: (state, action) =>

@@ -34,7 +34,7 @@ import {
 import { useSelector } from "react-redux";
 
 const CompareInfo = (props) => {
-  const compare_item = props.compare_item;
+  const compare_item = props.port_list;
 
   const best_data = props.portfolioHighYield;
   const worst_data = props.portfolioLowYield;
@@ -46,7 +46,7 @@ const CompareInfo = (props) => {
   const [rank_idx, setRankIdx] = useState([]);
 
   useEffect(() => {
-    if (compare_item) {
+    if (compare_item && best_data && worst_data) {
       let high = compare_item.findIndex((p) => {
         return p.portId === best_data.portId;
       });
@@ -60,15 +60,17 @@ const CompareInfo = (props) => {
     }
 
     if (rank_data) {
+      setRankIdx([]);
       rank_data.map((r, i) => {
         let idx = compare_item.findIndex((p) => {
           return p.portId === r.portId;
         });
-
+        console.log(idx);
+        
         setRankIdx((prev) => [...prev, idx + 1]);
       });
     }
-  }, [compare_item, rank_data]);
+  }, [compare_item, rank_data, best_data, worst_data]);
 
   return (
     <>
@@ -155,7 +157,7 @@ const CompareInfo = (props) => {
               })}
               {[...Array(3 - rank_data.length)].map((a, i) => {
                 return (
-                  <NoneRankBox>
+                  <NoneRankBox key={i}>
                     비교한 실험이 <br />
                     2개뿐 이에요
                   </NoneRankBox>

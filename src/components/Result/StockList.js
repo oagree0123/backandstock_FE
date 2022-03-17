@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StockItem from "./StockItem.js";
 import {
   StockWrap,
@@ -18,28 +18,42 @@ const StockList = (props) => {
   const count = 5 - stock_name.length
 
   const test = useSelector((state) => state.testform)
-
   const stock_ratio = test.ratioList
   const init_money = test.init_money
 
   return (
     <StockWrap>
       <Lists>
-        {(stock_name?.map((a, i) => {
-          return (
-            <StockItem
-              key={i}
-              stock_name={a}
-              stock_codes={stock_codes[i]}
-              stock_yieldmoneys={stock_yieldmoneys[i]}
-              stock_num={i}
-              seedmoney={seedmoney}
-              stock_ratio={stock_ratio[i]}
-              init_money={init_money}
-              stock_rate={props.stock_ratio}
-            />
-          )
-        }))}
+        {props.type === "detail" ?
+          (stock_name?.map((a, i) => {
+            return (
+              <StockItem
+                key={i}
+                stock_name={a}
+                stock_codes={stock_codes[i]}
+                stock_yieldmoneys={stock_yieldmoneys[i]}
+                stock_num={i}
+                seedmoney={seedmoney}
+                init_money={init_money}
+                stock_rate={props.stock_ratio}
+              />
+            )
+          })) :
+          (stock_name?.map((a, i) => {
+            return (
+              <StockItem
+                key={i}
+                stock_name={a}
+                stock_codes={stock_codes[i]}
+                stock_yieldmoneys={stock_yieldmoneys[i]}
+                stock_num={i}
+                seedmoney={seedmoney}
+                stock_ratio={stock_ratio[i]}
+                init_money={init_money}
+              />
+            )
+          })) 
+        }
 
         {[...Array(count)].map((n, index) => {
           return (
