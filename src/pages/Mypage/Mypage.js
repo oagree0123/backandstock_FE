@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import { CompareRank, CompareResult } from "../../components";
 import PortCardList from "../../components/PortCardList/PortCardList";
 import { actionCreators as portActions } from '../../redux/modules/port';
+import { actionCreators as communityActions } from "../../redux/modules/community";
 
 import { MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageHead, ChartBtnWrap, CompareBtn, DeleteBtn, NoneChartWrap, NoneChartText } from "./style";
+import { history } from "../../redux/configStore";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -41,6 +43,7 @@ const Mypage = () => {
     if(window.confirm("정말 삭제하시겠습니까?")) {
       compare_list.map(c => {
         dispatch(portActions.deletePortDB(c));
+        dispatch(communityActions.deletePost(c));
       })
     }
   }

@@ -35,6 +35,8 @@ const getPostDB = (page=1) => {
         },
       });
 
+      console.log(response.data)
+
       dispatch(getPost(response.data));
     }
     catch (err) {

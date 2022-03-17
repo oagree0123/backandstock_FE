@@ -95,7 +95,7 @@ const DetailResult = (props) => {
             line_data={data} 
           />
         </LineChartWrap>
-        <DetailTitle>월별 수익률</DetailTitle>
+        <DetailTitle>전월 대비 수익률</DetailTitle>
         <BarChartWrap>
           <BarChart 
             width={880}
@@ -112,7 +112,7 @@ const DetailResult = (props) => {
             tick_font={12}
           />
         </BarChartWrap>
-        <DetailTitle>종목별 수익률</DetailTitle>
+        <DetailTitle>종목별 수익금</DetailTitle>
         <StockList 
           type="detail"
           stock_ratio={props.stock_ratio} 

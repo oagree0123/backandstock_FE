@@ -17,15 +17,15 @@ const EDIT_RECOMMENT = "EDIT_RECOMMENT";
 // action creators
 const getComment = createAction(GET_COMMENT, (comment_list) => ({ comment_list }));
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
-const readdComment = createAction(READD_COMMNET, (comment_idx, recomment_data) => ({ comment_idx, recomment_data }));
 const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_idx }));
-const deleterecommnet = createAction(DELETE_RECOMMENT, (comment_idx) => ({ comment_idx }));
 const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
   comment_id,
   comment,
 })
 );
 
+const readdComment = createAction(READD_COMMNET, (comment_idx, recomment_data) => ({ comment_idx, recomment_data }));
+const deleterecommnet = createAction(DELETE_RECOMMENT, (comment_idx, recomment_id) => ({ comment_idx, recomment_id }));
 const editrecomment = createAction(EDIT_RECOMMENT, (comment_id, newcommnet) => ({ comment_id, newcommnet }))
 
 const initialState = {
@@ -37,7 +37,7 @@ const initialState = {
 const addCommentDB = (port_id, content) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken('token');
-    const nickname = getState().user.user_info.nickname
+    const user = getState().user.user_info;
     try {
       let response = await axios.post(`http://yuseon.shop/community/comment/${port_id}`, {
         content: content
@@ -47,11 +47,11 @@ const addCommentDB = (port_id, content) => {
         }
       });
 
-      console.log(response.data);
       dispatch(addComment({
         commentId: response.data.commentId,
         content: content,
-        nickname: nickname,
+        nickname: user.nickname,
+        profileImg: user.profile_img,
         replyList: [],
       }));
     }
@@ -135,7 +135,7 @@ const deleteCommentDB = (comment_id) => {
 const ReaddCommentDB = (commentId, Newcontent) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken('token');
-    const nickname = getState().user.user_info.nickname
+    const user = getState().user.user_info
     const comment_list = getState().comment.list;
     try {
       let response = await axios.post(`http://yuseon.shop/community/reply/${commentId}`, {
@@ -146,12 +146,11 @@ const ReaddCommentDB = (commentId, Newcontent) => {
         }
       });
 
-      console.log(response.data);
-
       const data = {
         commentId: response.data.commentId,
         content: Newcontent,
-        nickname: nickname,
+        nickname: user.nickname,
+        profileImg: user.profile_img,
       }
 
       let comment_idx = comment_list.findIndex(c => {
@@ -167,22 +166,23 @@ const ReaddCommentDB = (commentId, Newcontent) => {
 }
 
 //대댓글 삭제
-const deleteREcommnetDB = (comment_id) => {
+const deleteREcommnetDB = (comment_id, recomment_id) => {
   return async function (dispatch, getState) {
     const token = getToken("token");
-    const _newcomment_list = getState().newcomment.list;
-
+    const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`http://yuseon.shop/community/comment/${comment_id}`, {
+      await axios.delete(`http://yuseon.shop/community/comment/${recomment_id}`, {
         headers: {
           Authorization: `${token}`
         }
       });
-      const comment_idx = _newcomment_list.findIndex((c) => {
+
+      const comment_idx = _comment_list.findIndex((c) => {
         return parseInt(c.commentId) === parseInt(comment_id);
       })
-      dispatch(deleteComment(comment_idx));
+
+      dispatch(deleterecommnet(comment_idx, recomment_id));
     }
     catch (err) {
       console.log(err);
@@ -266,10 +266,13 @@ export default handleActions(
 
     [DELETE_RECOMMENT]: (state, action) =>
       produce(state, (draft) => {
-        const new_comment_list = draft.list.filter((c, i) => {
-          return parseInt(action.payload.comment_idx) !== i;
-        });
-        draft.list = new_comment_list;
+        let new_reply = 
+          draft.list[action.payload.comment_idx].replyList.filter((r) => {
+            console.log(r.commentId, action.payload.recomment_id);
+            return r.commentId !== action.payload.recomment_id
+          });
+
+          draft.list[action.payload.comment_idx].replyList = new_reply;
       }),
   },
   initialState

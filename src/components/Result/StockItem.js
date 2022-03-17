@@ -10,7 +10,12 @@ import {
 
 const StockItem = (props) => {
   const yieldmoneys = Math.floor(props.stock_yieldmoneys.slice(-1)[0]);
-  const profit_money = Number(yieldmoneys) - Number(props.seedmoney);
+  const ratio_money = ( 
+    props.stock_ratio ?
+    (props.seedmoney / 100) * props.stock_ratio : 
+    (props.seedmoney / 100) * props.stock_rate[props.stock_num]
+  )
+  const profit_money = Number(yieldmoneys) - Number(ratio_money);
 
   return (
     <CardList>
@@ -28,7 +33,7 @@ const StockItem = (props) => {
       </StockTitleWrap>
       <MoneyWrap>
         <span>자본:</span>
-        <span>{Math.floor(props.seedmoney / 10000).toLocaleString()} 만원</span>
+        <span>{Math.floor(ratio_money / 10000).toLocaleString()} 만원</span>
       </MoneyWrap>
       <MoneyWrap>
         {profit_money < 0 ? (

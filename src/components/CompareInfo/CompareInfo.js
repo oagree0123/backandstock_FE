@@ -130,7 +130,7 @@ const CompareInfo = (props) => {
                       </RankTitle>
                       <RankRatio>{Math.floor(r.finalYield)}%</RankRatio>
                       <RankMoney>
-                        {Math.floor(r.finalMoney / 10000)} 만원
+                        {Math.floor(r.finalMoney / 10000).toLocaleString('ko-KR')} 만원
                       </RankMoney>
                     </RankTop>
                     <RankMid>

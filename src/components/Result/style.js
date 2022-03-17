@@ -38,7 +38,7 @@ export const Wrap = styled.div`
   width: 880px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 export const MonthBox = styled.div`
@@ -121,20 +121,20 @@ export const Price = styled.span`
   justify-content: flex-end;
   align-items: center;
   color: #000000;
-  font-size: 28px;
+  font-size: 25px;
   font-weight: 700;
 
   & span {
     margin-left: 8px;
     color: #ff0000;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 700;
   }
 
   & p {
     margin-left: 8px;
     color: #0075ff;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 700;
   }
 `;

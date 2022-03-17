@@ -5,7 +5,7 @@ import StockList from "../../components/Result/StockList";
 import { LineChart, BarChart, TopInfo } from "../../components";
 
 import { history } from "../../redux/configStore";
-import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap } from "./style";
+import { Btn, All, ResultWrap, LineChartWrap, BarChartWrap, ResultTitle } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import ResultStockLine from "../../components/Chart/ResultStockLine";
@@ -14,19 +14,12 @@ const TestResult = () => {
   const dispatch = useDispatch();
   
   const is_login = useSelector(state => state.user.is_login);
-  const user = useSelector(state => state.user.user_info);
   const result_list = useSelector((state) => state.port.list);
 
   const click_save = () => {
     dispatch(portActions.savePortDB());
     history.push("/mypage");
   };
-
-  useEffect(() => {
-    if (!result_list) {
-      history.replace('/')
-    }
-  }, [])
 
   // 수익금
   const months = result_list.months;
@@ -59,91 +52,94 @@ const TestResult = () => {
 
   const bar_data = [];
 
-  // 수익금 데이터
-  monthYieldMoney.map((m, i) => {
-    let xy = {
-      x: months[i].substring(2),
-      y: parseInt(m / 10000),
-    };
-    data[0].data.push(xy);
-  });
-
-  kospiYieldMoney.map((m, i) => {
-    let xy = {
-      x: months[i].substring(2),
-      y: parseInt(m / 10000),
-    };
-    data[1].data.push(xy);
-  });
-
-  kosdaqYieldMoney.map((m, i) => {
-    let xy = {
-      x: months[i].substring(2),
-      y: parseInt(m / 10000),
-    };
-    data[2].data.push(xy);
-  });
-
-  // 수익률 데이터
-  monthYield.map((m, i) => {
-    let xy = {
-      months: months[i].substring(2),
-      "내 자산": Math.floor(monthYield[i]),
-      "KOSPI": Math.floor(kospiYield[i]),
-      "KOSDAQ": Math.floor(kosdaqYield[i]),
-    }
-    bar_data.push(xy);
-  })
-
+  
   useEffect(() => {
-    window.addEventListener('beforeunload', (event) => {
-      event.preventDefault(); 
-    });
-
-    return () => {
-      window.removeEventListener('beforeunload', (event) => {
-        event.preventDefault(); 
-      });
+    if(!result_list) {
+      history.push('/');
+      return ;
     }
-  },[])
+
+    // 수익금 데이터
+    monthYieldMoney.map((m, i) => {
+      let xy = {
+        x: months[i].substring(2),
+        y: parseInt(m / 10000),
+      };
+      data[0].data.push(xy);
+    });
+  
+    kospiYieldMoney.map((m, i) => {
+      let xy = {
+        x: months[i].substring(2),
+        y: parseInt(m / 10000),
+      };
+      data[1].data.push(xy);
+    });
+  
+    kosdaqYieldMoney.map((m, i) => {
+      let xy = {
+        x: months[i].substring(2),
+        y: parseInt(m / 10000),
+      };
+      data[2].data.push(xy);
+    });
+  
+    // 수익률 데이터
+    monthYield.map((m, i) => {
+      let xy = {
+        months: months[i].substring(2),
+        "내 자산": Math.floor(monthYield[i]),
+        "KOSPI": Math.floor(kospiYield[i]),
+        "KOSDAQ": Math.floor(kosdaqYield[i]),
+      }
+      bar_data.push(xy);
+    })
+  }, []);
 
   return (
     <ResultWrap>
-      <All>
-        <TopInfo port_list={result_list} />
-        <LineChartWrap>
-          <LineChart
-            margin={{
-              top: 32,
-              right: 120,
-              bottom: 64,
-              left: 100
-            }}
-            line_data={data}
-          />
-        </LineChartWrap>
-        <BarChartWrap>
-          <BarChart
-            width={880}
-            height={300}
-            margin={{
-              top: 32,
-              right: 120,
-              bottom: 64,
-              left: 100
-            }}
-            translateX={120}
-            translateY={38}
-            bar_data={bar_data}
-            tick_font={12}
-          />
-        </BarChartWrap>
-        <StockList {...result_list}></StockList>
-        {is_login ?
-          <Btn onClick={click_save}>실험 결과 저장하기</Btn> :
-          <Btn onClick={click_save} disabled>실험 결과 저장하기</Btn>
-        }
-      </All>
+      {
+        result_list !== [] ?
+        <All>
+          <TopInfo port_list={result_list} />
+          <ResultTitle>월별 수익금</ResultTitle>
+          <LineChartWrap>
+            <LineChart
+              margin={{
+                top: 32,
+                right: 120,
+                bottom: 64,
+                left: 100
+              }}
+              line_data={data}
+            />
+          </LineChartWrap>
+          <ResultTitle>전월 대비 수익률</ResultTitle>
+          <BarChartWrap>
+            <BarChart
+              width={880}
+              height={300}
+              margin={{
+                top: 32,
+                right: 120,
+                bottom: 64,
+                left: 100
+              }}
+              translateX={120}
+              translateY={38}
+              bar_data={bar_data}
+              tick_font={12}
+            />
+          </BarChartWrap>
+          <ResultTitle>종목별 수익금</ResultTitle>
+          <StockList {...result_list}></StockList>
+          {is_login ?
+            <Btn onClick={click_save}>실험 결과 저장하기</Btn> :
+            <Btn onClick={click_save} disabled>실험 결과 저장하기</Btn>
+          }
+        </All> :
+        null
+      }
     </ResultWrap>
   );
 };
