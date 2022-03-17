@@ -6,12 +6,14 @@ import { getToken } from '../../shared/token';
 
 // actions
 const GET_POST = "GET_POST";
+const DELETE_POST = "DELETE_POST";
 const GET_TOPFIVE = "GET_TOPFIVE";
 const LIKE_POST = "LIKE_POST";
 const UNLIKE_POST = "UNLIKE_POST";
 
 // action creators
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
+const deletePost = createAction(DELETE_POST, (portId) => ({ portId }));
 const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, () => ({}));
 const unlikePost = createAction(UNLIKE_POST, () => ({}));
@@ -32,7 +34,7 @@ const getPostDB = (page=1) => {
           size: 10  ,
         },
       });
-      console.log(response.data);
+
       dispatch(getPost(response.data));
     }
     catch (err) {
@@ -46,7 +48,6 @@ const getTopFiveDB = () => {
     try {
       let response = await axios.get(`http://yuseon.shop/community/topFive`)
 
-      console.log(response.data);
       dispatch(getTopFive(response.data));
     }
     catch (err) {
@@ -57,11 +58,16 @@ const getTopFiveDB = () => {
 
 const likePostDB = (user_id, port_id, type) => {
   return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
     try {
       await axios.post(`http://yuseon.shop/community/likes`, {
         userId: user_id,
         portId: port_id,
         likes: type,
+      }, {
+        headers: {
+          authorization: `${token}`
+        }
       });
 
       if (type) {
@@ -99,6 +105,15 @@ export default handleActions(
         }, [])
       }),
 
+    [DELETE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        let new_list = draft.list.filter((d) => {
+          return d.communityPort.portId !== action.payload.portId;
+        })
+
+        draft.list = new_list
+      }),
+
     [GET_TOPFIVE]: (state, action) =>
       produce(state, (draft) => {
         draft.top_five_list.push(...action.payload.Top_list);
@@ -107,12 +122,12 @@ export default handleActions(
     [LIKE_POST]: (state, action) =>
       produce(state, (draft) => {
 
-      }),
+    }),
 
     [UNLIKE_POST]: (state, action) =>
       produce(state, (draft) => {
 
-      }),
+    }),
   },
   initialState
 );
@@ -122,8 +137,8 @@ const actionCreators = {
   getPostDB,
   likePostDB,
   getTopFiveDB,
-  getTopFive
-
+  getTopFive,
+  deletePost,
 };
 
 export { actionCreators };
