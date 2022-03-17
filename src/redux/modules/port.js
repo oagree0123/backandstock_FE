@@ -14,6 +14,7 @@ const DELETE_PORT = "DELETE_PORT"
 const SET_BEST = "SET_BEST";
 const SET_COMPARE = "SET_COMPARE";
 const GET_COMPARE = "GET_COMPARE";
+const SET_INITCOMPARE = "SET_INITCOMPARE";
 
 // action creators
 const getResult = createAction(GET_RESULT, (test_result) => ({ test_result }));
@@ -24,7 +25,8 @@ const deletePort = createAction(DELETE_PORT, (port_idx, port_id) => ({ port_idx,
 
 const setBest = createAction(SET_BEST, (type, port_id) => ({ type, port_id }));
 const setCompare = createAction(SET_COMPARE, (type, compare_id) => ({ type, compare_id }));
-const getCompare = createAction(GET_COMPARE, (compare_item) => ({ compare_item }));
+const getCompare = createAction(GET_COMPARE, (compare_item, compare_data) => ({ compare_item, compare_data }));
+const setInitCompare = createAction(SET_INITCOMPARE, () => ({}));
 
 // initialState
 const initialState = {
@@ -212,13 +214,13 @@ const getCompareDB = () => {
     }
 
     try {
-      /* let response = await axios.post(`http://yuseon.shop/port/compare`,  {
+      let response = await axios.post(`http://yuseon.shop/port/compare`,  {
         portIdList : compare_list
       }, {
         headers: {
           authorization: `${token}`
         }
-      }) */
+      })
 
       let compare_item = [];
 
@@ -228,7 +230,7 @@ const getCompareDB = () => {
         }
       })
       
-      dispatch(getCompare(compare_item));
+      dispatch(getCompare(compare_item, response.data));
     }
     catch (err) {
       console.log(err);
@@ -306,7 +308,13 @@ export default handleActions(
       }),
     [GET_COMPARE]: (state, action) =>
       produce(state, (draft) => {
+        draft.compare_data = [];
         draft.compare_item = action.payload.compare_item;
+        draft.compare_data = action.payload.compare_data;
+      }),
+    [SET_INITCOMPARE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.compare_list = [];
       }),
   },
   initialState
@@ -323,6 +331,7 @@ const actionCreators = {
   setCompare,
   setBestDB,
   getCompareDB,
+  setInitCompare,
 };
 
 export { actionCreators };

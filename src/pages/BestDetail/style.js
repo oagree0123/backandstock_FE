@@ -4,6 +4,39 @@ export const BestDetailWrap = styled.div`
   width: 100%;
 `;
 
+export const TitleWrap = styled.div`
+  margin-bottom: 20px;
+  padding: 0 4px;
+  width: 880px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const BestDetailTitle = styled.h1`
+  font-size: 32px;
+  font-weight: 800px;
+  line-height: 28px;
+`;
+
+export const LikeWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const LikeIcon = styled.img`
+  margin-right: 4px;
+  width: 18px;
+  height: 18px;
+`;
+
+export const LikeCnt = styled.p`
+  font-size: var(--font-medium);
+  font-weight: 500;
+  line-height: var(--line-medium);
+  color: var(--primary-color);
+`;
+
 export const ContWrap = styled.div`
   width: 100%;
   padding: 44px 0px 56px 56px;

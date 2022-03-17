@@ -39,7 +39,7 @@ const BarChart = (props) => {
           tickRotation: 0,
           legendOffset: -40,
           legendPosition: "middle",
-          format: (v) => `${Math.abs(v)}%`,
+          format: (v) => `${Math.floor(v)}%`,
         }}
         axisBottom={{
           orient: "bottom",

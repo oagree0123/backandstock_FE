@@ -27,7 +27,7 @@ const SideTap = (props) => {
   const [commu_clicked, setCommuClicked] = useState(false);
 
   useEffect(() => {
-    if (location === "/community") {
+    if (location.includes("/community")) {
       setLabClicked(false);
       setPortfClicked(false);
       setCommuClicked(true);
@@ -40,6 +40,11 @@ const SideTap = (props) => {
     else if(location === "/"){
       setLabClicked(true);
       setPortfClicked(false);
+      setCommuClicked(false);
+    }
+    else if(location.includes("/detail")) {
+      setLabClicked(false);
+      setPortfClicked(true);
       setCommuClicked(false);
     }
   }, [lab_clicked, portf_clicked, commu_clicked, location])

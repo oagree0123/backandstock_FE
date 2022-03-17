@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { history } from '../../redux/configStore';
 import PortChart from "../PortChart/PortChart";
 import { actionCreators as portActions } from "../../redux/modules/port";
+import { actionCreators as communityActions } from "../../redux/modules/community";
 import {
   PortCardWrap,
   CardInfoWrap,
@@ -19,10 +20,15 @@ import {
   StockContWrap,
   UnMyBestBtn,
 } from "./style";
+import { useSelector } from "react-redux";
 
 const PortCard = (props) => {
   const dispatch = useDispatch();
 
+  const [ctrl_checked, setCtrlChecked] = useState(false);
+
+  const user = useSelector(state => state.user.user_info);
+  const compare_list = useSelector(state => state.port.compare_list);
   const port_data = props.port_data.portBacktestingCal;
   const final_money = props.final_money;
 
@@ -35,6 +41,19 @@ const PortCard = (props) => {
     history.push(`/detail/${port_id}`)
   };
 
+  useEffect(() => {
+    if(compare_list.includes(props.port_data.portId)) {
+      setCtrlChecked(true);
+    }
+    else {
+      setCtrlChecked(false);
+    }
+
+    return () => {
+      setCtrlChecked(false);
+    }
+  }, [compare_list])
+
   return (
     <PortCardWrap>
       <CardCheck
@@ -43,7 +62,9 @@ const PortCard = (props) => {
         type="checkbox"
         name={props.port_data.portId}
         value={props.port_data.portId}
+        checked={ctrl_checked}
         onChange={(e) => {
+          setCtrlChecked(!ctrl_checked);
           click_check(e.target.checked, props.port_data.portId);
         }}
       />
@@ -80,6 +101,7 @@ const PortCard = (props) => {
         <UnMyBestBtn
           onClick={() => {
             dispatch(portActions.setBestDB(false, props.port_data.portId));
+            dispatch(communityActions.deletePost(props.port_data.portId));
           }}
         >
           자랑하기

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import moment from "moment";
 import {
   Box,
   Wrap,
@@ -52,16 +53,33 @@ const TopInfo = (props) => {
   //const result_list = useSelector((state) => state.port.list);
   const result_list = props.port_list;
 
-  const finalMoney = Math.floor(result_list.finalMoney / 10000);
-  const finalYield = Math.floor(result_list.finalYield);
-  const bestMoney = Math.floor(result_list.bestMoney / 10000);
-  const worstMoney = Math.floor(result_list.worstMoney / 10000);
-  const seedMoney = Math.floor(result_list.seedMoney / 10000);
-  const bestMonth = result_list.bestMonth.split("-");
-  const worstMonth = result_list.worstMonth.split("-");
+  const [finalMoney, setfinalMoney] = useState(0)
+  const [finalYield, setfinalYield] = useState(0)
+  const [bestMoney, setbestMoney] = useState(0)
+  const [worstMoney, setworstMoney] = useState(0)
+  const [seedMoney, setseedMoney] = useState(0)
+  const [bestMonth, setbestMonth] = useState([]);
+  const [worstMonth, setworstMonth] = useState([]);
 
-  const plus = bestMoney - seedMoney;
-  const minus = worstMoney - seedMoney;
+  const [plus, setplus] = useState(0);
+  const [minus, setminus] = useState(0);
+  
+  useEffect(() => {
+    if(!result_list) {
+      return;
+    }
+
+    setfinalMoney(Math.floor(result_list.finalMoney / 10000));
+    setfinalYield(Math.floor(result_list.finalYield));
+    setbestMoney(Math.floor(result_list.bestMoney / 10000));
+    setworstMoney(Math.floor(result_list.worstMoney / 10000));
+    setseedMoney(Math.floor(result_list.seedMoney / 10000));
+    setbestMonth(result_list.bestMonth);
+    setworstMonth(result_list.worstMonth);
+  
+    setplus(bestMoney - seedMoney);
+    setminus(worstMoney - seedMoney);
+  }, [result_list]);
 
   return (
     <React.Fragment>
@@ -70,16 +88,10 @@ const TopInfo = (props) => {
           <Box>
             <YieldWrap>
               <div>
-                {/* { props.type === "Best" ?
-                  <Text>{props.nickname} 님의 총 수익은</Text> :
-                    is_login ?
-                      <Text>{user.nickname} 님의 총 수익은</Text>:
-                      <Text>방문자 님의 총 수익은</Text>
-                } */}
                 <Text>최종 수익률 및 수익금</Text>
                 <MinusYield>{finalYield}%</MinusYield>
                 <MinusYieldMoney>
-                  -{finalMoney.toLocaleString()} 만원
+                  {finalMoney.toLocaleString()} 만원
                 </MinusYieldMoney>
               </div>
               <MinusYieldIcon src={arrow_down}></MinusYieldIcon>
@@ -89,12 +101,6 @@ const TopInfo = (props) => {
           <Box>
             <YieldWrap>
               <div>
-                {/* { props.type === "Best" ?
-                  <Text>{props.nickname} 님의 총 수익은</Text> :
-                    is_login ?
-                      <Text>{user.nickname} 님의 총 수익은</Text>:
-                      <Text>방문자 님의 총 수익은</Text>
-                    } */}
                 <Text>최종 수익률 및 수익금</Text>
                 <PlusYield>{finalYield}%</PlusYield>
                 <PlusYieldMoney>{finalMoney.toLocaleString()} 만원</PlusYieldMoney>
@@ -133,18 +139,18 @@ const TopInfo = (props) => {
           <MonthBox>
             <TextWrap>
               <Text>최고의 달</Text>
-              <BestYear>{bestMonth[0]}년</BestYear>
+              <BestYear>{moment(bestMonth).format('YYYY')}년</BestYear>
             </TextWrap>
             <MonthWrap>
               <Icon src={up}></Icon>
-              <BestMonth>{bestMonth[1]}월</BestMonth>
+              <BestMonth>{moment(bestMonth).format('MM')}월</BestMonth>
             </MonthWrap>
             <IconWrap>
               <Price>
                 {bestMoney.toLocaleString()} 만원{" "}
-                { plus > 0 ?
-                  <span>( +{plus.toLocaleString()} 만원)</span>:
-                  <span>( {plus.toLocaleString()} 만원)</span>
+                { (bestMoney - seedMoney) > 0 ?
+                  <span>( +{(bestMoney - seedMoney).toLocaleString()} 만원)</span>:
+                  <span>( {(bestMoney - seedMoney).toLocaleString()} 만원)</span>
                 }
               </Price>
             </IconWrap>
@@ -153,18 +159,18 @@ const TopInfo = (props) => {
           <MonthBox>
             <TextWrap>
               <Text>최악의 달</Text>
-              <WorstYear>{worstMonth[0]}년</WorstYear>
+              <WorstYear>{moment(worstMonth).format('YYYY')}년</WorstYear>
             </TextWrap>
             <MonthWrap>
               <Icon src={down}></Icon>
-              <WorstMonth>{worstMonth[1]}월</WorstMonth>
+              <WorstMonth>{moment(worstMonth).format('MM')}월</WorstMonth>
             </MonthWrap>
             <IconWrap>
               <Price>
                 {worstMoney.toLocaleString()} 만원{" "}
-                { minus > 0 ?
-                  <p>( +{minus.toLocaleString()} 만원)</p> :
-                  <p>( {minus.toLocaleString()} 만원)</p> 
+                { (worstMoney - seedMoney) > 0 ?
+                  <p>( +{(worstMoney - seedMoney).toLocaleString()} 만원)</p> :
+                  <p>( {(worstMoney - seedMoney).toLocaleString()} 만원)</p> 
                 }
               </Price>
             </IconWrap>

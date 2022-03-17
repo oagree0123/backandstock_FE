@@ -11,6 +11,7 @@ const Detail = () => {
   
   const port_id = useParams();
   const result_list = useSelector((state) => state.port.port_one.portBacktestingCal);
+  const stock_ratio = useSelector((state) => state.port.port_one.stockRatio);
   console.log(result_list);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Detail = () => {
     <DetailWrap>
       {
         result_list &&
-        <DetailResult result_list={result_list} />
+        <DetailResult stock_ratio={stock_ratio} result_list={result_list} />
       }
     </DetailWrap>
   );

@@ -1,15 +1,20 @@
 import React from 'react';
-import Slide from '../CommunitySlide/Slide';
-import CommunityCard from '../CommunityCard/CommunityCard';
-import { CommmunityListWrap, CommmunityList, } from './style';
 
-const CommunityList = () => {
+import CommunityItem from '../CommunityItem/CommunityItem';
+import { CommunityListWrap } from './style';
+
+const CommunityList = (props) => {
+
+  const { community_list } = props;
+
   return (
-    <CommmunityListWrap>
-      <CommmunityList>
-        <CommunityCard></CommunityCard>
-      </CommmunityList>
-    </CommmunityListWrap>
+    <CommunityListWrap>
+      {
+        community_list.map((c, i) => {
+          return <CommunityItem key={i} {...c} />
+        })
+      } 
+    </CommunityListWrap>
   );
 };
 

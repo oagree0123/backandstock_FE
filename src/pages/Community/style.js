@@ -62,5 +62,9 @@ export const Btn = styled.button`
   margin-left: 20px;
 `;
 
-
-
+export const Title = styled.p`
+  margin-bottom: 32px;
+  font-size: 32px;
+  line-height: var(--line-header);
+  font-weight: 600;
+`;

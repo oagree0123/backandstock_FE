@@ -80,7 +80,6 @@ const DetailResult = (props) => {
     <>
       <All>
         <TopInfo 
-          nickname={props.nickname}
           type={props.type}
           port_list={result_list} 
         />
@@ -96,7 +95,7 @@ const DetailResult = (props) => {
             line_data={data} 
           />
         </LineChartWrap>
-        <DetailTitle>월별 수익률</DetailTitle>
+        <DetailTitle>전월 대비 수익률</DetailTitle>
         <BarChartWrap>
           <BarChart 
             width={880}
@@ -113,8 +112,18 @@ const DetailResult = (props) => {
             tick_font={12}
           />
         </BarChartWrap>
-        <DetailTitle>종목별 수익률</DetailTitle>
-        <StockList {...result_list}></StockList>
+        <DetailTitle>종목별 수익금</DetailTitle>
+        {
+          props.type === "test" ?
+          <StockList 
+            {...result_list}
+          ></StockList> :
+          <StockList 
+            type="detail"
+            stock_ratio={props.stock_ratio} 
+            {...result_list}
+          ></StockList> 
+        }
       </All>
     </>
   );

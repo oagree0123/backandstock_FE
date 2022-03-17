@@ -11,11 +11,14 @@ import {
   CommnetInput,
   UserImg,
 } from "./style";
+import { useSelector } from "react-redux";
 
 const CommentList = (props) => {
   const dispatch = useDispatch();
 
   const { comment_list } = props;
+  const user = useSelector(state => state.user.user_info);
+  const is_login = useSelector(state => state.user.is_login);
 
   const [comment, setComment] = useState("");
 
@@ -35,7 +38,10 @@ const CommentList = (props) => {
   return (
     <CommentListWrap>
       <CommentInputWrap>
-        <UserImg />
+        { is_login ?
+          <UserImg userImg={user.profile_img} />:
+          <UserImg userImg="" />
+        }
         <CommnetInput 
           type="text"
           placeholder="댓글을 입력해주세요"
