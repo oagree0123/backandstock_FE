@@ -28,16 +28,15 @@ const Community = () => {
 
   return (
     <CommunityWrap>
+      <Title>
+        포토폴리오 자랑하고<br />
+        사람들과 소통해보세요!
+      </Title>
       {
         top_list &&
         <Slide top_list={top_list} />
       }
 
-      <Title>
-        포토폴리오 자랑하고<br />
-        사람들과 소통해보세요!
-      </Title>
-      <Slide></Slide>
       { community_list &&
         <CommunityList community_list={community_list} />
       }
