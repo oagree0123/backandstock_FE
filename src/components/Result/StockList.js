@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import StockItem from "./StockItem.js";
 import {
   StockWrap,
@@ -11,15 +11,39 @@ import {
 import { useSelector } from "react-redux";
 
 const StockList = (props) => {
-  const stock_name = props.stockNames;
-  const stock_codes = props.stockCodes;
-  const stock_yieldmoneys = props.stockYieldMoneys;
-  const seedmoney = props.seedMoney;
-  const count = 5 - stock_name.length
+  const [stock_name, setStockName] = useState([]);
+  const [stock_codes, setStockCodes] = useState([]);
+  const [stock_yieldmoneys, setStockYieldMoneys] = useState([]);
+  const [seedmoney, setSeedMoney] = useState(0);
+  const [count, setCount] = useState(5)
 
-  const test = useSelector((state) => state.testform)
-  const stock_ratio = test.ratioList
-  const init_money = test.init_money
+  const [stock_ratio, setStockRatio] = useState([]);
+  const [stock_rate, setStockRate] = useState([]);
+  const [init_money, setInitMoney] = useState(0);
+  const test = useSelector((state) => state.testform);
+  
+  useEffect(() => {
+    if(!props.stockNames) {
+      return;
+    }
+    
+    setStockName(props.stockNames);
+    setStockCodes(props.stockCodes);
+    setStockYieldMoneys(props.stockYieldMoneys);
+    setSeedMoney(props.seedMoney);
+    setCount(prevState => prevState - props.stockNames.length);
+  
+    if(!test) {
+      return;
+    }
+    setStockRatio(test.ratioList);
+    setInitMoney(test.init_money);
+
+    if(!props.stock_ratio) {
+      return;
+    }
+    setStockRate(props.stock_ratio);
+  }, [])
 
   return (
     <StockWrap>
@@ -35,7 +59,7 @@ const StockList = (props) => {
                 stock_num={i}
                 seedmoney={seedmoney}
                 init_money={init_money}
-                stock_rate={props.stock_ratio}
+                stock_rate={stock_rate}
               />
             )
           })) :
