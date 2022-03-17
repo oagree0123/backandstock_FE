@@ -143,4 +143,3 @@ export const FinalMoney = styled.p`
   font-weight: 800;
   line-height: var(--line-medium);
 `;
-

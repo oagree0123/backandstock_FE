@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { history } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CommunityWrap, Title } from "./style";
-import { actionCreators as communityActions } from '../../redux/modules/community';
 
+import { CommunityWrap, Text, Title } from "./style";
+import { actionCreators as communityActions } from '../../redux/modules/community';
+import Map from '../../components/Community/Map'
 import { CommunityList, Slide } from '../../components';
 
 const Community = () => {
@@ -16,7 +17,7 @@ const Community = () => {
   
   const top_list = useSelector((state) => state.community.top_five_list)
   const community_list = useSelector(state => state.community.list);
-  
+
   useEffect(() => {
     dispatch(communityActions.getTopFiveDB())
   }, [])
@@ -27,6 +28,11 @@ const Community = () => {
 
   return (
     <CommunityWrap>
+      {
+        top_list &&
+        <Slide top_list={top_list} />
+      }
+
       <Title>
         포토폴리오 자랑하고<br />
         사람들과 소통해보세요!

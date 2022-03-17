@@ -1,4 +1,5 @@
 import React from 'react';
+
 import CommunityItem from '../CommunityItem/CommunityItem';
 import { CommunityListWrap } from './style';
 
