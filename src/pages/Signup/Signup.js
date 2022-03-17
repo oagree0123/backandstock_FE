@@ -127,7 +127,7 @@ const Signup = () => {
         <LoginLeft>
           <LeftTitle onClick={() => {
             history.push('/')
-          }}>BACK-STOCK</LeftTitle>
+          }}>BACK&<br />STOCK</LeftTitle>
           <LoginText>
             <LeftLogo></LeftLogo>
             <span>백스탁에서 나의<br />

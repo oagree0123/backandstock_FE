@@ -257,6 +257,11 @@ export const StockTitle = styled.span`
   font-weight: 700;
   color: #322f37;
   margin: 16px 0;
+
+  max-width: 140px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const StockTitleWrap = styled.div`

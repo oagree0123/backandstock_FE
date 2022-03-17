@@ -79,6 +79,9 @@ export const SignupInput = styled.input`
   border: 1px solid var(--primary-color);
   box-sizing: border-box;
   border-radius: 15px;
+  :focus {
+    outline: 1.5px solid #0075FF;
+  }
 `;
 
 export const InputLabel = styled.label`

@@ -64,10 +64,3 @@ export const Btn = styled.button`
 
 
 
-export const Title = styled.span`
-  width: 383px;
-  height: 68px;
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 52px;
-`

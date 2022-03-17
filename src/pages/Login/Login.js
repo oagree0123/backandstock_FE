@@ -98,7 +98,7 @@ const Login = () => {
         <LoginLeft>
           <LeftTitle onClick={() => {
             history.push('/')
-          }}>BACK-STOCK</LeftTitle>
+          }}>BACK&<br />STOCK</LeftTitle>
           <LoginText>
             <span>백스탁에서 나의<br />
               자산을 다양하게<br />

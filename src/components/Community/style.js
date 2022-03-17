@@ -1,19 +1,7 @@
 import styled from 'styled-components';
 
 
-export const Box = styled.div`
-    width: 166px;
-    height: 213px;
-    border: 1.5px solid #0075FF;
-    box-sizing: border-box;
-    border-radius: 10px;
-    margin-right: 10px;
-    margin-top: 24px;
-    :not(:last-child) {
-        margin-right: 5px;
-    }
-    
-`
+
 
 export const Wrap = styled.div`
   width: 922px;
@@ -58,3 +46,44 @@ export const CommmunityList = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
 `;
+
+//CommunityTop
+export const Box = styled.div`
+    width: 166px;
+    height: 213px;
+    border: 1.5px solid #0075FF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top: 24px;
+    :not(:last-child) {
+        margin-right: 5px;
+    }
+    >div {
+      margin: 16px 8px 12px 24px;
+    }
+    & span {
+      font-size: 28px;
+      font-weight: 700;
+      color:var(--font-blue);
+    }
+    & p {
+      font-size: var(--font-main);
+      font-weight: 700;
+      margin: 12px 0px 4px 0px;
+    }
+      > p {
+        font-size: var(--font-small);
+        font-weight: 700;
+        margin-bottom: 31px;
+      }
+
+  > span {
+      /* margin: 0 5 24px 24px ; */
+      font-size: 28px;
+      font-weight: 700;
+      color:var(--font-blue);
+  }    
+  
+    
+`

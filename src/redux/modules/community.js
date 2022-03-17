@@ -102,6 +102,8 @@ export default handleActions(
     [GET_TOPFIVE]: (state, action) =>
       produce(state, (draft) => {
         draft.top_five_list.push(...action.payload.Top_list);
+
+
       }),
 
     [LIKE_POST]: (state, action) =>
