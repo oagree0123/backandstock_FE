@@ -28,7 +28,6 @@ const Community = () => {
 
   return (
     <CommunityWrap>
-
       <Title>
         포토폴리오 자랑하고<br />
         사람들과 소통해보세요!
@@ -38,9 +37,7 @@ const Community = () => {
         <Slide top_list={top_list} />
       }
 
-
-
-      {community_list &&
+      { community_list &&
         <CommunityList community_list={community_list} />
       }
       {/* <button

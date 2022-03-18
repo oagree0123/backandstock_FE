@@ -19,12 +19,25 @@ const Mypage = () => {
   const compare_data = useSelector(state => state.port.compare_data);
 
   const [check_compare, setCheckCompare] = useState(false);
+  const [compare_idx, setCompareIdx] = useState([]);
 
   const click_compare = () => {
     if(compare_list < 2) {
       window.alert("실험을 2개 이상 선택해주세요!")
       return;
     }
+
+    if(port_list) {
+      setCompareIdx([]);
+      compare_list.map((c, i) => {
+        let idx = port_list.findIndex((p, j) => {
+          return p.portId === c
+        })
+
+        setCompareIdx(prev => [...prev, idx + 1]);
+      })
+    }
+
     dispatch(portActions.getCompareDB());
     setCheckCompare(true);
   }
@@ -81,7 +94,7 @@ const Mypage = () => {
       <ChartTitle>자산 비교 결과</ChartTitle>
       <ChartWrap>
         {check_compare ?
-          <CompareResult  port_list={compare_item} /> :
+          <CompareResult compare_idx={compare_idx} port_list={compare_item} /> :
           <NoneChartWrap>
             <NoneChartText>
               실험을 <br />

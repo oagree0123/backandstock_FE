@@ -22,6 +22,9 @@ export const UserImg = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  background-image: ${props => props.profile_img || ""};
+  background-repeat: no-repeat;
+  background-size: contain;
   background-color: var(--secondary-color);
 `;
 
@@ -38,6 +41,20 @@ export const UserText = styled.p`
   font-size: var(--font-main);
   font-weight: 400;
   text-align: center;
+`;
+
+export const ProfileWrap = styled.div`
+  position: relative;
+`;
+
+export const ProfileCloseBtn = styled.button`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50px;
+  right: 4px;
+  border: none;
+  outline: none;
 `;
 
 export const ProfileBtn = styled.button`

@@ -10,7 +10,7 @@ const LOG_OUT = "LOG_OUT";
 
 // action creators
 const setUser = createAction(SET_USER, (user) => ({ user }));
-const editUser = createAction(EDIT_USER, (nickname, img_url) => ({ nickname, img_url }));
+const editUser = createAction(EDIT_USER, (img_url, nickname) => ({ img_url, nickname }));
 const logout = createAction(LOG_OUT, () => ({}));
 
 // initialState
@@ -170,22 +170,26 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
   };
 };
 
-const editUserDB = (nickname, img_url) => {
+const editUserDB = (img_url, nickname, img_file) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
 
+    console.log(img_file);
+
     const form = new FormData();
+
     form.append('nickname ', nickname);
-    form.append('profileImg ', img_url);
+    form.append('profileImg ', img_file);
 
     try {
-      axios.put(`http://yuseon.shop/user/edit`, form, {
+      let response = await axios.put(`http://yuseon.shop/user/edit`, form, {
         headers: {
           authorization: `${token}`
         }
       })
 
-      dispatch(editUser(nickname, img_url));
+      console.log(response.data);
+      dispatch(editUser(img_url, nickname));
     }
     catch (err) {
       console.log(err);
@@ -221,6 +225,8 @@ export default handleActions(
       }),
     [EDIT_USER]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.img_url);
+
         draft.user_info = {
           ...draft.user_info,
           nickname: action.payload.nickname,

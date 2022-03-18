@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../../redux/modules/comment";
 import {
@@ -7,6 +8,7 @@ import {
   CommentContWrap,
   CommentItemWrap,
   DelCommnentBtn,
+  EditCommnentBtn,
   ImgWrap,
   RecoBtn,
   RecoCancleBtn,
@@ -21,14 +23,30 @@ import {
 const CommentItem = (props) => {
   const dispatch = useDispatch();
 
+  const is_login = useSelector(state => state.user.is_login);
+  const user = useSelector(state => state.user.user_info.nickname);
+
   const [open_reco, setOpenReco] = useState(false);
+  const [open_edit, setOpenEdit] = useState(false);
   const [comment, setComment] = useState("");
+  const [edit_comment, setEditComment] = useState(props.content);
+  
+  const [open_reedit, setOpenReEdit] = useState(false);
 
   const changeComment = (e) => {
     setComment(e.target.value);
   }
 
+  const changeEditComment = (e) => {
+    setEditComment(e.target.value);
+  }
+
   const clickComment = () => {
+    if(!is_login) {
+      window.alert("로그인 후 댓글 작성이 가능합니다.")
+      return;
+    }
+
     if(!comment) {
       window.alert("댓글을 작성해주세요!")
       return;
@@ -44,10 +62,19 @@ const CommentItem = (props) => {
     }
   }
 
+  const clickEditComment = () => {
+    dispatch(commentActions.editCommentDB(props.commentId, edit_comment));
+    setOpenEdit(false);
+  }
+
   const clickDelReComment = (recomment_id) => {
     if( window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteREcommnetDB(props.commentId, recomment_id));
     }
+  }
+
+  const clickEditReComment = () => {
+    
   }
 
   return (
@@ -57,24 +84,75 @@ const CommentItem = (props) => {
           <ImgWrap userImg="" />
         }
       <CommentContWrap>
-        <UserNick>{props.nickname}</UserNick>
-        <CommentCont>
-          {props.content}
-        </CommentCont>
-        <BtnWrap>
-          <ReCommnentBtn
-            onClick={() => {
-              setOpenReco(!open_reco);
-            }}
+        { open_edit ?
+          <RecoWrap
+            mTop="8px"
           >
-            답변
-          </ReCommnentBtn>
-          <DelCommnentBtn
-            onClick={clickDelComment}
-          >
-            삭제
-          </DelCommnentBtn>
-        </BtnWrap>
+            <RecoInput 
+              type="text"
+              placeholder="댓글을 입력해주세요"
+              onChange={changeEditComment} 
+              value={edit_comment}
+            />
+            <RecoBtn
+              onClick={clickEditComment}
+            >
+              수정
+            </RecoBtn>
+            <RecoCancleBtn
+              onClick={() => {
+                setOpenEdit(false);
+                setComment("");
+              }}
+            >
+              취소
+            </RecoCancleBtn>
+          </RecoWrap>:
+          <>
+            <UserNick>{props.nickname}</UserNick>
+            <CommentCont>
+              {props.content}
+            </CommentCont>
+            <BtnWrap>
+                <ReCommnentBtn
+                  onClick={() => {
+                    if(!is_login) {
+                      window.alert("로그인 후 댓글 작성이 가능합니다.")
+                      return;
+                    }
+
+                    setOpenReco(!open_reco);
+                    if(open_edit) {
+                      setOpenEdit(false);
+                    }
+                  }}
+                >
+                  답글 달기
+                </ReCommnentBtn>
+
+              { user === props.nickname &&
+                <>
+                  <EditCommnentBtn
+                    onClick={() => {
+                      setOpenEdit(!open_edit);
+                      if(open_reco) {
+                        setOpenReco(false);
+                      }
+                    }}
+                  >
+                    수정
+                  </EditCommnentBtn>
+                  <DelCommnentBtn
+                    onClick={clickDelComment}
+                  >
+                    삭제
+                  </DelCommnentBtn>
+                </>
+              }
+
+            </BtnWrap>
+          </>
+        }
         { open_reco ?
           <RecoWrap>
             <ReImgWrap />
@@ -91,6 +169,7 @@ const CommentItem = (props) => {
             </RecoBtn>
             <RecoCancleBtn
               onClick={() => {
+                setOpenReco(false);
                 setComment("");
               }}
             >
@@ -112,13 +191,17 @@ const CommentItem = (props) => {
                   <CommentCont>
                     {r.content}
                   </CommentCont>
-                  <DelCommnentBtn
-                    onClick={() => {
-                      clickDelReComment(r.commentId)
-                    }}
-                  >
-                    삭제
-                  </DelCommnentBtn>
+                  { user === r.nickname &&
+                    <>
+                    <DelCommnentBtn
+                      onClick={() => {
+                        clickDelReComment(r.commentId)
+                      }}
+                    >
+                      삭제
+                    </DelCommnentBtn>
+                    </>
+                  }
                 </CommentContWrap>
               </ReCommentItemWrap> 
             );

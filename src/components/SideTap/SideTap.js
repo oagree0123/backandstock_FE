@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { history } from '../../redux/configStore';
 import { useDispatch } from "react-redux";
-import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle, UserBtnWrap, LoginBtn, SignupBtn, LabIcon } from './style';
+import { SideTapWrap, SideUserWrap, UserImg, Username, UserText, ProfileBtn, TabWrap, Tab, TabTitle, TabContent, TabDesc, TabIcon, TabClicked, TabClickedDesc, TabClickedTitle, UserBtnWrap, LoginBtn, SignupBtn, LabIcon, ProfileWrap, ProfileCloseBtn } from './style';
 
 import LabClick from '../../assets/images/lab_blue.svg'
 import LabGray from '../../assets/images/lab_gray.svg'
@@ -12,6 +12,7 @@ import CommunityClick from '../../assets/images/community_blue.svg'
 import CommunityGray from '../../assets/images/community_gray.svg'
 
 import { actionCreators as communityActions } from '../../redux/modules/community';
+import UserProfile from '../UserProfile/UserProfile';
 
 const SideTap = (props) => {
   const dispatch = useDispatch()
@@ -21,10 +22,10 @@ const SideTap = (props) => {
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info);
 
-
   const [lab_clicked, setLabClicked] = useState(true);
   const [portf_clicked, setPortfClicked] = useState(false);
   const [commu_clicked, setCommuClicked] = useState(false);
+  const [profile_clicked, setProfileClicked] = useState(false);
 
   useEffect(() => {
     if (location.includes("/community")) {
@@ -53,13 +54,35 @@ const SideTap = (props) => {
     <SideTapWrap >
       {is_login ?
         <SideUserWrap>
-          <UserImg />
+          <UserImg 
+            profile_img={user.profile_img}
+          />
           <Username>{user.nickname}</Username>
           <UserText>
             오늘은 어떤 자산을 <br />
             실험해 볼까요?
           </UserText>
-          <ProfileBtn>프로필 수정하기</ProfileBtn>
+          <ProfileWrap>
+            { profile_clicked &&
+              <UserProfile />
+            }
+            { profile_clicked &&
+              <ProfileCloseBtn
+                onClick={()=>{
+                  setProfileClicked(false)
+                }}
+              >
+                x
+              </ProfileCloseBtn>
+            }
+            <ProfileBtn
+              onClick={() => {
+                setProfileClicked(!profile_clicked)
+              }}
+            >
+              프로필 수정하기
+            </ProfileBtn>
+          </ProfileWrap>
         </SideUserWrap> :
         <SideUserWrap>
           <UserImg />

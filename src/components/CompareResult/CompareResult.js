@@ -5,6 +5,8 @@ import CompareInfo from "../CompareInfo/CompareInfo";
 const CompareResult = (props) => {
   const { port_list } = props;
 
+  const compare_idx = props.compare_idx.sort();
+
   const months = [];
   const keys = [];
   const bar_data = [];
@@ -13,8 +15,8 @@ const CompareResult = (props) => {
     months.push(`${i+1} 개월`);
   });
 
-  port_list.map((p, i) => {
-    keys.push(`자산 실험 ${i + 1}`);
+  compare_idx.map((p, i) => {
+    keys.push(`자산 실험 ${p}`);
   });
 
   months.map((m, i) => {
@@ -22,12 +24,16 @@ const CompareResult = (props) => {
 
     _data = { months: m };
     port_list.map((d, j) => {
-      let key = `자산 실험 ${j + 1}`;
+      let key = `자산 실험 ${compare_idx[j]}`;
       let value = d?.portBacktestingCal.monthYield[i];
       _data[key] = Math.floor(value);
     });
     bar_data.push(_data);
   });
+
+  useEffect(() => {
+
+  }, []);
 
   return (
     <>

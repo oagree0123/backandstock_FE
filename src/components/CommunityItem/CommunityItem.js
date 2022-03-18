@@ -104,7 +104,7 @@ const CommunityItem = (props) => {
         </ItemMid>
         <ItemBottom>
           <FinalMoney>
-            최종 자산: {Math.floor(communityPort.finalYieldMoney / 10000)} 만원
+            최종 자산: {Math.floor(communityPort.finalYieldMoney / 10000).toLocaleString('ko-KR')} 만원 
           </FinalMoney>
         </ItemBottom>
       </CardClickWrap>

@@ -5,7 +5,7 @@ import Next from '../../assets/images/Next.svg'
 
 export const Wrap = styled.div`
   position: relative ;
-  width: 928px;
+  width: 900px;
   padding: 0px 0px 70px;
  
 .slick-next:before {
