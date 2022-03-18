@@ -15,8 +15,8 @@ const UNLIKE_POST = "UNLIKE_POST";
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (portId) => ({ portId }));
 const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
-const likePost = createAction(LIKE_POST, () => ({}));
-const unlikePost = createAction(UNLIKE_POST, () => ({}));
+const likePost = createAction(LIKE_POST, (like_list) => ({ like_list }));
+const unlikePost = createAction(UNLIKE_POST, (like_list) => ({ like_list }));
 
 // initialState
 const initialState = {
@@ -25,13 +25,13 @@ const initialState = {
 };
 
 // middlewares
-const getPostDB = (page=1) => {
+const getPostDB = (page = 1) => {
   return async function (dispatch, getState, { history }) {
     try {
       let response = await axios.get(`http://yuseon.shop/community`, {
         params: {
           page: page,
-          size: 10  ,
+          size: 10,
         },
       });
 
@@ -58,25 +58,20 @@ const getTopFiveDB = () => {
   };
 };
 
-const likePostDB = (user_id, port_id, type) => {
+const likePostDB = (port_id, type, nick_name) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
+
     try {
       await axios.post(`http://yuseon.shop/community/likes`, {
-        userId: user_id,
         portId: port_id,
-        likes: type,
+        likes: !type,
       }, {
         headers: {
           authorization: `${token}`
         }
       });
 
-      if (type) {
-        dispatch(likePost());
-      } else {
-        dispatch(unlikePost());
-      }
     } catch (err) {
       console.log(err);
     }
@@ -137,16 +132,6 @@ export default handleActions(
           }
         }, [])
       }),
-
-    [LIKE_POST]: (state, action) =>
-      produce(state, (draft) => {
-
-    }),
-
-    [UNLIKE_POST]: (state, action) =>
-      produce(state, (draft) => {
-
-    }),
   },
   initialState
 );

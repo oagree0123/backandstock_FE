@@ -14,7 +14,7 @@ export const CardClickWrap = styled.div`
   cursor: pointer;
 `;
 
-export const LikeBtn = styled.button`
+export const LikeBtn = styled.img`
   position: absolute;
   top: 20px;
   right: 20px;
@@ -22,7 +22,6 @@ export const LikeBtn = styled.button`
   height: 46px;
   border: none;
   border-radius: 50%;
-  background-color: #fff;
   cursor: pointer;
 `;
 

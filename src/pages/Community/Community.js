@@ -14,7 +14,7 @@ const Community = () => {
 
   // console.log(top_list);
   const [page, setPage] = useState(1);
-  
+
   const top_list = useSelector((state) => state.community.top_five_list)
   const community_list = useSelector(state => state.community.list);
 
