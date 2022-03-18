@@ -42,7 +42,7 @@ const Community = () => {
       </CommunityTitle>
       <SortWrap>
         <SortCircle />
-        <SortText >좋아요순 정렬</SortText>
+        <SortText >좋아요순</SortText>
       </SortWrap>
       { community_list &&
         <CommunityList community_list={community_list} />

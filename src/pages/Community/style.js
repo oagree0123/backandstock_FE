@@ -85,17 +85,17 @@ export const SortWrap = styled.div`
 `;
 
 export const SortCircle = styled.div`
-  margin-top: 2px;
-  margin-right: 6px;
-  width: 12px;
-  height: 12px;
+  margin-right: 4px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: var(--primary-color);
 `;
 
 export const SortText = styled.p`
-  margin-right: 4px;
-  font-size: var(--font-medium);
-  line-height: var(--line-medium);
+  margin-right: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: var(--line-small);
   color: var(--primary-color);
 `;
