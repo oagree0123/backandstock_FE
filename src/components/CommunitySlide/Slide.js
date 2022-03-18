@@ -14,12 +14,8 @@ const Slide = (props) => {
     // const top_list = useSelector((state) => state.community.top_five_list)
 
     const { top_list } = props;
-    console.log(top_list);
-
 
     const Title = ["KOSPI 수익률 TOP5", "KOSDAQ 수익률 TOP5", "거래량 TOP5", "거래대금 TOP5", "거래대금 TOP5"]
-
-
 
     const settings = {
         dots: false,

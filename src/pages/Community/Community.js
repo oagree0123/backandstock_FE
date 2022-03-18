@@ -14,7 +14,7 @@ const Community = () => {
 
   // console.log(top_list);
   const [page, setPage] = useState(1);
-  
+
   const top_list = useSelector((state) => state.community.top_five_list)
   const community_list = useSelector(state => state.community.list);
 
@@ -28,17 +28,19 @@ const Community = () => {
 
   return (
     <CommunityWrap>
-      {
-        top_list &&
-        <Slide top_list={top_list} />
-      }
 
       <Title>
         포토폴리오 자랑하고<br />
         사람들과 소통해보세요!
       </Title>
-      <Slide></Slide>
-      { community_list &&
+      {
+        top_list &&
+        <Slide top_list={top_list} />
+      }
+
+
+
+      {community_list &&
         <CommunityList community_list={community_list} />
       }
       {/* <button

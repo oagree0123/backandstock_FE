@@ -12,8 +12,6 @@ const CommunitySlideCard = (props) => {
     const transaction = Math.floor(props.transaction_results / 100000000)
     // const test = Math.floor(props.volume_results / 10000)
 
-    console.log(props)
-
     return (
 
         <Box>
