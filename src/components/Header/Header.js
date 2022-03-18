@@ -12,7 +12,13 @@ const Header = () => {
   return (
     <HeaderWrap>
       <HeadWrap>
-        <LOGO>BACK & STOCK</LOGO>
+        <LOGO
+          onClick={() => {
+            history.push('/');
+          }}
+        >
+          BACK & STOCK
+        </LOGO>
         {is_login &&
           <Logout onClick={() => {
             dispatch(userActions.logout());

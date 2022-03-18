@@ -174,8 +174,6 @@ const editUserDB = (img_url, nickname, img_file) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
 
-    console.log(img_file);
-
     const form = new FormData();
 
     form.append('nickname ', nickname);
@@ -188,7 +186,6 @@ const editUserDB = (img_url, nickname, img_file) => {
         }
       })
 
-      console.log(response.data);
       dispatch(editUser(img_url, nickname));
     }
     catch (err) {
@@ -225,8 +222,6 @@ export default handleActions(
       }),
     [EDIT_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.img_url);
-
         draft.user_info = {
           ...draft.user_info,
           nickname: action.payload.nickname,

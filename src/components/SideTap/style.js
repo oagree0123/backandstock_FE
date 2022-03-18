@@ -21,8 +21,9 @@ export const UserImg = styled.div`
   margin-bottom: 20px;
   width: 150px;
   height: 150px;
+  outline: none;
+  border: none;
   border-radius: 50%;
-  background-image: ${props => props.profile_img || ""};
   background-repeat: no-repeat;
   background-size: contain;
   background-color: var(--secondary-color);

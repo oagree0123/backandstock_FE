@@ -15,8 +15,7 @@ import { actionCreators as communityActions } from '../../redux/modules/communit
 import UserProfile from '../UserProfile/UserProfile';
 
 const SideTap = (props) => {
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   const location = useSelector(state => state.router.location.pathname);
   const is_login = useSelector(state => state.user.is_login);
@@ -26,6 +25,7 @@ const SideTap = (props) => {
   const [portf_clicked, setPortfClicked] = useState(false);
   const [commu_clicked, setCommuClicked] = useState(false);
   const [profile_clicked, setProfileClicked] = useState(false);
+  const [user_profile, setUserProfile] = useState(user.profile_img);
 
   useEffect(() => {
     if (location.includes("/community")) {
@@ -50,12 +50,17 @@ const SideTap = (props) => {
     }
   }, [lab_clicked, portf_clicked, commu_clicked, location])
 
+  useEffect(() => {
+    console.log(user.profile_img);
+    setUserProfile(user.profile_img)
+  }, [user.profile_img])
+
   return (
     <SideTapWrap >
       {is_login ?
         <SideUserWrap>
           <UserImg 
-            profile_img={user.profile_img}
+            /* src={user.profile_img ? user.profile_img: ""} */
           />
           <Username>{user.nickname}</Username>
           <UserText>
