@@ -89,7 +89,7 @@ const editCommentDB = (comment_id, comment) => {
     const token = getToken("token");
 
     try {
-      let response = await axios.put(`http://yuseon.shop/community/comment/${comment_id}`, {
+      axios.put(`http://yuseon.shop/community/comment/${comment_id}`, {
         content: comment
       }, {
         headers: {
@@ -241,7 +241,7 @@ export default handleActions(
           return parseInt(c.commentId) === parseInt(action.payload.comment_id)
         })
 
-        draft.list[idx] = { ...draft.list[idx], comment: action.payload.comment };
+        draft.list[idx] = { ...draft.list[idx], content: action.payload.comment };
       }),
     [EDIT_RECOMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -249,7 +249,7 @@ export default handleActions(
           return parseInt(c.commentId) === parseInt(action.payload.comment_id)
         })
 
-        draft.list[idx] = { ...draft.list[idx], newcomment: action.payload.comment };
+        draft.list[idx] = { ...draft.list[idx], content: action.payload.comment };
       }),
 
     [DELETE_COMMENT]: (state, action) =>

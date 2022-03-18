@@ -45,7 +45,20 @@ export const BtnWrap = styled.div`
 `;
 
 export const ReCommnentBtn = styled.button`
-  width: 30px;
+  width: 58px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17px;
+  color: #696969;
+  border: none;
+  background-color: #fff;
+`;
+
+export const EditCommnentBtn = styled.button`
+  width: 34px;
   height: 20px;
   display: flex;
   align-items: center;
@@ -58,7 +71,7 @@ export const ReCommnentBtn = styled.button`
 `;
 
 export const DelCommnentBtn = styled.button`
-  width: 30px;
+  width: 34px;
   height: 20px;
   display: flex;
   align-items: center;
@@ -72,10 +85,10 @@ export const DelCommnentBtn = styled.button`
 `;
 
 export const RecoWrap = styled.div`
-  margin-top: 14px;
-  height: 40px;
+  margin-top: ${props => props.mTop || "14px"};
+  height: 66px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const ReCommentItemWrap = styled.div`

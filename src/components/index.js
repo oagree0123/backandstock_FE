@@ -13,6 +13,7 @@ import CommentList from "./CommentList/CommentList";
 import DetailResult from "./DetailResult/DetailResult";
 import CompareInfo from './CompareInfo/CompareInfo';
 import CompareRank from "./CompareRank/CompareRank";
+import UserProfile from "./UserProfile/UserProfile";
 
 export {
   SideTap,
@@ -30,4 +31,5 @@ export {
   CommunityList,
   CompareInfo,
   CompareRank,
+  UserProfile,
 };

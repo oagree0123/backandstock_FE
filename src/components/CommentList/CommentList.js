@@ -27,6 +27,12 @@ const CommentList = (props) => {
   }
 
   const clickComment = () => {
+    if(!is_login) {
+      window.alert("로그인 후 댓글 작성이 가능합니다.")
+      setComment("");
+      return;
+    }
+
     if(!comment) {
       window.alert("댓글을 작성해주세요!")
       return;

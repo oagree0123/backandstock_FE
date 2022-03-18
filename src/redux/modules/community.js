@@ -120,7 +120,22 @@ export default handleActions(
       produce(state, (draft) => {
         draft.top_five_list.push(...action.payload.Top_list);
 
-
+        draft.top_five_list = draft.top_five_list.reduce((acc, cur) => {
+          if (
+            acc.findIndex(
+              (a) => a.option === cur.option
+            ) === -1
+          ) {
+            return [...acc, cur];
+          } else {
+            acc[
+              acc.findIndex(
+                (a) => a.option === cur.option
+              )
+            ] = cur;
+            return acc;
+          }
+        }, [])
       }),
 
     [LIKE_POST]: (state, action) =>

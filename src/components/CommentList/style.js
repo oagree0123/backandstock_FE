@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CommentListWrap = styled.div`
-
+  margin-bottom: 240px;
 `;
 
 export const CommentInputWrap = styled.div`
