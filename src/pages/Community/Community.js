@@ -4,7 +4,7 @@ import { history } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { CommunityWrap, Text, Title } from "./style";
+import { CommunityTitle, CommunityWrap, SortCircle, SortText, SortWrap, Text, Title } from "./style";
 import { actionCreators as communityActions } from '../../redux/modules/community';
 import Map from '../../components/Community/Map'
 import { CommunityList, Slide } from '../../components';
@@ -37,6 +37,13 @@ const Community = () => {
         <Slide top_list={top_list} />
       }
 
+      <CommunityTitle>
+        포트폴리오 뽐내기
+      </CommunityTitle>
+      <SortWrap>
+        <SortCircle />
+        <SortText >좋아요순 정렬</SortText>
+      </SortWrap>
       { community_list &&
         <CommunityList community_list={community_list} />
       }

@@ -15,8 +15,8 @@ const UNLIKE_POST = "UNLIKE_POST";
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (portId) => ({ portId }));
 const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
-const likePost = createAction(LIKE_POST, (like_list) => ({ like_list }));
-const unlikePost = createAction(UNLIKE_POST, (like_list) => ({ like_list }));
+const likePost = createAction(LIKE_POST, (idx, nickname) => ({ idx, nickname }));
+const unlikePost = createAction(UNLIKE_POST, (idx, nickname) => ({ idx, nickname }));
 
 // initialState
 const initialState = {
@@ -58,20 +58,34 @@ const getTopFiveDB = () => {
   };
 };
 
-const likePostDB = (port_id, type, nick_name) => {
+const likePostDB = (port_id, type, nickname) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
+    const community_list = getState().community.list;
 
     try {
-      await axios.post(`http://yuseon.shop/community/likes`, {
+      axios.post(`http://yuseon.shop/community/likes`, {
         portId: port_id,
-        likes: !type,
+        likes: type,
       }, {
         headers: {
           authorization: `${token}`
         }
       });
 
+      let idx = community_list.findIndex(c => {
+        return c.communityPort.portId === port_id;
+      })
+
+      if(type) {
+        //좋아요
+        console.log(idx);
+        dispatch(likePost(idx, nickname));
+      }
+      else {
+        //좋아요 취소
+        dispatch(unlikePost(idx, nickname));
+      }
     } catch (err) {
       console.log(err);
     }
@@ -84,7 +98,7 @@ export default handleActions(
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(...action.payload.post_list);
-        draft.list = draft.list.reduce((acc, cur) => {
+        let _new_list = draft.list.reduce((acc, cur) => {
           if (
             acc.findIndex(
               (a) => a.communityPort.portId === cur.communityPort.portId
@@ -100,6 +114,9 @@ export default handleActions(
             return acc;
           }
         }, [])
+        
+        //좋아요 순 정렬
+        draft.list = _new_list.sort((a, b) => b.likesCnt - a.likesCnt);
       }),
 
     [DELETE_POST]: (state, action) =>
@@ -108,7 +125,28 @@ export default handleActions(
           return d.communityPort.portId !== action.payload.portId;
         })
 
-        draft.list = new_list
+        draft.list = new_list;
+      }),
+
+    [LIKE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list[action.payload.idx].likesUsers.push(action.payload.nickname)
+        draft.list[action.payload.idx].likesCnt += 1;
+
+        //좋아요 순 정렬
+        //draft.list = draft.list.sort((a, b) => b.likesCnt - a.likesCnt);
+      }),
+
+    [UNLIKE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        let new_likeUsers = draft.list[action.payload.idx].likesUsers.filter(u => {
+          return u !== action.payload.nickname;
+        })
+
+        draft.list[action.payload.idx].likesUsers = new_likeUsers;
+        draft.list[action.payload.idx].likesCnt -= 1;
+        //좋아요 순 정렬
+        //draft.list = draft.list.sort((a, b) => b.likesCnt - a.likesCnt);
       }),
 
     [GET_TOPFIVE]: (state, action) =>

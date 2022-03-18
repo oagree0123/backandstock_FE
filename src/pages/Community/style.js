@@ -68,3 +68,34 @@ export const Title = styled.p`
   line-height: var(--line-header);
   font-weight: 600;
 `;
+
+export const CommunityTitle = styled.p`
+  margin-bottom: 4px;
+  font-size: var(--font-header);
+  font-weight: 800;
+  line-height: var(--line-header);
+`;
+
+export const SortWrap = styled.div`
+  margin-bottom: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const SortCircle = styled.div`
+  margin-top: 2px;
+  margin-right: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+`;
+
+export const SortText = styled.p`
+  margin-right: 4px;
+  font-size: var(--font-medium);
+  line-height: var(--line-medium);
+  color: var(--primary-color);
+`;
