@@ -91,7 +91,7 @@ const Mypage = () => {
       </ChartBtnWrap>
       <PortCardList port_list={port_list} />
       
-      <ChartTitle>자산 월별 비교</ChartTitle>
+      <ChartTitle>실험 월별 비교</ChartTitle>
       <ChartWrap>
         {check_compare ?
           <CompareResult compare_idx={compare_idx} port_list={compare_item} /> :
