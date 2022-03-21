@@ -78,7 +78,7 @@ const CompareInfo = (props) => {
         <CompareInfoWrap>
           <CompareTop>
             <BestWrap>
-              <BestTitle>최고 수익률</BestTitle>
+              <BestTitle>월 최고 수익률</BestTitle>
               <BestBox>
                 <BestName>
                   자산 <br />
@@ -98,7 +98,7 @@ const CompareInfo = (props) => {
             </BestWrap>
 
             <BestWrap>
-              <BestTitle>최저 수익률</BestTitle>
+              <BestTitle>월 최저 수익률</BestTitle>
               <BestBox>
                 <BestName>
                   자산 <br />

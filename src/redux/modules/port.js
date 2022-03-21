@@ -73,8 +73,8 @@ const getResultDB = () => {
     }
 
     // 시작날짜와 종료날짜 역순 false
-    if(!moment(data.endDate).isAfter(data.startDate)) {
-      window.alert("날짜를 다시 확인해 주세요!");
+    if(!moment(data.endDate).isBefore(data.startDate)) {
+      window.alert("종료년도가 시작년도 이전입니다!");
       return ;
     } 
     else {

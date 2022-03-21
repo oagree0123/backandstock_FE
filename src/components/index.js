@@ -14,6 +14,7 @@ import DetailResult from "./DetailResult/DetailResult";
 import CompareInfo from './CompareInfo/CompareInfo';
 import CompareRank from "./CompareRank/CompareRank";
 import UserProfile from "./UserProfile/UserProfile";
+import ResultEdit from "./ResultEdit/ResultEdit";
 
 export {
   SideTap,
@@ -32,4 +33,5 @@ export {
   CompareInfo,
   CompareRank,
   UserProfile,
+  ResultEdit,
 };

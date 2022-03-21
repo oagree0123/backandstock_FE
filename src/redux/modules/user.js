@@ -176,16 +176,18 @@ const editUserDB = (img_url, nickname, img_file) => {
 
     const form = new FormData();
 
-    form.append('nickname ', nickname);
-    form.append('profileImg ', img_file);
+    form.append('nickname', nickname);
+    form.append('profileImg', img_file);
 
+    console.log(img_file)
     try {
       let response = await axios.put(`http://yuseon.shop/user/edit`, form, {
         headers: {
-          authorization: `${token}`
+          authorization: `${token}`,
+          'Content-Type': 'multipart/form-data'
         }
       })
-
+      
       dispatch(editUser(img_url, nickname));
     }
     catch (err) {

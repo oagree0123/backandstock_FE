@@ -88,7 +88,7 @@ const TopInfo = (props) => {
           <Box>
             <YieldWrap>
               <div>
-                <Text>최종 수익률 및 수익금</Text>
+                <Text>최종 수익률 및 자산</Text>
                 <MinusYield>{finalYield}%</MinusYield>
                 <MinusYieldMoney>
                   {finalMoney.toLocaleString()} 만원
@@ -101,7 +101,7 @@ const TopInfo = (props) => {
           <Box>
             <YieldWrap>
               <div>
-                <Text>최종 수익률 및 수익금</Text>
+                <Text>최종 수익률 및 자산</Text>
                 <PlusYield>{finalYield}%</PlusYield>
                 <PlusYieldMoney>{finalMoney.toLocaleString()} 만원</PlusYieldMoney>
               </div>

@@ -14,8 +14,20 @@ const MonthPicker = (props) => {
   const today_month = moment().format('MM');
 
   const [is_open, setIsOpen] = useState(false);
-  const [year, setYear] = useState(props.type === "start" ? 2019 : 2022);
-  const [month, setMonth] = useState(props.type === "start" ? 3 : 1);
+  const [year, setYear] = useState(
+    props.type === "start" ? 
+    2019 : 
+      (props.type === "edit_start" || props.type === "edit_end") ? 
+        props.edit_year : 
+        2022
+    );
+  const [month, setMonth] = useState(
+    props.type === "start" ? 
+    3 : 
+    (props.type === "edit_start" || props.type === "edit_end") ? 
+        props.edit_month : 
+        1
+  );
   const [clicked_date, setClickedDate] = useState(props.type === "start" ? 2019 : 2022);
 
   const months = [
@@ -35,7 +47,7 @@ const MonthPicker = (props) => {
   }
 
   useEffect(() => {
-    if(props.type === "start") {
+    if(props.type === "start" || props.type === "edit_start") {
       dispatch(testformActions.setStart(year, month));
     }
     else {
@@ -51,7 +63,7 @@ const MonthPicker = (props) => {
         }}
       >
         {year}년 {months[month-1]}
-        {props.type === "start" ?
+        {props.type === "start" || props.type === "edit_start"  ?
           <DateTitle>시작년도</DateTitle>:
           <DateTitle>종료년도</DateTitle>
         }

@@ -7,7 +7,33 @@ export const ResultWrap = styled.div`
   background-color: var(--secondary-color);
 `;
 
-export const ResultTitle = styled.p`
+export const HeaderWrap = styled.header`
+  margin-bottom: 20px;
+  width: 880px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ResultHeaer = styled.h1`
+  font-size: var(--font-header);
+  font-weight: 800;
+  line-height: var(--line-header);
+`;
+
+export const EditBtn = styled.button`
+  width: 85px;
+  height: 35px;
+  font-size: var(--font-small);
+  line-height: var(--line-small);
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--primary-color);
+`;
+
+export const ResultTitle = styled.h2`
   margin-bottom: 16px;
   margin-left: 8px;
   font-size: var(--font-title);
