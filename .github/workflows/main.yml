@@ -26,12 +26,9 @@ jobs:
         env:
           CI: "" # 경고를 에러로 보지 않게 함
 
-      - name: Upload binary to S3 bucket
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --exclude '*' --include 'index.html'
-        env:
-          AWS_S3_BUCKET: ${{ secrets.BUCKET_NAME }}
+      - name: Deploy S3 # Upload build file to S3
+        run: |
+          aws s3 cp --recursive --region ap-northeast-2 build s3://dotzip
 
       - name: Invalidate cache CloudFront
         uses: chetan/invalidate-cloudfront-action@master
