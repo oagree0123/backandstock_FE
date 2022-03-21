@@ -23,10 +23,8 @@ jobs:
 
       - name: Build
         run: yarn build
-
-      - name: Deploy
-        run: |
-          aws s3 cp --recursive --region ap-northeast-2 build s3://${{ secrets.BUCKET_NAME }}
+        env:
+          CI: "" # 경고를 에러로 보지 않게 함
 
       - name: Upload binary to S3 bucket
         uses: jakejarvis/s3-sync-action@master
