@@ -15,18 +15,18 @@ jobs:
       - name: Checkout source code.
         uses: actions/checkout@master
 
-      - name: Install Dependencies
-        run: yarn
+      - name: Check Node v # Node v 확인
+        run: node -v
+
+      - name: yarn install
+        run: yarn install
 
       - name: Build
         run: yarn build
 
       - name: Deploy
         run: |
-          aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            dist s3://${{ secrets.BUCKET_NAME }}
+          aws s3 cp --recursive --region ap-northeast-2 build s3://${{ secrets.BUCKET_NAME }}
 
       - name: Upload binary to S3 bucket
         uses: jakejarvis/s3-sync-action@master
