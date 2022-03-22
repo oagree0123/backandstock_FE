@@ -31,7 +31,6 @@ import {
   RankStock,
   NoneRankBox,
 } from "./style";
-import { useSelector } from "react-redux";
 
 const CompareInfo = (props) => {
   const compare_item = props.port_list;
@@ -66,7 +65,7 @@ const CompareInfo = (props) => {
           return p.portId === r.portId;
         });
         console.log(idx);
-        
+
         setRankIdx((prev) => [...prev, idx + 1]);
       });
     }

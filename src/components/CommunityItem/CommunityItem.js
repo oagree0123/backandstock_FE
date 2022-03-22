@@ -59,18 +59,18 @@ const CommunityItem = (props) => {
   return (
     <CommunityItemWrap>
       {like_user.includes(user.nickname) ? (
-        <LikeBtn 
+        <LikeBtn
           onClick={() => {
             toggleLike(false);
-          }} 
-          src={heartRed} 
+          }}
+          src={heartRed}
         />
       ) : (
-        <LikeBtn 
+        <LikeBtn
           onClick={() => {
             toggleLike(true);
-          }} 
-          src={heartBlue} 
+          }}
+          src={heartBlue}
         />
       )}
 

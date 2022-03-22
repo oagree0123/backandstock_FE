@@ -235,7 +235,7 @@ export const StockTitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 `;
 
 export const MoneyWrap = styled.div`
@@ -350,9 +350,23 @@ export const InfoText = styled.p`
   line-height: var(--line-header);
 `;
 
-export const Ratio = styled.span`
+
+
+export const RatioWrap = styled.div`
   display: flex;
-  align-items: flex-start;
+
+  align-items: center;
+  flex-direction: column;
+  > span {
+  font-weight: 800;
+  font-size: 14px;
+  }
+
+`
+
+export const Ratio = styled.p`
+  display: flex;
+  align-items: center;
   height: 39px;
   font-size: 28px;
   font-weight: 800;
@@ -362,7 +376,7 @@ export const Ratio = styled.span`
   & > p {
     padding-top: 4px;
     padding-left: 2px;
-    font-size: var(--font-medium);
+    font-size: var(--font-small);
     color: var(--font-textclolr);
     font-weight: 500;
   }
@@ -370,10 +384,18 @@ export const Ratio = styled.span`
 
 export const Profit = styled.span`
   font-size: var(--font-result-small);
-  color: var(--font-red);
+  color: var(--font-blue);
   font-weight: 700;
   margin-bottom: 5px;
 `;
+
+export const PlusProfit = styled.span`
+  font-size: var(--font-result-small);
+  color: var(--font-red);
+  font-weight: 700;
+  margin-bottom: 5px;
+
+`
 
 export const EmptyList = styled.div`
   width: 166px;

@@ -26,16 +26,16 @@ const MonthPicker = (props) => {
   ]
 
   const change_year = (type) => {
-    if(type === "plus" && year < 2022) {
+    if (type === "plus" && year < 2022) {
       setYear(year + 1);
     }
-    else if(type === "minus" && year > 2019) {
+    else if (type === "minus" && year > 2019) {
       setYear(year - 1);
     }
   }
 
   useEffect(() => {
-    if(props.type === "start") {
+    if (props.type === "start") {
       dispatch(testformActions.setStart(year, month));
     }
     else {
@@ -46,13 +46,14 @@ const MonthPicker = (props) => {
   return (
     <MonthPickerWrap>
       <DateWrap
-        onClick={()=>{
+        onClick={() => {
           setIsOpen(!is_open);
         }}
       >
-        {year}년 {months[month-1]}
+
+        {year}년 {months[month - 1]}
         {props.type === "start" ?
-          <DateTitle>시작년도</DateTitle>:
+          <DateTitle>시작년도</DateTitle> :
           <DateTitle>종료년도</DateTitle>
         }
       </DateWrap>
@@ -60,16 +61,16 @@ const MonthPicker = (props) => {
         is_open &&
         <CalenderWrap>
           <CalenderHeader>
-            <CalenderArrow 
+            <CalenderArrow
               src={arrowLeft}
-              alt="left" 
+              alt="left"
               onClick={() => {
                 change_year("minus");
               }}
             />
             <CalenderYear>{year}</CalenderYear>
-            <CalenderArrow 
-              src={arrowRight} 
+            <CalenderArrow
+              src={arrowRight}
               alt="right"
               onClick={() => {
                 change_year("plus");
@@ -81,8 +82,8 @@ const MonthPicker = (props) => {
               months.map((m, i) => {
                 if (clicked_date === year && month - 1 === i) {
                   return (
-                    <MonthClickBtn 
-                      key={i} 
+                    <MonthClickBtn
+                      key={i}
                       onClick={() => {
                         setMonth(i + 1)
                         setClickedDate(year)
@@ -96,10 +97,10 @@ const MonthPicker = (props) => {
                   );
                 }
                 else {
-                  if(parseInt(today_year) === year && parseInt(today_month) <= i + 1){
+                  if (parseInt(today_year) === year && parseInt(today_month) <= i + 1) {
                     return (
-                      <MonthDisabledBtn 
-                        key={i} 
+                      <MonthDisabledBtn
+                        key={i}
                       >
                         <BtnInner>
                           {m}
@@ -107,10 +108,10 @@ const MonthPicker = (props) => {
                       </MonthDisabledBtn>
                     );
                   }
-                  else if( year === 2019 && i < 2 ) {
+                  else if (year === 2019 && i < 2) {
                     return (
-                      <MonthDisabledBtn 
-                        key={i} 
+                      <MonthDisabledBtn
+                        key={i}
                       >
                         <BtnInner>
                           {m}
@@ -118,10 +119,10 @@ const MonthPicker = (props) => {
                       </MonthDisabledBtn>
                     );
                   }
-                  else{
+                  else {
                     return (
-                      <MonthBtn 
-                        key={i} 
+                      <MonthBtn
+                        key={i}
                         onClick={() => {
                           setMonth(i + 1)
                           setClickedDate(year)
