@@ -24,7 +24,7 @@ const CommentItem = (props) => {
   const dispatch = useDispatch();
 
   const is_login = useSelector(state => state.user.is_login);
-  const user = useSelector(state => state.user.user_info.nickname);
+  const user = useSelector(state => state.user.user_info.user_id);
 
   const [open_reco, setOpenReco] = useState(false);
   const [open_edit, setOpenEdit] = useState(false);
@@ -71,10 +71,6 @@ const CommentItem = (props) => {
     if( window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteREcommnetDB(props.commentId, recomment_id));
     }
-  }
-
-  const clickEditReComment = () => {
-    
   }
 
   return (
@@ -130,7 +126,7 @@ const CommentItem = (props) => {
                   답글 달기
                 </ReCommnentBtn>
 
-              { user === props.nickname &&
+              { user === props.userId &&
                 <>
                   <EditCommnentBtn
                     onClick={() => {
@@ -191,7 +187,7 @@ const CommentItem = (props) => {
                   <CommentCont>
                     {r.content}
                   </CommentCont>
-                  { user === r.nickname &&
+                  { user === r.userId &&
                     <>
                     <DelCommnentBtn
                       onClick={() => {
