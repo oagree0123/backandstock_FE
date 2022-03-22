@@ -6,7 +6,7 @@ export const BackTestWrap = styled.div`
   box-sizing: content-box;
 `;
 
-export const InfoWrap = styled.div`
+export const InfoWrap = styled.section`
   margin-right: 0;
   margin-bottom: 36px;
   padding: 22px 28px;

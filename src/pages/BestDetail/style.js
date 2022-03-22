@@ -4,7 +4,7 @@ export const BestDetailWrap = styled.div`
   width: 100%;
 `;
 
-export const TitleWrap = styled.div`
+export const TitleWrap = styled.header`
   margin-bottom: 20px;
   padding: 0 4px;
   width: 880px;
@@ -37,14 +37,14 @@ export const LikeCnt = styled.p`
   color: var(--primary-color);
 `;
 
-export const ContWrap = styled.div`
+export const ContWrap = styled.section`
   width: 100%;
   padding: 44px 0px 56px 56px;
   padding-right: calc(30.9vw - 293px);
   background-color: var(--secondary-color);
 `;
 
-export const CommentWrap = styled.div`
+export const CommentWrap = styled.section`
   width: 100%;
   padding: 44px 0px 56px 56px;
 `;

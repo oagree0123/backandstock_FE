@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PortChartWrap = styled.div`
+export const PortChartWrap = styled.section`
   margin-bottom: 12px;
   width: 280px;
   height: 200px;

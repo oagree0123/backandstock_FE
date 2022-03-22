@@ -10,7 +10,7 @@ export const LoginWrap = styled.div`
   background-color: #eee;
 `;
 
-export const LoginCont = styled.div`
+export const LoginCont = styled.section`
   width: 1211px;
   height: 794px;
   display: flex;

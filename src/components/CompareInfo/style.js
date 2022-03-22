@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CompareInfoWrap = styled.div`
+export const CompareInfoWrap = styled.section`
 
 `;
 

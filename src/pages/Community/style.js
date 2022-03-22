@@ -6,14 +6,14 @@ export const CommunityWrap = styled.div`
   box-sizing: content-box;
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   margin-bottom: 32px;
   font-size: 32px;
   line-height: var(--line-header);
   font-weight: 600;
 `;
 
-export const CommunityTitle = styled.p`
+export const CommunityTitle = styled.h2`
   margin-bottom: 4px;
   font-size: var(--font-header);
   font-weight: 800;

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const All = styled.section`
+  width: 880px;
+  background-color: #ecf5ff;
+`;
+
 export const LineChartWrap = styled.div`
   margin-bottom: 40px;
   width: 880px;
@@ -14,11 +19,6 @@ export const BarChartWrap = styled.div`
   height: 300px;
   border-radius: 10px;
   background-color: #fff;
-`;
-
-export const All = styled.div`
-  width: 880px;
-  background-color: #ecf5ff;
 `;
 
 export const Btn = styled.button`
@@ -39,7 +39,7 @@ export const Btn = styled.button`
   }
 `;
 
-export const DetailTitle = styled.p`
+export const DetailTitle = styled.h2`
   margin-bottom: 16px;
   margin-left: 8px;
   font-size: var(--font-title);

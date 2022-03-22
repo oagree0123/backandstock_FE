@@ -46,7 +46,7 @@ export const UserText = styled.p`
   text-align: center;
 `;
 
-export const ProfileWrap = styled.div`
+export const ProfileWrap = styled.section`
   position: relative;
 `;
 

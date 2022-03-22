@@ -29,7 +29,7 @@ export const ItemTop = styled.div`
   padding-left: 20px;
 `;
 
-export const ItemTitle = styled.p`
+export const ItemTitle = styled.h3`
   font-size: var(--font-medium);
   font-weight: 800;
   line-height: var(--line-medium);

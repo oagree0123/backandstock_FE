@@ -16,7 +16,7 @@ export const SearchRight = styled.div`
   width: 500px;
 `;
 
-export const SearchTitle = styled.h3`
+export const SearchTitle = styled.h2`
   margin-bottom: 20px;
   font-size: var(--font-header);
   line-height: var(--line-header);
