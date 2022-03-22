@@ -10,7 +10,6 @@ import { CommunityList, Slide } from '../../components';
 
 const Community = () => {
   const dispatch = useDispatch();
-
   const [page, setPage] = useState(1);
 
   const top_list = useSelector((state) => state.community.top_five_list)
@@ -42,7 +41,7 @@ const Community = () => {
         <SortCircle />
         <SortText >좋아요순</SortText>
       </SortWrap>
-      { community_list &&
+      {community_list &&
         <CommunityList community_list={community_list} />
       }
       {/* <button

@@ -65,7 +65,7 @@ const CompareInfo = (props) => {
           return p.portId === r.portId;
         });
         console.log(idx);
-        
+
         setRankIdx((prev) => [...prev, idx + 1]);
       });
     }
