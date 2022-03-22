@@ -163,7 +163,6 @@ const editUserDB = (img_url, nickname, img_file) => {
     form.append('nickname', nickname);
     form.append('profileImage', img_file);
 
-    console.log(img_file)
     try {
       let response = await axios.put(`http://yuseon.shop/user/edit`, form, {
         headers: {
@@ -172,7 +171,13 @@ const editUserDB = (img_url, nickname, img_file) => {
         }
       })
       
-      dispatch(editUser(img_url, nickname));
+      if(img_url) {
+        dispatch(editUser(img_url, nickname));
+      }
+      else {
+        const user_profile = getState().user.user_info.profile_img;
+        dispatch(editUser(user_profile, nickname));
+      }
     }
     catch (err) {
       window.alert(err.response.data.errorMessage)
