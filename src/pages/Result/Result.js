@@ -19,6 +19,7 @@ const Result = () => {
 
   const start_date = useSelector(state => state.testform.start_date);
   const end_date = useSelector(state => state.testform.end_date);
+  const router = useSelector(state => state.router);
 
   const [check_edit, setCheckEdit] = useState(false);
 
@@ -37,6 +38,14 @@ const Result = () => {
       return ;
     }
   }, [])
+
+  useEffect(() => {
+    if(router.action === "POP" && router.location.pathname === "/result") {
+      window.alert("저장되지 않은 실험결과는 다시 볼 수 없습니다.");
+      history.push('/');
+      return ;
+    }
+  }, [router]);
 
   if(result_list.length === 0) {
     return <></>;
