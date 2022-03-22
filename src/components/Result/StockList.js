@@ -9,84 +9,88 @@ import {
 import { useSelector } from "react-redux";
 
 const StockList = (props) => {
+  const { result_list, ratio_list } = props
+
   const [stock_name, setStockName] = useState([]);
   const [stock_codes, setStockCodes] = useState([]);
   const [stock_yieldmoneys, setStockYieldMoneys] = useState([]);
   const [seedmoney, setSeedMoney] = useState(0);
-  const [count, setCount] = useState(5);
 
   const [stock_ratio, setStockRatio] = useState([]);
   const [stock_rate, setStockRate] = useState([]);
   const [init_money, setInitMoney] = useState(0);
   const test = useSelector((state) => state.testform);
 
+  let count = 5 - result_list.stockNames.length;
+
   useEffect(() => {
-    if (!props.stockNames) {
+    if (!result_list) {
       return;
     }
 
-    setStockName(props.stockNames);
-    setStockCodes(props.stockCodes);
-    setStockYieldMoneys(props.stockYieldMoneys);
-    setSeedMoney(props.seedMoney);
-    setCount((prevState) => prevState - props.stockNames.length);
+    setStockName(result_list.stockNames);
+    setStockCodes(result_list.stockCodes);
+    setStockYieldMoneys(result_list.stockYieldMoneys);
+    setSeedMoney(result_list.seedMoney);
 
     if (!test) {
       return;
     }
-    setStockRatio(test.ratioList);
+    setStockRate(test.ratioList);
     setInitMoney(test.init_money);
 
-    if (!props.stock_ratio) {
+    if (!ratio_list) {
       return;
     }
-    setStockRate(props.stock_ratio);
-  }, []);
+    setStockRatio(ratio_list);
+  }, [result_list, ratio_list]);
 
   return (
     <StockWrap>
-      <Lists>
-        {props.type === "detail"
-          ? stock_name?.map((a, i) => {
-              return (
-                <StockItem
-                  key={i}
-                  stock_name={a}
-                  stock_codes={stock_codes[i]}
-                  stock_yieldmoneys={stock_yieldmoneys[i]}
-                  stock_num={i}
-                  seedmoney={seedmoney}
-                  init_money={init_money}
-                  stock_rate={stock_rate}
-                />
-              );
-            })
-          : stock_name?.map((a, i) => {
-              return (
-                <StockItem
-                  key={i}
-                  stock_name={a}
-                  stock_codes={stock_codes[i]}
-                  stock_yieldmoneys={stock_yieldmoneys[i]}
-                  stock_num={i}
-                  seedmoney={seedmoney}
-                  stock_ratio={stock_ratio[i]}
-                  init_money={init_money}
-                />
-              );
-            })}
+      {result_list && 
+        <Lists>
+          {props.type === "detail"
+            ? stock_name.map((a, i) => {
+                return (
+                  <StockItem
+                    key={i}
+                    stock_name={a}
+                    stock_codes={stock_codes[i]}
+                    stock_yieldmoneys={stock_yieldmoneys[i]}
+                    stock_num={i}
+                    seedmoney={seedmoney}
+                    init_money={init_money}
+                    stock_ratio={stock_ratio[i]}
+                  />
+                );
+              })
+            : stock_name.map((a, i) => {
+                return (
+                  <StockItem
+                    key={i}
+                    stock_name={a}
+                    stock_codes={stock_codes[i]}
+                    stock_yieldmoneys={stock_yieldmoneys[i]}
+                    stock_num={i}
+                    seedmoney={seedmoney}
+                    stock_rate={stock_rate}
+                    init_money={init_money}
+                  />
+                );
+              })}
 
-        {[...Array(count)].map((n, index) => {
-          return (
-            <EmptyList key={index}>
-              <Empty>
-                실험한 종목이 <br />
-                {count}개 뿐이에요
-              </Empty>
-            </EmptyList>
-          );
-        })}
-      </Lists>
+          {[...Array(count)].map((n, index) => {
+            return (
+              <EmptyList key={index}>
+                <Empty>
+                  실험한 종목이 <br />
+                  {count}개 뿐이에요
+                </Empty>
+              </EmptyList>
+            );
+          })}
+        </Lists>
+      }
     </StockWrap>
   );
 };
