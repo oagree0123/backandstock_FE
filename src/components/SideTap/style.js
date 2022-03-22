@@ -25,8 +25,9 @@ export const UserImg = styled.div`
   border: none;
   border-radius: 50%;
   background-image: ${props => props.img_url ? `url(${props.img_url})`: ""};
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: var(--secondary-color);
 `;
 

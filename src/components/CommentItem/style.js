@@ -14,8 +14,9 @@ export const ImgWrap = styled.div`
   height: 50px;
   border-radius: 50%;
   background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: var(--secondary-color);
 `;
 
