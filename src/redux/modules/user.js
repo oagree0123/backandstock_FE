@@ -48,9 +48,6 @@ const LoginDB = ({ user_name, pwd }) => {
           }
         );
 
-        /* localStorage.setItem("username", check_user.data.username);
-        localStorage.setItem("nickname", check_user.data.nickname); */
-
         dispatch(
           setUser({
             user_id: check_user.data.userId,
@@ -84,9 +81,6 @@ const LoginCheckDB = () => {
           },
         }
       );
-
-      /* localStorage.setItem("username", check_user.data.username);
-      localStorage.setItem("nickname", check_user.data.nickname); */
 
       dispatch(
         setUser({
@@ -122,9 +116,6 @@ const kakaoLogin = (code) => {
           }
         );
 
-        /* localStorage.setItem("username", check_user.data.username);
-        localStorage.setItem("nickname", check_user.data.nickname); */
-
         dispatch(
           setUser({
             user_id: check_user.data.userid,
@@ -137,13 +128,6 @@ const kakaoLogin = (code) => {
       }
 
       window.alert("로그인이 완료되었습니다.");
-      history.replace("/");
-
-      /* dispatch(setUser({
-        user_id: response.data.id,
-        nickname: response.data.nickname,
-        profile_img: "",
-      })) */
       history.push('/');
     } catch (err) {
       console.log(err);
@@ -161,7 +145,7 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
       });
 
       window.alert("회원가입이 완료되었습니다.");
-      history.replace("/");
+      history.push("/");
     } catch (err) {
       if (err.response.data.errorMessage) {
         alert(err.response.data.errorMessage);
@@ -174,24 +158,24 @@ const editUserDB = (img_url, nickname, img_file) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
 
-    console.log(img_file);
-
     const form = new FormData();
 
-    form.append('nickname ', nickname);
-    form.append('profileImg ', img_file);
+    form.append('nickname', nickname);
+    form.append('profileImage', img_file);
 
+    console.log(img_file)
     try {
       let response = await axios.put(`http://yuseon.shop/user/edit`, form, {
         headers: {
-          authorization: `${token}`
+          authorization: `${token}`,
+          'Content-Type': 'multipart/form-data'
         }
       })
-
-      console.log(response.data);
+      
       dispatch(editUser(img_url, nickname));
     }
     catch (err) {
+      window.alert(err.response.data.errorMessage)
       console.log(err);
     }
   }
@@ -225,8 +209,6 @@ export default handleActions(
       }),
     [EDIT_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.img_url);
-
         draft.user_info = {
           ...draft.user_info,
           nickname: action.payload.nickname,

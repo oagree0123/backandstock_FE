@@ -12,24 +12,6 @@ export const Box = styled.div`
   :not(:last-child) {
     margin-right: 5px;
   }
-  /* >div {
-      margin: 16px 8px 12px 24px;
-    }
-    & span {
-      font-size: 25px;
-      font-weight: 700;
-      color:var(--font-blue);
-    }
-    & p {
-      font-size: var(--font-main);
-      font-weight: 700;
-      margin: 12px 0px 4px 0px;
-    }
-      > p {
-        font-size: var(--font-small);
-        font-weight: 700;
-        margin-bottom: 31px;
-      } */
 `;
 
 export const Wrap = styled.div`

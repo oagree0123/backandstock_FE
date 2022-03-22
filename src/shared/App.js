@@ -8,15 +8,14 @@ import { history } from "../redux/configStore";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { BackTest, Login, Signup, Community, TestResult, Mypage, Detail, Result } from "../pages";
+import { BackTest, Login, Signup, Community, BestDetail, Mypage, Detail, Result } from "../pages";
 
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
 import Social from './Social';
-import BestDetail from "../pages/BestDetail/BestDetail";
 
-function App(props) {
+function App() {
   const dispatch = useDispatch();
 
   const is_token = getToken("token");

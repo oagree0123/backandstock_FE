@@ -79,9 +79,9 @@ const CommentItem = (props) => {
 
   return (
     <CommentItemWrap>
-        { props.profile_img ?
-          <ImgWrap userImg={props.profile_img} />:
-          <ImgWrap userImg="" />
+        { props.profileImg ?
+          <ImgWrap user_img={props.profileImg} />:
+          <ImgWrap user_img="" />
         }
       <CommentContWrap>
         { open_edit ?
@@ -182,9 +182,9 @@ const CommentItem = (props) => {
           props.replyList.map((r, i) => {
             return (
               <ReCommentItemWrap mTop="12px" key={i}>
-                { props.profile_img ?
-                  <ImgWrap userImg={props.profile_img} />:
-                  <ImgWrap userImg="" />
+                { r.profileImg ?
+                  <ImgWrap user_img={r.profileImg} />:
+                  <ImgWrap user_img="" />
                 }
                 <CommentContWrap>
                   <UserNick>{r.nickname}</UserNick>

@@ -4,7 +4,7 @@ import { history } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { CommunityTitle, CommunityWrap, SortCircle, SortText, SortWrap, Text, Title } from "./style";
+import { CommunityTitle, CommunityWrap, SortCircle, SortText, SortWrap, Title } from "./style";
 import { actionCreators as communityActions } from '../../redux/modules/community';
 import { CommunityList, Slide } from '../../components';
 

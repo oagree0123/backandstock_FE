@@ -83,7 +83,7 @@ const DetailResult = (props) => {
           type={props.type}
           port_list={result_list} 
         />
-        <DetailTitle>월별 수익금</DetailTitle>
+        <DetailTitle>월별 자산</DetailTitle>
         <LineChartWrap>
           <LineChart 
             margin={{

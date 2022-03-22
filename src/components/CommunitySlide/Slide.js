@@ -1,17 +1,12 @@
 import React from "react";
 import Slider from "react-slick";
-import styled from "styled-components";
 import { Toptitle, CardWrap, Text, Wrap } from "./style";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick-theme.css";
 import CommunitySlideCard from "../CommunityTop/CommunitySlideCard";
-import Next from "../../assets/images/Next.svg";
 
 const Slide = (props) => {
-
-  // const top_list = useSelector((state) => state.community.top_five_list)
-
   const { top_list } = props;
 
   const Title = [
@@ -30,6 +25,7 @@ const Slide = (props) => {
     slidesToScroll: 5,
     // centerPadding: '0px'
   };
+
   return (
     <Wrap>
       <Slider {...settings}>

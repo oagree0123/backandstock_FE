@@ -13,9 +13,10 @@ export const ImgWrap = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: ${props => props.userImg || `var(--primary-color)`};
+  background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: var(--secondary-color);
 `;
 
 export const CommentContWrap = styled.div`

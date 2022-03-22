@@ -16,9 +16,10 @@ export const UserImg = styled.div`
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background: ${props => props.userImg || `var(--primary-color)`};
+  background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: var(--secondary-color);
 `;
 
 export const CommnetInput = styled.input`

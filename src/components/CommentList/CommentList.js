@@ -45,8 +45,8 @@ const CommentList = (props) => {
     <CommentListWrap>
       <CommentInputWrap>
         { is_login ?
-          <UserImg userImg={user.profile_img} />:
-          <UserImg userImg="" />
+          <UserImg user_img={user.profile_img} />:
+          <UserImg user_img="" />
         }
         <CommnetInput 
           type="text"

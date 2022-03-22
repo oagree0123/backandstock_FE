@@ -222,13 +222,21 @@ export const CardList = styled.div`
 
 export const StockTitle = styled.p`
   margin: 16px 0;
-  height: 24px;
+  margin-bottom: 20px;
+  height: 18px;
   display: flex;
   align-items: center;
   font-size: var(--font-medium);
   font-weight: 800;
   line-height: var(--line-medium);
   color: #000;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap:break-word; 
 `;
 
 export const StockTitleWrap = styled.div`
@@ -306,11 +314,6 @@ export const CalenderIcon = styled.img`
 export const Poket = styled.img`
   width: 26px;
   height: 26px;
-`;
-
-export const Dollar = styled.img`
-  width: 14px;
-  height: 33px;
 `;
 
 export const MoneyTitle = styled.span`

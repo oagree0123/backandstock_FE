@@ -139,20 +139,6 @@ export const LoginInput = styled.input`
   }
 `;
 
-export const CheckInput = styled.input`
-  padding-left: 20px;
-  width: 460px;
-  height: 55px;
-  border: 1px solid #C4C4C4;
-  box-sizing: border-box;
-  border-radius: 15px;
-  margin-bottom: 8px;
-  ::placeholder {
-    font-size: 16px;
-    color: #C4C4C4;
-  }
-`
-
 export const InputLabel = styled.label`
   font-size: var(--font-large);
   font-weight: 500;
