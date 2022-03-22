@@ -13,7 +13,6 @@ import {
   PlusYield,
   PlusYieldMoney,
   Text,
-  Info,
   TextWrap,
   Icon,
   MonthWrap,
@@ -28,14 +27,11 @@ import {
   WorstYear,
   BestMonth,
   WorstMonth,
-  MiniIcon1,
-  MiniIcon2,
   Poket,
-  Dollar,
   TextIconWrap,
   InfoText,
   InfoTitle,
-} from "../Result/style.js";
+} from "./style.js";
 
 import arrow_down from "../../assets/images/page_result/arrow_down.svg";
 import arrow_up from "../../assets/images/page_result/arrow_up.svg";
@@ -43,9 +39,6 @@ import up from "../../assets/images/page_result/finger_up.svg";
 import down from "../../assets/images/page_result/finger_down.svg";
 import calender from "../../assets/images/page_result/calendar.svg";
 import poket from "../../assets/images/page_result/poket.svg";
-import dollar from "../../assets/images/page_result/dollar.svg";
-// import mini_up_1 from "../../assets/images/page_result/mini_up_1.svg"
-// import mini_up_2 from "../../assets/images/page_result/mini_up_2.svg"
 
 const TopInfo = (props) => {
   const is_login = useSelector(state => state.user.is_login);

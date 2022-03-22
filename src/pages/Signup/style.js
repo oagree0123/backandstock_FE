@@ -20,12 +20,6 @@ export const SignupCont = styled.div`
   box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.15);
 `;
 
-export const SignupLeft = styled.div`
-  padding: 85px 40px 92px 73px;
-  width: 572px;
-  background-color: var(--primary-color);
-`;
-
 export const SignupRight = styled.div`
    padding: 85px 65px 92px 72px;
    width: 605px;
@@ -47,19 +41,6 @@ export const SignupTitle = styled.h1`
    margin-bottom: 32px;
 `;
 
-export const TextWrap = styled.div`
-  width: 100%;
-  display: flex;
-`;
-
-export const SignupText = styled.p`
-
-`;
-
-export const LoginSpan = styled.p`
-  cursor: pointer;
-`;
-
 export const InputWrap = styled.div`
   position: relative;
   margin-bottom: 20px;
@@ -69,7 +50,6 @@ export const InputWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-
 `;
 
 export const SignupInput = styled.input`

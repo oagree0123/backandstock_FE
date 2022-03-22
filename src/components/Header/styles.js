@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderWrap = styled.div`
+export const HeaderWrap = styled.header`
   position: fixed;
   top: 0;
   left: 0;

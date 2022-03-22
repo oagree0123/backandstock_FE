@@ -1,15 +1,11 @@
 import React from "react";
 import { Wrap, Num, StockName, StockNum, Box, Result } from "./style";
-import { useSelector } from "react-redux";
-import Community from "../../pages/Community/Community";
 
 const CommunitySlideCard = (props) => {
-  const { top_list } = props;
 
   const results = Math.floor(props.kospi_results);
   const volume = Math.floor(props.volume_results / 10000);
   const transaction = Math.floor(props.transaction_results / 100000000);
-  // const test = Math.floor(props.volume_results / 10000)
 
   return (
     <Box>

@@ -19,7 +19,6 @@ import {
   RightTitle,
   SignUpBtn,
   Wrap,
-  CheckInput
 } from "./style";
 import kakao from "../../assets/images/kakaoIcon.svg"
 import kakaologo from "../../assets/images/kakao.svg"
@@ -90,8 +89,6 @@ const Login = () => {
     }
   }
 
-
-
   return (
     <LoginWrap>
       <LoginCont>
@@ -140,13 +137,6 @@ const Login = () => {
               <ErrorText>8~20자로 영문 대소문자, 숫자, 특수문자 조합을 사용하세요.</ErrorText>
             )}
           </InputWrap>
-          {/* <InputWrap>
-            <InputLabel>비밀번호 확인</InputLabel>
-            <CheckInput
-              type="password"
-              placeholder={"확인을 위해 한 번 더 입력해 주세요"}
-            />
-          </InputWrap> */}
           <Line />
           <LoginBtnWrap>
             <div>

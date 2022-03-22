@@ -316,11 +316,6 @@ export const Poket = styled.img`
   height: 26px;
 `;
 
-export const Dollar = styled.img`
-  width: 14px;
-  height: 33px;
-`;
-
 export const MoneyTitle = styled.span`
   font-size: var(--font-small);
 `;

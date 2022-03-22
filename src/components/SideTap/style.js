@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SideTapWrap = styled.div`
+export const SideTapWrap = styled.aside`
   position: fixed;
   margin-top: 80px;
   
@@ -24,6 +24,7 @@ export const UserImg = styled.div`
   outline: none;
   border: none;
   border-radius: 50%;
+  background-image: ${props => props.img_url ? `url(${props.img_url})`: ""};
   background-repeat: no-repeat;
   background-size: contain;
   background-color: var(--secondary-color);
@@ -95,7 +96,7 @@ export const SignupBtn = styled.button`
   border-radius: 20px;
 `;
 
-export const TabWrap = styled.div`
+export const TabWrap = styled.nav`
   width: 293px;
   display: flex;
   flex-direction: column;

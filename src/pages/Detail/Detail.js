@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { DetailWrap } from './style';
-
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as portActions } from "../../redux/modules/port";
 import { useParams } from "react-router-dom";
-import {DetailResult} from '../../components'
+
+import { DetailResult } from '../../components'
+import { DetailWrap } from './style';
+import { actionCreators as portActions } from "../../redux/modules/port";
 
 const Detail = () => {
   const dispatch = useDispatch();

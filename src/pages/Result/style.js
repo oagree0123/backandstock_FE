@@ -33,35 +33,6 @@ export const EditBtn = styled.button`
   background-color: var(--primary-color);
 `;
 
-export const ResultTitle = styled.h2`
-  margin-bottom: 16px;
-  margin-left: 8px;
-  font-size: var(--font-title);
-  font-weight: 800;
-  line-height: var(--line-title);
-`;
-
-export const LineChartWrap = styled.div`
-  margin-bottom: 20px;
-  width: 880px;
-  height: 300px;
-  border-radius: 10px;
-  background-color: #fff;
-`;
-
-export const BarChartWrap = styled.div`
-  margin-bottom: 20px;
-  width: 880px;
-  height: 300px;
-  border-radius: 10px;
-  background-color: #fff;
-`;
-
-export const All = styled.div`
-  width: 880px;
-  background-color: #ecf5ff;
-`;
-
 export const Btn = styled.button`
   margin-top: 48px;
   width: 882px;

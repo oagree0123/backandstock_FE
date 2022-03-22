@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  TextWrap,
   InputLabel,
   InputWrap,
-  LoginSpan,
   SignupBtn,
   SignupBtnWrap,
   SignupInput,
-  SignupLeft,
   SignupRight,
-  SignupText,
   SignupTitle,
   SignupWrap,
   TitleWrap,
@@ -37,9 +33,6 @@ const Signup = () => {
   const [nickname, setNickname] = useState("");
   const [pwd, setPwd] = useState("");
   const [pwd_check, setPwdCheck] = useState("");
-
-  //중복 체크 
-  const [nick_doubleChk, setnick_doubleChk] = useState("");
 
   // 입력 오류 확인
   const [is_email, setIsEmail] = useState(false);

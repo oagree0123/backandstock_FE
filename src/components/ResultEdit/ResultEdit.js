@@ -1,11 +1,26 @@
-import moment from 'moment';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import MonthPicker from '../MonthPicker/MonthPicker';
-import { CloseBtn, ContBody, ContHeader, ContTitle, ContWrap, Editdesc, EditHeader, InitMoneyInput, MoneyWrap, MonthWrap, ResultEditWrap, Won, ErrorText, TestEditBtn } from './style';
-import close_btn from '../../assets/images/close_btn.svg'
-import { actionCreators as testformActions } from '../../redux/modules/testform';
-import { actionCreators as portActions } from '../../redux/modules/port';
+import moment from "moment";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import MonthPicker from "../MonthPicker/MonthPicker";
+import {
+  CloseBtn,
+  ContBody,
+  ContHeader,
+  ContTitle,
+  ContWrap,
+  Editdesc,
+  EditHeader,
+  InitMoneyInput,
+  MoneyWrap,
+  MonthWrap,
+  ResultEditWrap,
+  Won,
+  ErrorText,
+  TestEditBtn,
+} from "./style";
+import close_btn from "../../assets/images/close_btn.svg";
+import { actionCreators as testformActions } from "../../redux/modules/testform";
+import { actionCreators as portActions } from "../../redux/modules/port";
 
 const ResultEdit = (props) => {
   const dispatch = useDispatch();
@@ -28,8 +43,7 @@ const ResultEdit = (props) => {
 
     if (e.target.value < 100 || e.target.value > 100000) {
       setCheckMoney(false);
-    }
-    else {
+    } else {
       setCheckMoney(true);
     }
     dispatch(testformActions.setMoney(e.target.value));
@@ -42,7 +56,7 @@ const ResultEdit = (props) => {
           src={close_btn}
           alt="close-btn"
           onClick={() => {
-            props.setCheckEdit(false)
+            props.setCheckEdit(false);
           }}
         />
         <ContHeader>
@@ -52,15 +66,15 @@ const ResultEdit = (props) => {
         <ContBody>
           <MonthWrap>
             <ContTitle>실험 기간</ContTitle>
-            <MonthPicker 
-              type="edit_start" 
-              edit_year={Number(moment(start_date).format('YYYY'))} 
-              edit_month={Number(moment(start_date).format('MM'))} 
+            <MonthPicker
+              type="edit_start"
+              edit_year={Number(moment(start_date).format("YYYY"))}
+              edit_month={Number(moment(start_date).format("MM"))}
             />
             <MonthPicker
-              type="edit_end" 
-              edit_year={Number(moment(end_date).format('YYYY'))} 
-              edit_month={Number(moment(end_date).format('MM'))} 
+              type="edit_end"
+              edit_year={Number(moment(end_date).format("YYYY"))}
+              edit_month={Number(moment(end_date).format("MM"))}
             />
           </MonthWrap>
           <ContTitle>실험 금액</ContTitle>
@@ -72,15 +86,17 @@ const ResultEdit = (props) => {
               value={init_money}
             />
             <Won>만원</Won>
-            {!check_money &&
-              <ErrorText>실험금액은 100만원 이상 100,000만원 이하만 가능해요</ErrorText>
-            }
+            {!check_money && (
+              <ErrorText>
+                실험금액은 100만원 이상 100,000만원 이하만 가능해요
+              </ErrorText>
+            )}
           </MoneyWrap>
         </ContBody>
         <TestEditBtn
           onClick={() => {
             dispatch(portActions.getResultDB());
-            props.setCheckEdit(false)
+            props.setCheckEdit(false);
           }}
         >
           수정하기

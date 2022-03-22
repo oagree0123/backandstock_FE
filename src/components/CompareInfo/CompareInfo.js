@@ -31,7 +31,6 @@ import {
   RankStock,
   NoneRankBox,
 } from "./style";
-import { useSelector } from "react-redux";
 
 const CompareInfo = (props) => {
   const compare_item = props.port_list;

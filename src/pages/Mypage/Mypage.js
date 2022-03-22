@@ -1,73 +1,82 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { CompareRank, CompareResult } from "../../components";
 import PortCardList from "../../components/PortCardList/PortCardList";
-import { actionCreators as portActions } from '../../redux/modules/port';
+import { actionCreators as portActions } from "../../redux/modules/port";
 import { actionCreators as communityActions } from "../../redux/modules/community";
 
-import { MypageWrap, ChartWrap, ChartTitle, MypageInfoWrap, MypageHead, ChartBtnWrap, CompareBtn, DeleteBtn, NoneChartWrap, NoneChartText } from "./style";
-import { history } from "../../redux/configStore";
+import {
+  MypageWrap,
+  ChartWrap,
+  ChartTitle,
+  MypageInfoWrap,
+  MypageHead,
+  ChartBtnWrap,
+  CompareBtn,
+  DeleteBtn,
+  NoneChartWrap,
+  NoneChartText,
+} from "./style";
 
 const Mypage = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.user.user_info);
-  const port_list = useSelector(state => state.port.port_list);
-  const compare_list = useSelector(state => state.port.compare_list);
-  const compare_item = useSelector(state => state.port.compare_item);
-  const compare_data = useSelector(state => state.port.compare_data);
+  const user = useSelector((state) => state.user.user_info);
+  const port_list = useSelector((state) => state.port.port_list);
+  const compare_list = useSelector((state) => state.port.compare_list);
+  const compare_item = useSelector((state) => state.port.compare_item);
+  const compare_data = useSelector((state) => state.port.compare_data);
 
   const [check_compare, setCheckCompare] = useState(false);
   const [compare_idx, setCompareIdx] = useState([]);
 
   const click_compare = () => {
-    if(compare_list < 2) {
-      window.alert("실험을 2개 이상 선택해주세요!")
+    if (compare_list < 2) {
+      window.alert("실험을 2개 이상 선택해주세요!");
       return;
     }
 
-    if(port_list) {
+    if (port_list) {
       setCompareIdx([]);
       compare_list.map((c, i) => {
         let idx = port_list.findIndex((p, j) => {
-          return p.portId === c
-        })
+          return p.portId === c;
+        });
 
-        setCompareIdx(prev => [...prev, idx + 1]);
-      })
+        setCompareIdx((prev) => [...prev, idx + 1]);
+      });
     }
 
     dispatch(portActions.getCompareDB());
     setCheckCompare(true);
-  }
+  };
 
   const click_delete = () => {
-    if(compare_list.length >= 2) {
+    if (compare_list.length >= 2) {
       window.alert("하나의 실험만 선택해주세요!");
       return;
     }
 
-    if(compare_list.length < 1) {
+    if (compare_list.length < 1) {
       window.alert("실험을 선택해주세요!");
       return;
     }
 
-    if(window.confirm("정말 삭제하시겠습니까?")) {
-      compare_list.map(c => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      compare_list.map((c) => {
         dispatch(portActions.deletePortDB(c));
         dispatch(communityActions.deletePost(c));
-      })
+      });
     }
-  }
+  };
 
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       return;
     }
     dispatch(portActions.getMyPortDB(user.user_id));
     dispatch(portActions.setInitCompare());
-  }, [])
+  }, []);
 
   return (
     <MypageWrap>
@@ -78,47 +87,40 @@ const Mypage = () => {
       <ChartBtnWrap>
         <CompareBtn
           onClick={() => {
-            click_compare()
+            click_compare();
           }}
         >
           비교하기
         </CompareBtn>
-        <DeleteBtn
-          onClick={click_delete}
-        >
-          삭제하기
-        </DeleteBtn>
+        <DeleteBtn onClick={click_delete}>삭제하기</DeleteBtn>
       </ChartBtnWrap>
       <PortCardList port_list={port_list} />
-      
+
       <ChartTitle>실험 월별 비교</ChartTitle>
       <ChartWrap>
-        {check_compare ?
-          <CompareResult compare_idx={compare_idx} port_list={compare_item} /> :
+        {check_compare ? (
+          <CompareResult compare_idx={compare_idx} port_list={compare_item} />
+        ) : (
           <NoneChartWrap>
             <NoneChartText>
               실험을 <br />
-              아직 비교하지<br />
+              아직 비교하지
+              <br />
               않았습니다
             </NoneChartText>
           </NoneChartWrap>
-        }
+        )}
       </ChartWrap>
 
-      {
-        check_compare ?
-          compare_data &&
-          <MypageInfoWrap>
-            <CompareRank 
-              port_list={port_list}
-              compare_data={compare_data} 
-            />
-          </MypageInfoWrap> :
-        null
-      }
+      {check_compare
+        ? compare_data && (
+            <MypageInfoWrap>
+              <CompareRank port_list={port_list} compare_data={compare_data} />
+            </MypageInfoWrap>
+          )
+        : null}
     </MypageWrap>
   );
 };
 
 export default Mypage;
-

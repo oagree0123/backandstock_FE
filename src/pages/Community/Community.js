@@ -4,15 +4,13 @@ import { history } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { CommunityTitle, CommunityWrap, SortCircle, SortText, SortWrap, Text, Title } from "./style";
+import { CommunityTitle, CommunityWrap, SortCircle, SortText, SortWrap, Title } from "./style";
 import { actionCreators as communityActions } from '../../redux/modules/community';
-import Map from '../../components/Community/Map'
 import { CommunityList, Slide } from '../../components';
 
 const Community = () => {
   const dispatch = useDispatch();
 
-  // console.log(top_list);
   const [page, setPage] = useState(1);
 
   const top_list = useSelector((state) => state.community.top_five_list)

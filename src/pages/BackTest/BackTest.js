@@ -1,8 +1,16 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import BackTestForm from '../../components/BackTestForm/BackTestForm';
-import { actionCreators as testformActions } from '../../redux/modules/testform';
-import { BackTestWrap, InfoTitle, InfoWrap, InfoContLeft, InfoContRight, InfoCont, InfoCircle } from './style';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import BackTestForm from "../../components/BackTestForm/BackTestForm";
+import { actionCreators as testformActions } from "../../redux/modules/testform";
+import {
+  BackTestWrap,
+  InfoTitle,
+  InfoWrap,
+  InfoContLeft,
+  InfoContRight,
+  InfoCont,
+  InfoCircle,
+} from "./style";
 
 const BackTest = (props) => {
   const dispatch = useDispatch();
@@ -14,8 +22,8 @@ const BackTest = (props) => {
   return (
     <BackTestWrap>
       <InfoTitle>
-      간편하게 실험을 <br />
-      시작해볼까요?   
+        간편하게 실험을 <br />
+        시작해볼까요?
       </InfoTitle>
       <InfoWrap>
         <InfoContLeft>
@@ -33,14 +41,10 @@ const BackTest = (props) => {
             <InfoCircle />
             자산 비율은 총 100%를 맞춰서 입력해주세요
           </InfoCont>
-          {/* <InfoCont>
-            <InfoCircle />
-            
-          </InfoCont> */}
         </InfoContRight>
       </InfoWrap>
-      
-      <BackTestForm/>
+
+      <BackTestForm />
     </BackTestWrap>
   );
 };
