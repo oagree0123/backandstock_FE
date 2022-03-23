@@ -20,6 +20,8 @@ import {
   UserNick,
 } from "./style";
 
+import BasicImage from '../../assets/images/basic_image.svg';
+
 const CommentItem = (props) => {
   const dispatch = useDispatch();
 
@@ -75,10 +77,7 @@ const CommentItem = (props) => {
 
   return (
     <CommentItemWrap>
-        { props.profileImg ?
-          <ImgWrap user_img={props.profileImg} />:
-          <ImgWrap user_img="" />
-        }
+      <ImgWrap user_img={props.profileImg ? props.profileImg : BasicImage} />
       <CommentContWrap>
         { open_edit ?
           <RecoWrap
@@ -151,7 +150,7 @@ const CommentItem = (props) => {
         }
         { open_reco ?
           <RecoWrap>
-            <ReImgWrap />
+            <ReImgWrap user_img={user.profile_img ? user.profile_img : BasicImage} />
             <RecoInput 
               type="text"
               placeholder="댓글을 입력해주세요"
@@ -178,10 +177,7 @@ const CommentItem = (props) => {
           props.replyList.map((r, i) => {
             return (
               <ReCommentItemWrap mTop="12px" key={i}>
-                { r.profileImg ?
-                  <ImgWrap user_img={r.profileImg} />:
-                  <ImgWrap user_img="" />
-                }
+                <ImgWrap user_img={r.profileImg ? r.profileImg : BasicImage} />
                 <CommentContWrap>
                   <UserNick>{r.nickname}</UserNick>
                   <CommentCont>

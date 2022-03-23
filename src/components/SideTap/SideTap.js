@@ -32,6 +32,7 @@ import PortfolioClick from "../../assets/images/portfolio_blue.svg";
 import PortfolioGray from "../../assets/images/portfolio_gray.svg";
 import CommunityClick from "../../assets/images/community_blue.svg";
 import CommunityGray from "../../assets/images/community_gray.svg";
+import BasicImage from '../../assets/images/basic_image.svg'
 
 import UserProfile from "../UserProfile/UserProfile";
 
@@ -77,7 +78,7 @@ const SideTap = (props) => {
     <SideTapWrap>
       {is_login ? (
         <SideUserWrap>
-          <UserImg img_url={user_profile ? user_profile : ""} />
+          <UserImg img_url={user_profile ? user_profile : BasicImage} />
           <Username>{user.nickname}</Username>
           <UserText>
             오늘은 어떤 자산을 <br />

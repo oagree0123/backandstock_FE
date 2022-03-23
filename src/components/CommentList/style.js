@@ -20,7 +20,7 @@ export const UserImg = styled.div`
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: var(--secondary-color);
+  background-color: #c4c4c4;
 `;
 
 export const CommnetInput = styled.input`

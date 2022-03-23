@@ -28,7 +28,7 @@ export const UserImg = styled.div`
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: var(--secondary-color);
+  background-color: #C4C4C4;
 `;
 
 export const Username = styled.p`
