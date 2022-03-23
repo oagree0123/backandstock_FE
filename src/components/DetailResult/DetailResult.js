@@ -116,12 +116,12 @@ const DetailResult = (props) => {
         {
           props.type === "test" ?
           <StockList 
-            {...result_list}
+            result_list={result_list}
           ></StockList> :
           <StockList 
             type="detail"
-            stock_ratio={props.stock_ratio} 
-            {...result_list}
+            ratio_list={props.stock_ratio} 
+            result_list={result_list}
           ></StockList> 
         }
       </All>

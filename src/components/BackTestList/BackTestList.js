@@ -9,10 +9,6 @@ const BackTestList = (props) => {
   const code_list = useSelector(state => state.testform.codeList);
   const ratio_list = useSelector(state => state.testform.ratioList);
 
-  useEffect(() => {
-    console.log(stock_list);
-  }, [])
-
   return (
     <TestListWrap>
       <ListTitle>실험 자산 목록</ListTitle>

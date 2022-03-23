@@ -20,11 +20,13 @@ import {
   UserNick,
 } from "./style";
 
+import BasicImage from '../../assets/images/basic_image.svg';
+
 const CommentItem = (props) => {
   const dispatch = useDispatch();
 
   const is_login = useSelector(state => state.user.is_login);
-  const user = useSelector(state => state.user.user_info.nickname);
+  const user = useSelector(state => state.user.user_info.user_id);
 
   const [open_reco, setOpenReco] = useState(false);
   const [open_edit, setOpenEdit] = useState(false);
@@ -73,16 +75,9 @@ const CommentItem = (props) => {
     }
   }
 
-  const clickEditReComment = () => {
-    
-  }
-
   return (
     <CommentItemWrap>
-        { props.profileImg ?
-          <ImgWrap user_img={props.profileImg} />:
-          <ImgWrap user_img="" />
-        }
+      <ImgWrap user_img={props.profileImg ? props.profileImg : BasicImage} />
       <CommentContWrap>
         { open_edit ?
           <RecoWrap
@@ -130,7 +125,7 @@ const CommentItem = (props) => {
                   답글 달기
                 </ReCommnentBtn>
 
-              { user === props.nickname &&
+              { user === props.userId &&
                 <>
                   <EditCommnentBtn
                     onClick={() => {
@@ -155,7 +150,7 @@ const CommentItem = (props) => {
         }
         { open_reco ?
           <RecoWrap>
-            <ReImgWrap />
+            <ReImgWrap user_img={user.profile_img ? user.profile_img : BasicImage} />
             <RecoInput 
               type="text"
               placeholder="댓글을 입력해주세요"
@@ -182,16 +177,13 @@ const CommentItem = (props) => {
           props.replyList.map((r, i) => {
             return (
               <ReCommentItemWrap mTop="12px" key={i}>
-                { r.profileImg ?
-                  <ImgWrap user_img={r.profileImg} />:
-                  <ImgWrap user_img="" />
-                }
+                <ImgWrap user_img={r.profileImg ? r.profileImg : BasicImage} />
                 <CommentContWrap>
                   <UserNick>{r.nickname}</UserNick>
                   <CommentCont>
                     {r.content}
                   </CommentCont>
-                  { user === r.nickname &&
+                  { user === r.userId &&
                     <>
                     <DelCommnentBtn
                       onClick={() => {

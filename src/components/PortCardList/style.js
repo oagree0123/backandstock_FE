@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PortCardListWrap = styled.div`
+export const PortCardListWrap = styled.section`
   width: 880px;
   height: 508px;
 `;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CommentItem from "../CommentItem/CommentItem";
 import { useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../../redux/modules/comment";
+import BasicImage from '../../assets/images/basic_image.svg';
 
 import {
   CommentListWrap,
@@ -45,7 +46,7 @@ const CommentList = (props) => {
     <CommentListWrap>
       <CommentInputWrap>
         { is_login ?
-          <UserImg user_img={user.profile_img} />:
+          <UserImg user_img={user.profile_img ? user.profile_img : BasicImage} />:
           <UserImg user_img="" />
         }
         <CommnetInput 

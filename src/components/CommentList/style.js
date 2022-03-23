@@ -17,9 +17,10 @@ export const UserImg = styled.div`
   height: 45px;
   border-radius: 50%;
   background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-color: var(--secondary-color);
+  background-size: cover;
+  background-color: #c4c4c4;
 `;
 
 export const CommnetInput = styled.input`

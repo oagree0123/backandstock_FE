@@ -35,7 +35,7 @@ export const EditBtn = styled.button`
 
 export const Btn = styled.button`
   margin-top: 48px;
-  width: 882px;
+  width: 880px;
   height: 70px;
   color: #fff;
   font-size: var(--font-header);

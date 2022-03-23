@@ -80,7 +80,7 @@ const getResultDB = () => {
     else {
       try {
         const test_result = await axios.post(
-          `http://yuseon.shop/port/result`,
+          `https://yuseon.shop/port/result`,
           data
         );
 
@@ -109,7 +109,7 @@ const savePortDB = () => {
     };
 
     try {
-      const port_id = await axios.post(`http://yuseon.shop/port`, data, {
+      const port_id = await axios.post(`https://yuseon.shop/port`, data, {
         headers: {
           Authorization: `${token}`
         }
@@ -128,7 +128,7 @@ const getMyPortDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
-      let response = await axios.get(`http://yuseon.shop/port/mypage`, {
+      let response = await axios.get(`https://yuseon.shop/port/mypage`, {
         headers: {
           Authorization: `${token}`
         }
@@ -145,7 +145,7 @@ const getMyPortDB = () => {
 const getPortOneDB = (port_id) => {
   return async function (dispatch, getState, { history }) {
     try {
-      let response = await axios.get(`http://yuseon.shop/port/details/${port_id}`)
+      let response = await axios.get(`https://yuseon.shop/port/details/${port_id}`)
 
       dispatch(getPortOne(response.data));
       //history.push('/detail');
@@ -162,7 +162,7 @@ const deletePortDB = (port_id) => {
     const _port_list = getState().port.port_list;
 
     try {
-      await axios.delete(`http://yuseon.shop/port/${port_id}`, {
+      await axios.delete(`https://yuseon.shop/port/${port_id}`, {
         headers: {
           authorization: `${token}`
         }
@@ -185,8 +185,8 @@ const setBestDB = (type, port_id) => {
     const token = getToken("token");
 
     try {
-      await axios.post(`http://yuseon.shop/port/mybest`, {
-        portId: port_id,
+      await axios.post(`https://yuseon.shop/port/mybest`,  {
+        portId : port_id,
         myBest: type,
       }, {
         headers: {
@@ -214,8 +214,8 @@ const getCompareDB = () => {
     }
 
     try {
-      let response = await axios.post(`http://yuseon.shop/port/compare`, {
-        portIdList: compare_list
+      let response = await axios.post(`https://yuseon.shop/port/compare`,  {
+        portIdList : compare_list
       }, {
         headers: {
           authorization: `${token}`
@@ -247,8 +247,6 @@ export default handleActions(
       }),
     [SAVE_PORTONE]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.port_id);
-
         draft.port_list.push({
           myBest: false,
           portId: action.payload.port_id,

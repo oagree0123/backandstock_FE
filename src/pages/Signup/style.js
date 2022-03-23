@@ -10,7 +10,7 @@ export const SignupWrap = styled.div`
   background-color: #eee;
 `;
 
-export const SignupCont = styled.div`
+export const SignupCont = styled.section`
   width: 1211px;
   height: 794px;
   display: flex;

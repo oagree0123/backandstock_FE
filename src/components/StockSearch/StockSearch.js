@@ -72,7 +72,7 @@ const StockSearch = () => {
 
   const searchStock = async (search_name) => {
     if (Number(search_name)) {
-      let list = await axios.get(`http://yuseon.shop/stock/search`, {
+      let list = await axios.get(`https://yuseon.shop/stock/search`, {
         params: {
           keyword: search_name,
           type: "code",
@@ -80,7 +80,7 @@ const StockSearch = () => {
       });
       setSearchList(list.data);
     } else {
-      let list = await axios.get(`http://yuseon.shop/stock/search`, {
+      let list = await axios.get(`https://yuseon.shop/stock/search`, {
         params: {
           keyword: search_name,
           type: "name",

@@ -15,20 +15,20 @@ const MonthPicker = (props) => {
 
   const [is_open, setIsOpen] = useState(false);
   const [year, setYear] = useState(
-    props.type === "start" ?
-      2019 :
-      (props.type === "edit_start" || props.type === "edit_end") ?
-        props.edit_year :
+    props.type === "start" ? 
+    2011 : 
+      (props.type === "edit_start" || props.type === "edit_end") ? 
+        props.edit_year : 
         2022
   );
   const [month, setMonth] = useState(
-    props.type === "start" ?
-      3 :
-      (props.type === "edit_start" || props.type === "edit_end") ?
-        props.edit_month :
+    props.type === "start" ? 
+    1 : 
+    (props.type === "edit_start" || props.type === "edit_end") ? 
+        props.edit_month : 
         1
   );
-  const [clicked_date, setClickedDate] = useState(props.type === "start" ? 2019 : 2022);
+  const [clicked_date, setClickedDate] = useState(props.type === "start" ? 2011 : 2022);
 
   const months = [
     '1월', '2월', '3월',
@@ -41,7 +41,7 @@ const MonthPicker = (props) => {
     if (type === "plus" && year < 2022) {
       setYear(year + 1);
     }
-    else if (type === "minus" && year > 2019) {
+    else if (type === "minus" && year > 2011) {
       setYear(year - 1);
     }
   }
@@ -119,7 +119,8 @@ const MonthPicker = (props) => {
                       </MonthDisabledBtn>
                     );
                   }
-                  else if (year === 2019 && i < 2) {
+                  /* 11년 2월 이전 disabled
+                  else if (year === 2011 && i < 2) {
                     return (
                       <MonthDisabledBtn
                         key={i}
@@ -129,7 +130,7 @@ const MonthPicker = (props) => {
                         </BtnInner>
                       </MonthDisabledBtn>
                     );
-                  }
+                  } */
                   else {
                     return (
                       <MonthBtn

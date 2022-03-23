@@ -25,9 +25,10 @@ export const UserImg = styled.div`
   border: none;
   border-radius: 50%;
   background-image: ${props => props.img_url ? `url(${props.img_url})`: ""};
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-color: var(--secondary-color);
+  background-size: cover;
+  background-color: #C4C4C4;
 `;
 
 export const Username = styled.p`
@@ -45,7 +46,7 @@ export const UserText = styled.p`
   text-align: center;
 `;
 
-export const ProfileWrap = styled.div`
+export const ProfileWrap = styled.section`
   position: relative;
 `;
 

@@ -28,8 +28,8 @@ import { history } from '../../redux/configStore';
 import { actionCreators as userActions } from "../../redux/modules/user";
 
 const Login = () => {
-  const API_key = "4f269c2d7b614ed22a514496123b7a38";
-  const Redirect_URI = "http://localhost:3000/oauth/kakao/callback";
+  const API_key = process.env.REACT_APP_KAKAO_ID;
+  const Redirect_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_key}&redirect_uri=${Redirect_URI}&response_type=code`;
 
   const dispatch = useDispatch();

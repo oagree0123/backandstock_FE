@@ -6,14 +6,14 @@ export const CommunityWrap = styled.div`
   box-sizing: content-box;
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   margin-bottom: 32px;
   font-size: 32px;
   line-height: var(--line-header);
   font-weight: 600;
 `;
 
-export const CommunityTitle = styled.p`
+export const CommunityTitle = styled.h2`
   margin-bottom: 4px;
   font-size: var(--font-header);
   font-weight: 800;
@@ -42,4 +42,30 @@ export const SortText = styled.p`
   font-weight: 800;
   line-height: var(--line-small);
   color: var(--primary-color);
+`;
+
+export const PageWrap = styled.div`
+  margin-top: 36px;
+  width: 880px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PageHr = styled.div`
+  width: 100%;
+  border-bottom: 1px dashed var(--primary-color);
+`;
+
+export const PageBtn = styled.button`
+  position: absolute;
+  width: 90px;
+  height: 30px;
+  font-size: var(--font-medium);
+  font-weight: 600;
+  line-height: var(--line-medium);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 30px;
+  background-color: #fff;
 `;

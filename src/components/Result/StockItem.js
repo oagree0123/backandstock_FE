@@ -24,7 +24,7 @@ const StockItem = (props) => {
       <StockTitleWrap>
         <StockTitle>{props.stock_name}</StockTitle>
         <RatioWrap>
-          <span>비중 </span>
+          <span>비중</span>
           {props.stock_ratio ?
             <Ratio>
               {props.stock_ratio}%

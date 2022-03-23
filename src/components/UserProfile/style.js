@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UserProfileWrap = styled.div`
+export const UserProfileWrap = styled.section`
   padding: 0px 24px;
   position: absolute;
   top: 42px;

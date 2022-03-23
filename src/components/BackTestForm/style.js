@@ -29,11 +29,11 @@ export const FormRight = styled.div`
   width: 325px;
 `;
 
-export const FormTitle = styled.p`
+export const FormTitle = styled.h2`
   margin-bottom: 24px;
   font-size: var(--font-header);
   line-height: var(--line-header);
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 export const MoneyWrap = styled.div`
