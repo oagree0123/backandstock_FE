@@ -64,7 +64,6 @@ const CompareInfo = (props) => {
         let idx = compare_item.findIndex((p) => {
           return p.portId === r.portId;
         });
-        console.log(idx);
 
         setRankIdx((prev) => [...prev, idx + 1]);
       });

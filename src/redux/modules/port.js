@@ -247,8 +247,6 @@ export default handleActions(
       }),
     [SAVE_PORTONE]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.port_id);
-
         draft.port_list.push({
           myBest: false,
           portId: action.payload.port_id,

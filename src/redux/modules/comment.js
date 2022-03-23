@@ -71,7 +71,6 @@ const getCommentDB = (post_id) => {
     try {
       let response = await axios.get(`https://yuseon.shop/community/comment/${post_id}`)
 
-      console.log(response.data)
       if(!response.data) {
         return;
       }
@@ -268,7 +267,6 @@ export default handleActions(
       produce(state, (draft) => {
         let new_reply = 
           draft.list[action.payload.comment_idx].replyList.filter((r) => {
-            console.log(r.commentId, action.payload.recomment_id);
             return r.commentId !== action.payload.recomment_id
           });
 

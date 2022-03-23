@@ -35,8 +35,6 @@ const getPostDB = (page = 1) => {
         },
       });
 
-      console.log(response.data)
-
       dispatch(getPost(response.data));
     }
     catch (err) {
@@ -79,7 +77,6 @@ const likePostDB = (port_id, type, nickname) => {
 
       if(type) {
         //좋아요
-        console.log(idx);
         dispatch(likePost(idx, nickname));
       }
       else {

@@ -41,8 +41,6 @@ const CommunityItem = (props) => {
   let [likeCount, setLikeCount] = useState(props.likesCnt);
 
   const toggleLike = (type) => {
-    console.log(type);
-
     if (type) {
       setLikeCount(likeCount + 1);
     } else {
@@ -53,8 +51,6 @@ const CommunityItem = (props) => {
     }
     dispatch(likepostActions.likePostDB(port_id, type, user.nickname));
   };
-
-  console.log(like_user.includes(user.nickname));
 
   return (
     <CommunityItemWrap>

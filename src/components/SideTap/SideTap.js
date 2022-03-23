@@ -70,7 +70,6 @@ const SideTap = (props) => {
   }, [lab_clicked, portf_clicked, commu_clicked, location]);
 
   useEffect(() => {
-    console.log(user.profile_img);
     setUserProfile(user.profile_img);
   }, [user]);
 
