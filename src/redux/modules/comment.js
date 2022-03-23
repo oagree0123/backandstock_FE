@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import "moment";
+import "dayjs";
 import axios from "axios";
 import { getToken } from "../../shared/token";
 
@@ -265,12 +265,12 @@ export default handleActions(
 
     [DELETE_RECOMMENT]: (state, action) =>
       produce(state, (draft) => {
-        let new_reply = 
+        let new_reply =
           draft.list[action.payload.comment_idx].replyList.filter((r) => {
             return r.commentId !== action.payload.recomment_id
           });
 
-          draft.list[action.payload.comment_idx].replyList = new_reply;
+        draft.list[action.payload.comment_idx].replyList = new_reply;
       }),
   },
   initialState

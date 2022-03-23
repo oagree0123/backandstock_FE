@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment";
+import dayjs from "dayjs"
 import arrowup from "../../assets/images/page_result/arrow_up.svg";
 import arrowdown from "../../assets/images/page_result/arrow_down.svg";
 
@@ -84,8 +84,8 @@ const CompareInfo = (props) => {
                 </BestName>
                 <BestInfo>
                   <BestDate>
-                    {moment(best_data.highYieldDate).format("YYYY")}년{" "}
-                    {moment(best_data.highYieldDate).format("MM")}월
+                    {dayjs(best_data.highYieldDate).format("YYYY")}년{" "}
+                    {dayjs(best_data.highYieldDate).format("MM")}월
                   </BestDate>
                   <BestRatioWrap>
                     <ArrowUpIcon src={arrowup} alt="down" />
@@ -104,8 +104,8 @@ const CompareInfo = (props) => {
                 </BestName>
                 <BestInfo>
                   <BestDate>
-                    {moment(worst_data.lowYieldDate).format("YYYY")}년{" "}
-                    {moment(worst_data.lowYieldDate).format("MM")}월
+                    {dayjs(worst_data.lowYieldDate).format("YYYY")}년{" "}
+                    {dayjs(worst_data.lowYieldDate).format("MM")}월
                   </BestDate>
                   <WorstRatioWrap>
                     <ArrowDownIcon src={arrowdown} alt="down" />
@@ -134,10 +134,10 @@ const CompareInfo = (props) => {
                     <RankMid>
                       <RankDate>투자기간</RankDate>
                       <RankDate>
-                        {moment(r.startDate).format("YYYY")}년{" "}
-                        {moment(r.startDate).format("MM")}월 ~{" "}
-                        {moment(r.endDate).format("YYYY")}년{" "}
-                        {moment(r.endDate).format("MM")}월
+                        {dayjs(r.startDate).format("YYYY")}년{" "}
+                        {dayjs(r.startDate).format("MM")}월 ~{" "}
+                        {dayjs(r.endDate).format("YYYY")}년{" "}
+                        {dayjs(r.endDate).format("MM")}월
                       </RankDate>
                     </RankMid>
                     <RankBottom>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   Box,
   Wrap,
@@ -56,9 +56,9 @@ const TopInfo = (props) => {
 
   const [plus, setplus] = useState(0);
   const [minus, setminus] = useState(0);
-  
+
   useEffect(() => {
-    if(!result_list) {
+    if (!result_list) {
       return;
     }
 
@@ -69,7 +69,7 @@ const TopInfo = (props) => {
     setseedMoney(Math.floor(result_list.seedMoney / 10000));
     setbestMonth(result_list.bestMonth);
     setworstMonth(result_list.worstMonth);
-  
+
     setplus(bestMoney - seedMoney);
     setminus(worstMoney - seedMoney);
   }, [result_list]);
@@ -106,10 +106,10 @@ const TopInfo = (props) => {
         <BoxWrap>
           <TopBox>
             <InfoWrap>
-            <TextIconWrap>
-              <InfoTitle>투자 기간</InfoTitle>
-              <CalenderIcon src={calender}></CalenderIcon>
-            </TextIconWrap>
+              <TextIconWrap>
+                <InfoTitle>투자 기간</InfoTitle>
+                <CalenderIcon src={calender}></CalenderIcon>
+              </TextIconWrap>
               <InfoText>
                 {result_list.startDate} ~ {result_list.endDate}
               </InfoText>
@@ -126,23 +126,23 @@ const TopInfo = (props) => {
           </TopBox>
         </BoxWrap>
       </TopWrap>
-      {props.type==="Best"?
+      {props.type === "Best" ?
         null :
         <Wrap>
           <MonthBox>
             <TextWrap>
               <Text>최고의 달</Text>
-              <BestYear>{moment(bestMonth).format('YYYY')}년</BestYear>
+              <BestYear>{dayjs(bestMonth).format('YYYY')}년</BestYear>
             </TextWrap>
             <MonthWrap>
               <Icon src={up}></Icon>
-              <BestMonth>{moment(bestMonth).format('MM')}월</BestMonth>
+              <BestMonth>{dayjs(bestMonth).format('MM')}월</BestMonth>
             </MonthWrap>
             <IconWrap>
               <Price>
                 {bestMoney.toLocaleString()} 만원{" "}
-                { (bestMoney - seedMoney) > 0 ?
-                  <span>( +{(bestMoney - seedMoney).toLocaleString()} 만원)</span>:
+                {(bestMoney - seedMoney) > 0 ?
+                  <span>( +{(bestMoney - seedMoney).toLocaleString()} 만원)</span> :
                   <span>( {(bestMoney - seedMoney).toLocaleString()} 만원)</span>
                 }
               </Price>
@@ -152,18 +152,18 @@ const TopInfo = (props) => {
           <MonthBox>
             <TextWrap>
               <Text>최악의 달</Text>
-              <WorstYear>{moment(worstMonth).format('YYYY')}년</WorstYear>
+              <WorstYear>{dayjs(worstMonth).format('YYYY')}년</WorstYear>
             </TextWrap>
             <MonthWrap>
               <Icon src={down}></Icon>
-              <WorstMonth>{moment(worstMonth).format('MM')}월</WorstMonth>
+              <WorstMonth>{dayjs(worstMonth).format('MM')}월</WorstMonth>
             </MonthWrap>
             <IconWrap>
               <Price>
                 {worstMoney.toLocaleString()} 만원{" "}
-                { (worstMoney - seedMoney) > 0 ?
+                {(worstMoney - seedMoney) > 0 ?
                   <p>( +{(worstMoney - seedMoney).toLocaleString()} 만원)</p> :
-                  <p>( {(worstMoney - seedMoney).toLocaleString()} 만원)</p> 
+                  <p>( {(worstMoney - seedMoney).toLocaleString()} 만원)</p>
                 }
               </Price>
             </IconWrap>
