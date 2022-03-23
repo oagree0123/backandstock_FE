@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 
 import { actionCreators as testformActions } from '../../redux/modules/testform';
@@ -10,22 +10,22 @@ import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, DateWrap, Mo
 const MonthPicker = (props) => {
   const dispatch = useDispatch();
 
-  const today_year = moment().format('YYYY');
-  const today_month = moment().format('MM');
+  const today_year = dayjs().format('YYYY');
+  const today_month = dayjs().format('MM');
 
   const [is_open, setIsOpen] = useState(false);
   const [year, setYear] = useState(
-    props.type === "start" ? 
-    2019 : 
-      (props.type === "edit_start" || props.type === "edit_end") ? 
-        props.edit_year : 
+    props.type === "start" ?
+      2019 :
+      (props.type === "edit_start" || props.type === "edit_end") ?
+        props.edit_year :
         2022
-    );
+  );
   const [month, setMonth] = useState(
-    props.type === "start" ? 
-    3 : 
-    (props.type === "edit_start" || props.type === "edit_end") ? 
-        props.edit_month : 
+    props.type === "start" ?
+      3 :
+      (props.type === "edit_start" || props.type === "edit_end") ?
+        props.edit_month :
         1
   );
   const [clicked_date, setClickedDate] = useState(props.type === "start" ? 2019 : 2022);
@@ -47,7 +47,7 @@ const MonthPicker = (props) => {
   }
 
   useEffect(() => {
-    if(props.type === "start" || props.type === "edit_start") {
+    if (props.type === "start" || props.type === "edit_start") {
       dispatch(testformActions.setStart(year, month));
     }
     else {
@@ -62,9 +62,9 @@ const MonthPicker = (props) => {
           setIsOpen(!is_open);
         }}
       >
-        {year}년 {months[month-1]}
-        {props.type === "start" || props.type === "edit_start"  ?
-          <DateTitle>시작년도</DateTitle>:
+        {year}년 {months[month - 1]}
+        {props.type === "start" || props.type === "edit_start" ?
+          <DateTitle>시작년도</DateTitle> :
           <DateTitle>종료년도</DateTitle>
         }
       </DateWrap>

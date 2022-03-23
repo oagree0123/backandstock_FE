@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import "moment";
+import "dayjs";
 import axios from "axios";
 import { getToken } from "../../shared/token";
 
@@ -72,7 +72,7 @@ const getCommentDB = (post_id) => {
       let response = await axios.get(`http://yuseon.shop/community/comment/${post_id}`)
 
       console.log(response.data)
-      if(!response.data) {
+      if (!response.data) {
         return;
       }
       dispatch(getComment(response.data));
@@ -266,13 +266,13 @@ export default handleActions(
 
     [DELETE_RECOMMENT]: (state, action) =>
       produce(state, (draft) => {
-        let new_reply = 
+        let new_reply =
           draft.list[action.payload.comment_idx].replyList.filter((r) => {
             console.log(r.commentId, action.payload.recomment_id);
             return r.commentId !== action.payload.recomment_id
           });
 
-          draft.list[action.payload.comment_idx].replyList = new_reply;
+        draft.list[action.payload.comment_idx].replyList = new_reply;
       }),
   },
   initialState

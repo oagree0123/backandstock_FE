@@ -2,7 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { getToken } from '../../shared/token';
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs"
 
 // actions
 const GET_RESULT = "GET_RESULT";
@@ -35,14 +35,14 @@ const initialState = {
   port_one: {},
   compare_list: [],
   compare_item: [],
-  compare_data: [], 
+  compare_data: [],
 };
 
 // middleware
 const getResultDB = () => {
   return async function (dispatch, getState, { history }) {
     let end = getState().testform.end_date;
-    end = moment(end).add("1", "M").format("YYYY-MM-DD");
+    end = dayjs(end).add("1", "M").format('YYYY-MM-DD');
 
     let data = {
       startDate: getState().testform.start_date,
@@ -54,13 +54,13 @@ const getResultDB = () => {
 
     if (data.stockList.length === 0 || data.ratioList.length === 0) {
       window.alert("종목을 추가해 주세요!");
-      return ;
+      return;
     }
 
     // 실험 금액 100만원 ~ 100,000만원
     if (data.seedMoney < 1000000 || data.seedMoney > 1000000000) {
       window.alert("실험금액을 다시 확인해 주세요!");
-      return ;
+      return;
     }
 
     let ratio_sum = data.ratioList.reduce((acc, cur) => {
@@ -69,14 +69,14 @@ const getResultDB = () => {
 
     if (ratio_sum < 100) {
       window.alert("자산 비율은 100%가 되어야 합니다.");
-      return ;
+      return;
     }
 
     // 시작날짜와 종료날짜 역순 false
-    if(moment(data.endDate).isBefore(data.startDate)) {
+    if (dayjs(data.endDate).isBefore(data.startDate)) {
       window.alert("종료년도가 시작년도 이전입니다!");
-      return ;
-    } 
+      return;
+    }
     else {
       try {
         const test_result = await axios.post(
@@ -98,7 +98,7 @@ const savePortDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     let end = getState().testform.end_date;
-    end = moment(end).add("1", "M").format("YYYY-MM-DD");
+    end = dayjs(end).add("1", "M").format("YYYY-MM-DD");
 
     let data = {
       startDate: getState().testform.start_date,
@@ -185,15 +185,15 @@ const setBestDB = (type, port_id) => {
     const token = getToken("token");
 
     try {
-      await axios.post(`http://yuseon.shop/port/mybest`,  {
-        portId : port_id,
+      await axios.post(`http://yuseon.shop/port/mybest`, {
+        portId: port_id,
         myBest: type,
       }, {
         headers: {
           authorization: `${token}`
         }
       })
-      
+
       dispatch(setBest(type, port_id));
     }
     catch (err) {
@@ -205,7 +205,7 @@ const setBestDB = (type, port_id) => {
 const getCompareDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
-    
+
     const compare_list = getState().port.compare_list;
     const port_list = getState().port.port_list
 
@@ -214,8 +214,8 @@ const getCompareDB = () => {
     }
 
     try {
-      let response = await axios.post(`http://yuseon.shop/port/compare`,  {
-        portIdList : compare_list
+      let response = await axios.post(`http://yuseon.shop/port/compare`, {
+        portIdList: compare_list
       }, {
         headers: {
           authorization: `${token}`
@@ -225,11 +225,11 @@ const getCompareDB = () => {
       let compare_item = [];
 
       port_list.map((p, i) => {
-        if(compare_list.includes(p.portId)) {
+        if (compare_list.includes(p.portId)) {
           compare_item.push(p);
         }
       })
-      
+
       dispatch(getCompare(compare_item, response.data));
     }
     catch (err) {
@@ -260,14 +260,14 @@ export default handleActions(
         draft.port_list.push(...action.payload.port_list);
 
         draft.port_list = draft.port_list.reduce((acc, cur) => {
-          if(acc.findIndex(a => a.portId === cur.portId) === -1) {
+          if (acc.findIndex(a => a.portId === cur.portId) === -1) {
             return [...acc, cur];
           } else {
             acc[acc.findIndex(a => a.portId === cur.portId)] = cur;
             return acc;
           }
         }, [])
-    }),
+      }),
     [GET_PORTONE]: (state, action) =>
       produce(state, (draft) => {
         draft.port_one = action.payload.port;

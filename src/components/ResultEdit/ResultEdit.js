@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import MonthPicker from "../MonthPicker/MonthPicker";
@@ -68,13 +68,13 @@ const ResultEdit = (props) => {
             <ContTitle>실험 기간</ContTitle>
             <MonthPicker
               type="edit_start"
-              edit_year={Number(moment(start_date).format("YYYY"))}
-              edit_month={Number(moment(start_date).format("MM"))}
+              edit_year={Number(dayjs(start_date).format("YYYY"))}
+              edit_month={Number(dayjs(start_date).format("MM"))}
             />
             <MonthPicker
               type="edit_end"
-              edit_year={Number(moment(end_date).format("YYYY"))}
-              edit_month={Number(moment(end_date).format("MM"))}
+              edit_year={Number(dayjs(end_date).format("YYYY"))}
+              edit_month={Number(dayjs(end_date).format("MM"))}
             />
           </MonthWrap>
           <ContTitle>실험 금액</ContTitle>

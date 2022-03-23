@@ -1,6 +1,5 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import moment from "moment";
 import axios from "axios";
 import { getToken } from '../../shared/token';
 
@@ -77,7 +76,7 @@ const likePostDB = (port_id, type, nickname) => {
         return c.communityPort.portId === port_id;
       })
 
-      if(type) {
+      if (type) {
         //좋아요
         console.log(idx);
         dispatch(likePost(idx, nickname));
@@ -114,7 +113,7 @@ export default handleActions(
             return acc;
           }
         }, [])
-        
+
         //좋아요 순 정렬
         draft.list = _new_list.sort((a, b) => b.likesCnt - a.likesCnt);
       }),

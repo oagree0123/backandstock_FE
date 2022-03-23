@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const Box = styled.div`
   width: 160px;
   height: 213px;
-  border: 1.5px solid #0075ff;
+  /* border: 1.5px solid #0075ff; */
+  box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-radius: 10px;
   margin-right: 10px;

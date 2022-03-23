@@ -37,6 +37,10 @@ export const Wrap = styled.div`
 
   }
 
+.slick-list {
+    padding: 8px;
+}
+
 
 `
 
