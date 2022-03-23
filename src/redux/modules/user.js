@@ -29,7 +29,7 @@ const LoginDB = ({ user_name, pwd }) => {
   // test1234!
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post(`http://yuseon.shop/user/login`, {
+      const response = await axios.post(`https://yuseon.shop/user/login`, {
         username: user_name,
         password: pwd,
       });
@@ -39,7 +39,7 @@ const LoginDB = ({ user_name, pwd }) => {
 
       try {
         let check_user = await axios.post(
-          `http://yuseon.shop/islogin`,
+          `https://yuseon.shop/islogin`,
           {},
           {
             headers: {
@@ -73,7 +73,7 @@ const LoginCheckDB = () => {
     const token = getToken("token");
     try {
       let check_user = await axios.post(
-        `http://yuseon.shop/islogin`,
+        `https://yuseon.shop/islogin`,
         {},
         {
           headers: {
@@ -99,7 +99,7 @@ const kakaoLogin = (code) => {
   return async function (dispatch, getState, { history }) {
     try {
       let response = await axios.get(
-        `http://yuseon.shop/user/kakao/callback?code=${code}`
+        `https://yuseon.shop/user/kakao/callback?code=${code}`
       );
 
       const token = response.headers.authorization;
@@ -107,7 +107,7 @@ const kakaoLogin = (code) => {
 
       try {
         let check_user = await axios.post(
-          `http://yuseon.shop/islogin`,
+          `https://yuseon.shop/islogin`,
           {},
           {
             headers: {
@@ -138,7 +138,7 @@ const kakaoLogin = (code) => {
 const SignupDB = ({ user_name, nickname, pwd }) => {
   return async function (dispatch, getState, { history }) {
     try {
-      await axios.post(`http://yuseon.shop/user/signup`, {
+      await axios.post(`https://yuseon.shop/user/signup`, {
         username: user_name,
         password: pwd,
         nickname: nickname,
@@ -164,7 +164,7 @@ const editUserDB = (img_url, nickname, img_file) => {
     form.append('profileImage', img_file);
 
     try {
-      let response = await axios.put(`http://yuseon.shop/user/edit`, form, {
+      let response = await axios.put(`https://yuseon.shop/user/edit`, form, {
         headers: {
           authorization: `${token}`,
           'Content-Type': 'multipart/form-data'
@@ -190,7 +190,7 @@ const ResignDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
-      await axios.delete(`http://yuseon.shop/resign`, {
+      await axios.delete(`https://yuseon.shop/resign`, {
         headers: {
           authorization: `${token}`,
         },

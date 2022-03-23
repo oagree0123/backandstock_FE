@@ -39,7 +39,7 @@ const addCommentDB = (port_id, content) => {
     const token = getToken('token');
     const user = getState().user.user_info;
     try {
-      let response = await axios.post(`http://yuseon.shop/community/comment/${port_id}`, {
+      let response = await axios.post(`https://yuseon.shop/community/comment/${port_id}`, {
         content: content
       }, {
         headers: {
@@ -69,7 +69,7 @@ const getCommentDB = (post_id) => {
     }
 
     try {
-      let response = await axios.get(`http://yuseon.shop/community/comment/${post_id}`)
+      let response = await axios.get(`https://yuseon.shop/community/comment/${post_id}`)
 
       console.log(response.data)
       if(!response.data) {
@@ -89,7 +89,7 @@ const editCommentDB = (comment_id, comment) => {
     const token = getToken("token");
 
     try {
-      axios.put(`http://yuseon.shop/community/comment/${comment_id}`, {
+      axios.put(`https://yuseon.shop/community/comment/${comment_id}`, {
         content: comment
       }, {
         headers: {
@@ -112,7 +112,7 @@ const deleteCommentDB = (comment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`http://yuseon.shop/community/comment/${comment_id}`, {
+      await axios.delete(`https://yuseon.shop/community/comment/${comment_id}`, {
         headers: {
           Authorization: `${token}`
         }
@@ -138,7 +138,7 @@ const ReaddCommentDB = (commentId, Newcontent) => {
     const user = getState().user.user_info
     const comment_list = getState().comment.list;
     try {
-      let response = await axios.post(`http://yuseon.shop/community/reply/${commentId}`, {
+      let response = await axios.post(`https://yuseon.shop/community/reply/${commentId}`, {
         content: Newcontent
       }, {
         headers: {
@@ -172,7 +172,7 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`http://yuseon.shop/community/comment/${recomment_id}`, {
+      await axios.delete(`https://yuseon.shop/community/comment/${recomment_id}`, {
         headers: {
           Authorization: `${token}`
         }
@@ -196,7 +196,7 @@ const editRecommentDB = (comment_id, newcomment) => {
     const token = getToken("token");
 
     try {
-      let response = await axios.put(`http://yuseon.shop/community/comment/${comment_id}`, {
+      let response = await axios.put(`https://yuseon.shop/community/comment/${comment_id}`, {
         content: newcomment
       }, {
         headers: {
