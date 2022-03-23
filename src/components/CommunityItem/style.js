@@ -34,7 +34,6 @@ export const ItemTitle = styled.h3`
   font-weight: 800;
   line-height: var(--line-medium);
   color: #000;
-  //color: var(--primary-color);
 `;
 
 export const IconWrap = styled.div`

@@ -25,7 +25,7 @@ export const Num = styled.span`
   font-size: 25px;
   font-weight: 700;
   color: #000;
-  color: var(--primary-color);
+  //color: var(--primary-color);
 `;
 
 export const StockName = styled.p`

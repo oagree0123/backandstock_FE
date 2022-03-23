@@ -45,7 +45,7 @@ const Community = () => {
         <CommunityList community_list={community_list} />
       }
       <PageWrap>
-        <PageHr />
+        {/* <PageHr /> */}
         <PageBtn
           onClick={() => {
             dispatch(communityActions.getPostDB(page + 1));
