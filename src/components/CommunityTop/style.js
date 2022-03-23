@@ -2,26 +2,30 @@ import styled from "styled-components";
 
 //CommunityTop
 export const Box = styled.div`
-  width: 160px;
-  height: 213px;
-  border: 1.5px solid #0075ff;
-  box-sizing: border-box;
+  margin-left: 5px;
+  margin-right: 0;
+  width: 166px;
   border-radius: 10px;
-  margin-right: 10px;
   margin-top: 54px;
+  
   :not(:last-child) {
     margin-right: 5px;
   }
 `;
 
 export const Wrap = styled.div`
-  margin: 15px 3px 12px 13px;
+  padding: 15px 3px 20px 13px;
+  width: 166px;
+  height: 208px;
+  box-shadow: -2px 4px 8px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 `;
 
 export const Num = styled.span`
   font-size: 25px;
   font-weight: 700;
-  color: var(--font-blue);
+  color: #000;
+  color: var(--primary-color);
 `;
 
 export const StockName = styled.p`
@@ -44,5 +48,5 @@ export const StockNum = styled.p`
 export const Result = styled.span`
   font-size: 24px;
   font-weight: 700;
-  color: var(--font-blue);
+  color: var(--primary-color);
 `;

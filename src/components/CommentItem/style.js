@@ -17,7 +17,7 @@ export const ImgWrap = styled.div`
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: var(--secondary-color);
+  background-color: #c4c4c4;
 `;
 
 export const CommentContWrap = styled.div`
@@ -106,7 +106,11 @@ export const ReImgWrap = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--primary-color);
+  background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #c4c4c4;
 `;
 
 export const RecoInput = styled.input`

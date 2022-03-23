@@ -33,7 +33,8 @@ export const ItemTitle = styled.h3`
   font-size: var(--font-medium);
   font-weight: 800;
   line-height: var(--line-medium);
-  color: var(--primary-color);
+  color: #000;
+  //color: var(--primary-color);
 `;
 
 export const IconWrap = styled.div`
