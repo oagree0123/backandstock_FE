@@ -107,7 +107,7 @@ const SideTap = (props) => {
         </SideUserWrap>
       ) : (
         <SideUserWrap>
-          <UserImg />
+          <UserImg img_url={BasicImage}/>
           <Username>방문자님</Username>
           <UserText>
             로그인을 해야 자산을 <br />
