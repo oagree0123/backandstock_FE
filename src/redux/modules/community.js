@@ -31,7 +31,7 @@ const getPostDB = (page = 1) => {
       let response = await axios.get(`http://yuseon.shop/community`, {
         params: {
           page: page,
-          size: 10,
+          size: 3,
         },
       });
 

@@ -43,3 +43,29 @@ export const SortText = styled.p`
   line-height: var(--line-small);
   color: var(--primary-color);
 `;
+
+export const PageWrap = styled.div`
+  margin-top: 36px;
+  width: 880px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PageHr = styled.div`
+  width: 100%;
+  border-bottom: 1px dashed var(--primary-color);
+`;
+
+export const PageBtn = styled.button`
+  position: absolute;
+  width: 90px;
+  height: 30px;
+  font-size: var(--font-medium);
+  font-weight: 600;
+  line-height: var(--line-medium);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 30px;
+  background-color: #fff;
+`;

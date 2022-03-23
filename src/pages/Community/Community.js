@@ -4,7 +4,7 @@ import { history } from '../../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { CommunityTitle, CommunityWrap, SortCircle, SortText, SortWrap, Title } from "./style";
+import { CommunityTitle, CommunityWrap, PageBtn, PageHr, PageWrap, SortCircle, SortText, SortWrap, Title } from "./style";
 import { actionCreators as communityActions } from '../../redux/modules/community';
 import { CommunityList, Slide } from '../../components';
 
@@ -44,14 +44,17 @@ const Community = () => {
       {community_list &&
         <CommunityList community_list={community_list} />
       }
-      {/* <button
-        onClick={() => {
-          dispatch(communityActions.getPostDB(page + 1));
-          setPage(prevState => prevState + 1);
-        }}
-      >
-        더보기
-      </button> */}
+      <PageWrap>
+        <PageHr />
+        <PageBtn
+          onClick={() => {
+            dispatch(communityActions.getPostDB(page + 1));
+            setPage(prevState => prevState + 1);
+          }}
+        >
+          더보기
+        </PageBtn>
+      </PageWrap>
     </CommunityWrap>
   );
 };
