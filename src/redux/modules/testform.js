@@ -106,7 +106,7 @@ export default handleActions(
         draft.codeList = [];
         draft.init_money = 0;
         draft.end_date = "2022-01-01";
-        draft.start_date = "2019-03-01";
+        draft.start_date = "2011-01-01";
       }),
   },
   initialState
