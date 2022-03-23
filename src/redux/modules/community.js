@@ -34,6 +34,10 @@ const getPostDB = (page = 1) => {
         },
       });
 
+      if(response.data.length === 0) {
+        window.alert("더 이상 포트폴리오가 없습니다.")
+        return;
+      }
       dispatch(getPost(response.data));
     }
     catch (err) {
