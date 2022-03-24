@@ -39,7 +39,7 @@ const addCommentDB = (port_id, content) => {
     const token = getToken('token');
     const user = getState().user.user_info;
     try {
-      let response = await axios.post(`https://yuseon.shop/community/comment/${port_id}`, {
+      let response = await axios.post(`https://yuseon.shop/portfolios/${port_id}/comments`, {
         content: content
       }, {
         headers: {
@@ -69,7 +69,7 @@ const getCommentDB = (post_id) => {
     }
 
     try {
-      let response = await axios.get(`https://yuseon.shop/community/comment/${post_id}`)
+      let response = await axios.get(`https://yuseon.shop/portfolios/${post_id}/comments`)
 
       if(!response.data) {
         return;
@@ -88,7 +88,7 @@ const editCommentDB = (comment_id, comment) => {
     const token = getToken("token");
 
     try {
-      axios.put(`https://yuseon.shop/community/comment/${comment_id}`, {
+      axios.put(`https://yuseon.shop/comments/${comment_id}`, {
         content: comment
       }, {
         headers: {
@@ -111,7 +111,7 @@ const deleteCommentDB = (comment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`https://yuseon.shop/community/comment/${comment_id}`, {
+      await axios.delete(`https://yuseon.shop/comments/${comment_id}`, {
         headers: {
           Authorization: `${token}`
         }
@@ -137,7 +137,7 @@ const ReaddCommentDB = (commentId, Newcontent) => {
     const user = getState().user.user_info
     const comment_list = getState().comment.list;
     try {
-      let response = await axios.post(`https://yuseon.shop/community/reply/${commentId}`, {
+      let response = await axios.post(`https://yuseon.shop/comments/${commentId}`, {
         content: Newcontent
       }, {
         headers: {
@@ -171,7 +171,7 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`https://yuseon.shop/community/comment/${recomment_id}`, {
+      await axios.delete(`https://yuseon.shop/comments/${recomment_id}`, {
         headers: {
           Authorization: `${token}`
         }

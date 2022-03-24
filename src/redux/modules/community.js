@@ -27,7 +27,7 @@ const initialState = {
 const getPostDB = (page = 1) => {
   return async function (dispatch, getState, { history }) {
     try {
-      let response = await axios.get(`https://yuseon.shop/community`, {
+      let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
         params: {
           page: page,
           size: 3,
@@ -49,7 +49,7 @@ const getPostDB = (page = 1) => {
 const getTopFiveDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
-      let response = await axios.get(`https://yuseon.shop/community/topFive`)
+      let response = await axios.get(`https://yuseon.shop/stocks/topfive`)
 
       dispatch(getTopFive(response.data));
     }
@@ -59,6 +59,7 @@ const getTopFiveDB = () => {
   };
 };
 
+/* like수정 */
 const likePostDB = (port_id, type, nickname) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
