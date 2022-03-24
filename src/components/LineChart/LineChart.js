@@ -33,7 +33,38 @@ const LineChart = (props) => {
           tickRotation: 60,
           legendOffset: 36,
           legendPosition: "middle",
-          format: (v) => `${v}`,
+          format: ((v) => {
+            // 개월 처리
+            if(v.split("").slice(-1)[0] === "월") {
+              if(parseInt(v.split("개월")[0]) % 3 === 1) {
+                return v;
+              }
+              else {
+                return "";
+              }
+            }
+            
+            // 년 월 처리
+            let arr_month = [];
+            for(let i=0; i<12; i++) {
+              if(props.primary_month + i > 12) {
+                arr_month.push((props.primary_month + i) % 12);
+              }
+              else {
+                arr_month.push(props.primary_month + i);
+              }
+            }
+            let idx = arr_month.findIndex(a => {
+              return a === parseInt(v.split("-")[1]);
+            })
+
+            if(idx % 3 === 0) {
+              return v
+            }
+            else {
+              return "";
+            }
+          }),
         }}
         axisLeft={{
           orient: "left",
@@ -42,10 +73,20 @@ const LineChart = (props) => {
           tickRotation: 0,
           legendOffset: -40,
           legendPosition: "middle",
-          format: (v) => `${v.toLocaleString("ko-KR")} 만원`,
+          format: (v) => {
+            // 비교 그래프
+            if(props.compare === "compare") {
+              return `${v}%`
+            }
+            // 결과 그래프
+            else {
+              return `${v.toLocaleString("ko-KR")} 만원`
+            }
+          },
         }}
+        markers={props.markers}
         enableGridY={false}
-        pointSize={6}
+        pointSize={0}
         pointColor="#fff"
         pointBorderWidth={2}
         pointBorderColor={{ from: 'serieColor' }}

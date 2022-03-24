@@ -62,13 +62,13 @@ export const DeleteBtn = styled.button`
 export const ChartWrap = styled.div`
   margin-bottom: 60px;
   width: 880px;
-  height: 350px;
+  min-height: 350px;
+  height: 100%;
   border: 2px solid var(--secondary-color);
   border-radius: 10px;
 `;
 
 export const NoneChartWrap = styled.div`
-  margin-bottom: 60px;
   width: 880px;
   height: 350px;
   display: flex;
