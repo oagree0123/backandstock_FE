@@ -39,7 +39,7 @@ const LoginDB = ({ user_name, pwd }) => {
 
       try {
         let check_user = await axios.post(
-          `https://yuseon.shop/info`,
+          `https://yuseon.shop/users/info`,
           {},
           {
             headers: {
