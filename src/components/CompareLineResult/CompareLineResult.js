@@ -91,17 +91,17 @@ const CompareLineResult = (props) => {
         height={350}
         margin={{
           top: 32,
-          right: 80,
+          right: 100,
           bottom: 72,
           left: 84,
         }}
-        translateX={70}
+        translateX={95}
         translateY={0}
         keys={keys}
         line_data={data}
-        symbol_size={10}
-        legend_fsize={12}
-        legend_space={-2}
+        symbol_size={6}
+        legend_fsize={11}
+        legend_space={-4}
         legend_anchor="top-right"
         tick_font={12}
         compare="compare"

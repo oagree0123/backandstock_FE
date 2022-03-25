@@ -10,12 +10,16 @@ const GET_TOPFIVE = "GET_TOPFIVE";
 const LIKE_POST = "LIKE_POST";
 const DELETELIKE_POST = "DELETELIKE_POST";
 
+const SET_POST_INIT = "SET_POST_INIT";
+
 // action creators
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (portId) => ({ portId }));
 const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, (idx, nickname) => ({ idx, nickname }));
 const deletlikeePost = createAction(DELETELIKE_POST, (idx, nickname) => ({ idx, nickname }));
+
+const setPostInit = createAction(SET_POST_INIT, () => ({}));
 
 // initialState
 const initialState = {
@@ -199,6 +203,11 @@ export default handleActions(
           }
         }, [])
       }),
+
+    [SET_POST_INIT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = [];
+      }),
   },
   initialState
 );
@@ -211,6 +220,7 @@ const actionCreators = {
   getTopFiveDB,
   getTopFive,
   deletePost,
+  setPostInit,
 };
 
 export { actionCreators };

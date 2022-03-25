@@ -15,6 +15,7 @@ export const Box = styled.div`
 
 export const TopWrap = styled.div`
   display: flex;
+  height: 282px;
 `;
 
 export const BoxWrap = styled.div`

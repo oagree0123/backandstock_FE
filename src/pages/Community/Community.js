@@ -16,10 +16,8 @@ const Community = () => {
   const community_list = useSelector(state => state.community.list);
 
   useEffect(() => {
+    dispatch(communityActions.setPostInit());
     dispatch(communityActions.getTopFiveDB())
-  }, [])
-
-  useEffect(() => {
     dispatch(communityActions.getPostDB());
   }, [])
 
