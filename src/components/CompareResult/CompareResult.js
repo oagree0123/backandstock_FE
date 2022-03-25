@@ -11,7 +11,7 @@ const CompareResult = (props) => {
   const bar_data = [];
 
   port_list[0]?.portBacktestingCal.months.map((m, i) => {
-    months.push(`${i+1} 개월`);
+    months.push(`${i + 1} 개월`);
   });
 
   compare_idx.map((p, i) => {
@@ -32,27 +32,28 @@ const CompareResult = (props) => {
 
   return (
     <>
-      {!port_list ? null : (
-        <BarChart
-          width={880}
-          height={350}
-          margin={{
-            top: 32,
-            right: 80,
-            bottom: 72,
-            left: 84,
-          }}
-          translateX={70}
-          translateY={0}
-          keys={keys}
-          bar_data={bar_data}
-          symbol_size={10}
-          legend_fsize={12}
-          legend_space={-2}
-          legend_anchor="top-right"
-          tick_font={12}
-        />
-      )}
+      {!port_list ? null :
+        (
+          <BarChart
+            width={880}
+            height={350}
+            margin={{
+              top: 32,
+              right: 80,
+              bottom: 72,
+              left: 84,
+            }}
+            translateX={70}
+            translateY={0}
+            keys={keys}
+            bar_data={bar_data}
+            symbol_size={10}
+            legend_fsize={12}
+            legend_space={-2}
+            legend_anchor="top-right"
+            tick_font={12}
+          />
+        )}
     </>
   );
 };

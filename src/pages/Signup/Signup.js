@@ -18,12 +18,14 @@ import {
   LoginLeft,
   LoginText,
   LeftLogo,
-  LeftTitle
+  LeftTitle,
+  LogoWrap
 
 } from "../../pages/Login/style.js"
 
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { history } from '../../redux/configStore';
+import logo from '../../assets/images/logo_1.png';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -122,7 +124,9 @@ const Signup = () => {
             history.push('/')
           }}>BACK&<br />STOCK</LeftTitle>
           <LoginText>
-            <LeftLogo></LeftLogo>
+            <LogoWrap>
+              <LeftLogo src={logo}></LeftLogo>
+            </LogoWrap>
             <span>백스탁에서 나의<br />
               자산을 다양하게<br />
               실험해 보세요</span>

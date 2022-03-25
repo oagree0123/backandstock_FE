@@ -8,7 +8,7 @@ import StockList from '../Result/StockList';
 const DetailResult = (props) => {
 
   const { result_list } = props;
-  
+
   // 수익금
   const months = result_list.months;
   const monthYieldMoney = result_list.monthYieldMoney;
@@ -43,7 +43,7 @@ const DetailResult = (props) => {
   // 수익금 데이터
   monthYieldMoney.map((m, i) => {
     let xy = {
-      x: months[i].substring(2),
+      x: test[i].substring(2),
       y: parseInt(m / 10000),
     };
     data[0].data.push(xy);
@@ -65,13 +65,15 @@ const DetailResult = (props) => {
     data[2].data.push(xy);
   });
 
+
+
   // 수익률 데이터
   monthYield.map((m, i) => {
     let xy = {
-        months: months[i].substring(2),
-        "내 자산": Math.floor(monthYield[i]),
-        "KOSPI": Math.floor(kospiYield[i]),
-        "KOSDAQ": Math.floor(kosdaqYield[i]),
+      months: months[i].substring(2),
+      "내 자산": Math.floor(monthYield[i]),
+      "KOSPI": Math.floor(kospiYield[i]),
+      "KOSDAQ": Math.floor(kosdaqYield[i]),
     }
     bar_data.push(xy);
   })
@@ -79,50 +81,50 @@ const DetailResult = (props) => {
   return (
     <>
       <All>
-        <TopInfo 
+        <TopInfo
           type={props.type}
-          port_list={result_list} 
+          port_list={result_list}
         />
         <DetailTitle>월별 자산</DetailTitle>
         <LineChartWrap>
-          <LineChart 
+          <LineChart
             margin={{
-              top: 32, 
-              right: 120, 
-              bottom: 64, 
+              top: 32,
+              right: 120,
+              bottom: 64,
               left: 110
             }}
-            line_data={data} 
+            line_data={data}
           />
         </LineChartWrap>
         <DetailTitle>전월 대비 수익률</DetailTitle>
         <BarChartWrap>
-          <BarChart 
+          <BarChart
             width={880}
             height={300}
             margin={{
-              top: 32, 
-              right: 120, 
-              bottom: 64, 
+              top: 32,
+              right: 120,
+              bottom: 64,
               left: 110
             }}
             translateX={120}
             translateY={38}
-            bar_data={bar_data} 
+            bar_data={bar_data}
             tick_font={12}
           />
         </BarChartWrap>
         <DetailTitle>종목별 수익금</DetailTitle>
         {
           props.type === "test" ?
-          <StockList 
-            result_list={result_list}
-          ></StockList> :
-          <StockList 
-            type="detail"
-            ratio_list={props.stock_ratio} 
-            result_list={result_list}
-          ></StockList> 
+            <StockList
+              result_list={result_list}
+            ></StockList> :
+            <StockList
+              type="detail"
+              ratio_list={props.stock_ratio}
+              result_list={result_list}
+            ></StockList>
         }
       </All>
     </>

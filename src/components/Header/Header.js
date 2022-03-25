@@ -4,7 +4,7 @@ import { HeaderWrap, HeadWrap, LOGO, Logout } from './styles';
 import { history } from '../../redux/configStore';
 
 import { actionCreators as userActions } from '../../redux/modules/user';
-
+import logo from "../../assets/images/logo_se_name_1.png"
 const Header = () => {
   const dispatch = useDispatch();
   const is_login = useSelector(state => state.user.is_login);
@@ -12,12 +12,11 @@ const Header = () => {
   return (
     <HeaderWrap>
       <HeadWrap>
-        <LOGO
+        <LOGO src={logo}
           onClick={() => {
             history.push('/');
           }}
         >
-          BACK & STOCK
         </LOGO>
         {is_login &&
           <Logout onClick={() => {

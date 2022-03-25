@@ -27,12 +27,8 @@ export const HeadWrap = styled.div`
   }
 `;
 
-export const LOGO = styled.h1`
-  margin-left: 24px;
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--primary-color);
-  cursor: pointer;
+export const LOGO = styled.img`
+  background-image: ${(props) => props.src || "white"};
 `;
 
 export const Logout = styled.div`

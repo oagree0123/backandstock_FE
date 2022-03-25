@@ -107,13 +107,19 @@ display: flex;
     }
 `;
 
-export const LeftLogo = styled.img`
+export const LogoWrap = styled.div`
   width: 136px;
   height: 136px;
-  background-color: #fff;
   border-radius: 50%;
+  background-color: #fff;
   margin: 18px 4px 11px 0;
+`
 
+
+export const LeftLogo = styled.img`
+  width: 100%;
+  margin: 22px auto;
+  background-image: ${(props) => props.src || "white"};
 `;
 
 export const InputWrap = styled.div`

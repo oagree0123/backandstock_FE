@@ -3,7 +3,7 @@ import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import likecnt from "../../assets/images/likecnt.svg";
-import heartBlue from "../../assets/images/heart_blue.svg";
+import heartBlue from "../../assets/images/heart_gray.svg";
 import heartRed from "../../assets/images/heart_red.svg";
 import commentcnt from "../../assets/images/commentcnt.svg";
 
@@ -49,12 +49,12 @@ const CommunityItem = (props) => {
       }
       setLikeCount(likeCount - 1);
     }
-    dispatch(likepostActions.likePostDB(port_id, type, user.nickname));
+    dispatch(likepostActions.likePostDB(port_id, type, user.user_id));
   };
 
   return (
     <CommunityItemWrap>
-      {like_user.includes(user.nickname) ? (
+      {like_user.includes(user.user_id) ? (
         <LikeBtn
           onClick={() => {
             toggleLike(false);

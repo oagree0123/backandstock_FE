@@ -44,7 +44,9 @@ const LineChart = (props) => {
           legendPosition: "middle",
           format: (v) => `${v.toLocaleString("ko-KR")} 만원`,
         }}
-        enableGridY={false}
+        enableGridX={false}
+        // enableGridY={false}
+        enablePoints={false}
         pointSize={6}
         pointColor="#fff"
         pointBorderWidth={2}
@@ -90,7 +92,7 @@ const LineChart = (props) => {
               text: {
                 fontFamily: "Noto Sans CJK KR",
                 fontSize: 12,
-                fontWeight: 600,
+                fontWeight: 400,
                 fill: "#000",
               },
               line: {
@@ -113,10 +115,10 @@ const LineChart = (props) => {
 LineChart.defaultProps = {
   width: 880,
   height: 300,
-  margin : {
-    top: 32, 
-    right: 120, 
-    bottom: 64, 
+  margin: {
+    top: 32,
+    right: 120,
+    bottom: 64,
     left: 100
   },
   line_data: [],
