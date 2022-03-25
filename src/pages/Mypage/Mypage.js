@@ -119,15 +119,16 @@ const Mypage = () => {
               않았습니다
             </NoneChartText>
           </NoneChartWrap>
+
         )}
       </ChartWrap>
 
       {check_compare
         ? compare_data && (
-            <MypageInfoWrap>
-              <CompareRank port_list={port_list} compare_data={compare_data} />
-            </MypageInfoWrap>
-          )
+          <MypageInfoWrap>
+            <CompareRank port_list={port_list} compare_data={compare_data} />
+          </MypageInfoWrap>
+        )
         : null}
     </MypageWrap>
   );

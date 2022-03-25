@@ -19,6 +19,7 @@ import {
   RightTitle,
   SignUpBtn,
   Wrap,
+  LogoWrap
 } from "./style";
 import kakao from "../../assets/images/kakaoIcon.svg"
 import kakaologo from "../../assets/images/kakao.svg"
@@ -26,6 +27,7 @@ import { useDispatch } from "react-redux";
 import { history } from '../../redux/configStore';
 
 import { actionCreators as userActions } from "../../redux/modules/user";
+import logo from '../../assets/images/logo_1.png';
 
 const Login = () => {
   const API_key = process.env.REACT_APP_KAKAO_ID;
@@ -100,7 +102,9 @@ const Login = () => {
             <span>백스탁에서 나의<br />
               자산을 다양하게<br />
               실험해 보세요</span>
-            <LeftLogo></LeftLogo>
+            <LogoWrap>
+              <LeftLogo src={logo}></LeftLogo>
+            </LogoWrap>
           </LoginText>
         </LoginLeft>
         <LoginRight>

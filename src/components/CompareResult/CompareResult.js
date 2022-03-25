@@ -12,6 +12,7 @@ const CompareResult = (props) => {
   const months_length = [];
   let length_idx = 0;
 
+
   let bar_data = [[], [], []];
 
   // 2개 비교시

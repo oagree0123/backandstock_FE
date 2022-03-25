@@ -8,14 +8,14 @@ const GET_POST = "GET_POST";
 const DELETE_POST = "DELETE_POST";
 const GET_TOPFIVE = "GET_TOPFIVE";
 const LIKE_POST = "LIKE_POST";
-const UNLIKE_POST = "UNLIKE_POST";
+const DELETELIKE_POST = "DELETELIKE_POST";
 
 // action creators
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (portId) => ({ portId }));
 const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, (idx, nickname) => ({ idx, nickname }));
-const unlikePost = createAction(UNLIKE_POST, (idx, nickname) => ({ idx, nickname }));
+const deletlikeePost = createAction(DELETELIKE_POST, (idx, nickname) => ({ idx, nickname }));
 
 // initialState
 const initialState = {
@@ -66,9 +66,8 @@ const likePostDB = (port_id, type, nickname) => {
     const community_list = getState().community.list;
 
     try {
-      axios.post(`https://yuseon.shop/community/likes`, {
+      axios.post(`https://yuseon.shop/community/portfolios/${port_id}/likes`, {
         portId: port_id,
-        likes: type,
       }, {
         headers: {
           authorization: `${token}`
@@ -83,9 +82,38 @@ const likePostDB = (port_id, type, nickname) => {
         //좋아요
         dispatch(likePost(idx, nickname));
       }
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+const deletelikePostDB = (port_id, type, user_id) => {
+  return async function (dispatch, getState, { history }) {
+    const token = getToken("token");
+    const community_list = getState().community.list;
+
+    try {
+      axios.delete(`https://yuseon.shop/community/portfolios/${port_id}/likes`, {
+        portId: port_id,
+      }, {
+        headers: {
+          authorization: `${token}`
+        }
+      });
+
+      let idx = community_list.findIndex(c => {
+        return c.communityPort.portId === port_id;
+      })
+
+      if (type) {
+        //좋아요
+        dispatch(likePost(idx, user_id));
+      }
       else {
         //좋아요 취소
-        dispatch(unlikePost(idx, nickname));
+        dispatch(deletlikeePost(idx, user_id));
       }
     } catch (err) {
       console.log(err);
@@ -131,17 +159,17 @@ export default handleActions(
 
     [LIKE_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list[action.payload.idx].likesUsers.push(action.payload.nickname)
+        draft.list[action.payload.idx].likesUsers.push(action.payload.user_id)
         draft.list[action.payload.idx].likesCnt += 1;
 
         //좋아요 순 정렬
         //draft.list = draft.list.sort((a, b) => b.likesCnt - a.likesCnt);
       }),
 
-    [UNLIKE_POST]: (state, action) =>
+    [DELETELIKE_POST]: (state, action) =>
       produce(state, (draft) => {
         let new_likeUsers = draft.list[action.payload.idx].likesUsers.filter(u => {
-          return u !== action.payload.nickname;
+          return u !== action.payload.user_id;
         })
 
         draft.list[action.payload.idx].likesUsers = new_likeUsers;
@@ -179,6 +207,7 @@ export default handleActions(
 const actionCreators = {
   getPostDB,
   likePostDB,
+  deletelikePostDB,
   getTopFiveDB,
   getTopFive,
   deletePost,
