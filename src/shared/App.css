@@ -7,6 +7,7 @@
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 100;
+  font-display: swap;
   src: url("../assets/fonts/NotoSansKR-Light.woff") format('woff2'),
   url("../assets/fonts/NotoSansKR-Light.woff") format('woff'),
   url("../assets/fonts/NotoSansKR-Light.otf") format('truetype')
@@ -16,6 +17,7 @@
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: url("../assets/fonts/NotoSansKR-Regular.woff2") format('woff2'),
   url("../assets/fonts/NotoSansKR-Regular.woff") format('woff'),
   url("../assets/fonts/NotoSansKR-Regular.otf") format('truetype')
@@ -26,6 +28,7 @@
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
   src: url("../assets/fonts/NotoSansKR-Medium.woff2") format('woff2'),
   url("../assets/fonts/NotoSansKR-Medium.woff") format('woff'),
   url("../assets/fonts/NotoSansKR-Medium.otf") format('truetype')
@@ -35,6 +38,7 @@
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 800;
+  font-display: swap;
   src: url("../assets/fonts/NotoSansKR-Bold.woff2") format('woff2'),
   url("../assets/fonts/NotoSansKR-Bold.woff") format('woff'),
   url("../assets/fonts/NotoSansKR-Bold.otf") format('truetype')
@@ -44,6 +48,7 @@
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
   font-weight: 900;
+  font-display: swap;
   src: url("../assets/fonts/NotoSansKR-Black.woff2") format('woff2'),
   url("../assets/fonts/NotoSansKR-Black.woff") format('woff'),
   url("../assets/fonts/NotoSansKR-Black.otf") format('truetype')
