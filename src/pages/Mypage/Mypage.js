@@ -109,7 +109,6 @@ const Mypage = () => {
         {check_compare ? (
           <>
           <CompareLineResult compare_idx={compare_idx} port_list={compare_item}/>
-          <CompareResult compare_idx={compare_idx} port_list={compare_item} />
           </>
         ) : (
           <NoneChartWrap>
