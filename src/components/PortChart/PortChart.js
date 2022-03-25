@@ -37,10 +37,21 @@ const PortChart = (props) => {
       y: kospiYieldMoney[i],
     };
 
-    let kosdaq_yield = {
-      x: m,
-      y: kosdaqYieldMoney[i],
-    };
+
+    let kosdaq_yield = {}
+
+    if(kosdaqYieldMoney[i]) {
+      kosdaq_yield = {
+        x: m,
+        y: kosdaqYieldMoney[i],
+      };
+    }
+    else {
+      kosdaq_yield = {
+        x: m,
+        y: 0,
+      };
+    }
 
     data[0].data.push(my_yield);
     data[1].data.push(kospi_yield);

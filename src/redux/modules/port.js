@@ -80,7 +80,7 @@ const getResultDB = () => {
     else {
       try {
         const test_result = await axios.post(
-          `https://yuseon.shop/port/result`,
+          `https://yuseon.shop/stocks`,
           data
         );
 
@@ -109,7 +109,7 @@ const savePortDB = () => {
     };
 
     try {
-      const port_id = await axios.post(`https://yuseon.shop/port`, data, {
+      const port_id = await axios.post(`https://yuseon.shop/portfolios`, data, {
         headers: {
           Authorization: `${token}`
         }
@@ -128,7 +128,7 @@ const getMyPortDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     try {
-      let response = await axios.get(`https://yuseon.shop/port/mypage`, {
+      let response = await axios.get(`https://yuseon.shop/users/portfolios`, {
         headers: {
           Authorization: `${token}`
         }
@@ -145,7 +145,7 @@ const getMyPortDB = () => {
 const getPortOneDB = (port_id) => {
   return async function (dispatch, getState, { history }) {
     try {
-      let response = await axios.get(`https://yuseon.shop/port/details/${port_id}`)
+      let response = await axios.get(`https://yuseon.shop/portfolios/${port_id}`)
 
       dispatch(getPortOne(response.data));
       //history.push('/detail');
@@ -162,7 +162,7 @@ const deletePortDB = (port_id) => {
     const _port_list = getState().port.port_list;
 
     try {
-      await axios.delete(`https://yuseon.shop/port/${port_id}`, {
+      await axios.delete(`https://yuseon.shop/portfolios/${port_id}`, {
         headers: {
           authorization: `${token}`
         }
@@ -185,7 +185,7 @@ const setBestDB = (type, port_id) => {
     const token = getToken("token");
 
     try {
-      await axios.post(`https://yuseon.shop/port/mybest`,  {
+      await axios.post(`https://yuseon.shop/portfolios/boast`,  {
         portId : port_id,
         myBest: type,
       }, {
@@ -214,7 +214,7 @@ const getCompareDB = () => {
     }
 
     try {
-      let response = await axios.post(`https://yuseon.shop/port/compare`,  {
+      let response = await axios.post(`https://yuseon.shop/portfolios/comparison`,  {
         portIdList : compare_list
       }, {
         headers: {
@@ -243,7 +243,9 @@ export default handleActions(
   {
     [GET_RESULT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.test_result;
+        let _new_list = [];
+        _new_list = action.payload.test_result;
+        draft.list = _new_list;
       }),
     [SAVE_PORTONE]: (state, action) =>
       produce(state, (draft) => {
@@ -307,6 +309,7 @@ export default handleActions(
     [GET_COMPARE]: (state, action) =>
       produce(state, (draft) => {
         draft.compare_data = [];
+        draft.compare_item = [];
         draft.compare_item = action.payload.compare_item;
         draft.compare_data = action.payload.compare_data;
       }),

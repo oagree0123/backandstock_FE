@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BarChart from "../BarChart/BarChart";
+import { BarChartWarp, CompareChartWarp } from "./style";
 
 const CompareResult = (props) => {
   const { port_list } = props;
@@ -8,9 +9,35 @@ const CompareResult = (props) => {
 
   const months = [];
   const keys = [];
-  const bar_data = [];
+  const months_length = [];
+  let length_idx = 0;
 
-  port_list[0]?.portBacktestingCal.months.map((m, i) => {
+
+  let bar_data = [[], [], []];
+
+  // 2개 비교시
+  if (port_list.length === 2) {
+    port_list.map((p, i) => {
+      months_length.push(p.portBacktestingCal.months.length);
+    });
+
+    length_idx = months_length.findIndex((c, i) => {
+      return c === Math.min(...months_length);
+    });
+  } else {
+    // 3개 비교시
+    port_list.map((p, i) => {
+      months_length.push(p.portBacktestingCal.months.length);
+    });
+
+    length_idx = months_length.findIndex((c, i) => {
+      return (
+        c !== Math.min(...months_length) && c !== Math.max(...months_length)
+      );
+    });
+  }
+
+  port_list[length_idx]?.portBacktestingCal.months.map((m, i) => {
     months.push(`${i + 1} 개월`);
   });
 
@@ -27,34 +54,46 @@ const CompareResult = (props) => {
       let value = d?.portBacktestingCal.monthYield[i];
       _data[key] = Math.floor(value);
     });
-    bar_data.push(_data);
+    if (i <= 40) {
+      bar_data[0].push(_data);
+    } else if (i > 35 && i <= 72) {
+      bar_data[1].push(_data);
+    } else if (i > 72 && i <= 108) {
+      bar_data[2].push(_data);
+    }
   });
 
+  console.log(bar_data);
+
   return (
-    <>
-      {!port_list ? null :
-        (
-          <BarChart
-            width={880}
-            height={350}
-            margin={{
-              top: 32,
-              right: 80,
-              bottom: 72,
-              left: 84,
-            }}
-            translateX={70}
-            translateY={0}
-            keys={keys}
-            bar_data={bar_data}
-            symbol_size={10}
-            legend_fsize={12}
-            legend_space={-2}
-            legend_anchor="top-right"
-            tick_font={12}
-          />
-        )}
-    </>
+    <CompareChartWarp>
+      {bar_data.length > 0 &&
+        bar_data.map((b, i) => {
+          return (
+            <BarChartWarp key={i}>
+              <BarChart
+                width={880}
+                height={350}
+                margin={{
+                  top: 32,
+                  right: 80,
+                  bottom: 72,
+                  left: 84,
+                }}
+                translateX={70}
+                translateY={0}
+                keys={keys}
+                bar_data={b}
+                symbol_size={10}
+                legend_fsize={12}
+                legend_space={-2}
+                legend_anchor="top-right"
+                tick_font={12}
+              />
+              </BarChartWarp>
+          );
+        })}
+    </CompareChartWarp>
   );
 };
 

@@ -42,27 +42,33 @@ const DetailResult = (props) => {
 
   // 수익금 데이터
   monthYieldMoney.map((m, i) => {
-    let xy = {
-      x: test[i].substring(2),
+    let month = {
+      //x: `${months[i].substring(2)}&${i}`,
+      x: `${months[i].substring(2)}`,
       y: parseInt(m / 10000),
     };
-    data[0].data.push(xy);
-  });
+    data[0].data.push(month);
 
-  kospiYieldMoney.map((m, i) => {
-    let xy = {
-      x: months[i].substring(2),
-      y: parseInt(m / 10000),
+    let kospi = {
+      x: `${months[i].substring(2)}`,
+      y: parseInt(kospiYieldMoney[i] / 10000),
     };
-    data[1].data.push(xy);
-  });
+    data[1].data.push(kospi);
 
-  kosdaqYieldMoney.map((m, i) => {
-    let xy = {
-      x: months[i].substring(2),
-      y: parseInt(m / 10000),
-    };
-    data[2].data.push(xy);
+    if(kosdaqYieldMoney[i]) {
+      let kosdaq = {
+        x: `${months[i].substring(2)}`,
+        y: parseInt(kosdaqYieldMoney[i] / 10000),
+      };
+      data[2].data.push(kosdaq);
+    }
+    else {
+      let kosdaq = {
+        x: `${months[i].substring(2)}`,
+        y: 0,
+      };
+      data[2].data.push(kosdaq);
+    }
   });
 
 
@@ -77,6 +83,8 @@ const DetailResult = (props) => {
     }
     bar_data.push(xy);
   })
+
+  console.log(months[0].substring(2).split("-")[1]);
 
   return (
     <>
@@ -94,7 +102,8 @@ const DetailResult = (props) => {
               bottom: 64,
               left: 110
             }}
-            line_data={data}
+            line_data={data} 
+            primary_month={parseInt(months[0].substring(2).split("-")[1])}
           />
         </LineChartWrap>
         <DetailTitle>전월 대비 수익률</DetailTitle>

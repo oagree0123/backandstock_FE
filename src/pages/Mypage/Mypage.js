@@ -17,6 +17,7 @@ import {
   NoneChartWrap,
   NoneChartText,
 } from "./style";
+import CompareLineResult from "../../components/CompareLineResult/CompareLineResult";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,14 @@ const Mypage = () => {
   const compare_item = useSelector((state) => state.port.compare_item);
   const compare_data = useSelector((state) => state.port.compare_data);
 
+  const [com_lenght, setComLenght] = useState(compare_list.length);
+  console.log(com_lenght);
+
   const [check_compare, setCheckCompare] = useState(false);
   const [compare_idx, setCompareIdx] = useState([]);
 
   const click_compare = () => {
-    if (compare_list < 2) {
+    if (com_lenght < 2) {
       window.alert("실험을 2개 이상 선택해주세요!");
       return;
     }
@@ -78,6 +82,10 @@ const Mypage = () => {
     dispatch(portActions.setInitCompare());
   }, []);
 
+  useEffect(() => {
+    setComLenght(compare_list.length);
+  }, [compare_list])
+
   return (
     <MypageWrap>
       <MypageHead>
@@ -99,7 +107,9 @@ const Mypage = () => {
       <ChartTitle>실험 월별 비교</ChartTitle>
       <ChartWrap>
         {check_compare ? (
-          <CompareResult compare_idx={compare_idx} port_list={compare_item} />
+          <>
+          <CompareLineResult compare_idx={compare_idx} port_list={compare_item}/>
+          </>
         ) : (
           <NoneChartWrap>
             <NoneChartText>
