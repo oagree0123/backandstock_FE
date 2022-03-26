@@ -14,6 +14,11 @@ import {
 } from "./style";
 import { useSelector } from "react-redux";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const CommentList = (props) => {
   const dispatch = useDispatch();
 
@@ -29,13 +34,19 @@ const CommentList = (props) => {
 
   const clickComment = () => {
     if(!is_login) {
-      window.alert("로그인 후 댓글 작성이 가능합니다.")
+      MySwal.fire({
+        title: "로그인 후 댓글 작성이 가능합니다.",
+        confirmButtonColor: '#0075FF',
+      });
       setComment("");
       return;
     }
 
     if(!comment) {
-      window.alert("댓글을 작성해주세요!")
+      MySwal.fire({
+        title: "댓글을 작성해주세요!",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
     setComment("");

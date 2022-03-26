@@ -17,7 +17,7 @@ const Community = () => {
 
   useEffect(() => {
     dispatch(communityActions.getTopFiveDB())
-    dispatch(communityActions.getPostDB());
+    dispatch(communityActions.getPostDB(true));
   }, [])
 
   return (
@@ -45,7 +45,7 @@ const Community = () => {
         {/* <PageHr /> */}
         <PageBtn
           onClick={() => {
-            dispatch(communityActions.getPostDB(page + 1));
+            dispatch(communityActions.getPostDB(false));
             setPage(prevState => prevState + 1);
           }}
         >

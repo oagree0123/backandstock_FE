@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { history } from "../../redux/configStore";
-import { useDispatch } from "react-redux";
 import {
   SideTapWrap,
   SideUserWrap,
@@ -36,9 +35,12 @@ import BasicImage from '../../assets/images/basic_image.svg'
 
 import UserProfile from "../UserProfile/UserProfile";
 
-const SideTap = (props) => {
-  const dispatch = useDispatch();
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
+const MySwal = withReactContent(Swal);
+
+const SideTap = (props) => {
   const location = useSelector((state) => state.router.location.pathname);
   const is_login = useSelector((state) => state.user.is_login);
   const user = useSelector((state) => state.user.user_info);
@@ -173,7 +175,10 @@ const SideTap = (props) => {
           <Tab
             onClick={() => {
               if (!is_login) {
-                window.alert("로그인이 필요한 서비스입니다.");
+                MySwal.fire({
+                  title: "로그인이 필요한 서비스입니다.",
+                  confirmButtonColor: '#0075FF',
+                });
                 return;
               }
               setLabClicked(false);
@@ -195,7 +200,10 @@ const SideTap = (props) => {
           <TabClicked
             onClick={() => {
               if (!is_login) {
-                window.alert("로그인이 필요한 서비스입니다.");
+                MySwal.fire({
+                  title: "로그인이 필요한 서비스입니다.",
+                  confirmButtonColor: '#0075FF',
+                });
                 return;
               }
               setLabClicked(false);

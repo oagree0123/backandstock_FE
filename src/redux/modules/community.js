@@ -3,6 +3,11 @@ import { produce } from "immer";
 import axios from "axios";
 import { getToken } from '../../shared/token';
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 // actions
 const GET_POST = "GET_POST";
 const DELETE_POST = "DELETE_POST";
@@ -26,18 +31,26 @@ const initialState = {
 };
 
 // middlewares
-const getPostDB = (page = 1) => {
+const getPostDB = (init_check) => {
   return async function (dispatch, getState, { history }) {
+    let _list = getState().community.list;
     try {
       let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
         params: {
-          page: page,
+          page: Math.ceil(_list.length / 3) + 1,
           size: 3,
         },
       });
 
-      if (response.data.length === 0) {
-        window.alert("더 이상 포트폴리오가 없습니다.")
+      if (Math.floor(_list.length % 3) !== 0 && 
+        _list.length !== 0 && 
+        response.data.length === 0 &&
+        !init_check
+      ) {
+        MySwal.fire({
+          title: "더 이상 포트폴리오가 없습니다.",
+          confirmButtonColor: '#0075FF',
+        });
         return;
       }
       dispatch(getPost(response.data));

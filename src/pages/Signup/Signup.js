@@ -29,6 +29,11 @@ import LogoTitle from '../../assets/images/logo_big.png';
 // import Logo from '../../assets/images/logo_1.png';
 import Wlogo from '../../assets/images/w_logo_1.png';
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const Signup = () => {
   const dispatch = useDispatch();
 
@@ -46,12 +51,18 @@ const Signup = () => {
 
   const clickSignup = () => {
     if (user_name === "" || nickname === "" || pwd === "" || pwd_check === "") {
-      window.alert("빈칸을 모두 입력해주세요.");
+      MySwal.fire({
+        title: "빈칸을 모두 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
     if (!is_email || !is_nick || !is_pwd || !is_pwdcheck) {
-      window.alert("입력을 다시 확인해주세요");
+      MySwal.fire({
+        title: "입력을 다시 확인해주세요",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 

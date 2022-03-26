@@ -22,6 +22,11 @@ import {
 
 import BasicImage from '../../assets/images/basic_image.svg';
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const CommentItem = (props) => {
   const dispatch = useDispatch();
 
@@ -45,12 +50,18 @@ const CommentItem = (props) => {
 
   const clickComment = () => {
     if(!is_login) {
-      window.alert("로그인 후 댓글 작성이 가능합니다.")
+      MySwal.fire({
+        title: "로그인 후 댓글 작성이 가능합니다.",
+        confirmButtonColor: '#0075FF',
+      })
       return;
     }
 
     if(!comment) {
-      window.alert("댓글을 작성해주세요!")
+      MySwal.fire({
+        title: "댓글을 작성해주세요!",
+        confirmButtonColor: '#0075FF',
+      })
       return;
     }
     setComment("");
@@ -112,7 +123,10 @@ const CommentItem = (props) => {
                 <ReCommnentBtn
                   onClick={() => {
                     if(!is_login) {
-                      window.alert("로그인 후 댓글 작성이 가능합니다.")
+                      MySwal.fire({
+                        title: "로그인 후 댓글 작성이 가능합니다.",
+                        confirmButtonColor: '#0075FF',
+                      })
                       return;
                     }
 

@@ -23,6 +23,11 @@ import close_btn from "../../assets/images/close_btn.svg";
 import { actionCreators as testformActions } from "../../redux/modules/testform";
 import { actionCreators as portActions } from "../../redux/modules/port";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const ResultEdit = (props) => {
   const dispatch = useDispatch();
 
@@ -37,7 +42,10 @@ const ResultEdit = (props) => {
 
     if (!num_reg.test(e.target.value) && e.target.value !== "") {
       e.target.value = "";
-      window.alert("숫자만 입력해주세요.");
+      MySwal.fire({
+        title: "숫자만 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
     setInitMoney(e.target.value);

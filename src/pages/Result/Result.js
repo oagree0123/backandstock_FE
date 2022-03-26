@@ -11,6 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import { DetailResult, ResultEdit } from "../../components";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const Result = () => {
   const dispatch = useDispatch();
 
@@ -41,7 +46,10 @@ const Result = () => {
 
   useEffect(() => {
     if(router.action === "POP" && router.location.pathname === "/result") {
-      window.alert("저장되지 않은 실험결과는 다시 볼 수 없습니다.");
+      MySwal.fire({
+        title: "저장되지 않은 실험결과는 다시 볼 수 없습니다.",
+        confirmButtonColor: '#0075FF',
+      });
       history.push('/');
       return ;
     }

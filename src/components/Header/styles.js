@@ -28,8 +28,10 @@ export const HeadWrap = styled.div`
 `;
 
 export const LOGO = styled.img`
+  margin-left: 28px;
   background-image: ${(props) => props.src || "white"};
   width: 300px;
+  cursor: pointer;
 `;
 
 export const Logout = styled.div`

@@ -20,6 +20,11 @@ import {
 } from "./style";
 import CompareLineResult from "../../components/CompareLineResult/CompareLineResult";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const Mypage = () => {
   const dispatch = useDispatch();
 
@@ -37,7 +42,10 @@ const Mypage = () => {
 
   const click_compare = () => {
     if (com_lenght < 2) {
-      window.alert("실험을 2개 이상 선택해주세요!");
+      MySwal.fire({
+        title: "실험을 2개 이상 선택해주세요!",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
@@ -58,21 +66,41 @@ const Mypage = () => {
 
   const click_delete = () => {
     if (compare_list.length >= 2) {
-      window.alert("하나의 실험만 선택해주세요!");
+      MySwal.fire({
+        title: "하나의 실험만 선택해주세요!",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
     if (compare_list.length < 1) {
-      window.alert("실험을 선택해주세요!");
+      MySwal.fire({
+        title: "실험을 선택해주세요!",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      compare_list.map((c) => {
-        dispatch(portActions.deletePortDB(c));
-        dispatch(communityActions.deletePost(c));
-      });
-    }
+    MySwal.fire({
+      title: "정말 삭제하시겠습니까?",
+
+      showCancelButton: true,
+      confirmButtonColor: '#0075FF',
+      cancelButtonColor: '#FF0000',
+      confirmButtonText: '삭제',
+      cancelButtonText: '취소',
+    }).then((result) => {
+
+      if(result.isConfirmed) {
+        compare_list.map((c) => {
+          dispatch(portActions.deletePortDB(c));
+          dispatch(communityActions.deletePost(c));
+        });
+      }
+      else {
+        return ;
+      }
+    });
   };
 
   useEffect(() => {

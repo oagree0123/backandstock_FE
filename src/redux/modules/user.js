@@ -3,6 +3,11 @@ import { produce } from "immer";
 import axios from "axios";
 import { delToken, getToken, setToken } from "../../shared/token";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 // actions
 const SET_USER = "SET_USER";
 const EDIT_USER = "EDIT_USER";
@@ -59,11 +64,18 @@ const LoginDB = ({ user_name, pwd }) => {
         console.log(err);
       }
 
-      window.alert("로그인이 완료되었습니다.");
-      history.replace("/");
+      MySwal.fire({
+        title: "로그인이 완료되었습니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        history.replace("/");
+      });
     } catch (err) {
       console.log(err);
-      window.alert("이메일 비밀번호를 다시 확인해주세요.")
+      MySwal.fire({
+        title: "이메일 비밀번호를 다시 확인해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
     }
   };
 };
@@ -127,8 +139,12 @@ const kakaoLogin = (code) => {
         console.log(err);
       }
 
-      window.alert("로그인이 완료되었습니다.");
-      history.push('/');
+      MySwal.fire({
+        title: "로그인이 완료되었습니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        history.replace("/");
+      })
     } catch (err) {
       console.log(err);
     }
@@ -144,11 +160,18 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
         nickname: nickname,
       });
 
-      window.alert("회원가입이 완료되었습니다.");
-      history.push("/");
+      MySwal.fire({
+        title: "회원가입이 완료되었습니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        history.push("/");
+      });
     } catch (err) {
       if (err.response.data.errorMessage) {
-        alert(err.response.data.errorMessage);
+        MySwal.fire({
+          title: err.response.data.errorMessage,
+          confirmButtonColor: '#0075FF',
+        })
       }
     }
   };
@@ -180,7 +203,10 @@ const editUserDB = (img_url, nickname, img_file) => {
       }
     }
     catch (err) {
-      window.alert(err.response.data.errorMessage)
+      MySwal.fire({
+        title: err.response.data.errorMessage,
+        confirmButtonColor: '#0075FF',
+      })
       console.log(err);
     }
   }

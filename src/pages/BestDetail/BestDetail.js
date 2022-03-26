@@ -19,6 +19,7 @@ import {
   LikeWrap,
   TitleWrap,
 } from "./style";
+import Spinner from '../../shared/Spinner';
 
 
 const BestDetail = (props) => {
@@ -29,11 +30,25 @@ const BestDetail = (props) => {
   const result_list = port_one.portBacktestingCal;
   const comment_list = useSelector(state => state.comment.list);
 
+  const [is_loading, setIsLoading] = useState(false);
+
   useEffect(() => {
     dispatch(portActions.getPortOneDB(port_id.id))
     dispatch(commentActions.getCommentDB(port_id.id));
   }, []);
 
+  useEffect(() => {
+    setIsLoading(true);
+  }, [])
+
+
+  if (!is_loading) {
+    return null;
+  }
+  /* {!is_loading ? 
+    <Spinner size={50}/>:
+    null
+  } */
   return (
     <BestDetailWrap>
       <ContWrap>

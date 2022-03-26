@@ -1,6 +1,11 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import dayjs from "dayjs"
+import dayjs from "dayjs";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 
 // actions
@@ -63,12 +68,18 @@ export default handleActions(
     [SET_STOCK]: (state, action) =>
       produce(state, (draft) => {
         if (draft.stockList.length >= 5) {
-          window.alert("주식 종목은 5개 까지만 가능합니다.")
+          MySwal.fire({
+            title: "주식 종목은 5개 까지만 가능합니다.",
+            confirmButtonColor: '#0075FF',
+          });
           return;
         }
 
         if (draft.stockList.includes(action.payload.stock_name)) {
-          window.alert("이미 추가된 종목입니다.")
+          MySwal.fire({
+            title: "이미 추가된 종목입니다.",
+            confirmButtonColor: '#0075FF',
+          });
           return;
         }
 
@@ -79,7 +90,10 @@ export default handleActions(
         })
 
         if (ratio_sum + parseInt(action.payload.ratio) > 100) {
-          window.alert("자산 비율은 100%를 넘을 수 없습니다.")
+          MySwal.fire({
+            title: "자산 비율은 100%를 넘을 수 없습니다.",
+            confirmButtonColor: '#0075FF',
+          });
           return;
         }
 

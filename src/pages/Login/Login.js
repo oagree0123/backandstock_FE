@@ -22,14 +22,17 @@ import {
   LogoWrap
 } from "./style";
 import kakao from "../../assets/images/kakaoIcon.svg"
-import kakaologo from "../../assets/images/kakao.svg"
 import { useDispatch } from "react-redux";
 import { history } from '../../redux/configStore';
 
 import { actionCreators as userActions } from "../../redux/modules/user";
 import LogoTitle from '../../assets/images/logo_big.png';
-// import Logo from '../../assets/images/logo_1.png';
 import Wlogo from '../../assets/images/w_logo_1.png';
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const Login = () => {
   const API_key = process.env.REACT_APP_KAKAO_ID;
@@ -49,7 +52,10 @@ const Login = () => {
   // 로그인
   const clickLogin = () => {
     if (user_name === "" || pwd === "") {
-      window.alert("빈칸을 모두 입력해주세요.");
+      MySwal.fire({
+        title: "빈칸을 모두 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 

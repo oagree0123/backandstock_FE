@@ -11,6 +11,11 @@ import {
 
 import { actionCreators as userActions } from "../../redux/modules/user";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const UserProfile = (props) => {
   const dispatch = useDispatch();
 
@@ -21,8 +26,11 @@ const UserProfile = (props) => {
   const [objectURL, setObjectURL] = useState("");
 
   const changeNick = (e) => {
-    if (e.target.value.length > 12 || e.target.value.length < 1) {
-      window.alert("닉네임은 12글자 이하만 가능합니다.");
+    if (e.target.value.length > 8 || e.target.value.length < 1) {
+      MySwal.fire({
+        title: "닉네임은 8글자 이하만 가능합니다.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
     setUserNick(e.target.value);

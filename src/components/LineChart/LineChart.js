@@ -140,7 +140,6 @@ const LineChart = (props) => {
         }}
         markers={props.markers}
         enableGridY={false}
-        enableGridX={false}
         pointSize={0}
         pointColor="#fff"
         pointBorderWidth={2}

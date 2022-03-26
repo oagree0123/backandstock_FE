@@ -19,6 +19,11 @@ import SearchPreview from "../SearchPreview/SearchPreview";
 
 import { actionCreators as testformActions } from "../../redux/modules/testform";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const StockSearch = () => {
   const dispatch = useDispatch();
 
@@ -34,12 +39,18 @@ const StockSearch = () => {
 
     if (!num_reg.test(e.target.value) && e.target.value !== "") {
       e.target.value = "";
-      window.alert("숫자만 입력해주세요.");
+      MySwal.fire({
+        title: "숫자만 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
     if (e.target.value > 100) {
-      window.alert("100이하의 정수를 입력해주세요.");
+      MySwal.fire({
+        title: "100이하의 정수를 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
       e.target.value = ratio;
       return;
     }
@@ -51,23 +62,33 @@ const StockSearch = () => {
     ) {
       setRatio(e.target.value);
     } else {
-      window.alert("정수의 수를 입력해주세요.");
+      MySwal.fire({
+        title: "정수의 수를 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
     }
   };
 
   const clickAddStock = () => {
     if (ratio === "") {
-      window.alert("비율을 입력해주세요.");
+      MySwal.fire({
+        title: "비율을 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
     if (stock_name === "" || search_list === "") {
-      window.alert("종목을 선택해주세요.");
+      MySwal.fire({
+        title: "종목을 선택해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
-    setStockSearch("");
-    setRatio("");
     dispatch(testformActions.setStock(ratio, stock_name, stock_code));
+    setStockSearch("");
+    setStockName("");
+    setRatio("");
   };
 
   const searchStock = async (search_name) => {

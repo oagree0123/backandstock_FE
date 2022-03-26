@@ -3,6 +3,10 @@ import { produce } from "immer";
 import { getToken } from '../../shared/token';
 import axios from "axios";
 import dayjs from "dayjs"
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 // actions
 const GET_RESULT = "GET_RESULT";
@@ -53,13 +57,19 @@ const getResultDB = () => {
     };
 
     if (data.stockList.length === 0 || data.ratioList.length === 0) {
-      window.alert("종목을 추가해 주세요!");
+      MySwal.fire({
+        title: "종목을 추가해 주세요!",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
     // 실험 금액 100만원 ~ 100,000만원
     if (data.seedMoney < 1000000 || data.seedMoney > 1000000000) {
-      window.alert("실험금액을 다시 확인해 주세요!");
+      MySwal.fire({
+        title: "실험금액을 다시 확인해 주세요!",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
@@ -68,13 +78,19 @@ const getResultDB = () => {
     }, 0);
 
     if (ratio_sum < 100) {
-      window.alert("자산 비율은 100%가 되어야 합니다.");
+      MySwal.fire({
+        title: "자산 비율은 100%가 되어야 합니다.",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
 
     // 시작날짜와 종료날짜 역순 false
     if (dayjs(data.endDate).isBefore(data.startDate)) {
-      window.alert("종료년도가 시작년도 이전입니다!");
+      MySwal.fire({
+        title: "종료년도가 시작년도 이전입니다!",
+        confirmButtonColor: '#0075FF',
+      });
       return;
     }
     else {
@@ -119,7 +135,10 @@ const savePortDB = () => {
       dispatch(savePortOne(port_id.data.portId, result));
     }
     catch (err) {
-      window.alert(err.response.data.errorMessage);
+      MySwal.fire({
+        title: err.response.data.errorMessage,
+        confirmButtonColor: '#0075FF',
+      });
     }
   };
 };
@@ -152,6 +171,10 @@ const getPortOneDB = (port_id) => {
     }
     catch (err) {
       console.log(err);
+      MySwal.fire({
+        title: "잘못된 접근입니다.",
+        confirmButtonColor: '#0075FF',
+      });
     }
   }
 }

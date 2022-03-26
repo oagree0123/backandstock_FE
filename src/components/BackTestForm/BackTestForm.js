@@ -20,6 +20,11 @@ import {
 import { actionCreators as testformActions } from "../../redux/modules/testform";
 import { actionCreators as portActions } from "../../redux/modules/port";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 const BackTestForm = () => {
   const dispatch = useDispatch();
 
@@ -31,8 +36,12 @@ const BackTestForm = () => {
 
     if (!num_reg.test(e.target.value) && e.target.value !== "") {
       e.target.value = "";
-      window.alert("숫자만 입력해주세요.");
-      return;
+      MySwal.fire({
+        title: "숫자만 입력해주세요.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        return;
+      });
     }
     setInitMoney(e.target.value);
 
