@@ -19,8 +19,6 @@ const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, (idx, nickname) => ({ idx, nickname }));
 const deletlikeePost = createAction(DELETELIKE_POST, (idx, nickname) => ({ idx, nickname }));
 
-const setPostInit = createAction(SET_POST_INIT, () => ({}));
-
 // initialState
 const initialState = {
   list: [],
@@ -203,11 +201,6 @@ export default handleActions(
           }
         }, [])
       }),
-
-    [SET_POST_INIT]: (state, action) =>
-      produce(state, (draft) => {
-        draft.list = [];
-      }),
   },
   initialState
 );
@@ -220,7 +213,6 @@ const actionCreators = {
   getTopFiveDB,
   getTopFive,
   deletePost,
-  setPostInit,
 };
 
 export { actionCreators };
