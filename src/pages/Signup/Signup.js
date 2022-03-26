@@ -141,7 +141,7 @@ const Signup = () => {
             <LogoWrap>
               <LeftLogo src={Wlogo}></LeftLogo>
             </LogoWrap>
-            <span>백스탁에서 나의<br />
+            <span>백앤스탁에서 나의<br />
               자산을 다양하게<br />
               실험해 보세요</span>
           </LoginText>

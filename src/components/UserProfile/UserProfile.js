@@ -54,6 +54,7 @@ const UserProfile = (props) => {
         onClick={() => {
           dispatch(userActions.editUserDB(objectURL, userNick, file));
           props.setProfileClicked(false);
+          setFile(null);
         }}
       >
         수정하기
