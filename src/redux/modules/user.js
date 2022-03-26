@@ -111,7 +111,7 @@ const kakaoLogin = (code) => {
   return async function (dispatch, getState, { history }) {
     try {
       let response = await axios.get(
-        `https://yuseon.shop/users/kakao/callback?code=${code}`
+        `https://smsever.shop/users/kakao/callback?code=${code}`
       );
 
       const token = response.headers.authorization;
@@ -119,7 +119,7 @@ const kakaoLogin = (code) => {
 
       try {
         let check_user = await axios.post(
-          `https://yuseon.shop/users/info`,
+          `https://smsever.shop/users/info`,
           {},
           {
             headers: {
