@@ -39,8 +39,6 @@ const Login = () => {
   const Redirect_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_key}&redirect_uri=${Redirect_URI}&response_type=code`;
 
-  console.log(API_key, Redirect_URI);
-
   const dispatch = useDispatch();
 
   // 이메일, 비밀번호
