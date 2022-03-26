@@ -17,7 +17,7 @@ const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (portId) => ({ portId }));
 const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, (idx, nickname) => ({ idx, nickname }));
-const deletlikeePost = createAction(DELETELIKE_POST, (idx, nickname) => ({ idx, nickname }));
+const deletelikePost = createAction(DELETELIKE_POST, (idx, nickname) => ({ idx, nickname }));
 
 // initialState
 const initialState = {
@@ -36,7 +36,7 @@ const getPostDB = (page = 1) => {
         },
       });
 
-      if(response.data.length === 0) {
+      if (response.data.length === 0) {
         window.alert("더 이상 포트폴리오가 없습니다.")
         return;
       }
@@ -62,14 +62,14 @@ const getTopFiveDB = () => {
 };
 
 /* like수정 */
-const likePostDB = (port_id, type, nickname) => {
+const likePostDB = (port_id, user_id, like) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     const community_list = getState().community.list;
 
     try {
-      axios.post(`https://yuseon.shop/community/portfolios/${port_id}/likes`, {
-        portId: port_id,
+      axios.post(`https://yuseon.shop/portfolios/${port_id}/likes`, {
+        userId: user_id
       }, {
         headers: {
           authorization: `${token}`
@@ -80,10 +80,7 @@ const likePostDB = (port_id, type, nickname) => {
         return c.communityPort.portId === port_id;
       })
 
-      if (type) {
-        //좋아요
-        dispatch(likePost(idx, nickname));
-      }
+      dispatch(likePost(idx, user_id));
 
     } catch (err) {
       console.log(err);
@@ -91,32 +88,26 @@ const likePostDB = (port_id, type, nickname) => {
   };
 };
 
-const deletelikePostDB = (port_id, type, user_id) => {
+const deletelikePostDB = (port_id, user_id) => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     const community_list = getState().community.list;
-
+    console.log(token);
     try {
-      axios.delete(`https://yuseon.shop/community/portfolios/${port_id}/likes`, {
-        portId: port_id,
-      }, {
-        headers: {
-          authorization: `${token}`
-        }
-      });
+      axios.delete(`https://yuseon.shop/portfolios/${port_id}/likes`,
+        {
+          headers: {
+            authorization: `${token}`
+          }
+        });
 
       let idx = community_list.findIndex(c => {
         return c.communityPort.portId === port_id;
       })
 
-      if (type) {
-        //좋아요
-        dispatch(likePost(idx, user_id));
-      }
-      else {
-        //좋아요 취소
-        dispatch(deletlikeePost(idx, user_id));
-      }
+      //좋아요 취소
+      dispatch(deletelikePost(idx, user_id));
+
     } catch (err) {
       console.log(err);
     }
@@ -161,7 +152,7 @@ export default handleActions(
 
     [LIKE_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list[action.payload.idx].likesUsers.push(action.payload.user_id)
+        draft.list[action.payload.idx].likesUsers.push(action.payload.nickname)
         draft.list[action.payload.idx].likesCnt += 1;
 
         //좋아요 순 정렬
@@ -171,9 +162,8 @@ export default handleActions(
     [DELETELIKE_POST]: (state, action) =>
       produce(state, (draft) => {
         let new_likeUsers = draft.list[action.payload.idx].likesUsers.filter(u => {
-          return u !== action.payload.user_id;
+          return u !== action.payload.nickname;
         })
-
         draft.list[action.payload.idx].likesUsers = new_likeUsers;
         draft.list[action.payload.idx].likesCnt -= 1;
         //좋아요 순 정렬
@@ -213,6 +203,7 @@ const actionCreators = {
   getTopFiveDB,
   getTopFive,
   deletePost,
+  deletelikePost
 };
 
 export { actionCreators };

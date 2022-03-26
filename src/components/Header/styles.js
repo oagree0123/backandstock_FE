@@ -29,6 +29,7 @@ export const HeadWrap = styled.div`
 
 export const LOGO = styled.img`
   background-image: ${(props) => props.src || "white"};
+  width: 300px;
 `;
 
 export const Logout = styled.div`

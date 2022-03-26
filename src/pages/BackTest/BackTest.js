@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import BackTestForm from "../../components/BackTestForm/BackTestForm";
+import Banner from "../../components/Banner/Banner"
 import { actionCreators as testformActions } from "../../redux/modules/testform";
 import {
   BackTestWrap,
@@ -21,6 +22,7 @@ const BackTest = (props) => {
 
   return (
     <BackTestWrap>
+      <Banner></Banner>
       <InfoTitle>
         간편하게 실험을 <br />
         시작해볼까요?

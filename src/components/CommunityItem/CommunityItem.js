@@ -3,7 +3,7 @@ import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import likecnt from "../../assets/images/likecnt.svg";
-import heartBlue from "../../assets/images/heart_gray.svg";
+import heartGray from "../../assets/images/heart_gray.svg";
 import heartRed from "../../assets/images/heart_red.svg";
 import commentcnt from "../../assets/images/commentcnt.svg";
 
@@ -28,6 +28,8 @@ import {
   FinalMoney,
 } from "./style";
 import { actionCreators as likepostActions } from "../../redux/modules/community";
+import { actionCreators as deletlikePostActions } from "../../redux/modules/community";
+
 
 const CommunityItem = (props) => {
   const dispatch = useDispatch();
@@ -37,36 +39,39 @@ const CommunityItem = (props) => {
 
   const port_id = props.communityPort.portId;
   const like_user = props.likesUsers;
+  const user_id = user.user_id
 
+  let [like, setLike] = useState(false)
   let [likeCount, setLikeCount] = useState(props.likesCnt);
 
-  const toggleLike = (type) => {
-    if (type) {
+  const toggleLike = (like) => {
+    if (!like) {
       setLikeCount(likeCount + 1);
+      dispatch(likepostActions.likePostDB(port_id, user_id));
     } else {
       if (likeCount < 0) {
         return;
       }
       setLikeCount(likeCount - 1);
+      dispatch(deletlikePostActions.deletelikePostDB(port_id, user_id));
     }
-    dispatch(likepostActions.likePostDB(port_id, type, user.user_id));
-  };
 
+  };
   return (
     <CommunityItemWrap>
       {like_user.includes(user.user_id) ? (
         <LikeBtn
           onClick={() => {
-            toggleLike(false);
+            toggleLike(true);
           }}
           src={heartRed}
         />
       ) : (
         <LikeBtn
           onClick={() => {
-            toggleLike(true);
+            toggleLike(false);
           }}
-          src={heartBlue}
+          src={heartGray}
         />
       )}
 

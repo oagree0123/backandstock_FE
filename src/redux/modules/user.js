@@ -170,8 +170,8 @@ const editUserDB = (img_url, nickname, img_file) => {
           'Content-Type': 'multipart/form-data'
         }
       })
-      
-      if(img_url) {
+
+      if (img_url) {
         dispatch(editUser(img_url, nickname));
       }
       else {
