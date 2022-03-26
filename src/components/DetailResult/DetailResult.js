@@ -5,7 +5,6 @@ import BarChart from '../BarChart/BarChart';
 import LineChart from '../LineChart/LineChart';
 import TopInfo from '../Result/TopInfo';
 import StockList from '../Result/StockList';
-import Spinner from '../../shared/Spinner';
 
 const DetailResult = (props) => {
 
@@ -15,8 +14,6 @@ const DetailResult = (props) => {
   const end_date = dayjs(result_list.endDate);
 
   const diff_date = end_date.diff(start_date, "month");
-
-  const [is_loading, setIsLoading] = useState(false);
 
   // 수익금
   const months = result_list.months;
@@ -111,16 +108,8 @@ const DetailResult = (props) => {
     })
   }
 
-  useEffect(() => {
-    setIsLoading(true);
-  }, [])
-
   return (
     <>
-    {!is_loading ? 
-      <Spinner size={50}/>:
-      null
-    }
       <All>
         <TopInfo
           type={props.type}

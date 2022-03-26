@@ -18,6 +18,14 @@ jobs:
       - name: Check Node v # Node v 확인
         run: node -v
 
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "REACT_APP_KAKAO_ID=$REACT_APP_KAKAO_ID" >> .env
+          echo "REACT_APP_KAKAO_REDIRECT_URI=$REACT_APP_KAKAO_REDIRECT_URI" >> .env
+        env:
+          REACT_APP_DOMAIN: ${{ secrets.REACT_APP_KAKAO_ID }}
+          REACT_APP_DEBUG: ${{ secrets.REACT_APP_KAKAO_REDIRECT_URI }}
+
       - name: yarn install
         run: yarn install
 
