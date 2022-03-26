@@ -35,19 +35,19 @@ const LineChart = (props) => {
           legendPosition: "middle",
           format: ((v) => {
             // 개월 처리
-            if(v.split("").slice(-1)[0] === "월") {
-              if(parseInt(v.split("개월")[0]) % 3 === 1) {
+            if (v.split("").slice(-1)[0] === "월") {
+              if (parseInt(v.split("개월")[0]) % 3 === 1) {
                 return v;
               }
               else {
                 return "";
               }
             }
-            
+
             // 년 월 처리
             let arr_month = [];
-            for(let i=0; i<12; i++) {
-              if(props.primary_month + i > 12) {
+            for (let i = 0; i < 12; i++) {
+              if (props.primary_month + i > 12) {
                 arr_month.push((props.primary_month + i) % 12);
               }
               else {
@@ -58,7 +58,7 @@ const LineChart = (props) => {
               return a === parseInt(v.split("-")[1]);
             })
 
-            if(idx % 3 === 0) {
+            if (idx % 3 === 0) {
               return v
             }
             else {
@@ -75,7 +75,7 @@ const LineChart = (props) => {
           legendPosition: "middle",
           format: (v) => {
             // 비교 그래프
-            if(props.compare === "compare") {
+            if (props.compare === "compare") {
               return `${v}%`
             }
             // 결과 그래프
@@ -86,6 +86,7 @@ const LineChart = (props) => {
         }}
         markers={props.markers}
         enableGridY={false}
+        enableGridX={false}
         pointSize={0}
         pointColor="#fff"
         pointBorderWidth={2}

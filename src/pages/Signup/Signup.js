@@ -25,7 +25,9 @@ import {
 
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { history } from '../../redux/configStore';
-import logo from '../../assets/images/logo_1.png';
+import LogoTitle from '../../assets/images/logo_big.png';
+// import Logo from '../../assets/images/logo_1.png';
+import Wlogo from '../../assets/images/w_logo_1.png';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -120,12 +122,13 @@ const Signup = () => {
     <SignupWrap>
       <SignupCont>
         <LoginLeft>
-          <LeftTitle onClick={() => {
-            history.push('/')
-          }}>BACK&<br />STOCK</LeftTitle>
+          <LeftTitle
+            src={LogoTitle}
+            onClick={() => { history.push('/') }}>
+          </LeftTitle>
           <LoginText>
             <LogoWrap>
-              <LeftLogo src={logo}></LeftLogo>
+              <LeftLogo src={Wlogo}></LeftLogo>
             </LogoWrap>
             <span>백스탁에서 나의<br />
               자산을 다양하게<br />

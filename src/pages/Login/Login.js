@@ -27,7 +27,9 @@ import { useDispatch } from "react-redux";
 import { history } from '../../redux/configStore';
 
 import { actionCreators as userActions } from "../../redux/modules/user";
-import logo from '../../assets/images/logo_1.png';
+import LogoTitle from '../../assets/images/logo_big.png';
+// import Logo from '../../assets/images/logo_1.png';
+import Wlogo from '../../assets/images/w_logo_1.png';
 
 const Login = () => {
   const API_key = process.env.REACT_APP_KAKAO_ID;
@@ -95,15 +97,16 @@ const Login = () => {
     <LoginWrap>
       <LoginCont>
         <LoginLeft>
-          <LeftTitle onClick={() => {
-            history.push('/')
-          }}>BACK&<br />STOCK</LeftTitle>
+          <LeftTitle
+            src={LogoTitle}
+            onClick={() => { history.push('/') }}>
+          </LeftTitle>
           <LoginText>
             <span>백스탁에서 나의<br />
               자산을 다양하게<br />
               실험해 보세요</span>
             <LogoWrap>
-              <LeftLogo src={logo}></LeftLogo>
+              <LeftLogo src={Wlogo}></LeftLogo>
             </LogoWrap>
           </LoginText>
         </LoginLeft>

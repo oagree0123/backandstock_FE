@@ -21,19 +21,15 @@ export const LoginCont = styled.section`
 `;
 
 export const LoginLeft = styled.div`
-  padding: 85px 61px 0px 88px;
+  padding: 115px 61px 0px 88px;
   width: 572px;
   background-color: var(--primary-color);
  
 `;
 
-export const LeftTitle = styled.p`
-  width: 411px;
-  height: 323px;
-  color: #ffffff;
-  font-size: 96px;
-  font-weight: 900;
-  margin-bottom: 73px;
+export const LeftTitle = styled.img`
+  width: 400px;
+  margin-bottom: 43%;
   cursor: pointer;
 `;
 
@@ -108,17 +104,13 @@ display: flex;
 `;
 
 export const LogoWrap = styled.div`
-  width: 136px;
-  height: 136px;
-  border-radius: 50%;
-  background-color: #fff;
+  width: 150px;
   margin: 18px 4px 11px 0;
 `
 
 
 export const LeftLogo = styled.img`
   width: 100%;
-  margin: 22px auto;
   background-image: ${(props) => props.src || "white"};
 `;
 
