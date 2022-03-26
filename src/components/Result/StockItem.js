@@ -11,7 +11,7 @@ import {
 } from "./style";
 
 const StockItem = (props) => {
-  const yieldmoneys = Math.floor(props.stock_yieldmoneys.slice(-1)[0]);
+  const yieldmoneys = Math.floor(props.stock_yieldmoneys);
   const ratio_money = (
     props.stock_ratio ?
       (props.seedmoney / 100) * props.stock_ratio :

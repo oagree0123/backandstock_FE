@@ -16,6 +16,7 @@ import {
   DeleteBtn,
   NoneChartWrap,
   NoneChartText,
+  ChartInfo,
 } from "./style";
 import CompareLineResult from "../../components/CompareLineResult/CompareLineResult";
 
@@ -105,6 +106,7 @@ const Mypage = () => {
       <PortCardList port_list={port_list} />
 
       <ChartTitle>실험 월별 비교</ChartTitle>
+      <ChartInfo>* 기간이 가장 짧은 실험기간을 기준으로 합니다.</ChartInfo>
       <ChartWrap>
         {check_compare ? (
           <>

@@ -20,6 +20,13 @@ export const ChartTitle = styled.h2`
   letter-spacing: 0.15px;
 `;
 
+export const ChartInfo = styled.p`
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+`;
+
 export const ChartBtnWrap = styled.div`
   margin-bottom: 18px;
   width: 880px;

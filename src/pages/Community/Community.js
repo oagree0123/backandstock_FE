@@ -17,9 +17,6 @@ const Community = () => {
 
   useEffect(() => {
     dispatch(communityActions.getTopFiveDB())
-  }, [])
-
-  useEffect(() => {
     dispatch(communityActions.getPostDB());
   }, [])
 

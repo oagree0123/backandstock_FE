@@ -4,7 +4,18 @@ import { LineChartWrap } from "./style";
 
 const LineChart = (props) => {
 
-  const { margin, width, height } = props;
+  const {
+    width,
+    height,
+    translateX,
+    translateY, 
+    margin,
+    tick_font,
+    symbol_size,
+    legend_fsize,
+    legend_space,
+    legend_anchor,
+  } = props;
 
   return (
     <LineChartWrap>
@@ -35,12 +46,34 @@ const LineChart = (props) => {
           legendPosition: "middle",
           format: ((v) => {
             // 개월 처리
-            if (v.split("").slice(-1)[0] === "월") {
-              if (parseInt(v.split("개월")[0]) % 3 === 1) {
-                return v;
+            if(v.split("").slice(-1)[0] === "월") {
+              // 36 72 108
+              if(props.line_data[0].data.length > 108) {
+                if(parseInt(v.split("개월")[0]) % 4 === 1) {
+                  return v;
+                }
+                else {
+                  return "";
+                }
+              }
+              else if(props.line_data[0].data.length > 72) {
+                if(parseInt(v.split("개월")[0]) % 3 === 1) {
+                  return v;
+                }
+                else {
+                  return "";
+                }               
+              }
+              else if(props.line_data[0].data.length > 36) {
+                if(parseInt(v.split("개월")[0]) % 2 === 1) {
+                  return v;
+                }
+                else {
+                  return "";
+                }               
               }
               else {
-                return "";
+                return v;
               }
             }
 
@@ -58,11 +91,32 @@ const LineChart = (props) => {
               return a === parseInt(v.split("-")[1]);
             })
 
-            if (idx % 3 === 0) {
-              return v
+            if(props.line_data[0].data.length > 108) {
+              if(idx % 4 === 0) {
+                return v;
+              }
+              else {
+                return "";
+              }
+            }
+            else if(props.line_data[0].data.length > 72) {
+              if(idx % 3 === 0) {
+                return v;
+              }
+              else {
+                return "";
+              }               
+            }
+            else if(props.line_data[0].data.length > 36) {
+              if(idx % 2 === 0) {
+                return v;
+              }
+              else {
+                return "";
+              }               
             }
             else {
-              return "";
+              return v;
             }
           }),
         }}
@@ -95,18 +149,18 @@ const LineChart = (props) => {
         useMesh={true}
         legends={[
           {
-            anchor: "bottom-right",
+            anchor: legend_anchor,
             direction: "column",
             justify: false,
-            translateX: 120,
-            translateY: 38,
-            itemsSpacing: -8,
+            translateX: translateX,
+            translateY: translateY,
+            itemsSpacing: legend_space,
             itemDirection: "left-to-right",
             itemWidth: 80,
             itemHeight: 20,
             itemOpacity: 1,
             itemSize: 10,
-            symbolSize: 8,
+            symbolSize: symbol_size,
             symbolShape: "circle",
             symbolBorderColor: "rgba(0, 0, 0, 1)",
             effects: [
@@ -131,8 +185,8 @@ const LineChart = (props) => {
             ticks: {
               text: {
                 fontFamily: "Noto Sans CJK KR",
-                fontSize: 12,
-                fontWeight: 400,
+                fontSize: tick_font,
+                fontWeight: 600,
                 fill: "#000",
               },
               line: {
@@ -142,7 +196,7 @@ const LineChart = (props) => {
           },
           legends: {
             text: {
-              fontSize: 10,
+              fontSize: legend_fsize,
               fontWeight: 600
             }
           }
@@ -161,7 +215,14 @@ LineChart.defaultProps = {
     bottom: 64,
     left: 100
   },
+  translateX: 120,
+  translateY: 38,
   line_data: [],
+  tick_font: 12,
+  symbol_size: 8,
+  legend_fsize: 10,
+  legend_space: -8,
+  legend_anchor: "bottom-right"
 }
 
 export default LineChart;

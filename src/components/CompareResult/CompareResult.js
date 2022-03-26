@@ -63,8 +63,6 @@ const CompareResult = (props) => {
     }
   });
 
-  console.log(bar_data);
-
   return (
     <CompareChartWarp>
       {bar_data.length > 0 &&

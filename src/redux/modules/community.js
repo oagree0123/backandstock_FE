@@ -10,6 +10,8 @@ const GET_TOPFIVE = "GET_TOPFIVE";
 const LIKE_POST = "LIKE_POST";
 const DELETELIKE_POST = "DELETELIKE_POST";
 
+const SET_POST_INIT = "SET_POST_INIT";
+
 // action creators
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (portId) => ({ portId }));

@@ -16,7 +16,10 @@ const BarChart = (props) => {
     legend_fsize,
     legend_space,
     legend_anchor,
+    indexBy,
   } = props;
+
+  console.log(props.bar_data);
 
   return (
     <BarChartWrap>
@@ -24,7 +27,7 @@ const BarChart = (props) => {
         groupMode="grouped"
         data={bar_data}
         keys={keys}
-        indexBy="months"
+        indexBy={indexBy}
         colors={["#0075FF", "#A183F8", "#49DDCB"]}
         width={width}
         height={height}
