@@ -90,9 +90,9 @@ const Signup = () => {
     }
   }
 
-  // 닉네임 체크 (한글, 영어, 숫자) 2~6 글자
+  // 닉네임 체크 (한글, 영어, 숫자) 2~8 글자
   const onChangeNickname = (e) => {
-    const nick_reg = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,6}$/;
+    const nick_reg = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,8}$/;
     const current_nickname = e.target.value;
     setNickname(current_nickname);
 
@@ -158,11 +158,11 @@ const Signup = () => {
               onChange={onChangeNickname}
             />
             {nickname.length > 0 ?
-              (nickname.length >= 2 && nickname.length <= 6) ?
+              (nickname.length >= 2 && nickname.length <= 8) ?
                 !is_nick && (
                   <ErrorText>닉네임에 특수문자는 입력하실 수 없습니다.</ErrorText>
                 ) :
-                <ErrorText>닉네임은 2~6자를 입력하세요.</ErrorText> :
+                <ErrorText>닉네임은 2~8자를 입력하세요.</ErrorText> :
               null
             }
           </InputWrap>

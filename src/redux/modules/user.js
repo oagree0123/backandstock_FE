@@ -167,9 +167,16 @@ const SignupDB = ({ user_name, nickname, pwd }) => {
         history.push("/");
       });
     } catch (err) {
-      if (err.response.data.errorMessage) {
+      let error_msg = err.response.data.responseMessage;
+      if (error_msg === "User email validation error") {
         MySwal.fire({
-          title: err.response.data.errorMessage,
+          title: "중복된 이메일 입니다.",
+          confirmButtonColor: '#0075FF',
+        })
+      }
+      else if (error_msg === "User nickname validation error") {
+        MySwal.fire({
+          title: "중복된 닉네임 입니다.",
           confirmButtonColor: '#0075FF',
         })
       }
@@ -203,11 +210,13 @@ const editUserDB = (img_url, nickname, img_file) => {
       }
     }
     catch (err) {
-      MySwal.fire({
-        title: err.response.data.errorMessage,
-        confirmButtonColor: '#0075FF',
-      })
-      console.log(err);
+      let error_msg = err.response.data.responseMessage;
+      if (error_msg === "User nickname validation error") {
+        MySwal.fire({
+          title: "중복된 닉네임 입니다.",
+          confirmButtonColor: '#0075FF',
+        })
+      }
     }
   }
 }
