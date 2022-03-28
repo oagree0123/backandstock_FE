@@ -16,7 +16,7 @@ import { getToken } from "./token";
 
 import Social from './Social';
 import ReactGA from 'react-ga';
-const TRACKING_ID = "G-D38CWK4MZQ";
+const TRACKING_ID = "UA-224025265-1";
 
 //-- google analytics --
 ReactGA.event({
@@ -39,11 +39,12 @@ function App() {
     }
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     ReactGA.initialize(TRACKING_ID);
     history.listen((location) => {
       ReactGA.set({ page: location.pathname }); // Update the user's current page
       ReactGA.pageview(location.pathname); // Record a pageview for the given page
+      console.log(location);
     });
     // ReactGA.pageview(window.location.pathname + window.location.search);
   },[])
