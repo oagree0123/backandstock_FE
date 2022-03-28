@@ -26,7 +26,7 @@ const PortCardList = (props) => {
                 <NoneText>
                   저장한 <br />
                   실험결과가 <br />
-                  업습니다
+                  없습니다
                 </NoneText>
               </NoneCard>
           );
