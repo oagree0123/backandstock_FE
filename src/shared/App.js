@@ -16,7 +16,7 @@ import { getToken } from "./token";
 
 import Social from './Social';
 import ReactGA from 'react-ga';
-const TRACKING_ID = "308629029";
+const TRACKING_ID = "G-D38CWK4MZQ";
 
 //-- google analytics --
 ReactGA.event({
