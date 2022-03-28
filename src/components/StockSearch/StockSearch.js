@@ -35,6 +35,7 @@ const StockSearch = () => {
   const [search_list, setSearchList] = useState([]);
 
   const onChangeRatio = (e) => {
+    console.log(e.target.value);
     const num_reg = /\d/;
 
     if (!num_reg.test(e.target.value) && e.target.value !== "") {
@@ -126,7 +127,7 @@ const StockSearch = () => {
         <RateWrap>
           <StockRate
             placeholder="비율"
-            type="number"
+            type="text"
             onChange={onChangeRatio}
             value={ratio}
           ></StockRate>
