@@ -37,7 +37,6 @@ const PortCard = (props) => {
   };
 
   const click_card = (port_id) => {
-    //dispatch(portActions.getPortOneDB(port_id));
     history.push(`/detail/${port_id}`)
   };
 

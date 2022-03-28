@@ -19,8 +19,6 @@ const BarChart = (props) => {
     indexBy,
   } = props;
 
-  console.log(props.bar_data);
-
   return (
     <BarChartWrap>
       <ResponsiveBar

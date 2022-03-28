@@ -22,9 +22,6 @@ const StockList = (props) => {
   const test = useSelector((state) => state.testform);
 
   let count = 5 - result_list.stockNames.length;
-  console.log(count)
-  console.log(result_list.stockNames)
-
 
   useEffect(() => {
     if (!result_list) {

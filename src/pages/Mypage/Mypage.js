@@ -35,7 +35,6 @@ const Mypage = () => {
   const compare_data = useSelector((state) => state.port.compare_data);
 
   const [com_lenght, setComLenght] = useState(compare_list.length);
-  console.log(com_lenght);
 
   const [check_compare, setCheckCompare] = useState(false);
   const [compare_idx, setCompareIdx] = useState([]);
