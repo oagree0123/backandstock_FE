@@ -2,10 +2,18 @@ import styled from 'styled-components';
 
 export const Wrap = styled.div`
    margin-bottom: 60px;
-`
+`;
 
 export const Card = styled.img`
-    width: 931px;
+    width: 880px;
     height: 115px;
     border: none;
-`
+    cursor: pointer;
+`;
+
+export const CardLink = styled.a`
+  width: 880px;
+  height: 115px;
+  border: none;
+  text-decoration: none;
+`;
