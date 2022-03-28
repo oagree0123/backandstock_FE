@@ -9,11 +9,17 @@ import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { BackTest, Login, Signup, Community, BestDetail, Mypage, Detail, Result } from "../pages";
+import Analytics from "../components/Analytics/Analytics";
 
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
 import Social from './Social';
+import ReactGA from 'react-ga';
+const TRACKING_ID = "308629029";
+ReactGA.initialize(TRACKING_ID);
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +34,7 @@ function App() {
 
   return (
     <AppWrap className="App">
+      <Analytics />
       <GlobalStyle />
       <ConnectedRouter history={history}>
         <Switch>
@@ -36,7 +43,7 @@ function App() {
           <Route path="/oauth/kakao/callback" exact component={Social} />
           <ContentWrap>
             <Header />
-            <SideTap/>
+            <SideTap />
             <RouteWrap>
               <Route path="/" exact component={BackTest} />
               <Route path="/community" exact component={Community} />
