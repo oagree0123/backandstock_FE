@@ -37,12 +37,12 @@ const getPostDB = (init_check) => {
     try {
       let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
         params: {
-          page: Math.ceil(_list.length / 3) + 1,
-          size: 3,
+          page: Math.ceil(_list.length / 9) + 1,
+          size: 9,
         },
       });
 
-      if (Math.floor(_list.length % 3) !== 0 && 
+      if (
         _list.length !== 0 && 
         response.data.length === 0 &&
         !init_check

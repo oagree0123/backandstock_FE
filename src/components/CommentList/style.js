@@ -42,7 +42,7 @@ export const CommentBtn = styled.button`
   color: #fff;
   border: none;
   border-radius: 30px;
-  background-color: #c4c4c4;
+  background-color: var(--primary-color);
 `;
 
 export const CancleBtn = styled.button`

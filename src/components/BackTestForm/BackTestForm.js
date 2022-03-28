@@ -39,9 +39,8 @@ const BackTestForm = () => {
       MySwal.fire({
         title: "숫자만 입력해주세요.",
         confirmButtonColor: '#0075FF',
-      }).then(() => {
-        return;
-      });
+      })
+      return;
     }
     setInitMoney(e.target.value);
 

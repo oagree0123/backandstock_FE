@@ -46,9 +46,9 @@ const StockSearch = () => {
       return;
     }
 
-    if (e.target.value > 100) {
+    if (e.target.value > 100 || e.target.value < 0) {
       MySwal.fire({
-        title: "100이하의 정수를 입력해주세요.",
+        title: "100이하의 자연수를 입력해주세요.",
         confirmButtonColor: '#0075FF',
       });
       e.target.value = ratio;
@@ -70,6 +70,14 @@ const StockSearch = () => {
   };
 
   const clickAddStock = () => {
+    if (!(ratio < 100 && ratio > 0)) {
+      MySwal.fire({
+        title: "비율을 다시 확인해주세요.",
+        confirmButtonColor: '#0075FF',
+      });
+      return;
+    }
+
     if (ratio === "") {
       MySwal.fire({
         title: "비율을 입력해주세요.",
@@ -118,7 +126,7 @@ const StockSearch = () => {
         <RateWrap>
           <StockRate
             placeholder="비율"
-            type="text"
+            type="number"
             onChange={onChangeRatio}
             value={ratio}
           ></StockRate>

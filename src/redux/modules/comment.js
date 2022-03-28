@@ -53,6 +53,7 @@ const addCommentDB = (port_id, content) => {
         nickname: user.nickname,
         profileImg: user.profile_img,
         replyList: [],
+        userId: user.user_id,
       }));
     }
     catch (err) {
@@ -150,6 +151,7 @@ const ReaddCommentDB = (commentId, Newcontent) => {
         content: Newcontent,
         nickname: user.nickname,
         profileImg: user.profile_img,
+        userId: user.user_id,
       }
 
       let comment_idx = comment_list.findIndex(c => {
