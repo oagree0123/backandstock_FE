@@ -17,9 +17,16 @@ import { getToken } from "./token";
 import Social from './Social';
 import ReactGA from 'react-ga';
 const TRACKING_ID = "308629029";
-ReactGA.initialize(TRACKING_ID);
 
-
+//-- google analytics --
+ReactGA.event({
+  category: "User",
+  action: "Created an Account",
+});
+ReactGA.exception({
+  description: "An error ocurred",
+  fatal: true,
+});
 
 function App() {
   const dispatch = useDispatch();
@@ -32,9 +39,17 @@ function App() {
     }
   });
 
+  React.useEffect(() => {
+    ReactGA.initialize(TRACKING_ID);
+    history.listen((location) => {
+      ReactGA.set({ page: location.pathname }); // Update the user's current page
+      ReactGA.pageview(location.pathname); // Record a pageview for the given page
+    });
+    // ReactGA.pageview(window.location.pathname + window.location.search);
+  },[])
+
   return (
     <AppWrap className="App">
-      <Analytics />
       <GlobalStyle />
       <ConnectedRouter history={history}>
         <Switch>
