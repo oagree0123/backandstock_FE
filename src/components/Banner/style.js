@@ -5,9 +5,7 @@ export const Wrap = styled.div`
 `
 
 export const Card = styled.img`
-    width: 896px;
-    height: 134px;
-    background-color: black;
-    border-radius: 20px;
+    width: 931px;
+    height: 115px;
     border: none;
 `
