@@ -44,7 +44,7 @@ const CommentList = (props) => {
 
     if(!comment) {
       MySwal.fire({
-        title: "댓글을 내용을 입력해주세요!",
+        title: "댓글 내용을 입력해주세요!",
         confirmButtonColor: '#0075FF',
       });
       return;
