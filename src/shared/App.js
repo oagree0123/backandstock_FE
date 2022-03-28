@@ -9,8 +9,6 @@ import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { BackTest, Login, Signup, Community, BestDetail, Mypage, Detail, Result } from "../pages";
-import Analytics from "../components/Analytics/Analytics";
-
 import { Header, SideTap } from "../components";
 import { getToken } from "./token";
 
