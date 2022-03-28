@@ -22,6 +22,9 @@ const StockList = (props) => {
   const test = useSelector((state) => state.testform);
 
   let count = 5 - result_list.stockNames.length;
+  console.log(count)
+  console.log(result_list.stockNames)
+
 
   useEffect(() => {
     if (!result_list) {
@@ -47,44 +50,44 @@ const StockList = (props) => {
 
   return (
     <StockWrap>
-      {result_list && 
+      {result_list &&
         <Lists>
           {props.type === "detail"
             ? stock_name.map((a, i) => {
-                return (
-                  <StockItem
-                    key={i}
-                    stock_name={a}
-                    stock_codes={stock_codes[i]}
-                    stock_yieldmoneys={stock_yieldmoneys[i]}
-                    stock_num={i}
-                    seedmoney={seedmoney}
-                    init_money={init_money}
-                    stock_ratio={stock_ratio[i]}
-                  />
-                );
-              })
+              return (
+                <StockItem
+                  key={i}
+                  stock_name={a}
+                  stock_codes={stock_codes[i]}
+                  stock_yieldmoneys={stock_yieldmoneys[i]}
+                  stock_num={i}
+                  seedmoney={seedmoney}
+                  init_money={init_money}
+                  stock_ratio={stock_ratio[i]}
+                />
+              );
+            })
             : stock_name.map((a, i) => {
-                return (
-                  <StockItem
-                    key={i}
-                    stock_name={a}
-                    stock_codes={stock_codes[i]}
-                    stock_yieldmoneys={stock_yieldmoneys[i]}
-                    stock_num={i}
-                    seedmoney={seedmoney}
-                    stock_rate={stock_rate}
-                    init_money={init_money}
-                  />
-                );
-              })}
+              return (
+                <StockItem
+                  key={i}
+                  stock_name={a}
+                  stock_codes={stock_codes[i]}
+                  stock_yieldmoneys={stock_yieldmoneys[i]}
+                  stock_num={i}
+                  seedmoney={seedmoney}
+                  stock_rate={stock_rate}
+                  init_money={init_money}
+                />
+              );
+            })}
 
           {[...Array(count)].map((n, index) => {
             return (
               <EmptyList key={index}>
                 <Empty>
                   실험한 종목이 <br />
-                  {count}개 뿐이에요
+                  {(5 - count)}개 뿐이에요
                 </Empty>
               </EmptyList>
             );
