@@ -70,7 +70,7 @@ const StockSearch = () => {
   };
 
   const clickAddStock = () => {
-    if (!(ratio < 100 && ratio > 0)) {
+    if (!(ratio <= 100 && ratio > 0)) {
       MySwal.fire({
         title: "비율을 다시 확인해주세요.",
         confirmButtonColor: '#0075FF',
