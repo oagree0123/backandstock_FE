@@ -14,8 +14,7 @@ export const HeaderWrap = styled.header`
 
 export const HeadWrap = styled.div`
   margin-left: calc(30.9vw - 320px);;
-  width: 100%;
-  max-width: 1280px;
+  width: 1280px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -34,7 +33,23 @@ export const LOGO = styled.img`
   cursor: pointer;
 `;
 
-export const Logout = styled.div`
+export const HeaderBtnWrap = styled.div`
+  position: relative;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+export const InfoBtn = styled.button`
+  margin-right: 40px;
+  font-size: var(--font-large);
+  font-weight: 600;
+  line-height: var(--line-large);
+  color: var(--primary-color);
+  border: none;
+`;
+
+export const Logout = styled.button`
   width: 100px;
   height: 30px;
   display: flex;
@@ -46,4 +61,24 @@ export const Logout = styled.div`
   border: 1px solid var(--primary-color);
   border-radius: 20px;
   cursor: pointer;
+`;
+
+export const ModalWrap = styled.div`
+  position: absolute;
+  top: 50px;
+  left: -145px;
+  z-index: 2000;
+`;
+
+export const TestInfoModalBG = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(45, 45, 45, 0.6);
+  z-index: 1000;
 `;

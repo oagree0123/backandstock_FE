@@ -140,7 +140,7 @@ const StockSearch = () => {
           <SearchWrap>
             <SearchInput
               type="text"
-              placeholder="자산을 검색해 주세요"
+              placeholder="ex) 삼성전자, LG..."
               onChange={(e) => {
                 // 변경 시 검색
                 setStockSearch(e.target.value);
