@@ -22,11 +22,16 @@ export const BoxWrap = styled.div`
   margin-left: 16px;
 `;
 
+export const SetWrap = styled.div`
+  display: flex;
+`;
+
 export const TopBox = styled.div`
+  margin-right: ${props => props.margin_right ? props.margin_right : 0};
   margin-bottom: 24px;
   display: flex;
   flex-direction: row;
-  width: 400px;
+  width: ${props => props.width ? props.width : "400px" };
   height: 117px;
 
   border-radius: 12px;
@@ -305,7 +310,8 @@ export const TopStockPrice = styled.p`
   font-size: var(--font-main);
 `;
 
-export const InfoWrap = styled.div``;
+export const InfoWrap = styled.div`
+`;
 
 export const CalenderIcon = styled.img`
   width: 26px;
@@ -349,7 +355,7 @@ export const InfoTitle = styled.h3`
 `;
 
 export const InfoText = styled.p`
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   line-height: var(--line-header);
 `;

@@ -13,6 +13,7 @@ const SET_START = "SET_START";
 const SET_END = "SET_END";
 const SET_MONEY = "SET_MONEY";
 const SET_STOCK = "SET_STOCK";
+const SET_REBALANCE = "SET_REBALANCE";
 const DELETE_STOCK = "DELETE_STOCK";
 const SET_INIT = "SET_INIT";
 
@@ -21,6 +22,7 @@ const setStart = createAction(SET_START, (start_year, start_month) => ({ start_y
 const setEnd = createAction(SET_END, (end_year, end_month) => ({ end_year, end_month }));
 const setMoney = createAction(SET_MONEY, (money) => ({ money }));
 const setStock = createAction(SET_STOCK, (ratio, stock_name, stock_code) => ({ ratio, stock_name, stock_code }));
+const setRebalance = createAction(SET_REBALANCE, (rebalance) => ({ rebalance }));
 const deleteStock = createAction(DELETE_STOCK, (stock_num) => ({ stock_num }));
 const setInit = createAction(SET_INIT, () => ({}));
 
@@ -29,6 +31,7 @@ const initialState = {
   start_date: "",
   end_date: "",
   init_money: 0,
+  rebalance_month: 0,
   stockList: [],
   ratioList: [],
   codeList: [],
@@ -101,6 +104,10 @@ export default handleActions(
         draft.ratioList.push(parseInt(action.payload.ratio));
         draft.codeList.push(action.payload.stock_code);
       }),
+    [SET_REBALANCE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.rebalance_month = action.payload.rebalance;
+      }),
     [DELETE_STOCK]: (state, action) =>
       produce(state, (draft) => {
         draft.stockList = draft.stockList.filter((n, i) => {
@@ -121,6 +128,7 @@ export default handleActions(
         draft.init_money = 0;
         draft.end_date = "2022-01-01";
         draft.start_date = "2011-01-01";
+        draft.rebalance_month = 0;
       }),
   },
   initialState
@@ -134,6 +142,7 @@ const actionCreators = {
   setStock,
   deleteStock,
   setInit,
+  setRebalance,
 };
 
 export { actionCreators };

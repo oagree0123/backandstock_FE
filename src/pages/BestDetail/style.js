@@ -40,14 +40,14 @@ export const LikeCnt = styled.p`
 export const ContWrap = styled.section`
   width: 100%;
   height: 1450px;
-  padding: 44px 0px 56px 56px;
+  padding: 44px 0px 100px 56px;
   padding-right: calc(30.9vw - 293px);
   background-color: var(--secondary-color);
 `;
 
 export const CommentWrap = styled.section`
   width: 100%;
-  padding: 44px 0px 56px 56px;
+  padding: 44px 0px 100px 56px;
 `;
 
 export const CommentCnt = styled.p`

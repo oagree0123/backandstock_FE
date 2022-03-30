@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 
-export const Container = styled.div`
+export const Container = styled.footer`
     display: flex;
-    width: 100%;
-    height: 100px;
+    width: 100vw;
+    height: 85px;
     background-color: var(--secondary-color);
-    margin-top: 150px;
+
     & a {
         color : #3A95FF;
         font-weight: 700;
@@ -23,7 +23,7 @@ export const Wrap = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 880px;
-    margin-left: 44px;
+    margin-left: 56px;
     
 `
 export const Link = styled.div`
@@ -38,5 +38,5 @@ export const Imgwrap = styled.div`
 export const Logo = styled.img`
     width: 157px;
     height: 41x;
-    margin: 0 32px 0 59px;
+    margin: 0 32px 0  0px;
 `

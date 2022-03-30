@@ -36,29 +36,47 @@ const initialState = {
 const getPostDB = (init_check) => {
   return async function (dispatch, getState, { history }) {
     let _list = getState().community.list;
-    try {
-      let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
-        params: {
-          page: Math.ceil(_list.length / 9) + 1,
-          size: 9,
-        },
-      });
-
-      if (
-        _list.length !== 0 && 
-        response.data.length === 0 &&
-        !init_check
-      ) {
-        MySwal.fire({
-          title: "더 이상 포트폴리오가 없습니다.",
-          confirmButtonColor: '#0075FF',
+    if(init_check) {
+      // 처음 로딩
+      try {
+        let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
+          params: {
+            page: 1,
+            size: 9,
+          },
         });
-        return;
+
+        dispatch(getPost(response.data));
       }
-      dispatch(getPost(response.data));
+      catch (err) {
+        console.log(err);
+      }
     }
-    catch (err) {
-      console.log(err);
+    else {
+      try {
+        let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
+          params: {
+            page: Math.ceil(_list.length / 9) + 1,
+            size: 9,
+          },
+        });
+  
+        if (
+          _list.length !== 0 && 
+          response.data.length === 0 &&
+          !init_check
+        ) {
+          MySwal.fire({
+            title: "더 이상 포트폴리오가 없습니다.",
+            confirmButtonColor: '#0075FF',
+          });
+          return;
+        }
+        dispatch(getPost(response.data));
+      }
+      catch (err) {
+        console.log(err);
+      }
     }
   }
 }

@@ -43,7 +43,7 @@ const initialState = {
 };
 
 // middleware
-const getResultDB = (rebalance_Month = 0) => {
+const getResultDB = () => {
   return async function (dispatch, getState, { history }) {
     let end = getState().testform.end_date;
     end = dayjs(end).add("1", "M").format('YYYY-MM-DD');
@@ -54,7 +54,7 @@ const getResultDB = (rebalance_Month = 0) => {
       seedMoney: parseFloat(getState().testform.init_money * 10000),
       stockList: getState().testform.stockList,
       ratioList: getState().testform.ratioList,
-      rebalancingMonth: rebalance_Month, 
+      rebalancingMonth: getState().testform.rebalance_month, 
     };
 
     if (data.stockList.length === 0 || data.ratioList.length === 0) {
@@ -123,7 +123,7 @@ const getResultDB = (rebalance_Month = 0) => {
   };
 };
 
-const savePortDB = (rebalance_Month = 0) => {
+const savePortDB = () => {
   return async function (dispatch, getState, { history }) {
     const token = getToken("token");
     let end = getState().testform.end_date;
@@ -135,7 +135,7 @@ const savePortDB = (rebalance_Month = 0) => {
       seedMoney: parseFloat(getState().testform.init_money * 10000),
       stockList: getState().testform.stockList,
       ratioList: getState().testform.ratioList,
-      rebalancingMonth: rebalance_Month,
+      rebalancingMonth: getState().testform.rebalance_month,
     };
 
     try {
