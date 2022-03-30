@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../../redux/modules/comment";
 import {
   BtnWrap,
@@ -13,7 +12,6 @@ import {
   RecoBtn,
   RecoCancleBtn,
   RecoInput,
-  ReCommentItemWrap,
   ReCommnentBtn,
   RecoWrap,
   ReImgWrap,
@@ -21,6 +19,7 @@ import {
 } from "./style";
 
 import BasicImage from '../../assets/images/basic_image.svg';
+import ReCommentItem from "../ReCommentItem/ReCommentItem";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -32,13 +31,12 @@ const CommentItem = (props) => {
 
   const is_login = useSelector(state => state.user.is_login);
   const user = useSelector(state => state.user.user_info.user_id);
+  const user_img = useSelector(state => state.user.user_info.profile_img);
 
   const [open_reco, setOpenReco] = useState(false);
   const [open_edit, setOpenEdit] = useState(false);
   const [comment, setComment] = useState("");
   const [edit_comment, setEditComment] = useState(props.content);
-  
-  const [open_reedit, setOpenReEdit] = useState(false);
 
   const changeComment = (e) => {
     setComment(e.target.value);
@@ -70,9 +68,23 @@ const CommentItem = (props) => {
   }
   
   const clickDelComment = () => {
-    if( window.confirm("정말 삭제하시겠습니까?")) {
-      dispatch(commentActions.deleteCommentDB(props.commentId));
-    }
+    MySwal.fire({
+      title: "정말 삭제하시겠습니까?",
+
+      showCancelButton: true,
+      confirmButtonColor: '#0075FF',
+      cancelButtonColor: '#FF0000',
+      confirmButtonText: '삭제',
+      cancelButtonText: '취소',
+    }).then((result) => {
+
+      if(result.isConfirmed) {
+        dispatch(commentActions.deleteCommentDB(props.commentId));
+      }
+      else {
+        return ;
+      }
+    });
   }
 
   const clickEditComment = () => {
@@ -80,11 +92,9 @@ const CommentItem = (props) => {
     setOpenEdit(false);
   }
 
-  const clickDelReComment = (recomment_id) => {
-    if( window.confirm("정말 삭제하시겠습니까?")) {
-      dispatch(commentActions.deleteREcommnetDB(props.commentId, recomment_id));
-    }
-  }
+  useEffect(() => {
+    setEditComment(props.content);
+  }, [props.content]);
 
   return (
     <CommentItemWrap>
@@ -158,13 +168,12 @@ const CommentItem = (props) => {
                   </DelCommnentBtn>
                 </>
               }
-
             </BtnWrap>
           </>
         }
         { open_reco ?
           <RecoWrap>
-            <ReImgWrap user_img={user.profile_img ? user.profile_img : BasicImage} />
+            <ReImgWrap user_img={user_img ? user_img : BasicImage} />
             <RecoInput 
               type="text"
               placeholder="댓글을 입력해주세요"
@@ -190,26 +199,11 @@ const CommentItem = (props) => {
         { 
           props.replyList.map((r, i) => {
             return (
-              <ReCommentItemWrap mTop="12px" key={i}>
-                <ImgWrap user_img={r.profileImg ? r.profileImg : BasicImage} />
-                <CommentContWrap>
-                  <UserNick>{r.nickname}</UserNick>
-                  <CommentCont>
-                    {r.content}
-                  </CommentCont>
-                  { user === r.userId &&
-                    <>
-                    <DelCommnentBtn
-                      onClick={() => {
-                        clickDelReComment(r.commentId)
-                      }}
-                    >
-                      삭제
-                    </DelCommnentBtn>
-                    </>
-                  }
-                </CommentContWrap>
-              </ReCommentItemWrap> 
+              <ReCommentItem 
+                comment_id={props.commentId}
+                reco_content={r} 
+                key={i} 
+              /> 
             );
           })
         }

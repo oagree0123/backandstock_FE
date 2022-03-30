@@ -30,7 +30,7 @@ const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
 
 const readdComment = createAction(READD_COMMNET, (comment_idx, recomment_data) => ({ comment_idx, recomment_data }));
 const deleterecommnet = createAction(DELETE_RECOMMENT, (comment_idx, recomment_id) => ({ comment_idx, recomment_id }));
-const editrecomment = createAction(EDIT_RECOMMENT, (comment_id, newcommnet) => ({ comment_id, newcommnet }))
+const editrecomment = createAction(EDIT_RECOMMENT, (comment_idx, recomment_id, newcomment) => ({ comment_idx, recomment_id, newcomment }))
 
 const initialState = {
   list: [],
@@ -222,16 +222,16 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
         window.location.reload();
       })
     }
-
   }
 }
 
-const editRecommentDB = (comment_id, newcomment) => {
+const editRecommentDB = (comment_id, recomment_id, newcomment) => {
   return async function (dispatch, getState) {
     const token = getToken("token");
+    const _comment_list = getState().comment.list;
 
     try {
-      let response = await axios.put(`https://yuseon.shop/community/comment/${comment_id}`, {
+      let response = await axios.put(`https://yuseon.shop/comments/${recomment_id}`, {
         content: newcomment
       }, {
         headers: {
@@ -239,7 +239,11 @@ const editRecommentDB = (comment_id, newcomment) => {
         }
       })
 
-      dispatch(editComment(comment_id, newcomment));
+      const comment_idx = _comment_list.findIndex((c) => {
+        return parseInt(c.commentId) === parseInt(comment_id);
+      })
+
+      dispatch(editrecomment(comment_idx, recomment_id, newcomment));
     }
     catch (err) {
       MySwal.fire({
@@ -251,8 +255,6 @@ const editRecommentDB = (comment_id, newcomment) => {
     }
   };
 };
-
-
 
 export default handleActions(
   {
@@ -283,14 +285,6 @@ export default handleActions(
 
         draft.list[idx] = { ...draft.list[idx], content: action.payload.comment };
       }),
-    [EDIT_RECOMMENT]: (state, action) =>
-      produce(state, (draft) => {
-        let idx = draft.list.findIndex((c) => {
-          return parseInt(c.commentId) === parseInt(action.payload.comment_id)
-        })
-
-        draft.list[idx] = { ...draft.list[idx], content: action.payload.comment };
-      }),
 
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -312,6 +306,21 @@ export default handleActions(
           });
 
         draft.list[action.payload.comment_idx].replyList = new_reply;
+      }),
+
+    [EDIT_RECOMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        let reco_idx =
+          draft.list[action.payload.comment_idx].replyList.findIndex((c) => {
+            return parseInt(c.commentId) === parseInt(action.payload.recomment_id)
+          });
+
+        console.log(reco_idx)
+
+        draft.list[action.payload.comment_idx].replyList[reco_idx] = { 
+          ...draft.list[action.payload.comment_idx].replyList[reco_idx], 
+          content: action.payload.newcomment 
+        };
       }),
   },
   initialState
