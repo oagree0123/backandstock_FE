@@ -16,6 +16,7 @@ import CompareRank from "./CompareRank/CompareRank";
 import UserProfile from "./UserProfile/UserProfile";
 import ResultEdit from "./ResultEdit/ResultEdit";
 import Banner from "./Banner/Banner"
+import Footer from "./Footer/Footer";
 
 export {
   SideTap,
@@ -36,4 +37,5 @@ export {
   UserProfile,
   ResultEdit,
   Banner,
+  Footer,
 };
