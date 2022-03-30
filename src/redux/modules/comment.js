@@ -25,6 +25,10 @@ const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_i
 const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
   comment_id,
   comment,
+}))
+const editReComment = createAction(EDIT_RECOMMENT, (comment_id, comment) => ({
+  comment_id,
+  comment,
 })
 );
 
@@ -81,7 +85,7 @@ const getCommentDB = (post_id) => {
     try {
       let response = await axios.get(`https://yuseon.shop/portfolios/${post_id}/comments`)
 
-      if(!response.data) {
+      if (!response.data) {
         return;
       }
       dispatch(getComment(response.data));
@@ -210,7 +214,7 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`https://yuseon.shop/comments/${recomment_id}`, {
+      await axios.delete(`https://yuseon.shop/comments/${comment_id}`, {
         headers: {
           Authorization: `${token}`
         }
@@ -291,6 +295,7 @@ export default handleActions(
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(action.payload.comment);
+
       }),
 
     [EDIT_COMMENT]: (state, action) =>

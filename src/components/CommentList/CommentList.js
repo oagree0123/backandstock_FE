@@ -40,7 +40,7 @@ const CommentList = (props) => {
   }
 
   const clickComment = () => {
-    if(!is_login) {
+    if (!is_login) {
       MySwal.fire({
         title: "로그인 후 댓글 작성이 가능합니다.",
         confirmButtonColor: '#0075FF',
@@ -49,7 +49,7 @@ const CommentList = (props) => {
       return;
     }
 
-    if(!comment) {
+    if (!comment) {
       MySwal.fire({
         title: "댓글 내용을 입력해주세요!",
         confirmButtonColor: '#0075FF',
@@ -60,20 +60,21 @@ const CommentList = (props) => {
     dispatch(commentActions.addCommentDB(props.port_id, comment));
   }
 
+
   return (
     <CommentListWrap>
       <CommentInputWrap>
-        { is_login ?
-          <UserImg user_img={user.profile_img ? user.profile_img : BasicImage} />:
+        {is_login ?
+          <UserImg user_img={user.profile_img ? user.profile_img : BasicImage} /> :
           <UserImg user_img={BasicImage} />
         }
-        <CommnetInput 
+        <CommnetInput
           type="text"
           placeholder="댓글을 입력해주세요"
-          onChange={changeComment} 
+          onChange={changeComment}
           value={comment}
         />
-        <CommentBtn 
+        <CommentBtn
           onClick={clickComment}
         >
           작성
@@ -88,7 +89,11 @@ const CommentList = (props) => {
       </CommentInputWrap>
 
       {comment_list.map((c, i) => {
-        return <CommentItem key={i} {...c} />;
+        return <CommentItem
+          key={i} {...c}
+        // reply={c.replyList[i]}
+        // comment_list={c}
+        />
       })}
     </CommentListWrap>
   );
