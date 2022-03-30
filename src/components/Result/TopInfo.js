@@ -31,6 +31,7 @@ import {
   TextIconWrap,
   InfoText,
   InfoTitle,
+  SetWrap,
 } from "./style.js";
 
 import arrow_down from "../../assets/images/page_result/arrow_down.svg";
@@ -115,15 +116,25 @@ const TopInfo = (props) => {
               </InfoText>
             </InfoWrap>
           </TopBox>
-          <TopBox>
-            <InfoWrap>
-              <TextIconWrap>
-                <InfoTitle>초기 자본금</InfoTitle>
-                <Poket src={poket}></Poket>
-              </TextIconWrap>
-              <InfoText>{seedMoney.toLocaleString()} 만원</InfoText>
-            </InfoWrap>
-          </TopBox>
+          <SetWrap>
+            <TopBox width="210px" margin_right="10px">
+              <InfoWrap>
+                <TextIconWrap>
+                  <InfoTitle>초기 자본금</InfoTitle>
+                  <Poket src={poket}></Poket>
+                </TextIconWrap>
+                <InfoText>{seedMoney.toLocaleString()} 만원</InfoText>
+              </InfoWrap>
+            </TopBox>
+            <TopBox width="180px">
+              <InfoWrap>
+                <TextIconWrap>
+                  <InfoTitle>리밸런싱 주기</InfoTitle>
+                </TextIconWrap>
+                <InfoText>{result_list.rebalancingMonth} 개월</InfoText>
+              </InfoWrap>
+            </TopBox>
+          </SetWrap>
         </BoxWrap>
       </TopWrap>
       {props.type === "Best" ?

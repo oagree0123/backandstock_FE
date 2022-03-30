@@ -25,6 +25,10 @@ export const FormLeft = styled.div`
   width: 380px;
 `;
 
+export const MonthWrap = styled.div`
+  margin-bottom: ${props => props.margin_bottom ? props.margin_bottom : ""};
+`;
+
 export const FormRight = styled.div`
   width: 325px;
 `;
@@ -37,6 +41,7 @@ export const FormTitle = styled.h2`
 `;
 
 export const MoneyWrap = styled.div`
+  margin-bottom: 40px;
   position: relative;
   display: flex;
   align-items: center;
@@ -80,3 +85,69 @@ export const BackTextBtn = styled.button`
   border-radius: 10px;
 `;
 
+export const TitleWrap = styled.div`
+  margin-bottom: 24px;
+  display: flex;
+  align-items: flex-end;
+`;
+
+export const RebalanceTitle = styled.h2`
+  font-size: var(--font-header);
+  line-height: var(--line-header);
+  font-weight: 600;
+`;
+
+export const RebalanceWrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 325px;
+  height: 55px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+`;
+
+export const RebalanceCont = styled.p`
+  padding-left: 20px;
+  font-size: var(--font-main);
+  font-weight: 400;
+`;
+
+export const RebalanceSelect = styled.ul`
+  padding: 4px 0px;
+  position: absolute;
+  top: 58px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 325px;
+  font-size: var(--font-main);
+  font-weight: 400;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 3000;
+`;
+
+export const SelectItem = styled.li`
+  padding-left: 20px;
+  width: 300px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  font-size: var(--font-main);
+  font-weight: 400;
+  border-bottom: 2px solid var(--secondary-color);
+  z-index: 3000;
+  cursor: pointer;
+  list-style: none;
+
+  &:hover {
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+  }
+`;

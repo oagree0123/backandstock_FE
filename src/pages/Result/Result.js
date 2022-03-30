@@ -24,6 +24,7 @@ const Result = () => {
 
   const start_date = useSelector(state => state.testform.start_date);
   const end_date = useSelector(state => state.testform.end_date);
+  const rebalance_month = useSelector(state => state.testform.rebalance_month);
   const router = useSelector(state => state.router);
 
   const [check_edit, setCheckEdit] = useState(false);
@@ -49,7 +50,7 @@ const Result = () => {
   useEffect(() => {
     if(router.action === "POP" && router.location.pathname === "/result") {
       MySwal.fire({
-        title: "저장되지 않은 실험결과는 다시 볼 수 없습니다.",
+        title: `<p>저장되지 않은 실험결과는 <br /> 다시 볼 수 없습니다.</p>`,
         confirmButtonColor: '#0075FF',
       });
       history.push('/');
@@ -68,6 +69,7 @@ const Result = () => {
             setCheckEdit={setCheckEdit}
             start_date={start_date}
             end_date={end_date}
+            rebalance_month={rebalance_month}
           />
         }
         <HeaderWrap>
