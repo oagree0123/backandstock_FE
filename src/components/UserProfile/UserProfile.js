@@ -26,7 +26,7 @@ const UserProfile = (props) => {
   const [objectURL, setObjectURL] = useState("");
 
   const changeNick = (e) => {
-    if (e.target.value.length > 8 || e.target.value.length < 1) {
+    if (e.target.value.length > 8 || e.target.value.length < 0) {
       MySwal.fire({
         title: "닉네임은 8글자 이하만 가능합니다.",
         confirmButtonColor: '#0075FF',
@@ -52,6 +52,13 @@ const UserProfile = (props) => {
       </ProfileLabel>
       <CompleteBtn
         onClick={() => {
+          if(userNick.length === 0) {
+            MySwal.fire({
+              title: "닉네임을 입력해주세요.",
+              confirmButtonColor: '#0075FF',
+            });
+            return;
+          }
           dispatch(userActions.editUserDB(objectURL, userNick, file));
           props.setProfileClicked(false);
           setFile(null);
