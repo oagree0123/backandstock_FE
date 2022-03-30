@@ -25,12 +25,7 @@ const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_i
 const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
   comment_id,
   comment,
-}))
-const editReComment = createAction(EDIT_RECOMMENT, (comment_id, comment) => ({
-  comment_id,
-  comment,
-})
-);
+}));
 
 const readdComment = createAction(READD_COMMNET, (comment_idx, recomment_data) => ({ comment_idx, recomment_data }));
 const deleterecommnet = createAction(DELETE_RECOMMENT, (comment_idx, recomment_id) => ({ comment_idx, recomment_id }));
@@ -166,7 +161,6 @@ const deleteCommentDB = (comment_id) => {
 }
 
 
-
 // 대댓글 쓰기 
 const ReaddCommentDB = (commentId, Newcontent) => {
   return async function (dispatch, getState, { history }) {
@@ -214,7 +208,7 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`https://yuseon.shop/comments/${comment_id}`, {
+      await axios.delete(`https://yuseon.shop/comments/${recomment_id}`, {
         headers: {
           Authorization: `${token}`
         }
