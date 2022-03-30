@@ -13,7 +13,7 @@ export const ImgWrap = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
+  background-image: ${props => props.user_img ? `url(${props.user_img})` : ""};
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -26,19 +26,31 @@ export const CommentContWrap = styled.div`
   flex-direction: column;
 `;
 
+export const Wrap = styled.div`
+  display: flex;
+
+`
+
 export const UserNick = styled.p`
   margin-bottom: 4px;
   font-size: var(--font-medium);
   font-weight: 500;
   line-height: var(--line-medium);
   color: var(--primary-color);
-`;
+`
 
 export const CommentCont = styled.p`
   margin-bottom: 8px;
   font-size: var(--font-medium);
   font-weight: 500;
   line-height: 23px;
+  white-space: pre-line;
+`
+export const CommentTime = styled.p`
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 23px;
+  margin-left: 10px;
 `;
 
 export const BtnWrap = styled.div`
@@ -106,7 +118,7 @@ export const ReImgWrap = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
+  background-image: ${props => props.user_img ? `url(${props.user_img})` : ""};
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -150,4 +162,9 @@ export const RecoCancleBtn = styled.button`
   border: 1px solid var(--primary-color);
   border-radius: 30px;
   background-color: #fff;
-`;
+`
+
+export const ReplyBtn = styled.div`
+  display: flex;
+
+`

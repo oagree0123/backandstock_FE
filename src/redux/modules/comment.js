@@ -25,6 +25,10 @@ const deleteComment = createAction(DELETE_COMMENT, (comment_idx) => ({ comment_i
 const editComment = createAction(EDIT_COMMENT, (comment_id, comment) => ({
   comment_id,
   comment,
+}))
+const editReComment = createAction(EDIT_RECOMMENT, (comment_id, comment) => ({
+  comment_id,
+  comment,
 })
 );
 
@@ -81,7 +85,7 @@ const getCommentDB = (post_id) => {
     try {
       let response = await axios.get(`https://yuseon.shop/portfolios/${post_id}/comments`)
 
-      if(!response.data) {
+      if (!response.data) {
         return;
       }
       dispatch(getComment(response.data));
@@ -202,7 +206,7 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
     const _comment_list = getState().comment.list;
 
     try {
-      await axios.delete(`https://yuseon.shop/comments/${recomment_id}`, {
+      await axios.delete(`https://yuseon.shop/comments/${comment_id}`, {
         headers: {
           Authorization: `${token}`
         }
@@ -231,15 +235,15 @@ const editRecommentDB = (comment_id, newcomment) => {
     const token = getToken("token");
 
     try {
-      let response = await axios.put(`https://yuseon.shop/community/comment/${comment_id}`, {
+      await axios.put(`https://yuseon.shop/community/comment/${comment_id}`, {
         content: newcomment
       }, {
         headers: {
           Authorization: `${token}`
         }
       })
-
-      dispatch(editComment(comment_id, newcomment));
+      console.log(comment_id, newcomment)
+      dispatch(editReComment(comment_id, newcomment));
     }
     catch (err) {
       MySwal.fire({
@@ -273,6 +277,7 @@ export default handleActions(
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(action.payload.comment);
+
       }),
 
     [EDIT_COMMENT]: (state, action) =>
