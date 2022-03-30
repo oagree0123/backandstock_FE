@@ -41,10 +41,25 @@ const CommentItem = (props) => {
   const [open_reedit, setOpenReEdit] = useState(false);
 
   const changeComment = (e) => {
+    console.log(e.target.value.length)
+    if(e.target.value.length > 100) {
+      MySwal.fire({
+        title: "댓글은 100글자 까지 가능합니다.",
+        confirmButtonColor: '#0075FF',
+      })
+      return;
+    }
     setComment(e.target.value);
   }
 
   const changeEditComment = (e) => {
+    if(e.target.value.length > 100) {
+      MySwal.fire({
+        title: "댓글은 100글자 까지 가능합니다.",
+        confirmButtonColor: '#0075FF',
+      })
+      return;
+    }
     setEditComment(e.target.value);
   }
 
