@@ -46,14 +46,23 @@ const MonthPicker = (props) => {
     }
   }
 
-  useEffect(() => {
+  const setDate = (year, month) => {
     if (props.type === "start" || props.type === "edit_start") {
       dispatch(testformActions.setStart(year, month));
     }
     else {
       dispatch(testformActions.setEnd(year, month));
     }
-  }, [month, dispatch])
+  }
+
+  /* useEffect(() => {
+    if (props.type === "start" || props.type === "edit_start") {
+      dispatch(testformActions.setStart(year, month));
+    }
+    else {
+      dispatch(testformActions.setEnd(year, month));
+    }
+  }, [month, dispatch, year]) */
 
   return (
     <MonthPickerWrap>
@@ -98,6 +107,7 @@ const MonthPicker = (props) => {
                       onClick={() => {
                         setMonth(i + 1)
                         setClickedDate(year)
+                        setDate(year, i + 1)
                         setIsOpen(false);
                       }}
                     >
@@ -138,6 +148,7 @@ const MonthPicker = (props) => {
                         onClick={() => {
                           setMonth(i + 1)
                           setClickedDate(year)
+                          setDate(year, i + 1)
                           setIsOpen(false);
                         }}
                       >

@@ -85,8 +85,20 @@ const getResultDB = () => {
       return;
     }
 
+    // 
+    let diff = dayjs(data.endDate).diff(dayjs(data.startDate), "M")
+    if(diff >= 0 && diff <= 3) {
+      MySwal.fire({
+        title: `<p>실험 기간은 3개월 <br />이상만 가능합니다!</p>`,
+        confirmButtonColor: '#0075FF',
+      });
+      return;
+    }
+
     // 시작날짜와 종료날짜 역순 false
-    if (dayjs(data.endDate).isBefore(data.startDate)) {
+    if (dayjs(data.endDate).isBefore(data.startDate) ||
+    (dayjs(data.endDate).format('YYYY-MM-DD') === dayjs(data.startDate).format('YYYY-MM-DD'))
+    ) {
       MySwal.fire({
         title: "종료년도가 시작년도 이전입니다!",
         confirmButtonColor: '#0075FF',
