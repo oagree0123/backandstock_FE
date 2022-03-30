@@ -29,6 +29,13 @@ const CommentList = (props) => {
   const [comment, setComment] = useState("");
 
   const changeComment = (e) => {
+    if(e.target.value.length > 100) {
+      MySwal.fire({
+        title: "댓글은 100글자 까지 가능합니다.",
+        confirmButtonColor: '#0075FF',
+      })
+      return;
+    }
     setComment(e.target.value);
   }
 

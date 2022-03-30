@@ -62,12 +62,18 @@ export const ContTitle = styled.h2`
   line-height: var(--line-header);
 `;
 
+export const PickerWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const MonthWrap = styled.div`
-  margin-bottom: 40px;
+  width: 290px;
 `;
 
 export const MoneyWrap = styled.div`
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   position: relative;
   display: flex;
   align-items: center;
@@ -113,4 +119,63 @@ export const TestEditBtn = styled.button`
   border: none;
   border-radius: 30px;
   background-color: var(--primary-color);
+`;
+
+export const RebalanceInputWrap = styled.div`
+  margin-bottom: 20px;
+`;
+
+export const RebalanceWrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 55px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+`;
+
+export const RebalanceCont = styled.p`
+  padding-left: 20px;
+  font-size: var(--font-main);
+  font-weight: 400;
+`;
+
+export const RebalanceSelect = styled.ul`
+  padding: 4px 0px;
+  position: absolute;
+  top: 58px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: var(--font-main);
+  font-weight: 400;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 3000;
+`;
+
+export const SelectItem = styled.li`
+  padding-left: 20px;
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  font-size: var(--font-main);
+  font-weight: 400;
+  border-bottom: 2px solid var(--secondary-color);
+  z-index: 3000;
+  cursor: pointer;
+  list-style: none;
+
+  &:hover {
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+  }
 `;

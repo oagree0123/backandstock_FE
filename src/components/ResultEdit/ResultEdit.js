@@ -18,6 +18,12 @@ import {
   Won,
   ErrorText,
   TestEditBtn,
+  RebalanceWrap,
+  RebalanceInputWrap,
+  RebalanceCont,
+  RebalanceSelect,
+  SelectItem,
+  PickerWrap,
 } from "./style";
 import close_btn from "../../assets/images/close_btn.svg";
 import { actionCreators as testformActions } from "../../redux/modules/testform";
@@ -25,6 +31,7 @@ import { actionCreators as portActions } from "../../redux/modules/port";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import RebalanceInfo from "../RebalanceInfo/RebalanceInfo";
 
 const MySwal = withReactContent(Swal);
 
@@ -33,6 +40,19 @@ const ResultEdit = (props) => {
 
   const start_date = props.start_date;
   const end_date = props.end_date;
+  const rebalance_month = props.rebalance_month;
+
+  const [rebalance, setRebalance] = useState(
+    rebalance_month === 0 ? 
+      "없음" :
+        rebalance_month === 1 ? 
+        "1 개월" :
+          rebalance_month === 3 ? 
+          "3 개월" :
+            rebalance_month === 6 ? 
+            "6 개월" : 0
+  );
+  const [open_select, setOpenSelect] = useState(false);
 
   const [init_money, setInitMoney] = useState("");
   const [check_money, setCheckMoney] = useState(true);
@@ -58,6 +78,11 @@ const ResultEdit = (props) => {
     dispatch(testformActions.setMoney(e.target.value));
   };
 
+  const click_select = (value) => {
+    setRebalance(value)
+    setOpenSelect(false);
+  }
+
   return (
     <ResultEditWrap>
       <ContWrap>
@@ -73,19 +98,70 @@ const ResultEdit = (props) => {
           <Editdesc>정보 수정은 실험기간과 금액만 수정이 가능해요</Editdesc>
         </ContHeader>
         <ContBody>
-          <MonthWrap>
-            <ContTitle>실험 기간</ContTitle>
-            <MonthPicker
-              type="edit_start"
-              edit_year={Number(dayjs(start_date).format("YYYY"))}
-              edit_month={Number(dayjs(start_date).format("MM"))}
-            />
-            <MonthPicker
-              type="edit_end"
-              edit_year={Number(dayjs(end_date).format("YYYY"))}
-              edit_month={Number(dayjs(end_date).format("MM"))}
-            />
-          </MonthWrap>
+          <PickerWrap>
+            <MonthWrap>
+              <ContTitle>실험 시작</ContTitle>
+              <MonthPicker
+                type="edit_start"
+                edit_year={Number(dayjs(start_date).format("YYYY"))}
+                edit_month={Number(dayjs(start_date).format("MM"))}
+                />
+            </MonthWrap>
+            <MonthWrap>
+              <ContTitle>실험 종료</ContTitle>
+              <MonthPicker
+                type="edit_end"
+                edit_year={Number(dayjs(end_date).format("YYYY"))}
+                edit_month={Number(dayjs(end_date).format("MM"))}
+              />
+            </MonthWrap>
+          </PickerWrap>
+          <RebalanceInputWrap>
+            <ContTitle>리벨런싱 주기</ContTitle>
+            <RebalanceWrap
+            onClick={() => {
+              setOpenSelect(!open_select);
+            }}
+            >
+              <RebalanceCont>{rebalance}</RebalanceCont>
+              { open_select &&
+                <RebalanceSelect>
+                  <SelectItem
+                    onClick={() => {
+                      click_select("없음")
+                      dispatch(testformActions.setRebalance(0));
+                    }}
+                  >
+                    없음
+                  </SelectItem>
+                  <SelectItem
+                    onClick={() => {
+                      click_select("1 개월")
+                      dispatch(testformActions.setRebalance(1));
+                    }}
+                  >
+                    1 개월
+                  </SelectItem>
+                  <SelectItem
+                    onClick={() => {
+                      click_select("3 개월")
+                      dispatch(testformActions.setRebalance(3));
+                    }}
+                  >
+                    3 개월
+                  </SelectItem>
+                  <SelectItem
+                    onClick={() => {
+                      click_select("6 개월")
+                      dispatch(testformActions.setRebalance(6));
+                    }}
+                  >
+                    6 개월
+                  </SelectItem>
+                </RebalanceSelect>
+              }
+            </RebalanceWrap>
+          </RebalanceInputWrap>
           <ContTitle>실험 금액</ContTitle>
           <MoneyWrap>
             <InitMoneyInput
