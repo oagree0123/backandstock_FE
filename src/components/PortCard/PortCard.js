@@ -109,6 +109,7 @@ const PortCard = (props) => {
         <MyBestBtn
           onClick={() => {
             dispatch(portActions.setBestDB(true, props.port_data.portId));
+            dispatch(communityActions.setPostInit());
           }}
         >
           자랑하기

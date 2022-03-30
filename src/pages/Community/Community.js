@@ -16,7 +16,7 @@ const Community = () => {
   const community_list = useSelector(state => state.community.list);
 
   useEffect(() => {
-    dispatch(communityActions.getTopFiveDB())
+    dispatch(communityActions.getTopFiveDB());
     dispatch(communityActions.getPostDB(true));
   }, [])
 
