@@ -39,6 +39,8 @@ export const CommentCont = styled.p`
   font-size: var(--font-medium);
   font-weight: 500;
   line-height: 23px;
+  white-space: normal; 
+  word-wrap: break-word;
 `;
 
 export const BtnWrap = styled.div`

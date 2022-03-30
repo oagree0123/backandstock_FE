@@ -15,7 +15,7 @@ export const RecoWrap = styled.div`
 `;
 
 export const CommentContWrap = styled.div`
-  width: 818px;
+  width: 770  px;
   display: flex;
   flex-direction: column;
 `;
@@ -33,6 +33,8 @@ export const CommentCont = styled.p`
   font-size: var(--font-medium);
   font-weight: 500;
   line-height: 23px;
+  white-space: normal; 
+  word-wrap: break-word;
 `;
 
 export const BtnWrap = styled.div`
