@@ -102,6 +102,14 @@ const editCommentDB = (comment_id, comment) => {
   return async function (dispatch, getState) {
     const token = getToken("token");
 
+    if(comment === "") {
+      MySwal.fire({
+        title: "댓글을 입력해 주세요.",
+        confirmButtonColor: '#0075FF',
+      })
+      return;
+    }
+
     try {
       axios.put(`https://yuseon.shop/comments/${comment_id}`, {
         content: comment
@@ -229,6 +237,14 @@ const editRecommentDB = (comment_id, recomment_id, newcomment) => {
   return async function (dispatch, getState) {
     const token = getToken("token");
     const _comment_list = getState().comment.list;
+
+    if(newcomment === "") {
+      MySwal.fire({
+        title: "댓글을 입력해 주세요.",
+        confirmButtonColor: '#0075FF',
+      })
+      return;
+    }
 
     try {
       let response = await axios.put(`https://yuseon.shop/comments/${recomment_id}`, {
