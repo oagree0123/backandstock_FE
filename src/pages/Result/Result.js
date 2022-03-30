@@ -38,6 +38,8 @@ const Result = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     if(result_list.length === 0) {
       history.push('/');
       return ;

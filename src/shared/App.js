@@ -56,7 +56,6 @@ function App() {
               <Route path="/community/detail/:id" exact component={BestDetail}></Route>
               <Footer />
             </RouteWrap>
-
           </ContentWrap>
         </Switch>
       </ConnectedRouter>
