@@ -66,7 +66,7 @@ export const Logout = styled.button`
 export const ModalWrap = styled.div`
   position: absolute;
   top: 50px;
-  left: -145px;
+  left: -200px;
   z-index: 2000;
 `;
 
