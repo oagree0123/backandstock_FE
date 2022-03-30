@@ -61,7 +61,12 @@ const addCommentDB = (port_id, content) => {
       }));
     }
     catch (err) {
-      console.log(err);
+      MySwal.fire({
+        title: "삭제된 포트폴리오 입니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        window.location.reload();
+      })
     }
   };
 };
@@ -82,7 +87,12 @@ const getCommentDB = (post_id) => {
       dispatch(getComment(response.data));
     }
     catch (err) {
-      console.log("댓글 정보를 가져올 수가 없어요! :(", err);
+      MySwal.fire({
+        title: "삭제된 포트폴리오 입니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        window.location.reload();
+      })
     }
   };
 };
@@ -104,7 +114,12 @@ const editCommentDB = (comment_id, comment) => {
       dispatch(editComment(comment_id, comment));
     }
     catch (err) {
-      console.log(err);
+      MySwal.fire({
+        title: "삭제된 포트폴리오 입니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        window.location.reload();
+      })
     }
   };
 };
@@ -128,7 +143,12 @@ const deleteCommentDB = (comment_id) => {
       dispatch(deleteComment(comment_idx));
     }
     catch (err) {
-      console.log(err);
+      MySwal.fire({
+        title: "삭제된 포트폴리오 입니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        window.location.reload();
+      })
     }
   }
 }
@@ -166,7 +186,7 @@ const ReaddCommentDB = (commentId, Newcontent) => {
     }
     catch (err) {
       MySwal.fire({
-        title: "잘못된 접근입니다.",
+        title: "삭제된 댓글 입니다.",
         confirmButtonColor: '#0075FF',
       }).then(() => {
         window.location.reload();
@@ -196,7 +216,7 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
     }
     catch (err) {
       MySwal.fire({
-        title: "잘못된 접근입니다.",
+        title: "삭제된 댓글 입니다.",
         confirmButtonColor: '#0075FF',
       }).then(() => {
         window.location.reload();
@@ -223,7 +243,7 @@ const editRecommentDB = (comment_id, newcomment) => {
     }
     catch (err) {
       MySwal.fire({
-        title: "잘못된 접근입니다.",
+        title: "삭제된 댓글 입니다.",
         confirmButtonColor: '#0075FF',
       }).then(() => {
         window.location.reload();
