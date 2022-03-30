@@ -3,6 +3,10 @@ import { produce } from "immer";
 import "dayjs";
 import axios from "axios";
 import { getToken } from "../../shared/token";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 // actions
 const GET_COMMENT = "GET_COMMENT";
@@ -161,7 +165,12 @@ const ReaddCommentDB = (commentId, Newcontent) => {
       dispatch(readdComment(comment_idx, data))
     }
     catch (err) {
-      console.log(err);
+      MySwal.fire({
+        title: "잘못된 접근입니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        window.location.reload();
+      })
     }
   }
 }
@@ -186,7 +195,12 @@ const deleteREcommnetDB = (comment_id, recomment_id) => {
       dispatch(deleterecommnet(comment_idx, recomment_id));
     }
     catch (err) {
-      console.log(err);
+      MySwal.fire({
+        title: "잘못된 접근입니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        window.location.reload();
+      })
     }
 
   }
@@ -208,7 +222,12 @@ const editRecommentDB = (comment_id, newcomment) => {
       dispatch(editComment(comment_id, newcomment));
     }
     catch (err) {
-      console.log(err);
+      MySwal.fire({
+        title: "잘못된 접근입니다.",
+        confirmButtonColor: '#0075FF',
+      }).then(() => {
+        window.location.reload();
+      })
     }
   };
 };

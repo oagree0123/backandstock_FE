@@ -147,8 +147,8 @@ const savePortDB = () => {
       dispatch(savePortOne(port_id.data.portId, result));
     }
     catch (err) {
-      let error_msg = err.response.data.responseMessage;
-      if (error_msg === "Saving portfolio excess error") {
+      let error_msg = err.response.data.statusCode;
+      if (error_msg === 400) {
         MySwal.fire({
           title: "실험결과는 3개까지 저장할 수 있습니다.",
           confirmButtonColor: '#0075FF',
