@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { BackTest, Login, Signup, Community, BestDetail, Mypage, Detail, Result } from "../pages";
-import { Header, SideTap } from "../components";
+import { Header, SideTap, Footer } from "../components";
 import { getToken } from "./token";
 
 import Social from './Social';
@@ -34,7 +34,7 @@ function App() {
       ReactGA.pageview(location.pathname); // Record a pageview for the given page
     });
     // ReactGA.pageview(window.location.pathname + window.location.search);
-  },[])
+  }, [])
 
   return (
     <AppWrap className="App">
@@ -54,7 +54,9 @@ function App() {
               <Route path="/result" exact component={Result}></Route>
               <Route path="/detail/:id" exact component={Detail}></Route>
               <Route path="/community/detail/:id" exact component={BestDetail}></Route>
+              <Footer />
             </RouteWrap>
+
           </ContentWrap>
         </Switch>
       </ConnectedRouter>
@@ -81,5 +83,6 @@ const RouteWrap = styled.div`
   width: 100%;
   overflow-x: hidden;
 `;
+
 
 export default App;
