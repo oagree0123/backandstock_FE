@@ -15,6 +15,8 @@ const GET_TOPFIVE = "GET_TOPFIVE";
 const LIKE_POST = "LIKE_POST";
 const DELETELIKE_POST = "DELETELIKE_POST";
 
+const CHANGE_SORT = "CHANGE_SORT";
+const SET_SORT_OPTION = "SET_SORT_OPTION";
 const SET_POST_INIT = "SET_POST_INIT";
 
 // action creators
@@ -24,22 +26,28 @@ const getTopFive = createAction(GET_TOPFIVE, (Top_list) => ({ Top_list }));
 const likePost = createAction(LIKE_POST, (idx, nickname) => ({ idx, nickname }));
 const deletelikePost = createAction(DELETELIKE_POST, (idx, nickname) => ({ idx, nickname }));
 
-const setPostInit = createAction(SET_POST_INIT, () => ({ }))
+const changeSort = createAction(CHANGE_SORT, (post_list) => ({ post_list }));
+const setSortOption = createAction(SET_SORT_OPTION, (sort_option) => ({ sort_option }));
+const setPostInit = createAction(SET_POST_INIT, () => ({ }));
 
 // initialState
 const initialState = {
   list: [],
   top_five_list: [],
+  sort_option: "like",
 };
 
 // middlewares
-const getPostDB = (init_check) => {
+const getPostDB = (init_check, sort_option) => {
   return async function (dispatch, getState, { history }) {
     let _list = getState().community.list;
+
+    let response = {};
+
     if(init_check) {
       // 처음 로딩
       try {
-        let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
+        response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
           params: {
             page: 1,
             size: 9,
@@ -52,15 +60,27 @@ const getPostDB = (init_check) => {
         console.log(err);
       }
     }
+    // 처음 이후에 로딩
     else {
       try {
-        let response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
-          params: {
-            page: Math.ceil(_list.length / 9) + 1,
-            size: 9,
-          },
-        });
-  
+        if(sort_option === "like") {
+          response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
+            params: {
+              page: Math.ceil(_list.length / 9) + 1,
+              size: 9,
+            },
+          });
+        }
+        else if(sort_option === "all") {
+          response = await axios.get(`https://yuseon.shop/portfolios/latest`, {
+            params: {
+              option: sort_option,
+              page: Math.ceil(_list.length / 9) + 1,
+              size: 9,
+            },
+          });
+        }
+
         if (
           _list.length !== 0 && 
           response.data.length === 0 &&
@@ -80,6 +100,37 @@ const getPostDB = (init_check) => {
     }
   }
 }
+
+// 최신순, 좋아요 순 정렬
+const changeSortDB = (sort_option) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      let response = {};
+      if(sort_option === "all") {
+        response = await axios.get(`https://yuseon.shop/portfolios/latest`, {
+          params: {
+            option: sort_option,
+            page: 1,
+            size: 9,
+          },
+        });
+      }
+      else if(sort_option === "like") {
+        response = await axios.get(`https://yuseon.shop/portfolios/boast`, {
+          params: {
+            page: 1,
+            size: 9,
+          },
+        });
+      }
+      
+      dispatch(changeSort(response.data));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 const getTopFiveDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -171,7 +222,14 @@ export default handleActions(
         }, [])
 
         //좋아요 순 정렬
-        draft.list = _new_list.sort((a, b) => b.likesCnt - a.likesCnt);
+        //draft.list = _new_list.sort((a, b) => b.likesCnt - a.likesCnt);
+        draft.list = _new_list;
+      }),
+
+    [CHANGE_SORT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = [];
+        draft.list.push(...action.payload.post_list);
       }),
 
     [DELETE_POST]: (state, action) =>
@@ -225,6 +283,11 @@ export default handleActions(
         }, [])
       }),
 
+    [SET_SORT_OPTION]: (state, action) =>
+      produce(state, (draft) => {
+        draft.sort_option = action.payload.sort_option;
+      }),
+      
     [SET_POST_INIT]: (state, action) =>
       produce(state, (draft) => {
         draft.list = [];
@@ -243,6 +306,8 @@ const actionCreators = {
   deletePost,
   deletelikePost,
   setPostInit,
+  changeSortDB,
+  setSortOption,
 };
 
 export { actionCreators };

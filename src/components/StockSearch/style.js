@@ -48,6 +48,15 @@ export const Rate = styled.div`
   right: 20px;
 `;
 
+export const SumRate = styled.p`
+  position: absolute;
+  top: 60px;
+  right: 0;
+  font-size: var(--font-small);
+  line-height: var(--line-small);
+  color: var(--primary-color);
+`;
+
 export const SearchStock = styled.div`
   width: 100%;
   display: flex;

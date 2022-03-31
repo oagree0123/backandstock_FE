@@ -42,6 +42,7 @@ export const InfoContRight = styled.div`
 `;
 
 export const InfoCont = styled.div`
+  margin-bottom: 12px;
   width: 100%;
   height: 40px;
   display: flex;
@@ -49,11 +50,12 @@ export const InfoCont = styled.div`
   font-weight: 500;
   line-height: var(--line-main);
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   box-sizing: content-box;
 `;
 
 export const InfoCircle = styled.div`
+  margin-top: 6px;
   margin-right: 8px;
   width: 12px;
   height: 12px;

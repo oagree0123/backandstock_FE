@@ -10,15 +10,22 @@ import { CommunityList, Slide } from '../../components';
 
 const Community = () => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
 
   const top_list = useSelector((state) => state.community.top_five_list)
   const community_list = useSelector(state => state.community.list);
+  const sort = useSelector(state => state.community.sort_option);
+  
+  const [page, setPage] = useState(1);
+  const [sort_option, setSortOption] = useState("like");
 
   useEffect(() => {
     dispatch(communityActions.getTopFiveDB());
-    dispatch(communityActions.getPostDB(true));
+    dispatch(communityActions.getPostDB(true, "like"));
   }, [])
+
+  useEffect(() => {
+    setSortOption(sort);
+  }, [sort])
 
   return (
     <CommunityWrap>
@@ -35,8 +42,28 @@ const Community = () => {
         포트폴리오 뽐내기
       </CommunityTitle>
       <SortWrap>
-        <SortCircle />
-        <SortText >좋아요순</SortText>
+        <SortCircle sort_option={sort_option === "all" ? "#0075FF" : "#c4c4c4"} />
+        <SortText
+          onClick={() => {
+            setSortOption("all");
+            dispatch(communityActions.changeSortDB("all"))
+            dispatch(communityActions.setSortOption("all"))
+          }}
+          sort_option={sort_option === "all" ? "#0075FF" : "#c4c4c4"} 
+        >
+          최신순
+        </SortText>
+        <SortCircle sort_option={sort_option === "like" ? "#0075FF" : "#c4c4c4"} />
+        <SortText
+          onClick={() => {
+            setSortOption("like");
+            dispatch(communityActions.changeSortDB("like"))
+            dispatch(communityActions.setSortOption("like"))
+          }} 
+          sort_option={sort_option === "like" ? "#0075FF" : "#c4c4c4"}
+        >
+          좋아요순
+        </SortText>
       </SortWrap>
       {community_list &&
         <CommunityList community_list={community_list} />
@@ -45,7 +72,7 @@ const Community = () => {
         {/* <PageHr /> */}
         <PageBtn
           onClick={() => {
-            dispatch(communityActions.getPostDB(false));
+            dispatch(communityActions.getPostDB(false, sort_option));
             setPage(prevState => prevState + 1);
           }}
         >

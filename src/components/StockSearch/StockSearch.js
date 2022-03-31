@@ -13,6 +13,7 @@ import {
   Rate,
   RateWrap,
   SearchStock,
+  SumRate,
 } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import SearchPreview from "../SearchPreview/SearchPreview";
@@ -27,12 +28,16 @@ const MySwal = withReactContent(Swal);
 const StockSearch = () => {
   const dispatch = useDispatch();
 
+  const ration_list = useSelector(state => state.testform.ratioList)
+
   const [is_open, setIsOpen] = useState(false);
   const [ratio, setRatio] = useState("");
   const [stock_search, setStockSearch] = useState("");
   const [stock_name, setStockName] = useState("");
   const [stock_code, setStockCode] = useState("");
   const [search_list, setSearchList] = useState([]);
+
+  const [sum_ratio, setSumRatio] = useState(0);
 
   const onChangeRatio = (e) => {
     console.log(e.target.value);
@@ -120,6 +125,14 @@ const StockSearch = () => {
     }
   };
 
+  useEffect(() => {
+    let sum = ration_list.reduce((acc, cur) => {
+      return acc + cur;
+    }, 0);
+
+    setSumRatio(sum);
+  }, [ration_list])
+
   return (
     <StockWrap>
       <SearchLeft>
@@ -132,6 +145,7 @@ const StockSearch = () => {
             value={ratio}
           ></StockRate>
           <Rate>%</Rate>
+          <SumRate>자산 비율 <strong>{100 - sum_ratio}%</strong> 추가 가능합니다.</SumRate>
         </RateWrap>
       </SearchLeft>
       <SearchRight>

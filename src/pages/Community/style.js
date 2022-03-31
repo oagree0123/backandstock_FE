@@ -26,6 +26,7 @@ export const SortWrap = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const SortCircle = styled.div`
@@ -33,7 +34,7 @@ export const SortCircle = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--primary-color);
+  background-color: ${props => props.sort_option};
 `;
 
 export const SortText = styled.p`
@@ -41,7 +42,7 @@ export const SortText = styled.p`
   font-size: 12px;
   font-weight: 800;
   line-height: var(--line-small);
-  color: var(--primary-color);
+  color: ${props => props.sort_option};
 `;
 
 export const PageWrap = styled.div`

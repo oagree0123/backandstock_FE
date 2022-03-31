@@ -117,7 +117,13 @@ const getResultDB = () => {
         history.push('/result')
       }
       catch (err) {
-        console.log(err);
+        let error = err.response.data;
+        if (error.statusCode === 404) {
+          MySwal.fire({
+            title: `<p>${error.responseMessage}의 주식 데이터가 <br /> 실험 기간안에 없습니다.</p>`,
+            confirmButtonColor: '#0075FF',
+          })
+        }
       }
     }
   };
