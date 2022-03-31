@@ -10,7 +10,7 @@ export const Box = styled.div`
   height: 262px;
   border-radius: 12px;
   background-color: #fff;
-  padding: 20px;
+  padding: 20px 0px 20px 18px;
 `;
 
 export const TopWrap = styled.div`
@@ -31,7 +31,7 @@ export const TopBox = styled.div`
   margin-bottom: 24px;
   display: flex;
   flex-direction: row;
-  width: ${props => props.width ? props.width : "400px" };
+  width: ${props => props.width ? props.width : "400px"};
   height: 117px;
 
   border-radius: 12px;
@@ -219,7 +219,7 @@ export const ListWrap = styled.div`
 `;
 
 export const CardList = styled.div`
-  padding: 8px 14px 21px 16px;
+  padding: 8px 9px 9px 10px;
   width: 166px;
   height: 213px;
   border-radius: 10px;
