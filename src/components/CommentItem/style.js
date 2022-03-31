@@ -13,7 +13,7 @@ export const ImgWrap = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
+  background-image: ${props => props.user_img ? `url(${props.user_img})` : ""};
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -26,6 +26,11 @@ export const CommentContWrap = styled.div`
   flex-direction: column;
 `;
 
+export const Wrap = styled.div`
+   display: flex;
+   align-items: center;
+`
+
 export const UserNick = styled.p`
   margin-bottom: 4px;
   font-size: var(--font-medium);
@@ -33,6 +38,12 @@ export const UserNick = styled.p`
   line-height: var(--line-medium);
   color: var(--primary-color);
 `;
+
+export const CommentDay = styled.p`
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 10px;
+`
 
 export const CommentCont = styled.p`
   margin-bottom: 8px;
@@ -108,7 +119,7 @@ export const ReImgWrap = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-image: ${props => props.user_img ? `url(${props.user_img})`: ""};
+  background-image: ${props => props.user_img ? `url(${props.user_img})` : ""};
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

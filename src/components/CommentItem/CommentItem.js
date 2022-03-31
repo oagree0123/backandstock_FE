@@ -16,13 +16,15 @@ import {
   RecoWrap,
   ReImgWrap,
   UserNick,
+  CommentDay,
+  Wrap
 } from "./style";
 
 import BasicImage from '../../assets/images/basic_image.svg';
 import ReCommentItem from "../ReCommentItem/ReCommentItem";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import dayjs from 'dayjs';
 
 const MySwal = withReactContent(Swal);
 
@@ -40,7 +42,7 @@ const CommentItem = (props) => {
 
   const changeComment = (e) => {
     console.log(e.target.value.length)
-    if(e.target.value.length > 100) {
+    if (e.target.value.length > 100) {
       MySwal.fire({
         title: "댓글은 100글자 까지 가능합니다.",
         confirmButtonColor: '#0075FF',
@@ -51,7 +53,7 @@ const CommentItem = (props) => {
   }
 
   const changeEditComment = (e) => {
-    if(e.target.value.length > 100) {
+    if (e.target.value.length > 100) {
       MySwal.fire({
         title: "댓글은 100글자 까지 가능합니다.",
         confirmButtonColor: '#0075FF',
@@ -62,7 +64,7 @@ const CommentItem = (props) => {
   }
 
   const clickComment = () => {
-    if(!is_login) {
+    if (!is_login) {
       MySwal.fire({
         title: "로그인 후 댓글 작성이 가능합니다.",
         confirmButtonColor: '#0075FF',
@@ -70,7 +72,7 @@ const CommentItem = (props) => {
       return;
     }
 
-    if(!comment) {
+    if (!comment) {
       MySwal.fire({
         title: "댓글 내용을 입력해주세요!",
         confirmButtonColor: '#0075FF',
@@ -81,7 +83,7 @@ const CommentItem = (props) => {
     setOpenReco(false);
     dispatch(commentActions.ReaddCommentDB(props.commentId, comment));
   }
-  
+
   const clickDelComment = () => {
     MySwal.fire({
       title: "정말 삭제하시겠습니까?",
@@ -93,11 +95,11 @@ const CommentItem = (props) => {
       cancelButtonText: '취소',
     }).then((result) => {
 
-      if(result.isConfirmed) {
+      if (result.isConfirmed) {
         dispatch(commentActions.deleteCommentDB(props.commentId));
       }
       else {
-        return ;
+        return;
       }
     });
   }
@@ -115,14 +117,14 @@ const CommentItem = (props) => {
     <CommentItemWrap>
       <ImgWrap user_img={props.profileImg ? props.profileImg : BasicImage} />
       <CommentContWrap>
-        { open_edit ?
+        {open_edit ?
           <RecoWrap
             mTop="8px"
           >
-            <RecoInput 
+            <RecoInput
               type="text"
               placeholder="댓글을 입력해주세요"
-              onChange={changeEditComment} 
+              onChange={changeEditComment}
               value={edit_comment}
             />
             <RecoBtn
@@ -138,38 +140,43 @@ const CommentItem = (props) => {
             >
               취소
             </RecoCancleBtn>
-          </RecoWrap>:
+          </RecoWrap> :
           <>
-            <UserNick>{props.nickname}</UserNick>
+            <Wrap>
+              <UserNick>{props.nickname}</UserNick>
+              <CommentDay>
+                {dayjs(props.createdAt).format("YYYY-MM-DD")}
+              </CommentDay>
+            </Wrap>
             <CommentCont>
               {props.content}
             </CommentCont>
             <BtnWrap>
-                <ReCommnentBtn
-                  onClick={() => {
-                    if(!is_login) {
-                      MySwal.fire({
-                        title: "로그인 후 댓글 작성이 가능합니다.",
-                        confirmButtonColor: '#0075FF',
-                      })
-                      return;
-                    }
+              <ReCommnentBtn
+                onClick={() => {
+                  if (!is_login) {
+                    MySwal.fire({
+                      title: "로그인 후 댓글 작성이 가능합니다.",
+                      confirmButtonColor: '#0075FF',
+                    })
+                    return;
+                  }
 
-                    setOpenReco(!open_reco);
-                    if(open_edit) {
-                      setOpenEdit(false);
-                    }
-                  }}
-                >
-                  답글 달기
-                </ReCommnentBtn>
+                  setOpenReco(!open_reco);
+                  if (open_edit) {
+                    setOpenEdit(false);
+                  }
+                }}
+              >
+                답글 달기
+              </ReCommnentBtn>
 
-              { user === props.userId &&
+              {user === props.userId &&
                 <>
                   <EditCommnentBtn
                     onClick={() => {
                       setOpenEdit(!open_edit);
-                      if(open_reco) {
+                      if (open_reco) {
                         setOpenReco(false);
                       }
                     }}
@@ -186,13 +193,13 @@ const CommentItem = (props) => {
             </BtnWrap>
           </>
         }
-        { open_reco ?
+        {open_reco ?
           <RecoWrap>
             <ReImgWrap user_img={user_img ? user_img : BasicImage} />
-            <RecoInput 
+            <RecoInput
               type="text"
               placeholder="댓글을 입력해주세요"
-              onChange={changeComment} 
+              onChange={changeComment}
               value={comment}
             />
             <RecoBtn
@@ -208,17 +215,17 @@ const CommentItem = (props) => {
             >
               취소
             </RecoCancleBtn>
-          </RecoWrap>:
+          </RecoWrap> :
           null
         }
-        { 
+        {
           props.replyList.map((r, i) => {
             return (
-              <ReCommentItem 
+              <ReCommentItem
                 comment_id={props.commentId}
-                reco_content={r} 
-                key={i} 
-              /> 
+                reco_content={r}
+                key={i}
+              />
             );
           })
         }
