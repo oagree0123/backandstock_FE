@@ -7,6 +7,7 @@ export const MypageWrap = styled.div`
 `;
 
 export const MypageHead = styled.h1`
+  margin-bottom: 24px;
   font-size: 32px;
   line-height: var(--line-header);
   font-weight: 600;
@@ -20,16 +21,22 @@ export const ChartTitle = styled.h2`
   letter-spacing: 0.15px;
 `;
 
-export const ChartInfo = styled.p`
+export const TopWrap = styled.div`
+  width: 880px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const TextInfo = styled.p`
   margin-bottom: 4px;
   font-size: 12px;
   font-weight: 500;
-  text-align: right;
+  text-align: ${props => props.align ? props.align : "left"};
 `;
 
 export const ChartBtnWrap = styled.div`
-  margin-bottom: 18px;
-  width: 880px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: flex-end;
   align-items: center;

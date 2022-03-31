@@ -16,7 +16,8 @@ import {
   DeleteBtn,
   NoneChartWrap,
   NoneChartText,
-  ChartInfo,
+  TextInfo,
+  TopWrap,
 } from "./style";
 import CompareLineResult from "../../components/CompareLineResult/CompareLineResult";
 
@@ -120,20 +121,23 @@ const Mypage = () => {
         실험한 자산들을 <br />
         비교해볼까요?
       </MypageHead>
-      <ChartBtnWrap>
-        <CompareBtn
-          onClick={() => {
-            click_compare();
-          }}
-        >
-          비교하기
-        </CompareBtn>
-        <DeleteBtn onClick={click_delete}>삭제하기</DeleteBtn>
-      </ChartBtnWrap>
+      <TopWrap>
+        <TextInfo >* 자랑하기 클릭 시 실험을 커뮤니티에 공유합니다.</TextInfo>
+        <ChartBtnWrap>
+          <CompareBtn
+            onClick={() => {
+              click_compare();
+            }}
+          >
+            비교하기
+          </CompareBtn>
+          <DeleteBtn onClick={click_delete}>삭제하기</DeleteBtn>
+        </ChartBtnWrap>
+      </TopWrap>
       <PortCardList port_list={port_list} />
 
       <ChartTitle>실험 월별 비교</ChartTitle>
-      <ChartInfo>* 기간이 가장 짧은 실험기간을 기준으로 합니다.</ChartInfo>
+      <TextInfo align="right">* 기간이 가장 짧은 실험기간을 기준으로 합니다.</TextInfo>
       <ChartWrap>
         {check_compare ? (
           <>
