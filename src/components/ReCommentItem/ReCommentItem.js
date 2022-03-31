@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../../redux/modules/comment";
+import { actionCreators as portActions } from "../../redux/modules/port";
 import BasicImage from '../../assets/images/basic_image.svg';
 
 import {
@@ -56,6 +57,7 @@ const ReCommentItem = (props) => {
     }).then((result) => {
 
       if(result.isConfirmed) {
+        dispatch(portActions.changeCommentCnt(-1));
         dispatch(commentActions.deleteREcommnetDB(props.comment_id, recomment_id));
       }
       else {

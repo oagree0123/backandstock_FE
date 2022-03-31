@@ -20,6 +20,8 @@ const SET_COMPARE = "SET_COMPARE";
 const GET_COMPARE = "GET_COMPARE";
 const SET_INITCOMPARE = "SET_INITCOMPARE";
 
+const CHANGE_COMMNET_CNT = "CHANGE_COMMNET_CNT";
+
 // action creators
 const getResult = createAction(GET_RESULT, (test_result) => ({ test_result }));
 const savePortOne = createAction(SAVE_PORTONE, (port_id, result) => ({ port_id, result }));
@@ -31,6 +33,8 @@ const setBest = createAction(SET_BEST, (type, port_id) => ({ type, port_id }));
 const setCompare = createAction(SET_COMPARE, (type, compare_id) => ({ type, compare_id }));
 const getCompare = createAction(GET_COMPARE, (compare_item, compare_data) => ({ compare_item, compare_data }));
 const setInitCompare = createAction(SET_INITCOMPARE, () => ({}));
+
+const changeCommentCnt = createAction(CHANGE_COMMNET_CNT, (change_num) => ({ change_num }));
 
 // initialState
 const initialState = {
@@ -363,6 +367,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.compare_list = [];
       }),
+
+    [CHANGE_COMMNET_CNT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.port_one = {
+          ...draft.port_one, 
+          commentCnt: (draft.port_one.commentCnt + action.payload.change_num),
+        };
+      }),
   },
   initialState
 );
@@ -379,6 +391,7 @@ const actionCreators = {
   setBestDB,
   getCompareDB,
   setInitCompare,
+  changeCommentCnt,
 };
 
 export { actionCreators };

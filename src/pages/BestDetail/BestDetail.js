@@ -58,7 +58,7 @@ const BestDetail = (props) => {
       </ContWrap>
 
       <CommentWrap>
-        <CommentCnt>댓글 {port_one.commentCnt}</CommentCnt>
+        <CommentCnt>댓글 {port_one.commentCnt} 개</CommentCnt>
         <CommentList port_id={port_id.id} comment_list={comment_list} />
       </CommentWrap>
     </BestDetailWrap>

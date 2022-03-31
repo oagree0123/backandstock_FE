@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CommentItem from "../CommentItem/CommentItem";
 import { useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../../redux/modules/comment";
+import { actionCreators as portActions } from "../../redux/modules/port";
 import BasicImage from '../../assets/images/basic_image.svg';
 
 import {
@@ -57,6 +58,7 @@ const CommentList = (props) => {
       return;
     }
     setComment("");
+    dispatch(portActions.changeCommentCnt(1));
     dispatch(commentActions.addCommentDB(props.port_id, comment));
   }
 

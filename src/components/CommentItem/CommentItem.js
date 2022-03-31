@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../../redux/modules/comment";
+import { actionCreators as portActions } from "../../redux/modules/port";
 import {
   BtnWrap,
   CommentCont,
@@ -81,6 +82,7 @@ const CommentItem = (props) => {
     }
     setComment("");
     setOpenReco(false);
+    dispatch(portActions.changeCommentCnt(1));
     dispatch(commentActions.ReaddCommentDB(props.commentId, comment));
   }
 
@@ -94,8 +96,8 @@ const CommentItem = (props) => {
       confirmButtonText: '삭제',
       cancelButtonText: '취소',
     }).then((result) => {
-
       if (result.isConfirmed) {
+        dispatch(portActions.changeCommentCnt(-1));
         dispatch(commentActions.deleteCommentDB(props.commentId));
       }
       else {
