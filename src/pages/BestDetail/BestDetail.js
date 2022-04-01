@@ -25,14 +25,19 @@ const BestDetail = (props) => {
   const dispatch = useDispatch();
 
   const port_id = useParams();
+
+  const user = useSelector(state => state.user.user_info);
   const port_one = useSelector(state => state.port.port_one);
   const result_list = port_one.portBacktestingCal;
   const comment_list = useSelector(state => state.comment.list);
 
   useEffect(() => {
     dispatch(portActions.getPortOneDB(port_id.id))
-    dispatch(commentActions.getCommentDB(port_id.id));
   }, []);
+  
+  useEffect(() => {
+    dispatch(commentActions.getCommentDB(port_id.id));
+  }, [user.nickname]);
 
   return (
     <BestDetailWrap>
