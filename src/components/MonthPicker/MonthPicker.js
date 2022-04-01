@@ -10,8 +10,8 @@ import { CalenderArrow, CalenderHeader, CalenderWrap, CalenderYear, DateWrap, Mo
 const MonthPicker = (props) => {
   const dispatch = useDispatch();
 
-  const today_year = dayjs().format('YYYY');
-  const today_month = dayjs().format('MM');
+  const today_year = dayjs().format('2022');
+  const today_month = dayjs().format('03');
 
   const [is_open, setIsOpen] = useState(false);
   const [year, setYear] = useState(
