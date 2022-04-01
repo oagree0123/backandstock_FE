@@ -13,7 +13,15 @@ export const Card = styled.img`
 
 export const CardLink = styled.a`
   width: 880px;
-  height: 115px;
+  height: 110px;
   border: none;
   text-decoration: none;
+
+  &:visited {
+    color: none;
+  }
+
+  &:active {
+    color: none;
+  }
 `;
