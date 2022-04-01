@@ -41,7 +41,7 @@ export const HeaderBtnWrap = styled.div`
 `;
 
 export const InfoBtn = styled.button`
-  margin-right: 40px;
+  margin-right: ${props => props.margin_right ? props.margin_right : ""};
   font-size: var(--font-large);
   font-weight: 600;
   line-height: var(--line-large);

@@ -35,6 +35,7 @@ const Header = () => {
             </ModalWrap>
           }
           <InfoBtn
+            margin_right={is_login ? "40px" : "140px"}
             onClick={()=>{
               setModalOpen(!modal_open);
             }}
