@@ -24,6 +24,7 @@ import CompareLineResult from "../../components/CompareLineResult/CompareLineRes
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { getToken } from "../../shared/token";
 
 const MySwal = withReactContent(Swal);
 
@@ -31,7 +32,6 @@ const Mypage = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user.user_info);
-  const is_login = useSelector((state) => state.user.is_login);
   const port_list = useSelector((state) => state.port.port_list);
   const compare_list = useSelector((state) => state.port.compare_list);
   const compare_item = useSelector((state) => state.port.compare_item);
@@ -41,6 +41,8 @@ const Mypage = () => {
 
   const [check_compare, setCheckCompare] = useState(false);
   const [compare_idx, setCompareIdx] = useState([]);
+
+  const is_token = getToken("token");
 
   const click_compare = () => {
     if (com_lenght < 2) {
@@ -116,6 +118,16 @@ const Mypage = () => {
   useEffect(() => {
     setComLenght(compare_list.length);
   }, [compare_list])
+
+  useEffect(() => {
+    if(!is_token) {
+      MySwal.fire({
+        title: `<p>포트폴리오 페이지는 <br /> 로그인 후 확인할 수 있습니다.<p>`,
+        confirmButtonColor: '#0075FF',
+      })
+      history.replace('/');
+    }
+  }, [])
 
   return (
     <MypageWrap>
