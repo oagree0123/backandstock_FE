@@ -5,7 +5,7 @@ export const CommunityItemWrap = styled.div`
   margin-bottom: 16px;
   padding-top: 16px;
   width: 280px;
-  height: 300px;
+  height: 290px;
   border-radius: 10px;
   background-color: var(--secondary-color);
 `;
@@ -16,7 +16,7 @@ export const CardClickWrap = styled.div`
 
 export const LikeBtn = styled.img`
   position: absolute;
-  top: 20px;
+  top: 16px;
   right: 20px;
   width: 46px;
   height: 46px;
@@ -26,17 +26,22 @@ export const LikeBtn = styled.img`
 `;
 
 export const ItemTop = styled.div`
+  position: relative;
   padding-left: 20px;
 `;
 
 export const ItemTitle = styled.h3`
-  font-size: var(--font-medium);
+  margin-bottom: 16px;
+  font-size: var(--font-main);
   font-weight: 800;
-  line-height: var(--line-medium);
+  line-height: var(--line-main);
   color: #000;
 `;
 
 export const IconWrap = styled.div`
+  position: absolute;
+  top: 19px;
+  left: 98px;
   display: flex;
   align-items: center;
 `;
@@ -49,30 +54,24 @@ export const CardIcon = styled.img`
 `;
 
 export const InfoCnt = styled.p`
-  width: 28px;
+  width: 20px;
   font-size: 12px;
   line-height: 28px;
   color: #818181;
 `;
 
 export const ItemMid = styled.div`
-  padding-top: 12px;
-  padding-left: 12px;
+  padding-top: 20px;
+  padding-left: 18px;
   width: 280px;
-  height: 200px;
+  height: 220px;
   border: 3px solid var(--secondary-color);
   border-radius: 10px;
   background-color: #fff;
 `;
 
-export const StockCnt = styled.p`
-  margin-bottom: 8px;
-  font-size: var(--font-small);
-  font-weight: 600;
-  line-height: var(--line-small);
-`;
-
-export const StockDate = styled.p`
+export const MoneyTitle = styled.p`
+  margin-left: 2px;
   margin-bottom: 12px;
   font-size: var(--font-small);
   font-weight: 600;
@@ -86,23 +85,23 @@ export const StockContWrap = styled.div`
 
 export const StockInfoWrap = styled.div`
   margin-right: 6px;
-  margin-bottom: 4px;
-  width: 124px;
+  width: 110px;
   display: flex;
   align-items: center;
 `;
 
 export const StockCircle = styled.div`
+  margin-left: 2px;
   margin-right: 6px;
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: var(--primary-color);
 `;
 
 export const StockName = styled.p`
   margin-right: 2px;
-  width: 67px;
+  width: 90px;
   height: 26px;
   font-size: var(--font-small);
   font-weight: 600;
@@ -137,8 +136,20 @@ export const ItemBottom = styled.div`
   background-color: var(--secondary-color);
 `;
 
-export const FinalMoney = styled.p`
-  font-size: var(--font-medium);
+export const FinalRate = styled.h3`
+  margin-bottom: 10px;
+  font-size: 36px;
   font-weight: 800;
-  line-height: var(--line-medium);
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: var(--primary-color);
+`;
+
+export const FinalMoney = styled.p`
+  margin-left: 2px;
+  margin-bottom: 12px;
+  font-size: var(--font-large);
+  font-weight: 800;
+  line-height: var(--line-large);
+  letter-spacing: 0.15px;
 `;

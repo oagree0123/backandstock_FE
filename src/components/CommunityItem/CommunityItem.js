@@ -22,10 +22,10 @@ import {
   StockCircle,
   StockName,
   StockRatio,
-  StockCnt,
-  StockDate,
+  MoneyTitle,
   CardClickWrap,
   FinalMoney,
+  FinalRate,
 } from "./style";
 import { actionCreators as likepostActions } from "../../redux/modules/community";
 import { actionCreators as deletlikePostActions } from "../../redux/modules/community";
@@ -36,6 +36,7 @@ const CommunityItem = (props) => {
   const { communityPort } = props;
 
   const user = useSelector((state) => state.user.user_info);
+  const is_login = useSelector((state) => state.user.is_login);
 
   const port_id = props.communityPort.portId;
   const like_user = props.likesUsers;
@@ -55,13 +56,16 @@ const CommunityItem = (props) => {
       setLikeCount(likeCount - 1);
       dispatch(deletlikePostActions.deletelikePostDB(port_id, user_id));
     }
-
   };
+  
   return (
     <CommunityItemWrap>
       {like_user.includes(user.user_id) ? (
         <LikeBtn
           onClick={() => {
+            if(!is_login) {
+              return;
+            }
             toggleLike(true);
           }}
           src={heartRed}
@@ -69,6 +73,9 @@ const CommunityItem = (props) => {
       ) : (
         <LikeBtn
           onClick={() => {
+            if(!is_login) {
+              return;
+            }
             toggleLike(false);
           }}
           src={heartGray}
@@ -86,40 +93,32 @@ const CommunityItem = (props) => {
             {communityPort.nickname} 님의 <br />
             자산실험
           </ItemTitle>
-          <IconWrap>
-            <CardIcon src={likecnt} alt="likecnt" />
-            <InfoCnt>{props.likesCnt} </InfoCnt>
-            <InfoCnt></InfoCnt>
-            <CardIcon src={commentcnt} alt="commentcnt" />
-            <InfoCnt>{props.commentCnt}</InfoCnt>
-          </IconWrap>
+            <IconWrap>
+              <CardIcon src={likecnt} alt="likecnt" />
+              <InfoCnt>{props.likesCnt} </InfoCnt>
+              <CardIcon src={commentcnt} alt="commentcnt" />
+              <InfoCnt>{props.commentCnt}</InfoCnt>
+            </IconWrap>
         </ItemTop>
         <ItemMid>
-          <StockCnt>종목 개수: {communityPort.stockList.length}</StockCnt>
-          <StockDate>
-            기간: {communityPort.startDate} ~ {communityPort.endDate}
-          </StockDate>
+          <MoneyTitle>총 수익</MoneyTitle>
+          <FinalRate>{Math.floor(communityPort.finalYield)}%</FinalRate>
+          <FinalMoney>
+            {Math.floor(communityPort.finalYieldMoney / 10000).toLocaleString(
+              "ko-KR"
+            )} 만원
+          </FinalMoney>
           <StockContWrap>
             {communityPort.stockList.map((s, i) => {
               return (
                 <StockInfoWrap key={i}>
                   <StockCircle />
                   <StockName>{s}</StockName>
-                  <StockRatio>{communityPort.ratioList[i]}%</StockRatio>
                 </StockInfoWrap>
               );
             })}
           </StockContWrap>
         </ItemMid>
-        <ItemBottom>
-          <FinalMoney>
-            최종 자산:{" "}
-            {Math.floor(communityPort.finalYieldMoney / 10000).toLocaleString(
-              "ko-KR"
-            )}{" "}
-            만원
-          </FinalMoney>
-        </ItemBottom>
       </CardClickWrap>
     </CommunityItemWrap>
   );
