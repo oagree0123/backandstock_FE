@@ -417,3 +417,8 @@ export const EmptyList = styled.div`
   border-radius: 10px;
   background-color: #eee;
 `;
+
+export const SpinnerWrap = styled.div`
+  width: 880px;
+  height: 482px;
+`;
