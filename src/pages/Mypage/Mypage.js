@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { CompareRank, CompareResult } from "../../components";
+import { CompareRank } from "../../components";
 import PortCardList from "../../components/PortCardList/PortCardList";
 import { actionCreators as portActions } from "../../redux/modules/port";
 import { actionCreators as communityActions } from "../../redux/modules/community";
+import { history } from "../../redux/configStore";
 
 import {
   MypageWrap,
@@ -30,6 +31,7 @@ const Mypage = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user.user_info);
+  const is_login = useSelector((state) => state.user.is_login);
   const port_list = useSelector((state) => state.port.port_list);
   const compare_list = useSelector((state) => state.port.compare_list);
   const compare_item = useSelector((state) => state.port.compare_item);
@@ -104,7 +106,13 @@ const Mypage = () => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if(!is_login) {
+      history.replace('/');
+    }
+  }, [is_login]);
+
+  useEffect(() => {
+    if (is_login) {
       return;
     }
     dispatch(portActions.getMyPortDB(user.user_id));
