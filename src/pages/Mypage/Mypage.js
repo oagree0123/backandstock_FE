@@ -112,7 +112,7 @@ const Mypage = () => {
   }, [is_login]);
 
   useEffect(() => {
-    if (is_login) {
+    if (!is_login) {
       return;
     }
     dispatch(portActions.getMyPortDB(user.user_id));
