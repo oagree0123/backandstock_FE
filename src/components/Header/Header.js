@@ -8,7 +8,9 @@ import logo from "../../assets/images/logo_1_se.png"
 import TestInfoModal from '../TestInfoModal/TestInfoModal';
 const Header = () => {
   const dispatch = useDispatch();
+  
   const is_login = useSelector(state => state.user.is_login);
+  const location = useSelector((state) => state.router.location.pathname);
 
   const [modal_open, setModalOpen] = useState(false);
 
@@ -44,6 +46,9 @@ const Header = () => {
           </InfoBtn>
           {is_login &&
             <Logout onClick={() => {
+              if(location === "/mypage") {
+                history.replace('/');
+              }
               dispatch(userActions.logout());
             }}>로그아웃</Logout>
           }

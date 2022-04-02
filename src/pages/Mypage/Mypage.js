@@ -106,13 +106,7 @@ const Mypage = () => {
   };
 
   useEffect(() => {
-    if(!is_login) {
-      history.replace('/');
-    }
-  }, [is_login]);
-
-  useEffect(() => {
-    if (!is_login) {
+    if (!user) {
       return;
     }
     dispatch(portActions.getMyPortDB(user.user_id));
