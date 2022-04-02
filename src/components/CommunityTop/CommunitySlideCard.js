@@ -5,7 +5,6 @@ const CommunitySlideCard = (props) => {
 
   const results = Math.floor(props.kospi_results);
   const volume = Math.floor(props.volume_results / 10000);
-  const transaction = Math.floor(props.transaction_results / 100000000);
 
   return (
     <Box>
@@ -17,9 +16,7 @@ const CommunitySlideCard = (props) => {
           <Result>{results}%</Result>
         ) : props.toptitle === "거래량 TOP5" ? (
           <Result>{volume.toLocaleString()}주</Result>
-        ) : (
-          <Result>{transaction.toLocaleString()}억원</Result>
-        )}
+        ): null }
       </Wrap>
     </Box>
   );

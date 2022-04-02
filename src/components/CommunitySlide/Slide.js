@@ -13,8 +13,6 @@ const Slide = (props) => {
     "KOSPI 수익률 TOP5",
     "KOSDAQ 수익률 TOP5",
     "거래량 TOP5",
-    "거래대금 TOP5",
-    "거래대금 TOP5",
   ];
 
   const settings = {
@@ -44,7 +42,6 @@ const Slide = (props) => {
                   stock_num={n.stockCodes[i]}
                   kospi_results={n.results[i]}
                   volume_results={top_list[2].results[i]}
-                  transaction_results={top_list[3].results[i]}
                   toptitle={Title[k]}
                 />
               </CardWrap>
