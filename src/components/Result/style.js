@@ -419,6 +419,7 @@ export const EmptyList = styled.div`
 `;
 
 export const SpinnerWrap = styled.div`
+  margin-top: 200px;
   width: 880px;
   height: 482px;
 `;
