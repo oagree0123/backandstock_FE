@@ -56,6 +56,11 @@
 |:--------:|:----------------------------------------------------------:|:-----------:|
 | 오예준   | [https://github.com/oagree0123](https://github.com/oagree0123)                     | 프론트엔드 |
 | 안소진   | [https://github.com/sojin0106](https://github.com/sojin0106)                       | 프론트엔드 |
+| 박유선   | [https://github.com/kiljw316](https://github.com/kiljw316)                         | 백엔드 |
+| 김정근   | [https://github.com/thethe133](https://github.com/thethe133)                     | 백엔드 |
+| 정선모   | [https://github.com/wjdtjsah12](https://github.com/wjdtjsah12)                     | 백엔드 |
+| 안수현   |                     | 디자인 |
+| 이혜림   |                     | 디자인 |
 
 <br>
 
