@@ -100,7 +100,7 @@
 |History|페이지 이동|4.10.1|
 |@nivo/line|라인 차트 라이브러리|0.79.1|
 |@nivo/bar| 차트 라이브러리|0.79.1|
-|React-slick|슬라이드|0.28.1|
+|React-slick|슬라이드 라이브러리|0.28.1|
 |Dayjs|날짜, 시간 라이브러리|1.11.0|
 |Sweetalert2|Alert 라이브러리|1.4.7|
 |Styled-components|CSS in JS|5.3.3|
